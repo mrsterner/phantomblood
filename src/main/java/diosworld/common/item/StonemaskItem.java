@@ -6,6 +6,7 @@ import dev.emi.trinkets.api.Slots;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketItem;
 import diosworld.common.registry.DioObjects;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
@@ -17,6 +18,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Wearable;
+import net.minecraft.sound.SoundEvents;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -25,18 +27,15 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class StonemaskItem extends TrinketItem implements IAnimatable, Wearable
+public class StonemaskItem extends Item implements IAnimatable, Wearable
 {
     public AnimationFactory factory = new AnimationFactory(this);
 
-    @Override
-    public boolean canWearInSlot(String s, String s1) {
-        return s.equals(SlotGroups.HEAD) && s1.equals(Slots.MASK);
-    }
 
     public StonemaskItem(Settings properties)
     {
         super(properties);
+
     }
 
     private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event)
@@ -57,14 +56,4 @@ public class StonemaskItem extends TrinketItem implements IAnimatable, Wearable
         return this.factory;
     }
 
-    @Override
-    public void render(String slot, MatrixStack matrixStack, VertexConsumerProvider vertexConsumer, int light, PlayerEntityModel<AbstractClientPlayerEntity> model, AbstractClientPlayerEntity player, float headYaw, float headPitch) {
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        ItemStack stack = new ItemStack(DioObjects.STONE_MASK_ITEM);
-        Trinket.translateToFace(matrixStack,model,player,headYaw,headPitch);
-        matrixStack.scale(-0.35f,-0.35f,0.35f);
-        matrixStack.translate(0,-0.1f,0.2f);
-        itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED,light, OverlayTexture.DEFAULT_UV,matrixStack,vertexConsumer);
-
-    }
 }

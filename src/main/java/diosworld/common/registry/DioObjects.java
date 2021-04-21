@@ -4,6 +4,7 @@ import diosworld.Dio;
 import diosworld.common.block.Chandelier;
 import diosworld.common.item.StonemaskArmorItem;
 import diosworld.common.item.StonemaskItem;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarvedPumpkinBlock;
@@ -24,13 +25,10 @@ public class DioObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
     //Items
-    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(gen().maxCount(1)));
-    //public static final Item STONE_MASK_ITEM = create("stonemaskitem", new Item(new Item.Settings().group(Dio.DIO_GROUP)));
+    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(new FabricItemSettings().group(Dio.DIO_GROUP).equipmentSlot(stack -> EquipmentSlot.HEAD).maxCount(1)));
     //Blocks
     public static final Block IRON_CANDELABRA = create("iron_chandelier", new Chandelier(copyOf(Blocks.IRON_BLOCK).luminance(blockState -> blockState.get(Properties.LIT) ? 15 : 0)), true);
-    //Armor
-    public static final Item STONE_MASK = create("stonemaskitem2", new StonemaskArmorItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
-    //Tile
+
 
 
 
