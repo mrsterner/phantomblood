@@ -25,7 +25,7 @@ public class DioObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
     //Items
-    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(new FabricItemSettings().group(Dio.DIO_GROUP).equipmentSlot(stack -> EquipmentSlot.HEAD).maxCount(1)));
+    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, new FabricItemSettings().group(Dio.DIO_GROUP).maxCount(1)));
     //Blocks
     public static final Block IRON_CANDELABRA = create("iron_chandelier", new Chandelier(copyOf(Blocks.IRON_BLOCK).luminance(blockState -> blockState.get(Properties.LIT) ? 15 : 0)), true);
 
