@@ -2,7 +2,9 @@
   "required": true,
   "package": "diosworld.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "mixins": [
+    "LivingEntityMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {

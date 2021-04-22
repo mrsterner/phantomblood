@@ -2,12 +2,10 @@ package diosworld.common.registry;
 
 import diosworld.Dio;
 import diosworld.common.block.Chandelier;
-import diosworld.common.item.StonemaskArmorItem;
 import diosworld.common.item.StonemaskItem;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import diosworld.common.item.VampStick;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.BlockItem;
@@ -24,8 +22,11 @@ import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSetting
 public class DioObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
+    //Armor
+    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, new Item.Settings().group(Dio.DIO_GROUP)));
     //Items
-    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, new FabricItemSettings().group(Dio.DIO_GROUP).maxCount(1)));
+    public static final Item AJA = create("aja", new Item(gen()));
+    public static final Item VAMP = create("vamp", new VampStick(gen()));
     //Blocks
     public static final Block IRON_CANDELABRA = create("iron_chandelier", new Chandelier(copyOf(Blocks.IRON_BLOCK).luminance(blockState -> blockState.get(Properties.LIT) ? 15 : 0)), true);
 
