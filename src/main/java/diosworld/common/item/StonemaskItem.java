@@ -1,10 +1,14 @@
 package diosworld.common.item;
 
+import diosworld.Dio;
+import diosworld.common.registry.DioObjects;
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.common.registry.BWDamageSources;
 import moriyashiine.bewitchment.common.registry.BWObjects;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
@@ -45,5 +49,18 @@ public class StonemaskItem extends GeoArmorItem implements IAnimatable {
         return this.factory;
     }
 
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (entity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) entity;
+            ItemStack stonemask = player.getEquippedStack(EquipmentSlot.HEAD);
 
+            if (stonemask.getItem() == DioObjects.STONE_MASK_ITEM && ((PlayerEntity) entity).getHealth() >= 10 && !BewitchmentAPI.isVampire(entity, true)) {
+                player.addStatusEffect(new StatusEffectInstance(Dio.STONE_MASK_DEATH, 1, 0, false, false, true));
+            }
+            if (stonemask.getItem() == DioObjects.STONE_MASK_ITEM && ((PlayerEntity) entity).getHealth() == 4 && !BewitchmentAPI.isVampire(entity, true)) {
+                player.addStatusEffect(new StatusEffectInstance(Dio.STONE_MASK_VAMP, 20*2, 0, false, false, true));
+            }
+        }
+    }
 }

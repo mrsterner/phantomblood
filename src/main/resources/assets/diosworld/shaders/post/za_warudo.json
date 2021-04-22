@@ -1,0 +1,17 @@
+{
+  "targets": [
+    "swap"
+  ],
+  "passes": [
+    {
+      "name": "diosworld:za_warudo",
+      "intarget": "minecraft:main",
+      "outtarget": "swap"
+    },
+    {
+      "name": "diosworld:fish_eye",
+      "intarget": "swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

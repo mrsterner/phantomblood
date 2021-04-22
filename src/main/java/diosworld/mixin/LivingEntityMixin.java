@@ -2,7 +2,6 @@ package diosworld.mixin;
 
 import diosworld.Dio;
 import diosworld.DioAPI;
-import diosworld.common.StonemaskEffect;
 import diosworld.common.registry.DioObjects;
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.CurseAccessor;
@@ -17,7 +16,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

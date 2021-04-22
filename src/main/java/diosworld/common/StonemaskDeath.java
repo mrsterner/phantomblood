@@ -1,9 +1,11 @@
 package diosworld.common;
 
+import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.common.registry.BWDamageSources;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.player.PlayerEntity;
 
 public class StonemaskDeath extends StatusEffect {
     public StonemaskDeath() {
@@ -15,6 +17,8 @@ public class StonemaskDeath extends StatusEffect {
     }
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.damage(BWDamageSources.DEATH, 40f);
+        if (entity instanceof PlayerEntity && !BewitchmentAPI.isVampire(entity, true)) {
+            entity.damage(BWDamageSources.DEATH, 40f);
+        }
     }
 }
