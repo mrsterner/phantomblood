@@ -12,6 +12,7 @@ import moriyashiine.bewitchment.common.registry.*;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
@@ -51,17 +52,22 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow public abstract Map<StatusEffect, StatusEffectInstance> getActiveStatusEffects();
 
+    @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
-    @Inject(method = "tryUseTotem", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "tryUseTotem", at = @At("TAIL"), cancellable = true)
     private void tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> callbackInfo) {
         if (!callbackInfo.getReturnValue() && !world.isClient) {
             ItemStack poppet = BewitchmentAPI.getPoppet(world, BWObjects.DEATH_PROTECTION_POPPET, this, null);
 
+
             if (callbackInfo.getReturnValue() && (Object) this instanceof PlayerEntity && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
-                if ((this.getActiveStatusEffects() == Dio.STONE_MASK_VAMP || DioAPI.isSourceFromStonemask(BWDamageSources.VAMPIRE)) || source.getSource() instanceof VampireEntity || (BewitchmentAPI.isVampire(source.getSource(), true))) {
+                LivingEntity entity = (LivingEntity) (Object) this;
+                ItemStack stonemask = entity.getEquippedStack(EquipmentSlot.HEAD);
+                if (stonemask.getItem() == DioObjects.STONE_MASK_ITEM || source.getSource() instanceof VampireEntity || (BewitchmentAPI.isVampire(source.getSource(), true))) {
                     ((TransformationAccessor) this).getTransformation().onRemoved((PlayerEntity) (Object) this);
                     ((TransformationAccessor) this).setTransformation(BWTransformations.VAMPIRE);
                     ((TransformationAccessor) this).getTransformation().onAdded((PlayerEntity) (Object) this);
@@ -76,15 +82,25 @@ public abstract class LivingEntityMixin extends Entity {
     private void tick(CallbackInfo callbackInfo) {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
+            ItemStack stonemask = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
             int damage = 0;
-            if (livingEntity.getMainHandStack().getItem() == DioObjects.STONE_MASK_ITEM && !BewitchmentAPI.isVampire(this, true)) {
+            if (stonemask.getItem() == DioObjects.STONE_MASK_ITEM && !BewitchmentAPI.isVampire(this, true)) {
                 damage++;
             }
 
             if (damage > 0) {
-                damage(BWDamageSources.VAMPIRE, damage);
+                damage(BWDamageSources.VAMPIRE, 1);
+            }
+            if(stonemask.getItem() == DioObjects.STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
+                ((TransformationAccessor) this).getTransformation().onRemoved((PlayerEntity) (Object) this);
+                ((TransformationAccessor) this).setTransformation(BWTransformations.VAMPIRE);
+                ((TransformationAccessor) this).getTransformation().onAdded((PlayerEntity) (Object) this);
+                PlayerLookup.tracking(this).forEach(foundPlayer -> SpawnSmokeParticlesPacket.send(foundPlayer, this));
+                SpawnSmokeParticlesPacket.send((PlayerEntity) (Object) this, this);
+                world.playSound(null, getBlockPos(), BWSoundEvents.ENTITY_GENERIC_CURSE, getSoundCategory(), getSoundVolume(), getSoundPitch());
             }
 
         }
     }
+
 }

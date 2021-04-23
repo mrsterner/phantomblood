@@ -3,7 +3,6 @@ package diosworld.common.registry;
 import diosworld.Dio;
 import diosworld.common.block.Chandelier;
 import diosworld.common.item.StonemaskItem;
-import diosworld.common.item.VampStick;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
@@ -26,7 +25,6 @@ public class DioObjects {
     public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, new Item.Settings().group(Dio.DIO_GROUP)));
     //Items
     public static final Item AJA = create("aja", new Item(gen()));
-    public static final Item VAMP = create("vamp", new VampStick(gen()));
     //Blocks
     public static final Block IRON_CANDELABRA = create("iron_chandelier", new Chandelier(copyOf(Blocks.IRON_BLOCK).luminance(blockState -> blockState.get(Properties.LIT) ? 15 : 0)), true);
 

@@ -24,10 +24,10 @@ public class StonemaskEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity) {
-
+/*
             ((TransformationAccessor) entity).getTransformation().onRemoved((PlayerEntity) (Object) entity);
             ((TransformationAccessor) entity).setTransformation(BWTransformations.VAMPIRE);
-            ((TransformationAccessor) entity).getTransformation().onAdded((PlayerEntity) (Object) entity);
+            ((TransformationAccessor) entity).getTransformation().onAdded((PlayerEntity) (Object) entity);*/
         }
 
     }
