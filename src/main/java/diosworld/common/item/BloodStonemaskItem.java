@@ -7,16 +7,12 @@ import moriyashiine.bewitchment.common.registry.BWTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.property.Properties;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -31,13 +27,14 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 
-public class StonemaskItem extends GeoArmorItem implements IAnimatable {
+public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private String controllerName = "popupController";
 
-    public StonemaskItem(ArmorMaterial materialIn, EquipmentSlot slot, Item.Settings builder) {
+    public BloodStonemaskItem(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
         super(materialIn, slot, builder);
     }
     @Override
@@ -47,10 +44,11 @@ public class StonemaskItem extends GeoArmorItem implements IAnimatable {
     }
 
 
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.idle", true));
-        return PlayState.STOP;
+    private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", true));
+        return PlayState.CONTINUE;
     }
+
 
 
     @Override
@@ -60,6 +58,36 @@ public class StonemaskItem extends GeoArmorItem implements IAnimatable {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        AnimationController controller = GeckoLibUtil.getControllerForStack(this.factory, stack, controllerName);
+        if (controller.getAnimationState() == AnimationState.Stopped) {
+            controller.markNeedsReload();
+            //controller.setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", false));
+        }
 
     }
+
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
+        boolean client = player.world.isClient;
+        ItemStack itemStack = player.getStackInHand(hand);
+        ItemStack stonemask = player.getEquippedStack(EquipmentSlot.HEAD);
+
+
+        if(BWTags.HAS_BLOOD.contains(entity.getType())){
+
+        }
+
+        if (!client) {
+            if (entity instanceof MobEntity) {
+                ((MobEntity) entity).setPersistent();
+            }
+            BWUtil.addItemToInventoryAndConsume(player, hand, new ItemStack(DioObjects.AJA));
+        }
+        else {
+            player.world.playSoundFromEntity(player, entity, BWSoundEvents.ENTITY_GENERIC_PLING, SoundCategory.PLAYERS, 1, 1);
+        }
+        return ActionResult.success(client);
+    }
+
 }

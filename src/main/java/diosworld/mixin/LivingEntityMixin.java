@@ -99,6 +99,9 @@ public abstract class LivingEntityMixin extends Entity {
                 SpawnSmokeParticlesPacket.send((PlayerEntity) (Object) this, this);
                 world.playSound(null, getBlockPos(), BWSoundEvents.ENTITY_GENERIC_CURSE, getSoundCategory(), getSoundVolume(), getSoundPitch());
             }
+            if(stonemask.getItem() == DioObjects.STONE_MASK_ITEM){
+
+            }
 
         }
     }

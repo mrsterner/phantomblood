@@ -19,7 +19,7 @@ public class StonemaskEffect extends StatusEffect {
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
 
-        return true;
+        return false;
     }
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {

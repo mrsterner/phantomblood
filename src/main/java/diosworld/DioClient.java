@@ -1,7 +1,10 @@
 package diosworld;
 
+import diosworld.client.renderer.armor.BloodStonemaskRenderer;
 import diosworld.client.renderer.armor.StonemaskRenderer;
+import diosworld.client.renderer.item.BloodStonemaskItemRenderer;
 import diosworld.client.renderer.item.StonemaskItemRenderer;
+import diosworld.common.item.BloodStonemaskItem;
 import diosworld.common.item.StonemaskItem;
 import diosworld.common.registry.DioObjects;
 import net.fabricmc.api.ClientModInitializer;
@@ -19,7 +22,9 @@ public class DioClient implements ClientModInitializer {
 
 
         GeoItemRenderer.registerItemRenderer(DioObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
+        GeoItemRenderer.registerItemRenderer(DioObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
         StonemaskRenderer.registerArmorRenderer(StonemaskItem.class, new StonemaskRenderer());
+        StonemaskRenderer.registerArmorRenderer(BloodStonemaskItem.class, new BloodStonemaskRenderer());
 
     }
 }

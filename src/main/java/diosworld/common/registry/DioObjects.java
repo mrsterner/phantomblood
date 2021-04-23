@@ -2,13 +2,14 @@ package diosworld.common.registry;
 
 import diosworld.Dio;
 import diosworld.common.block.Chandelier;
+import diosworld.common.item.BloodStonemaskItem;
+import diosworld.common.item.DaggerItem;
 import diosworld.common.item.StonemaskItem;
+import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterials;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -23,10 +24,14 @@ public class DioObjects {
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
     //Armor
     public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, new Item.Settings().group(Dio.DIO_GROUP)));
+    public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, new Item.Settings().group(Dio.DIO_GROUP)));
     //Items
     public static final Item AJA = create("aja", new Item(gen()));
+    public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, new Item.Settings().group(Dio.DIO_GROUP)));
+
     //Blocks
     public static final Block IRON_CANDELABRA = create("iron_chandelier", new Chandelier(copyOf(Blocks.IRON_BLOCK).luminance(blockState -> blockState.get(Properties.LIT) ? 15 : 0)), true);
+
 
 
 
