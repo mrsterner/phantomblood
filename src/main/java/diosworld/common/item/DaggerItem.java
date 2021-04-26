@@ -52,11 +52,13 @@ public class DaggerItem extends SwordItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         PlayerEntity player = (PlayerEntity) attacker;
         boolean client = player.world.isClient;
+
         ItemStack stonemask = attacker.getEquippedStack(EquipmentSlot.HEAD);
         if(target instanceof VillagerEntity){
-            if(!client){
+            if(!client && stonemask.getItem() == DioObjects.STONE_MASK_ITEM){
                 stonemask.setCount(0);
                 attacker.equipStack(EquipmentSlot.HEAD, new ItemStack(DioObjects.BLOODY_STONE_MASK_ITEM));
+                player.world.playSoundFromEntity(null, target, BWSoundEvents.ENTITY_GENERIC_CURSE, SoundCategory.PLAYERS, 1, 1);
             }
         }
         return super.postHit(stack, target, attacker);
