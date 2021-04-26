@@ -34,8 +34,8 @@ public class Dio implements ModInitializer {
 
         GeckoLib.initialize();
         DioObjects.init();
-        Registry.register(Registry.STATUS_EFFECT, new Identifier("diosworld", "stoneeffect"), STONE_MASK_VAMP);
-        Registry.register(Registry.STATUS_EFFECT, new Identifier("diosworld", "stonedeath"), STONE_MASK_DEATH);
+        Registry.register(Registry.STATUS_EFFECT, new Identifier("diosworld", "timestopeffect"), STONE_MASK_VAMP);
+        Registry.register(Registry.STATUS_EFFECT, new Identifier("diosworld", "stonemaskeffect"), STONE_MASK_DEATH);
 
     }
 

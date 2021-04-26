@@ -4,10 +4,14 @@ import diosworld.common.registry.DioObjects;
 import moriyashiine.bewitchment.common.misc.BWUtil;
 import moriyashiine.bewitchment.common.registry.BWSoundEvents;
 import moriyashiine.bewitchment.common.registry.BWTags;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -43,4 +47,19 @@ public class DaggerItem extends SwordItem {
         }
         return ActionResult.success(client);
     }
+
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        PlayerEntity player = (PlayerEntity) attacker;
+        boolean client = player.world.isClient;
+        ItemStack stonemask = attacker.getEquippedStack(EquipmentSlot.HEAD);
+        if(target instanceof VillagerEntity){
+            if(!client){
+                stonemask.setCount(0);
+                attacker.equipStack(EquipmentSlot.HEAD, new ItemStack(DioObjects.BLOODY_STONE_MASK_ITEM));
+            }
+        }
+        return super.postHit(stack, target, attacker);
+    }
+
 }

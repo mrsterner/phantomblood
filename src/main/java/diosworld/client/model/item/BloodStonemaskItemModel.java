@@ -14,7 +14,7 @@ public class BloodStonemaskItemModel extends AnimatedGeoModel<BloodStonemaskItem
 
     @Override
     public Identifier getTextureLocation(BloodStonemaskItem object) {
-        return new Identifier(Dio.MODID, "textures/item/bloodstonemask.png");
+        return new Identifier(Dio.MODID, "textures/item/bloodstonemask_backup.png");
     }
 
     @Override

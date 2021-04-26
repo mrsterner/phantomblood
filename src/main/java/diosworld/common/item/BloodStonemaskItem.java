@@ -1,12 +1,15 @@
 package diosworld.common.item;
 
 import diosworld.common.registry.DioObjects;
+import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.common.misc.BWUtil;
 import moriyashiine.bewitchment.common.registry.BWSoundEvents;
 import moriyashiine.bewitchment.common.registry.BWTags;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
@@ -29,6 +32,10 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
@@ -39,13 +46,31 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
     }
     @Override
     public void registerControllers(AnimationData data) {
-        AnimationController controller = new AnimationController(this, controllerName, 20, this::predicate);
-        data.addAnimationController(controller);
+        data.addAnimationController(new AnimationController(this, controllerName, 20, this::predicate));
     }
 
 
-    private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", true));
+    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+        LivingEntity livingEntity = event.getExtraDataOfType(LivingEntity.class).get(0);
+        //PlayerEntity player = (PlayerEntity) livingEntity;
+        ItemStack stack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
+        AnimationController controller = GeckoLibUtil.getControllerForStack(this.factory, stack, controllerName);
+
+
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", false));
+
+
+        if (livingEntity instanceof PlayerEntity) {
+
+            PlayerEntity player = (PlayerEntity) livingEntity;
+            List<Item> equipmentList = new ArrayList<>();
+            player.getItemsEquipped().forEach((x) -> equipmentList.add(x.getItem()));
+
+            List<Item> armorList = equipmentList.subList(2, 6);
+
+            boolean isWearingAll = armorList.containsAll(Arrays.asList(DioObjects.BLOODY_STONE_MASK_ITEM));
+            return isWearingAll ? PlayState.CONTINUE : PlayState.STOP;
+        }
         return PlayState.CONTINUE;
     }
 
@@ -58,13 +83,9 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        AnimationController controller = GeckoLibUtil.getControllerForStack(this.factory, stack, controllerName);
-        if (controller.getAnimationState() == AnimationState.Stopped) {
-            controller.markNeedsReload();
-            //controller.setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", false));
-        }
 
     }
+
 
 
     @Override

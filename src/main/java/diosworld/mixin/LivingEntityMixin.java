@@ -1,7 +1,5 @@
 package diosworld.mixin;
 
-import diosworld.Dio;
-import diosworld.DioAPI;
 import diosworld.common.registry.DioObjects;
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.CurseAccessor;
