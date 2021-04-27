@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "diosworld",
   "version": "${version}",
-  "name": "Dio's World",
+  "name": "Phantom Blood",
   "description": "Bewitchemt Add-on",
   "authors": [
     "mrsterner"
@@ -10,19 +10,19 @@
   "contributors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/diosworld/icon.png",
+  "icon": "assets/phantomblood/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "diosworld.Dio"
+      "phantomblood.PhantomBlood"
     ],
     "client": [
-      "diosworld.DioClient"
+      "phantomblood.PhantomBloodClient"
     ],
     "server": []
   },
   "mixins": [
-    "diosworld.mixins.json"
+    "phantomblood.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.3",
