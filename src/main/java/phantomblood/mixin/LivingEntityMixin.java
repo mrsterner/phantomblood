@@ -1,5 +1,6 @@
 package phantomblood.mixin;
 
+import moriyashiine.bewitchment.common.Bewitchment;
 import phantomblood.common.registry.PhantomBloodObjects;
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.CurseAccessor;
@@ -87,9 +88,9 @@ public abstract class LivingEntityMixin extends Entity {
             }
 
             if (damage > 0) {
-                damage(BWDamageSources.VAMPIRE, 1);
+                // damage(BWDamageSources.VAMPIRE, damage);
             }
-            if(stonemask.getItem() == PhantomBloodObjects.STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
+            if (stonemask.getItem() == PhantomBloodObjects.BLOODY_STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
                 ((TransformationAccessor) this).getTransformation().onRemoved((PlayerEntity) (Object) this);
                 ((TransformationAccessor) this).setTransformation(BWTransformations.VAMPIRE);
                 ((TransformationAccessor) this).getTransformation().onAdded((PlayerEntity) (Object) this);
@@ -97,9 +98,7 @@ public abstract class LivingEntityMixin extends Entity {
                 SpawnSmokeParticlesPacket.send((PlayerEntity) (Object) this, this);
                 world.playSound(null, getBlockPos(), BWSoundEvents.ENTITY_GENERIC_CURSE, getSoundCategory(), getSoundVolume(), getSoundPitch());
             }
-            if(stonemask.getItem() == PhantomBloodObjects.STONE_MASK_ITEM){
 
-            }
 
         }
     }
