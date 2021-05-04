@@ -1,7 +1,9 @@
 package phantomblood;
 
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import phantomblood.client.renderer.armor.StonemaskRenderer;
+import phantomblood.client.renderer.entity.TheWorldRenderer;
 import phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import phantomblood.client.renderer.item.StonemaskItemRenderer;
 import phantomblood.common.item.BloodStonemaskItem;
@@ -25,6 +27,7 @@ public class PhantomBloodClient implements ClientModInitializer {
         GeoItemRenderer.registerItemRenderer(PhantomBloodObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
         StonemaskRenderer.registerArmorRenderer(StonemaskItem.class, new StonemaskRenderer());
         StonemaskRenderer.registerArmorRenderer(BloodStonemaskItem.class, new BloodStonemaskRenderer());
+        EntityRendererRegistry.INSTANCE.register(PhantomBloodObjects.THE_WORLD_ENTITY, (entityRenderDispatcher, context) -> new TheWorldRenderer(entityRenderDispatcher));
 
     }
 }
