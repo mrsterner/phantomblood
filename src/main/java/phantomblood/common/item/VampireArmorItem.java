@@ -1,13 +1,16 @@
 package phantomblood.common.item;
 
+import net.minecraft.client.render.entity.feature.CapeFeatureRenderer;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import phantomblood.PhantomBlood;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -27,8 +30,19 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
     }
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.vampirearmor.idle", true));
-        return PlayState.STOP;
+        LivingEntity livingEntity = event.getExtraDataOfType(LivingEntity.class).get(0);
+        if (livingEntity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) livingEntity;
+            System.out.println("0");
+            if (!(player.lastLimbDistance > -0.15F && player.lastLimbDistance < 0.15F)) {
+                System.out.println("1");
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", true));
+                return PlayState.CONTINUE;
+            }
+
+        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.idle", true));
+        return PlayState.CONTINUE;
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

@@ -1,25 +1,119 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.vampirearmor.idle": {
-      "animation_length": 0.04,
+    "animation.model.walk": {
+      "loop": true,
+      "animation_length": 1.56,
       "bones": {
-        "armorBody": {
+        "armorRightBoot": {
+          "rotation": {
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "bipedLeftLeg": {
+          "rotation": {
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "armorLeftLeg": {
+          "rotation": {
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "armorLeftBoot": {
+          "rotation": {
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "bone": {
           "rotation": {
             "0.0": {
               "vector": [
-                0,
+                12,
                 0,
                 0
               ]
             },
-            "0.04": {
+            "0.68": {
               "vector": [
+                13,
                 0,
+                0
+              ],
+              "easing": "easeInOutSine"
+            },
+            "1.32": {
+              "vector": [
+                12,
                 0,
                 0
               ]
             }
+          }
+        },
+        "bone2": {
+          "rotation": {
+            "0.0": {
+              "vector": [
+                -13,
+                0,
+                0
+              ]
+            },
+            "0.68": {
+              "vector": [
+                -14,
+                0,
+                0
+              ],
+              "easing": "easeOutCubic"
+            },
+            "1.32": {
+              "vector": [
+                -13,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      }
+    },
+    "animation.model.idle": {
+      "loop": true,
+      "bones": {
+        "bone": {
+          "rotation": {
+            "vector": [
+              5,
+              0,
+              0
+            ]
+          }
+        },
+        "bone2": {
+          "rotation": {
+            "vector": [
+              -5,
+              0,
+              0
+            ]
           }
         }
       }
