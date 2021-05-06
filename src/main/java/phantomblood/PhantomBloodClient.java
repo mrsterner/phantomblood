@@ -24,9 +24,6 @@ public class PhantomBloodClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        PhantomBlood.registerRenderLayers();
-
-
         GeoItemRenderer.registerItemRenderer(PhantomBloodObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
         GeoItemRenderer.registerItemRenderer(PhantomBloodObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
         StonemaskRenderer.registerArmorRenderer(StonemaskItem.class, new StonemaskRenderer());
@@ -34,7 +31,6 @@ public class PhantomBloodClient implements ClientModInitializer {
         EntityRendererRegistry.INSTANCE.register(PhantomBloodObjects.THE_WORLD_ENTITY, (entityRenderDispatcher, context) -> new TheWorldRenderer(entityRenderDispatcher));
         GeoArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         VampireArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
-        //ArmorRenderingRegistry.registerTexture((livingEntity, itemStack, equipmentSlot, b, s, identifier) -> new Identifier(PhantomBlood.MODID, "textures/entity/armor/vamp.png"), PhantomBloodObjects.VAMPIRE_JACKET, PhantomBloodObjects.VAMPIRE_PANTS, PhantomBloodObjects.VAMPIRE_BOOTS);
 
     }
 }

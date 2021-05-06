@@ -1,7 +1,6 @@
 package phantomblood.client.model.entity;
 
 import net.minecraft.client.util.math.Vector3f;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 import phantomblood.PhantomBlood;
 import software.bernie.geckolib3.core.IAnimatable;

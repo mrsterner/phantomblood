@@ -8,12 +8,12 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 public class BloodStonemaskModel extends AnimatedGeoModel<BloodStonemaskItem> {
     @Override
     public Identifier getModelLocation(BloodStonemaskItem object) {
-        return new Identifier(PhantomBlood.MODID, "geo/stonemaskb.geo.json");
+        return new Identifier(PhantomBlood.MODID, "geo/stonemask.geo.json");
     }
 
     @Override
     public Identifier getTextureLocation(BloodStonemaskItem object) {
-        return new Identifier(PhantomBlood.MODID, "textures/item/bloodstonemask_backup.png");
+        return new Identifier(PhantomBlood.MODID, "textures/item/bloodstonemask.png");
     }
 
     @Override

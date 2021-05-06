@@ -19,8 +19,8 @@ import static phantomblood.PhantomBlood.DIO_GROUP;
 public class PhantomBloodObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
-    //Armor
 
+    //Armor
     public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
     public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
     public static final Item VAMPIRE_HOOD = create("vampire_armor_hood", new VampireArmorItem(PhantomBloodMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD));
@@ -34,6 +34,7 @@ public class PhantomBloodObjects {
     public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, new Item.Settings().group(DIO_GROUP)));
 
 
+    //Registry
     private static <T extends Block> T create(String name, T block, boolean createItem) {
         BLOCKS.put(block, new Identifier(PhantomBlood.MODID, name));
         if (createItem) {

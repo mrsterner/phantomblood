@@ -45,6 +45,7 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
 
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+        /*
         LivingEntity livingEntity = event.getExtraDataOfType(LivingEntity.class).get(0);
         //PlayerEntity player = (PlayerEntity) livingEntity;
         ItemStack stack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
@@ -64,7 +65,7 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
 
             boolean isWearingAll = armorList.containsAll(Arrays.asList(PhantomBloodObjects.BLOODY_STONE_MASK_ITEM));
             return isWearingAll ? PlayState.CONTINUE : PlayState.STOP;
-        }
+        }*/
         return PlayState.CONTINUE;
     }
 

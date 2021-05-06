@@ -1,6 +1,5 @@
 package phantomblood;
 
-
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -27,10 +26,6 @@ public class PhantomBlood implements ModInitializer {
     public static final StatusEffect STONE_MASK_VAMP = new StonemaskEffect();
     public static final StatusEffect STONE_MASK_DEATH = new StonemaskDeath();
 
-    public static void registerRenderLayers() {
-        RenderLayer cutout = RenderLayer.getCutout();
-    }
-
     public static DefaultAttributeContainer.Builder createGenericEntityAttributes() {
         return PathAwareEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.80000000298023224D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D);
@@ -38,15 +33,10 @@ public class PhantomBlood implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
-
         GeckoLib.initialize();
         PhantomBloodObjects.init();
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "timestopeffect"), STONE_MASK_VAMP);
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "stonemaskeffect"), STONE_MASK_DEATH);
         FabricDefaultAttributeRegistry.register(PhantomBloodObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
-
     }
-
-
 }
