@@ -26,6 +26,12 @@ public class TheWorldEntity extends PathAwareEntity implements IAnimatable {
 
     public TheWorldEntity(EntityType<TheWorldEntity> entityType, World world) {
         super(entityType, world);
+
+    }
+
+    @Override
+    public void knockback(LivingEntity target) {
+        super.knockback(target);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class TheWorldModel extends AnimatedGeoModel {
 
     @Override
     public Identifier getTextureLocation(Object entity) {
-        return new Identifier(PhantomBlood.MODID, "textures/model/entity/stand/theworld.png");
+        return new Identifier(PhantomBlood.MODID, "textures/models/entity/stand/theworld.png");
     }
 
     @Override

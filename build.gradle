@@ -15,7 +15,7 @@ minecraft {
 
 repositories {
     jcenter()
-    maven { url 'https://repo.repsy.io/mvn/gandiber/geckolib' }
+    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven {
         name = "Bewitchment"
         url = "https://www.cursemaven.com"
@@ -95,7 +95,7 @@ dependencies {
     modRuntime "io.github.ladysnake:requiem:${requiem_version}"
 
     modImplementation "curse.maven:bewitchment-394915:${project.bewitchment_version}"
-    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.16.5:3.0.31:dev'
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.16.5:3.0.33:dev'
 
     modImplementation "io.github.ladysnake:Satin:${satin_version}"
     // Include Satin as a Jar-in-Jar dependency (optional)
