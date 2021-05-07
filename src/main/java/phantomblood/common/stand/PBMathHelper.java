@@ -1,4 +1,4 @@
-package phantomblood;
+package phantomblood.common.stand;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;

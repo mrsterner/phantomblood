@@ -1,4 +1,4 @@
-package phantomblood.common;
+package phantomblood.common.statuseffect;
 
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import net.minecraft.entity.LivingEntity;

@@ -1,4 +1,4 @@
-package phantomblood.common;
+package phantomblood.common.statuseffect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;

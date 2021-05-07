@@ -1,4 +1,4 @@
-package phantomblood.stand;
+package phantomblood.common.stand;
 
 import net.minecraft.entity.Entity;
 

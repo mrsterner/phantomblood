@@ -4,13 +4,12 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.PathAwareEntity;
-import phantomblood.common.StonemaskDeath;
-import phantomblood.common.StonemaskEffect;
+import phantomblood.common.statuseffect.StonemaskDeath;
+import phantomblood.common.statuseffect.StonemaskEffect;
 import phantomblood.common.registry.PhantomBloodObjects;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
