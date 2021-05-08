@@ -23,7 +23,7 @@ public class PhantomBloodObjects {
     //Armor
     public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
     public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
-    public static final Item VAMPIRE_HOOD = create("vampire_hat", new VampireArmorItem(PhantomBloodMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD));
+    public static final Item VAMPIRE_HAT = create("vampire_hat", new VampireArmorItem(PhantomBloodMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD));
     public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(PhantomBloodMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST));
     public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(PhantomBloodMaterials.VAMPIRE_ARMOR, EquipmentSlot.LEGS));
     public static final Item VAMPIRE_BOOTS = create("vampire_boots", new VampireArmorItem(PhantomBloodMaterials.VAMPIRE_ARMOR, EquipmentSlot.FEET));

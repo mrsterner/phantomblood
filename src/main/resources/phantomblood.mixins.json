@@ -1,9 +1,10 @@
 {
   "required": true,
   "package": "phantomblood.mixin",
-  "compatibilityLevel": "JAVA_11",
+  "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "BewitchmentMixin"
   ],
   "client": [],
   "server": [],

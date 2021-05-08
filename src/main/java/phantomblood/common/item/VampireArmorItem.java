@@ -33,9 +33,7 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
         LivingEntity livingEntity = event.getExtraDataOfType(LivingEntity.class).get(0);
         if (livingEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) livingEntity;
-            System.out.println("0");
             if (!(player.lastLimbDistance > -0.15F && player.lastLimbDistance < 0.15F)) {
-                System.out.println("1");
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", true));
                 return PlayState.CONTINUE;
             }
