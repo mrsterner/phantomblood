@@ -57,39 +57,13 @@ public abstract class LivingEntityMixin extends Entity {
         super(type, world);
     }
 
-    @Inject(method = "tryUseTotem", at = @At("TAIL"), cancellable = true)
-    private void tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> callbackInfo) {
-        if (!callbackInfo.getReturnValue() && !world.isClient) {
-            ItemStack poppet = BewitchmentAPI.getPoppet(world, BWObjects.DEATH_PROTECTION_POPPET, this, null);
 
-
-            if (callbackInfo.getReturnValue() && (Object) this instanceof PlayerEntity && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
-                LivingEntity entity = (LivingEntity) (Object) this;
-                ItemStack stonemask = entity.getEquippedStack(EquipmentSlot.HEAD);
-                if (stonemask.getItem() == PhantomBloodObjects.STONE_MASK_ITEM || source.getSource() instanceof VampireEntity || (BewitchmentAPI.isVampire(source.getSource(), true))) {
-                    ((TransformationAccessor) this).getTransformation().onRemoved((PlayerEntity) (Object) this);
-                    ((TransformationAccessor) this).setTransformation(BWTransformations.VAMPIRE);
-                    ((TransformationAccessor) this).getTransformation().onAdded((PlayerEntity) (Object) this);
-                    PlayerLookup.tracking(this).forEach(foundPlayer -> SpawnSmokeParticlesPacket.send(foundPlayer, this));
-                    SpawnSmokeParticlesPacket.send((PlayerEntity) (Object) this, this);
-                    world.playSound(null, getBlockPos(), BWSoundEvents.ENTITY_GENERIC_CURSE, getSoundCategory(), getSoundVolume(), getSoundPitch());
-                }
-            }
-        }
-    }
     @Inject(method = "tick", at = @At("TAIL"))
     private void tick(CallbackInfo callbackInfo) {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
             ItemStack stonemask = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
-            int damage = 0;
-            if (stonemask.getItem() == PhantomBloodObjects.STONE_MASK_ITEM && !BewitchmentAPI.isVampire(this, true)) {
-                damage++;
-            }
 
-            if (damage > 0) {
-                // damage(BWDamageSources.VAMPIRE, damage);
-            }
             if (stonemask.getItem() == PhantomBloodObjects.BLOODY_STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
                 ((TransformationAccessor) this).getTransformation().onRemoved((PlayerEntity) (Object) this);
                 ((TransformationAccessor) this).setTransformation(BWTransformations.VAMPIRE);
