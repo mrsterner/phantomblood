@@ -32,9 +32,9 @@ import software.bernie.geckolib3.GeckoLib;
 public class PhantomBlood implements ModInitializer {
 
     public static final String MODID = "phantomblood";
-    public static final ItemGroup DIO_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PhantomBloodObjects.STONE_MASK_ITEM));
+    public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PhantomBloodObjects.STONE_MASK_ITEM));
 
-    public static final StatusEffect STONE_MASK_VAMP = new StonemaskEffect();
+    public static final StatusEffect TIME_STOP = new StonemaskEffect();
     public static final StatusEffect STONE_MASK_DEATH = new StonemaskDeath();
 
     public static DefaultAttributeContainer.Builder createGenericEntityAttributes() {
@@ -46,7 +46,7 @@ public class PhantomBlood implements ModInitializer {
     public void onInitialize() {
         GeckoLib.initialize();
         PhantomBloodObjects.init();
-        Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "timestopeffect"), STONE_MASK_VAMP);
+        Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "timestopeffect"), TIME_STOP);
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "stonemaskeffect"), STONE_MASK_DEATH);
         FabricDefaultAttributeRegistry.register(PhantomBloodObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
 

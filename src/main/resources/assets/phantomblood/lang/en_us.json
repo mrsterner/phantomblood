@@ -1,0 +1,13 @@
+{
+  "itemGroup.phantomblood.phantomblood": "Phantom Blood",
+  "item.phantomblood.vampire_hat": "Vampire Top Hat",
+  "item.phantomblood.vampire_coat": "Vampire Coat",
+  "item.phantomblood.vampire_pants": "Vampire Pants",
+  "item.phantomblood.vampire_boots": "Vampire Shoes",
+  "item.phantomblood.bloodstonemaskitem": "Bloody Stone Mask",
+  "item.phantomblood.stonemaskitem": "Stone Mask",
+  "item.phantomblood.aja": "Aja",
+  "item.phantomblood.dagger": "Dagger",
+  "effect.phantomblood.timestopeffect": "Time Stop",
+  "effect.phantomblood.stonemaskeffect": "Stone Mask"
+}

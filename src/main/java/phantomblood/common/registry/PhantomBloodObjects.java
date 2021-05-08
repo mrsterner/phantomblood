@@ -13,7 +13,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static phantomblood.PhantomBlood.DIO_GROUP;
+import static phantomblood.PhantomBlood.PHANTOMBLOOD_GROUP;
 
 
 public class PhantomBloodObjects {
@@ -31,7 +31,7 @@ public class PhantomBloodObjects {
     public static final EntityType<TheWorldEntity> THE_WORLD_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "theworld"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TheWorldEntity::new).dimensions(EntityDimensions.fixed(0.9f, 2.5F)).fireImmune().trackRangeBlocks(90).trackedUpdateRate(4).build());
     //Items
     public static final Item AJA = create("aja", new Item(gen()));
-    public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, new Item.Settings().group(DIO_GROUP)));
+    public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, gen()));
 
 
     //Registry
@@ -49,7 +49,7 @@ public class PhantomBloodObjects {
     }
 
     private static Item.Settings gen() {
-        return new Item.Settings().group(DIO_GROUP);
+        return new Item.Settings().group(PHANTOMBLOOD_GROUP);
     }
 
     public static void init() {

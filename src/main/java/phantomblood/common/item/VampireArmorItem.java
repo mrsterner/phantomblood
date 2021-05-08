@@ -26,7 +26,7 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public VampireArmorItem(ArmorMaterial materialIn, EquipmentSlot slot) {
-        super(materialIn, slot, new Item.Settings().group(PhantomBlood.DIO_GROUP).maxCount(1));
+        super(materialIn, slot, new Item.Settings().group(PhantomBlood.PHANTOMBLOOD_GROUP).maxCount(1));
     }
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
@@ -59,7 +59,7 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
         ItemStack stack = new ItemStack(this);
         stack.hasTag();
         stack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
-        if ((group == PhantomBlood.DIO_GROUP) || (group == ItemGroup.SEARCH)) {
+        if ((group == PhantomBlood.PHANTOMBLOOD_GROUP) || (group == ItemGroup.SEARCH)) {
             stacks.add(stack);
         }
     }
