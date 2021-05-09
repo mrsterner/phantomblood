@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "W W",
-    "WRW",
+    "RWR",
     "WWW"
   ],
   "key": {
     "W": {
-      "tag": "minecraft:logs"
+      "item": "bewitchment:besmirched_wool"
     },
     "R": {
-      "item": "minecraft:redstone"
+      "item": "bewitchment:bottle_of_blood"
     }
   },
   "result": {
