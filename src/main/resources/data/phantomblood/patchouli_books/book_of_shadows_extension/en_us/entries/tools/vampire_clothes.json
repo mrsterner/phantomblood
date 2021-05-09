@@ -2,12 +2,12 @@
   "name": "Vampire Clothing",
   "category": "bewitchment:tools",
   "icon": "phantomblood:vampire_coat",
-  "entry_color": "C15600",
+  "entry_color": "6A00C1",
   "advancement": "bewitchment:hidden_unlocks/demon_heart",
   "pages": [
     {
       "type": "text",
-      "text": "Usually, the curse of $(l:bewitchment:curses/vampirism)Vampirism$() have some classy attire, might even enhance abilities... It seems like $(l:bewitchment:creatures/demon)Demon$() are fine with the outfit."
+      "text": "Usually, the curse of $(l:bewitchment:curses/vampirism)Vampirism$() have some classy attire, might even enhance abilities... Due to the Besmirched Wool it seems like $(l:bewitchment:creatures/demon)Demon$() are fine with the outfit."
     },
     {
       "type": "crafting",
