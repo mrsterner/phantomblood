@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "LivingEntityMixin",
-    "BewitchmentMixin"
+    "BewitchmentMixin",
+    "PlayerEntityMixin"
   ],
   "client": [],
   "server": [],

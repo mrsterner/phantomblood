@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Usually, the curse of $(l:bewitchment:curses/vampirism)Vampirism$() have some classy attire, might even enhance abilities... Due to the Besmirched Wool it seems like $(l:bewitchment:creatures/demon)Demon$() are fine with the outfit."
+      "text": "Usually, the curse of $(l:bewitchment:curses/vampirism)Vampirism$() have some classy attire, might even enhance abilities... Due to the Besmirched Wool $(l:bewitchment:creatures/demon)Demons$() are fine with the outfit."
     },
     {
       "type": "crafting",

@@ -2,8 +2,12 @@ package phantomblood.common.registry;
 
 import moriyashiine.bewitchment.common.registry.BWMaterials;
 import moriyashiine.bewitchment.common.registry.BWObjects;
+import moriyashiine.bewitchment.common.registry.BWTags;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.tag.Tag;
 import phantomblood.PhantomBlood;
 import phantomblood.common.entity.TheWorldEntity;
 import phantomblood.common.item.*;
@@ -32,9 +36,14 @@ public class PhantomBloodObjects {
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
     //Entity
     public static final EntityType<TheWorldEntity> THE_WORLD_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "theworld"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TheWorldEntity::new).dimensions(EntityDimensions.fixed(0.9f, 2.5F)).fireImmune().trackRangeBlocks(90).trackedUpdateRate(4).build());
-    //Items
+    //Item
     public static final Item AJA = create("aja", new Item(gen()));
     public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, gen()));
+    //Food
+    public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
+
+    //Tags
+    public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
 
 
     //Registry
