@@ -1,4 +1,4 @@
-package phantomblood.common.registry;
+package phantomblood.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;

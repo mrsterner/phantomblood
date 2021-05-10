@@ -3,11 +3,10 @@ package phantomblood;
 import moriyashiine.bewitchment.client.network.packet.SyncContractsPacket;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.util.Identifier;
+import phantomblood.client.network.SyncAngelTradesPacket;
 import phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import phantomblood.client.renderer.armor.StonemaskRenderer;
 import phantomblood.client.renderer.armor.VampireArmorRenderer;
@@ -15,6 +14,8 @@ import phantomblood.client.renderer.entity.AngelRenderer;
 import phantomblood.client.renderer.entity.TheWorldRenderer;
 import phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import phantomblood.client.renderer.item.StonemaskItemRenderer;
+import phantomblood.client.screen.AngelScreen;
+import phantomblood.client.screen.AngelScreenHandler;
 import phantomblood.common.entity.AngelEntity;
 import phantomblood.common.item.BloodStonemaskItem;
 import phantomblood.common.item.StonemaskItem;
@@ -50,7 +51,7 @@ public class PhantomBloodClient implements ClientModInitializer {
                 }
             });
         });
-        ScreenRegistry.register(PHScreenHandlers.ANGEL_SCREEN_HANDLER, AngelScreen::new);
+        ScreenRegistry.register(PhantomBloodScreenHandler.ANGEL_SCREEN_HANDLER, AngelScreen::new);
 
         GeoItemRenderer.registerItemRenderer(PhantomBloodObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
         GeoItemRenderer.registerItemRenderer(PhantomBloodObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());

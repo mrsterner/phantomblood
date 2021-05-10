@@ -1,4 +1,4 @@
-package phantomblood.common.registry;
+package phantomblood.client.network;
 
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -8,6 +8,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import phantomblood.PhantomBlood;
 import phantomblood.common.entity.AngelEntity;
+import phantomblood.common.entity.interfaces.AngelMerchant;
 
 @SuppressWarnings("ConstantConditions")
 public class SyncAngelTradesPacket {

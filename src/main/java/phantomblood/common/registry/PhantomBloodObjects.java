@@ -45,14 +45,13 @@ public class PhantomBloodObjects {
     public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, gen()));
     //Food
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
-
+    //Spawn Eggs
+    public static final Item ANGEL_SPAWN_EGG = create("angel_spawn_egg", new SpawnEggItem(PhantomBloodEntities.ANGEL_ENTITY, 0xf0e2df, 0xf0bf3a, gen()));
     //Tags
     public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
 
 
-    //Registry
-
-
+    //Register
     private static <T extends Block> T create(String name, T block, boolean createItem) {
         BLOCKS.put(block, new Identifier(PhantomBlood.MODID, name));
         if (createItem) {

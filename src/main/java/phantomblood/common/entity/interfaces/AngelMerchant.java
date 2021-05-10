@@ -1,4 +1,4 @@
-package phantomblood.common.registry;
+package phantomblood.common.entity.interfaces;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

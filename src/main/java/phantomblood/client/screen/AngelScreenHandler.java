@@ -1,4 +1,4 @@
-package phantomblood.common.registry;
+package phantomblood.client.screen;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,6 +13,8 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import org.jetbrains.annotations.Nullable;
 import phantomblood.common.entity.AngelEntity;
+import phantomblood.common.entity.interfaces.AngelMerchant;
+import phantomblood.common.registry.PhantomBloodScreenHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class AngelScreenHandler extends ScreenHandler {
     }
 
     public AngelScreenHandler(int syncId, AngelMerchant angelMerchant) {
-        this(PHScreenHandlers.ANGEL_SCREEN_HANDLER, syncId, angelMerchant);
+        this(PhantomBloodScreenHandler.ANGEL_SCREEN_HANDLER, syncId, angelMerchant);
     }
 
     protected AngelScreenHandler(ScreenHandlerType<?> type, int syncId, AngelMerchant angelMerchant) {
