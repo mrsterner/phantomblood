@@ -3,7 +3,7 @@
   "animations": {
     "animation.angel.idle": {
       "loop": true,
-      "animation_length": 1.48,
+      "animation_length": 2.08,
       "bones": {
         "leftWing2": {
           "rotation": {
@@ -146,12 +146,39 @@
               0
             ]
           }
+        },
+        "halo": {
+          "position": {
+            "0.0": {
+              "vector": [
+                0,
+                1,
+                0
+              ]
+            },
+            "1.04": {
+              "vector": [
+                0,
+                0.8,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "2.08": {
+              "vector": [
+                0,
+                1,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            }
+          }
         }
       }
     },
     "animation.angel.fly": {
       "loop": true,
-      "animation_length": 1.24,
+      "animation_length": 1.2,
       "bones": {
         "leftWing2": {
           "rotation": {
@@ -510,7 +537,7 @@
               "vector": [
                 0,
                 0,
-                -7
+                7
               ]
             },
             "0.64": {
@@ -527,6 +554,389 @@
                 7
               ]
             }
+          }
+        }
+      }
+    },
+    "animation.angel.halo": {
+      "loop": true,
+      "animation_length": 2.08,
+      "bones": {
+        "halo": {
+          "position": {
+            "0.0": {
+              "vector": [
+                0,
+                1,
+                0
+              ]
+            },
+            "1.04": {
+              "vector": [
+                0,
+                0.8,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "2.08": {
+              "vector": [
+                0,
+                1,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            }
+          }
+        }
+      }
+    },
+    "animation.angel.walk": {
+      "loop": true,
+      "animation_length": 2,
+      "bones": {
+        "leftLeg": {
+          "rotation": {
+            "0.0": {
+              "vector": [
+                30,
+                0,
+                0
+              ]
+            },
+            "0.52": {
+              "vector": [
+                -30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "1.0": {
+              "vector": [
+                30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "1.52": {
+              "vector": [
+                -30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "2.0": {
+              "vector": [
+                30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            }
+          }
+        },
+        "rightLeg": {
+          "rotation": {
+            "0.0": {
+              "vector": [
+                -30,
+                0,
+                0
+              ]
+            },
+            "0.52": {
+              "vector": [
+                30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "1.0": {
+              "vector": [
+                -30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "1.52": {
+              "vector": [
+                30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "2.0": {
+              "vector": [
+                -30,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            }
+          }
+        },
+        "leftWing2": {
+          "rotation": {
+            "vector": [
+              35,
+              70,
+              0
+            ]
+          }
+        },
+        "2joint": {
+          "rotation": {
+            "vector": [
+              -77.5,
+              0,
+              0
+            ]
+          }
+        },
+        "3joint": {
+          "rotation": {
+            "vector": [
+              135,
+              -52.5,
+              -112.5
+            ]
+          }
+        },
+        "wing3": {
+          "rotation": {
+            "vector": [
+              -17.5,
+              0,
+              -25
+            ]
+          }
+        },
+        "4joint": {
+          "rotation": {
+            "vector": [
+              -70,
+              22.5,
+              -25
+            ]
+          }
+        },
+        "wing4": {
+          "rotation": {
+            "vector": [
+              -7.5,
+              0,
+              0
+            ]
+          }
+        },
+        "wing2": {
+          "rotation": {
+            "vector": [
+              77.5,
+              -25,
+              -67.5
+            ]
+          }
+        },
+        "wing1": {
+          "rotation": {
+            "vector": [
+              -12.5,
+              0,
+              -7.5
+            ]
+          },
+          "position": {
+            "vector": [
+              0,
+              1,
+              0
+            ]
+          }
+        },
+        "rightWing3": {
+          "rotation": {
+            "vector": [
+              35,
+              -70,
+              0
+            ]
+          }
+        },
+        "2joint4": {
+          "rotation": {
+            "vector": [
+              -77.5,
+              0,
+              0
+            ]
+          }
+        },
+        "wing10": {
+          "rotation": {
+            "vector": [
+              77.5,
+              25,
+              67.5
+            ]
+          }
+        },
+        "3joint4": {
+          "rotation": {
+            "vector": [
+              135,
+              52.5,
+              112.5
+            ]
+          }
+        },
+        "wing11": {
+          "rotation": {
+            "vector": [
+              -17.5,
+              0,
+              25
+            ]
+          }
+        },
+        "4joint4": {
+          "rotation": {
+            "vector": [
+              -70,
+              -22.5,
+              25
+            ]
+          }
+        },
+        "wing12": {
+          "rotation": {
+            "vector": [
+              -7.5,
+              0,
+              0
+            ]
+          }
+        },
+        "leftArm": {
+          "rotation": {
+            "0.0": {
+              "vector": [
+                -15,
+                0,
+                0
+              ]
+            },
+            "0.52": {
+              "vector": [
+                15,
+                0,
+                0
+              ]
+            },
+            "1.0": {
+              "vector": [
+                -15,
+                0,
+                0
+              ]
+            },
+            "1.52": {
+              "vector": [
+                15,
+                0,
+                0
+              ]
+            },
+            "2.0": {
+              "vector": [
+                -15,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        "rightArm": {
+          "rotation": {
+            "0.0": {
+              "vector": [
+                15,
+                0,
+                0
+              ]
+            },
+            "0.52": {
+              "vector": [
+                -15,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "1.0": {
+              "vector": [
+                15,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "1.52": {
+              "vector": [
+                -15,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "2.0": {
+              "vector": [
+                15,
+                0,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            }
+          }
+        },
+        "halo": {
+          "position": {
+            "0.0": {
+              "vector": [
+                0,
+                1,
+                0
+              ]
+            },
+            "0.96": {
+              "vector": [
+                0,
+                0.8,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            },
+            "2.0": {
+              "vector": [
+                0,
+                1,
+                0
+              ],
+              "easing": "easeInOutQuad"
+            }
+          },
+          "scale": {
+            "vector": [
+              1,
+              1,
+              1
+            ]
           }
         }
       }

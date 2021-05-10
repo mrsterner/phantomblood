@@ -3,12 +3,15 @@ package phantomblood.common.registry;
 import moriyashiine.bewitchment.common.registry.BWMaterials;
 import moriyashiine.bewitchment.common.registry.BWObjects;
 import moriyashiine.bewitchment.common.registry.BWTags;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.tag.Tag;
 import phantomblood.PhantomBlood;
+import phantomblood.common.entity.AngelEntity;
 import phantomblood.common.entity.TheWorldEntity;
 import phantomblood.common.item.*;
 import net.minecraft.block.Block;
@@ -36,6 +39,7 @@ public class PhantomBloodObjects {
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
     //Entity
     public static final EntityType<TheWorldEntity> THE_WORLD_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "theworld"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TheWorldEntity::new).dimensions(EntityDimensions.fixed(0.9f, 2.5F)).fireImmune().trackRangeBlocks(90).trackedUpdateRate(4).build());
+
     //Item
     public static final Item AJA = create("aja", new Item(gen()));
     public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, gen()));
@@ -47,6 +51,8 @@ public class PhantomBloodObjects {
 
 
     //Registry
+
+
     private static <T extends Block> T create(String name, T block, boolean createItem) {
         BLOCKS.put(block, new Identifier(PhantomBlood.MODID, name));
         if (createItem) {

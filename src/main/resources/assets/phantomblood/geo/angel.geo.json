@@ -6,7 +6,7 @@
         "identifier": "geometry.geometry.humanoid",
         "texture_width": 128,
         "texture_height": 128,
-        "visible_bounds_width": 4,
+        "visible_bounds_width": 5,
         "visible_bounds_height": 3.5,
         "visible_bounds_offset": [
           0,
@@ -40,11 +40,22 @@
                 0
               ],
               "mirror": false
-            },
+            }
+          ]
+        },
+        {
+          "name": "halo",
+          "parent": "head",
+          "pivot": [
+            0,
+            23,
+            0
+          ],
+          "cubes": [
             {
               "origin": [
                 -3,
-                35,
+                34,
                 -3
               ],
               "size": [
@@ -55,13 +66,12 @@
               "uv": [
                 24,
                 2
-              ],
-              "mirror": false
+              ]
             },
             {
               "origin": [
                 2,
-                35,
+                34,
                 -2
               ],
               "size": [
@@ -72,13 +82,12 @@
               "uv": [
                 34,
                 0
-              ],
-              "mirror": false
+              ]
             },
             {
               "origin": [
                 -3,
-                35,
+                34,
                 -2
               ],
               "size": [
@@ -89,13 +98,12 @@
               "uv": [
                 26,
                 17
-              ],
-              "mirror": false
+              ]
             },
             {
               "origin": [
                 -3,
-                35,
+                34,
                 2
               ],
               "size": [
@@ -106,8 +114,7 @@
               "uv": [
                 24,
                 0
-              ],
-              "mirror": false
+              ]
             }
           ]
         },
@@ -134,6 +141,24 @@
               "uv": [
                 24,
                 26
+              ],
+              "mirror": false
+            },
+            {
+              "origin": [
+                -4,
+                12,
+                -2
+              ],
+              "size": [
+                8,
+                12,
+                4
+              ],
+              "inflate": 0.3,
+              "uv": [
+                0,
+                70
               ],
               "mirror": false
             }
@@ -2026,6 +2051,23 @@
                 54
               ],
               "mirror": false
+            },
+            {
+              "origin": [
+                -8,
+                12,
+                -2.2
+              ],
+              "size": [
+                4,
+                12,
+                4.4
+              ],
+              "inflate": 0.3,
+              "uv": [
+                40,
+                69
+              ]
             }
           ]
         },
@@ -2050,8 +2092,25 @@
                 4
               ],
               "uv": [
+                16,
+                54
+              ]
+            },
+            {
+              "origin": [
+                4,
+                12,
+                -2.2
+              ],
+              "size": [
+                4,
+                12,
+                4.4
+              ],
+              "inflate": 0.3,
+              "uv": [
                 40,
-                53
+                69
               ],
               "mirror": false
             }
@@ -2078,10 +2137,27 @@
                 4
               ],
               "uv": [
-                50,
+                52,
                 24
               ],
               "mirror": false
+            },
+            {
+              "origin": [
+                -4,
+                0,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "inflate": 0.2,
+              "uv": [
+                0,
+                49
+              ]
             }
           ]
         },
@@ -2105,6 +2181,24 @@
                 12,
                 4
               ],
+              "uv": [
+                52,
+                24
+              ],
+              "mirror": false
+            },
+            {
+              "origin": [
+                0,
+                0,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "inflate": 0.201,
               "uv": [
                 0,
                 49
