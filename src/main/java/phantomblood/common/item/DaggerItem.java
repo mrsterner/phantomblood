@@ -62,7 +62,8 @@ public class DaggerItem extends SwordItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        user.setHealth(user.getMaxHealth() - 4);
+
+        user.setAbsorptionAmount(user.getAbsorptionAmount() - 4);
         return super.use(world, user, hand);
     }
 }

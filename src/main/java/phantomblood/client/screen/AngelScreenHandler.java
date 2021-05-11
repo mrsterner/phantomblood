@@ -77,11 +77,11 @@ public class AngelScreenHandler extends ScreenHandler {
                     SyncAngelTradesPacket.send(playerEntity, angelMerchant, syncId);
                     int cost = offer.getCost(angelMerchant);
                     System.out.println("2");
-                    if (playerEntity.getMaxHealth() - cost <= 0) {
+                    if (playerEntity.getAbsorptionAmount() - cost <= 0) {
                         ((AngelDealAccessor) playerEntity).getAngelDeals().clear();
                         playerEntity.damage(BWDamageSources.DEATH, Float.MAX_VALUE);
-                    } else if (playerEntity.getHealth() > playerEntity.getMaxHealth() - cost) {
-                        playerEntity.setHealth(playerEntity.getMaxHealth() - cost);
+                    } else if (playerEntity.getAbsorptionAmount() > cost) {
+                        playerEntity.setAbsorptionAmount(playerEntity.getAbsorptionAmount() - cost);
                         System.out.println("3");
                     }
                 }

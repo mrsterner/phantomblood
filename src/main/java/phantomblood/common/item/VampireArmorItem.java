@@ -74,4 +74,5 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
         stack.hasTag();
         stack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
     }
+
 }
