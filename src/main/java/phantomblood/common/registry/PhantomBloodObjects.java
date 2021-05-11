@@ -41,19 +41,17 @@ public class PhantomBloodObjects {
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
     //Entity
     public static final EntityType<TheWorldEntity> THE_WORLD_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "theworld"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TheWorldEntity::new).dimensions(EntityDimensions.fixed(0.9f, 2.5F)).fireImmune().trackRangeBlocks(90).trackedUpdateRate(4).build());
-
     //Item
     public static final Item AJA = create("aja", new Item(gen()));
-    public static final Item SACRED_HEART = create("sacred_heart", new Item(gen()));
     public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, gen()));
+    public static final Item ANGEL_DEAL = create("angel_deal", new AngelDealItem(gen().rarity(Rarity.RARE).maxCount(1)));
     //Food
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
+    public static final Item SACRED_HEART = create("sacred_heart", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
     //Spawn Eggs
     public static final Item ANGEL_SPAWN_EGG = create("angel_spawn_egg", new SpawnEggItem(PhantomBloodEntities.ANGEL_ENTITY, 0xf0e2df, 0xf0bf3a, gen()));
     //Tags
     public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
-    //Angel
-    public static final Item ANGEL_DEAL = create("angel_deal", new AngelDealItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
     //Register

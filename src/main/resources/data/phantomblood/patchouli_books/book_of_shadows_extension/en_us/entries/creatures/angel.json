@@ -1,0 +1,16 @@
+{
+  "category": "bewitchment:creatures",
+  "name": "Angel",
+  "icon": "phantomblood:angel_spawn_egg",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Grim beings"
+    },
+    {
+      "type": "entity",
+      "entity": "phantomblood:angel",
+      "offset": 0.2
+    }
+  ]
+}

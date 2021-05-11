@@ -15,7 +15,7 @@ import java.util.Map;
 public class PhantomBloodEntities {
     private static final Map<EntityType<?>, Identifier> ENTITY_TYPES = new LinkedHashMap<>();
 
-    public static final EntityType<AngelEntity> ANGEL_ENTITY = create("angel", AngelEntity.createAttributes(), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AngelEntity::new).dimensions(EntityDimensions.fixed(0.8f, 2.4f)).fireImmune().build());
+    public static final EntityType<AngelEntity> ANGEL_ENTITY = create("angel", AngelEntity.createAttributes(), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AngelEntity::new).dimensions(EntityDimensions.fixed(0.8f, 2f)).fireImmune().build());
 
 
     private static <T extends LivingEntity> EntityType<T> create(String name, DefaultAttributeContainer.Builder attributes, EntityType<T> type) {
