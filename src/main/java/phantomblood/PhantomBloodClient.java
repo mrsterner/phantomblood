@@ -1,11 +1,11 @@
 package phantomblood;
 
-import moriyashiine.bewitchment.client.network.packet.SyncContractsPacket;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.screen.ScreenHandler;
+import phantomblood.client.network.SyncAngelDealPacket;
 import phantomblood.client.network.SyncAngelTradesPacket;
 import phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import phantomblood.client.renderer.armor.StonemaskRenderer;

@@ -1,9 +1,10 @@
-package phantomblood.common.registry;
+package phantomblood.common.entity.interfaces;
 
 import phantomblood.common.registry.AngelDeal;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import phantomblood.common.registry.PhantomBloodRegisters;
 
 import java.util.List;
 

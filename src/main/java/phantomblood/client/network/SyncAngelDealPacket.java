@@ -1,4 +1,4 @@
-package phantomblood.common.registry;
+package phantomblood.client.network;
 
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -13,6 +13,9 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import phantomblood.PhantomBlood;
+import phantomblood.common.entity.interfaces.AngelDealAccessor;
+import phantomblood.common.registry.AngelDeal;
+import phantomblood.common.registry.PhantomBloodRegisters;
 
 @SuppressWarnings("ConstantConditions")
 public class SyncAngelDealPacket {

@@ -1,6 +1,5 @@
 package phantomblood.common.entity;
 
-import moriyashiine.bewitchment.client.network.packet.SyncContractsPacket;
 import moriyashiine.bewitchment.common.entity.living.util.BWHostileEntity;
 import moriyashiine.bewitchment.common.registry.BWSoundEvents;
 import net.fabricmc.fabric.api.util.NbtType;
@@ -26,11 +25,12 @@ import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import phantomblood.client.network.SyncAngelDealPacket;
+import phantomblood.common.entity.interfaces.AngelDealAccessor;
 import phantomblood.common.entity.interfaces.AngelMerchant;
 import phantomblood.client.screen.AngelScreenHandler;
 import phantomblood.client.network.SyncAngelTradesPacket;
@@ -205,6 +205,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
             List<AngelDeal> availableAngelDeal = PhantomBloodRegisters.ANGEL_DEALS.stream().collect(Collectors.toList());
             for (int i = 0; i < 3; i++) {
                 AngelDeal angelDeal = availableAngelDeal.get(random.nextInt(availableAngelDeal.size()));
+                //System.out.println(availableAngelDeal.size());
                 offers.add(new AngelTradeOffer(angelDeal, 168000));
                 availableAngelDeal.remove(angelDeal);
             }

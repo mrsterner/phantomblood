@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import phantomblood.common.registry.AngelDeal;
-import phantomblood.common.registry.AngelDealAccessor;
+import phantomblood.common.entity.interfaces.AngelDealAccessor;
 import phantomblood.common.registry.PhantomBloodObjects;
 import phantomblood.common.registry.PhantomBloodRegisters;
 

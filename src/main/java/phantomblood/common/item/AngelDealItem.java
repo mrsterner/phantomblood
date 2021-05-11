@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import phantomblood.PhantomBlood;
 import phantomblood.common.registry.AngelDeal;
-import phantomblood.common.registry.AngelDealAccessor;
+import phantomblood.common.entity.interfaces.AngelDealAccessor;
 import phantomblood.common.registry.PhantomBloodRegisters;
 
 import java.util.List;
