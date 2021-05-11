@@ -1,6 +1,7 @@
 package phantomblood;
 
 import moriyashiine.bewitchment.api.BewitchmentAPI;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -18,12 +19,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import phantomblood.common.entity.interfaces.AngelDealAccessor;
-import phantomblood.common.registry.PhantomBloodDeals;
-import phantomblood.common.registry.PhantomBloodEntities;
-import phantomblood.common.registry.PhantomBloodRegisters;
+import phantomblood.common.registry.*;
 import phantomblood.common.statuseffect.StonemaskDeath;
 import phantomblood.common.statuseffect.StonemaskEffect;
-import phantomblood.common.registry.PhantomBloodObjects;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -53,6 +51,8 @@ public class PhantomBlood implements ModInitializer {
         PhantomBloodObjects.init();
         PhantomBloodEntities.init();
         PhantomBloodDeals.init();
+        CommandRegistrationCallback.EVENT.register(PhantomBloodCommands::init);
+        PhantomBloodCommands.registerArgumentTypes();
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "timestopeffect"), TIME_STOP);
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "stonemaskeffect"), STONE_MASK_DEATH);
         FabricDefaultAttributeRegistry.register(PhantomBloodObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
