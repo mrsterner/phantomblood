@@ -8,11 +8,12 @@ public class AngelDeal {
 
     public static class Instance {
         public final AngelDeal angelDeal;
-        public int duration;
+        public int duration, cost;
 
-        public Instance(AngelDeal angelDeal, int duration) {
+        public Instance(AngelDeal angelDeal, int duration, int cost) {
             this.angelDeal = angelDeal;
             this.duration = duration;
+            this.cost = cost;
         }
     }
 }

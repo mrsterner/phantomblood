@@ -1,12 +1,10 @@
 package phantomblood.common.entity;
 
+import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.common.entity.living.util.BWHostileEntity;
 import moriyashiine.bewitchment.common.registry.BWSoundEvents;
 import net.fabricmc.fabric.api.util.NbtType;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -25,6 +23,7 @@ import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -104,13 +103,18 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
 
     @Override
     public int getVariants() {
-        return 5;
+        return 1;
+    }
+
+    @Override
+    public EntityGroup getGroup() {
+        return BewitchmentAPI.DEMON;
     }
 
 
     @Override
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
-        if (!world.isClient && isAlive() && getTarget() == null) {
+        if (!world.isClient && isAlive()) {
             if (getCurrentCustomer() == null) {
                 setCurrentCustomer(player);
             }
@@ -206,7 +210,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
             for (int i = 0; i < 3; i++) {
                 AngelDeal angelDeal = availableAngelDeal.get(random.nextInt(availableAngelDeal.size()));
                 //System.out.println(availableAngelDeal.size());
-                offers.add(new AngelTradeOffer(angelDeal, 168000));
+                offers.add(new AngelTradeOffer(angelDeal, 168000, MathHelper.nextInt(random, 3, 6)));
                 availableAngelDeal.remove(angelDeal);
             }
         }
@@ -239,21 +243,23 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
     @SuppressWarnings("ConstantConditions")
     public static class AngelTradeOffer {
         private final AngelDeal angelDeal;
-        private final int duration;
+        private final int duration, cost;
 
         public AngelTradeOffer(CompoundTag tag) {
-            this(PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(tag.getString("AngelDeal"))), tag.getInt("Duration"));
+            this(PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(tag.getString("AngelDeal"))), tag.getInt("Duration"), tag.getInt("Cost"));
         }
 
-        public AngelTradeOffer(AngelDeal angelDeal, int duration) {
+        public AngelTradeOffer(AngelDeal angelDeal, int duration, int cost) {
             this.angelDeal = angelDeal;
             this.duration = duration;
+            this.cost = cost;
         }
 
         public CompoundTag toTag() {
             CompoundTag tag = new CompoundTag();
             tag.putString("AngelDeal", PhantomBloodRegisters.ANGEL_DEALS.getId(angelDeal).toString());
             tag.putInt("Duration", duration);
+            tag.putInt("Cost", cost);
             return tag;
         }
 
@@ -262,6 +268,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
             for (AngelTradeOffer offer : offers) {
                 buf.writeIdentifier(PhantomBloodRegisters.ANGEL_DEALS.getId(offer.getAngelDeal()));
                 buf.writeInt(offer.duration);
+                buf.writeInt(offer.cost);
             }
         }
 
@@ -269,7 +276,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
             int count = buf.readInt();
             List<AngelTradeOffer> offers = new ArrayList<>(count);
             for (int i = 0; i < count; i++) {
-                offers.add(new AngelTradeOffer(PhantomBloodRegisters.ANGEL_DEALS.get(buf.readIdentifier()), buf.readInt()));
+                offers.add(new AngelTradeOffer(PhantomBloodRegisters.ANGEL_DEALS.get(buf.readIdentifier()), buf.readInt(), buf.readInt()));
             }
             return offers;
         }
@@ -277,7 +284,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
         public void apply(AngelMerchant merchant) {
             if (merchant.getCurrentCustomer() != null) {
                 PlayerEntity customer = merchant.getCurrentCustomer();
-                ((AngelDealAccessor) customer).addAngelDeal(new AngelDeal.Instance(angelDeal, getDuration()));
+                ((AngelDealAccessor) customer).addAngelDeal(new AngelDeal.Instance(angelDeal, getDuration(), getCost(merchant)));
             }
         }
 
@@ -290,8 +297,10 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
         }
 
         public int getCost(AngelMerchant merchant) {
-            return 1;
+            return cost;
         }
+
+
     }
 
     public static class LookAtCustomerGoal<T extends MobEntity & AngelMerchant> extends LookAtEntityGoal {

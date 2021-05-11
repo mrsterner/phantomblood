@@ -44,6 +44,7 @@ public interface AngelDealAccessor {
             CompoundTag angelDealTag = new CompoundTag();
             angelDealTag.putString("AngelDeal", PhantomBloodRegisters.ANGEL_DEALS.getId(instance.angelDeal).toString());
             angelDealTag.putInt("Duration", instance.duration);
+            angelDealTag.putInt("Cost", instance.cost);
             angelDeals.add(angelDealTag);
         }
         return angelDeals;

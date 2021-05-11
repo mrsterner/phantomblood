@@ -37,7 +37,7 @@ public class SyncAngelDealPacket {
                 ListTag angelDeals = angelDealsTag.getList("AngelDeals", NbtType.COMPOUND);
                 for (int i = 0; i < angelDeals.size(); i++) {
                     CompoundTag angelDeal = angelDeals.getCompound(i);
-                    ((AngelDealAccessor) client.player).addAngelDeal(new AngelDeal.Instance(PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(angelDeal.getString("AngelDeal"))), angelDeal.getInt("Duration")));
+                    ((AngelDealAccessor) client.player).addAngelDeal(new AngelDeal.Instance(PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(angelDeal.getString("AngelDeal"))), angelDeal.getInt("Duration"), angelDeal.getInt("Cost")));
                 }
             }
         });

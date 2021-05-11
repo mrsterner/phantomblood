@@ -14,6 +14,8 @@ import net.minecraft.screen.slot.SlotActionType;
 import org.jetbrains.annotations.Nullable;
 import phantomblood.common.entity.AngelEntity;
 import phantomblood.common.entity.interfaces.AngelMerchant;
+import phantomblood.common.registry.PhantomBloodObjects;
+import phantomblood.common.registry.PhantomBloodRegisters;
 import phantomblood.common.registry.PhantomBloodScreenHandler;
 
 import java.util.ArrayList;
@@ -86,9 +88,11 @@ public class AngelScreenHandler extends ScreenHandler {
 
     @SuppressWarnings("ConstantConditions")
     public class AngelTradeSlot extends Slot {
+        private final int angelDealIndex;
 
         public AngelTradeSlot(Inventory inventory, int index, int x, int y) {
             super(inventory, index, x, y);
+            angelDealIndex = index;
         }
 
         @Override
@@ -100,12 +104,16 @@ public class AngelScreenHandler extends ScreenHandler {
         public ItemStack getStack() {
             AngelEntity.AngelTradeOffer offer = getOffer();
             if (offer != null) {
+                ItemStack angelDeal = new ItemStack(PhantomBloodObjects.ANGEL_DEAL);
+                angelDeal.getOrCreateTag().putString("AngelDeal", PhantomBloodRegisters.ANGEL_DEALS.getId(getOffer().getAngelDeal()).toString());
+                angelDeal.getOrCreateTag().putInt("Duration", getOffer().getDuration());
+                return angelDeal;
             }
             return ItemStack.EMPTY;
         }
 
         public AngelEntity.AngelTradeOffer getOffer() {
-            return null;
+            return angelMerchant.getOffers().size() > angelDealIndex ? angelMerchant.getOffers().get(angelDealIndex) : null;
         }
     }
 

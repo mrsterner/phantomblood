@@ -40,7 +40,7 @@ public class AngelDealItem extends Item {
         if (!world.isClient && stack.hasTag() && user instanceof PlayerEntity) {
             AngelDeal angelDeal = PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(stack.getOrCreateTag().getString("AngelDeal")));
             if (angelDeal != null) {
-                ((AngelDealAccessor) user).addAngelDeal(new AngelDeal.Instance(angelDeal, stack.getTag().getInt("Duration")));
+                ((AngelDealAccessor) user).addAngelDeal(new AngelDeal.Instance(angelDeal, stack.getTag().getInt("Duration"), 0));
                 world.playSound(null, user.getBlockPos(), BWSoundEvents.ITEM_CONTRACT_USE, SoundCategory.PLAYERS, 1, 1);
                 if (!((PlayerEntity) user).isCreative()) {
                     stack.decrement(1);
