@@ -43,7 +43,6 @@ public class PhantomBloodObjects {
     public static final EntityType<TheWorldEntity> THE_WORLD_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "theworld"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TheWorldEntity::new).dimensions(EntityDimensions.fixed(0.9f, 2.5F)).fireImmune().trackRangeBlocks(90).trackedUpdateRate(4).build());
     //Item
     public static final Item AJA = create("aja", new Item(gen()));
-    public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, gen()));
     public static final Item ANGEL_DEAL = create("angel_deal", new AngelDealItem(gen().rarity(Rarity.RARE).maxCount(1)));
     //Food
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
