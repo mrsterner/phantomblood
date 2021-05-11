@@ -11,6 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import phantomblood.PhantomBlood;
 import phantomblood.common.entity.AngelEntity;
+import phantomblood.common.entity.interfaces.AngelDealAccessor;
 
 @SuppressWarnings("ConstantConditions")
 public class AngelScreen extends HandledScreen<AngelScreenHandler> {
@@ -79,8 +80,15 @@ public class AngelScreen extends HandledScreen<AngelScreenHandler> {
         for (int i = 0; i < cost; i++) {
             heartX += 9;
             drawTexture(matrices, heartX, heartY, 16, 0, 9, 9);
-
-            if (fullGroups > 0) {
+            if (!((AngelDealAccessor) client.player).hasAngelDeal(offer.getAngelDeal())) {
+                if (fullGroups > 0) {
+                    fullGroups--;
+                    i++;
+                    drawTexture(matrices, heartX, heartY, 160, 0, 9, 9);
+                } else {
+                    drawTexture(matrices, heartX, heartY, 169, 0, 9, 9);
+                }
+            } else if (fullGroups > 0) {
                 fullGroups--;
                 i++;
             }

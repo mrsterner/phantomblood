@@ -1,5 +1,6 @@
 package phantomblood.client.screen;
 
+import moriyashiine.bewitchment.common.registry.BWDamageSources;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.LivingEntity;
@@ -12,7 +13,10 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import org.jetbrains.annotations.Nullable;
+import phantomblood.client.network.SyncAngelDealPacket;
+import phantomblood.client.network.SyncAngelTradesPacket;
 import phantomblood.common.entity.AngelEntity;
+import phantomblood.common.entity.interfaces.AngelDealAccessor;
 import phantomblood.common.entity.interfaces.AngelMerchant;
 import phantomblood.common.registry.PhantomBloodObjects;
 import phantomblood.common.registry.PhantomBloodRegisters;
@@ -64,7 +68,21 @@ public class AngelScreenHandler extends ScreenHandler {
         Slot slot = slots.get(i);
         if (slot instanceof AngelTradeSlot) {
             AngelEntity.AngelTradeOffer offer = ((AngelTradeSlot) slot).getOffer();
-
+            if (!((AngelDealAccessor) playerEntity).hasAngelDeal(offer.getAngelDeal())) {
+                angelMerchant.onSell(offer);
+                angelMerchant.trade(offer);
+                if (!angelMerchant.getAngelTrader().world.isClient) {
+                    SyncAngelDealPacket.send(playerEntity);
+                    SyncAngelTradesPacket.send(playerEntity, angelMerchant, syncId);
+                    int cost = offer.getCost(angelMerchant);
+                    if (playerEntity.getMaxHealth() - cost <= 0) {
+                        ((AngelDealAccessor) playerEntity).getAngelDeals().clear();
+                        playerEntity.damage(BWDamageSources.DEATH, Float.MAX_VALUE);
+                    } else if (playerEntity.getHealth() > playerEntity.getMaxHealth() - cost) {
+                        playerEntity.setHealth(playerEntity.getMaxHealth() - cost);
+                    }
+                }
+            }
             return ItemStack.EMPTY;
         }
         return super.onSlotClick(i, j, actionType, playerEntity);
@@ -151,26 +169,18 @@ public class AngelScreenHandler extends ScreenHandler {
             return costumer;
         }
 
-
-        public boolean isDiscount() {
-            return discount;
-        }
-
         @Override
         @Environment(EnvType.CLIENT)
         public void setOffersClientside(List<AngelEntity.AngelTradeOffer> offers) {
             this.offers = offers;
         }
 
-
+        @Override
         @Environment(EnvType.CLIENT)
         public void setAngelTraderClientside(LivingEntity trader) {
             this.trader = trader;
         }
 
-        @Override
-        public void setDiscountClientside(boolean discount) {
-            this.discount = discount;
-        }
+
     }
 }

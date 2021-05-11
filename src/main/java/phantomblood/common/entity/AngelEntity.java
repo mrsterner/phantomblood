@@ -226,7 +226,6 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
     public void onSell(AngelEntity.AngelTradeOffer offer) {
         if (!world.isClient) {
             world.playSound(null, getBlockPos(), BWSoundEvents.ITEM_CONTRACT_USE, getSoundCategory(), getSoundVolume(), getSoundPitch());
-            world.playSound(null, getBlockPos(), getAmbientSound(), getSoundCategory(), getSoundVolume(), getSoundPitch());
         }
     }
 
