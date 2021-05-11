@@ -35,7 +35,7 @@ public class PhantomBloodClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
-        ClientPlayNetworking.registerGlobalReceiver(SyncContractsPacket.ID, SyncContractsPacket::handle);
+        ClientPlayNetworking.registerGlobalReceiver(SyncAngelDealPacket.ID, SyncAngelDealPacket::handle);
         ClientPlayNetworking.registerGlobalReceiver(SyncAngelTradesPacket.ID, (client, network, buf, sender) -> {
             int syncId = buf.readInt();
             List<AngelEntity.AngelTradeOffer> offers = AngelEntity.AngelTradeOffer.fromPacket(buf);

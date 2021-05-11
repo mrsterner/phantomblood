@@ -3,6 +3,7 @@ package phantomblood.common.registry;
 import moriyashiine.bewitchment.common.registry.BWMaterials;
 import moriyashiine.bewitchment.common.registry.BWObjects;
 import moriyashiine.bewitchment.common.registry.BWTags;
+import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.tag.TagRegistry;
@@ -10,6 +11,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.tag.Tag;
+import net.minecraft.util.Rarity;
 import phantomblood.PhantomBlood;
 import phantomblood.common.entity.AngelEntity;
 import phantomblood.common.entity.TheWorldEntity;
@@ -49,6 +51,8 @@ public class PhantomBloodObjects {
     public static final Item ANGEL_SPAWN_EGG = create("angel_spawn_egg", new SpawnEggItem(PhantomBloodEntities.ANGEL_ENTITY, 0xf0e2df, 0xf0bf3a, gen()));
     //Tags
     public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
+    //Angel
+    public static final Item ANGEL_DEAL = create("angel_deal", new AngelDealItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
     //Register

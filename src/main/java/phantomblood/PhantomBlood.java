@@ -16,7 +16,9 @@ import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import phantomblood.common.registry.PhantomBloodDeals;
 import phantomblood.common.registry.PhantomBloodEntities;
+import phantomblood.common.registry.PhantomBloodRegisters;
 import phantomblood.common.statuseffect.StonemaskDeath;
 import phantomblood.common.statuseffect.StonemaskEffect;
 import phantomblood.common.registry.PhantomBloodObjects;
@@ -48,6 +50,7 @@ public class PhantomBlood implements ModInitializer {
         GeckoLib.initialize();
         PhantomBloodObjects.init();
         PhantomBloodEntities.init();
+        PhantomBloodDeals.init();
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "timestopeffect"), TIME_STOP);
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "stonemaskeffect"), STONE_MASK_DEATH);
         FabricDefaultAttributeRegistry.register(PhantomBloodObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
