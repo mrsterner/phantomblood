@@ -1,5 +1,7 @@
 package phantomblood.common.item;
 
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
 import phantomblood.common.registry.PhantomBloodObjects;
 import moriyashiine.bewitchment.common.misc.BWUtil;
 import moriyashiine.bewitchment.common.registry.BWSoundEvents;
@@ -48,8 +50,8 @@ public class DaggerItem extends SwordItem {
         PlayerEntity player = (PlayerEntity) attacker;
         boolean client = player.world.isClient;
         ItemStack stonemask = attacker.getEquippedStack(EquipmentSlot.HEAD);
-        if(target instanceof VillagerEntity){
-            if(!client && stonemask.getItem() == PhantomBloodObjects.STONE_MASK_ITEM){
+        if (target instanceof VillagerEntity) {
+            if (!client && stonemask.getItem() == PhantomBloodObjects.STONE_MASK_ITEM) {
                 stonemask.setCount(0);
                 attacker.equipStack(EquipmentSlot.HEAD, new ItemStack(PhantomBloodObjects.BLOODY_STONE_MASK_ITEM));
                 player.world.playSoundFromEntity(null, target, BWSoundEvents.ENTITY_GENERIC_CURSE, SoundCategory.PLAYERS, 1, 1);
@@ -58,4 +60,9 @@ public class DaggerItem extends SwordItem {
         return super.postHit(stack, target, attacker);
     }
 
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        user.setHealth(user.getMaxHealth() - 4);
+        return super.use(world, user, hand);
+    }
 }
