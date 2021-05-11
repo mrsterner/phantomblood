@@ -32,7 +32,7 @@ public abstract class BewitchmentMixin implements ModInitializer {
      */
     //REMEBER TO CHECK BITCODE IF BEWITCHMNET UPDATES THE CODE. View -> Show Bitcode, and look for which placement the lambda function UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) has.
     @SuppressWarnings("UnresolvedMixinReference")
-    @Inject(method = "lambda$onInitialize$5", at = @At(value = "INVOKE", target = "Lmoriyashiine/bewitchment/api/interfaces/entity/BloodAccessor;fillBlood(IZ)Z"), remap = false)
+    @Inject(method = "lambda$onInitialize$6", at = @At(value = "INVOKE", target = "Lmoriyashiine/bewitchment/api/interfaces/entity/BloodAccessor;fillBlood(IZ)Z"), remap = false)
     private static void inject(PlayerEntity player, World world, Hand hand, Entity entity, EntityHitResult hitresult, CallbackInfoReturnable<Float> cir) {
         int toGive = BWTags.HAS_BLOOD.contains(entity.getType()) ? 5 : entity instanceof AnimalEntity ? 1 : 0;
         toGive = BloodSuckEvents.BLOOD_AMOUNT.invoker().onBloodSuck(player, (LivingEntity) entity, toGive);
