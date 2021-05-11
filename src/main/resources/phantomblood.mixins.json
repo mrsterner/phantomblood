@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "phantomblood.mixin",
+  "package": "mrsterner.phantomblood.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "LivingEntityMixin",

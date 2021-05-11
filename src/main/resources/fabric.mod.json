@@ -14,10 +14,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "phantomblood.PhantomBlood"
+      "mrsterner.phantomblood.PhantomBlood"
     ],
     "client": [
-      "phantomblood.PhantomBloodClient"
+      "mrsterner.phantomblood.PhantomBloodClient"
     ],
     "server": []
   },
