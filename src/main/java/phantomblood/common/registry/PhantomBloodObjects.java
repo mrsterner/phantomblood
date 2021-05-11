@@ -44,6 +44,7 @@ public class PhantomBloodObjects {
 
     //Item
     public static final Item AJA = create("aja", new Item(gen()));
+    public static final Item SACRED_HEART = create("sacred_heart", new Item(gen()));
     public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, 1, gen()));
     //Food
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));

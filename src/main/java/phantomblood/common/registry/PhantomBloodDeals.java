@@ -1,5 +1,6 @@
 package phantomblood.common.registry;
 
+import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import phantomblood.PhantomBlood;
@@ -21,5 +22,9 @@ public class PhantomBloodDeals {
 
     public static void init() {
         ANGEL_DEALS.keySet().forEach(angelDeal -> Registry.register(PhantomBloodRegisters.ANGEL_DEALS, ANGEL_DEALS.get(angelDeal), angelDeal));
+    }
+
+    private static Item.Settings gen() {
+        return new Item.Settings().group(PhantomBlood.PHANTOMBLOOD_GROUP);
     }
 }

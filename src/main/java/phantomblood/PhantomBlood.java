@@ -2,6 +2,7 @@ package phantomblood;
 
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -16,6 +17,7 @@ import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import phantomblood.common.entity.interfaces.AngelDealAccessor;
 import phantomblood.common.registry.PhantomBloodDeals;
 import phantomblood.common.registry.PhantomBloodEntities;
 import phantomblood.common.registry.PhantomBloodRegisters;
@@ -55,6 +57,9 @@ public class PhantomBlood implements ModInitializer {
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "stonemaskeffect"), STONE_MASK_DEATH);
         FabricDefaultAttributeRegistry.register(PhantomBloodObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
 
+        ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
+            ((AngelDealAccessor) newPlayer).getAngelDeals().addAll(((AngelDealAccessor) oldPlayer).getAngelDeals());
+        });
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             ItemStack eq = player.getEquippedStack(EquipmentSlot.CHEST);

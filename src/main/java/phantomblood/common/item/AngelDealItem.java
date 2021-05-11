@@ -77,8 +77,8 @@ public class AngelDealItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (stack.hasTag() && stack.getOrCreateTag().contains("AngelDeal")) {
-            tooltip.add(new TranslatableText("angeldeal." + stack.getOrCreateTag().getString("AngelDeal").replace(":", ".")).formatted(Formatting.DARK_RED));
-            tooltip.add(new TranslatableText(PhantomBlood.MODID + ".tooltip.days", stack.getOrCreateTag().getInt("Duration") / 24000).formatted(Formatting.DARK_RED));
+            tooltip.add(new TranslatableText("angeldeal." + stack.getOrCreateTag().getString("AngelDeal").replace(":", ".")).formatted(Formatting.GOLD));
+            tooltip.add(new TranslatableText(PhantomBlood.MODID + ".tooltip.days", stack.getOrCreateTag().getInt("Duration") / 24000).formatted(Formatting.GOLD));
         }
     }
 }

@@ -209,7 +209,6 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
             List<AngelDeal> availableAngelDeal = PhantomBloodRegisters.ANGEL_DEALS.stream().collect(Collectors.toList());
             for (int i = 0; i < 3; i++) {
                 AngelDeal angelDeal = availableAngelDeal.get(random.nextInt(availableAngelDeal.size()));
-                //System.out.println(availableAngelDeal.size());
                 offers.add(new AngelTradeOffer(angelDeal, 168000, MathHelper.nextInt(random, 3, 6)));
                 availableAngelDeal.remove(angelDeal);
             }
