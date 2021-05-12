@@ -22,7 +22,7 @@ public class AngelModel extends AnimatedGeoModel {
 
     @Override
     public Identifier getTextureLocation(Object entity) {
-        return new Identifier(PhantomBlood.MODID, "textures/models/entity/angel.png");
+        return new Identifier(PhantomBlood.MODID, "textures/models/entity/male_0.png");
     }
 
     @Override
