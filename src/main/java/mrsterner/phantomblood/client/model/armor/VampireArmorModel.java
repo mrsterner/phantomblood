@@ -13,7 +13,7 @@ public class VampireArmorModel extends AnimatedGeoModel<VampireArmorItem> {
 
     @Override
     public Identifier getTextureLocation(VampireArmorItem object) {
-        return new Identifier(PhantomBlood.MODID, "textures/models/armor/vampire_armor.png");
+        return new Identifier(PhantomBlood.MODID, "textures/entity/armor/vampire_armor.png");
     }
 
     @Override

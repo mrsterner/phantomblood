@@ -28,8 +28,8 @@ public class AngelRenderer extends GeoEntityRenderer<AngelEntity> {
             MALE_TEXTURES = new Identifier[variants];
             FEMALE_TEXTURES = new Identifier[variants];
             for (int i = 0; i < variants; i++) {
-                MALE_TEXTURES[i] = new Identifier(PhantomBlood.MODID, "textures/models/entity/angel/male_" + i + ".png");
-                FEMALE_TEXTURES[i] = new Identifier(PhantomBlood.MODID, "textures/models/entity/angel/female_" + i + ".png");
+                MALE_TEXTURES[i] = new Identifier(PhantomBlood.MODID, "textures/entity/living/angel/male_" + i + ".png");
+                FEMALE_TEXTURES[i] = new Identifier(PhantomBlood.MODID, "textures/entity/living/angel/female_" + i + ".png");
             }
         }
         int variant = entity.getDataTracker().get(BWHostileEntity.VARIANT);
