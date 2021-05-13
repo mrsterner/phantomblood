@@ -13,9 +13,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -49,6 +51,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
 
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -58,9 +61,9 @@ public abstract class LivingEntityMixin extends Entity {
     private void tick(CallbackInfo callbackInfo) {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
-            ItemStack stonemask = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
+            ItemStack head = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
 
-            if (stonemask.getItem() == PhantomBloodObjects.BLOODY_STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
+            if (head.getItem() == PhantomBloodObjects.BLOODY_STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
                 ((TransformationAccessor) this).getTransformation().onRemoved((PlayerEntity) (Object) this);
                 ((TransformationAccessor) this).setTransformation(BWTransformations.VAMPIRE);
                 ((TransformationAccessor) this).getTransformation().onAdded((PlayerEntity) (Object) this);

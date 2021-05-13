@@ -6,6 +6,7 @@ import moriyashiine.bewitchment.api.interfaces.entity.BloodAccessor;
 import moriyashiine.bewitchment.common.registry.BWStatusEffects;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -58,6 +59,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
             if (level > 0) {
                 addStatusEffect(new StatusEffectInstance(BWStatusEffects.PACT, 10, 1, true, false));
             }
+        }
+        PlayerEntity playerEntity = (PlayerEntity) (Object) this;
+        ItemStack chest = playerEntity.getEquippedStack(EquipmentSlot.CHEST);
+        if (chest.getItem() == PhantomBloodObjects.URIEL_WINGS) {
+            playerEntity.abilities.allowFlying = true;
         }
     }
 

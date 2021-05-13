@@ -20,4 +20,5 @@ public class StonemaskModel extends AnimatedGeoModel<StonemaskItem> {
     public Identifier getAnimationFileLocation(StonemaskItem animatable) {
         return new Identifier(PhantomBlood.MODID, "animations/stonemask.animation.json");
     }
+
 }

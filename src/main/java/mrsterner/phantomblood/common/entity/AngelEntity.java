@@ -103,7 +103,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
 
     @Override
     public int getVariants() {
-        return 4;
+        return 6;
     }
 
     @Override

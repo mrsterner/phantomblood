@@ -1,5 +1,7 @@
 package mrsterner.phantomblood;
 
+import mrsterner.phantomblood.client.renderer.armor.WingsArmorRenderer;
+import mrsterner.phantomblood.common.item.WingsArmorItem;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
@@ -61,6 +63,8 @@ public class PhantomBloodClient implements ClientModInitializer {
         EntityRendererRegistry.INSTANCE.register(PhantomBloodEntities.ANGEL_ENTITY, (entityRenderDispatcher, context) -> new AngelRenderer(entityRenderDispatcher));
         GeoArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         VampireArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
+        GeoArmorRenderer.registerArmorRenderer(WingsArmorItem.class, new WingsArmorRenderer());
+        WingsArmorRenderer.registerArmorRenderer(WingsArmorItem.class, new WingsArmorRenderer());
 
     }
 }
