@@ -4,17 +4,22 @@ package mrsterner.phantomblood.mixin;
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.BloodAccessor;
 import moriyashiine.bewitchment.common.registry.BWStatusEffects;
+import mrsterner.phantomblood.common.registry.PhantomBloodDeals;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -64,6 +69,28 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
         ItemStack chest = playerEntity.getEquippedStack(EquipmentSlot.CHEST);
         if (chest.getItem() == PhantomBloodObjects.URIEL_WINGS) {
             playerEntity.abilities.allowFlying = true;
+            if (!hasAngelDeal(PhantomBloodDeals.WINGS)) {
+                chest.setCount(0);
+            }
+        }
+        if (chest.getItem() != PhantomBloodObjects.URIEL_WINGS && hasAngelDeal(PhantomBloodDeals.WINGS)) {
+            playerEntity.giveItemStack(chest.copy());
+            chest.setCount(0);
+            playerEntity.equipStack(EquipmentSlot.CHEST, new ItemStack(PhantomBloodObjects.URIEL_WINGS));
+        }
+
+    }
+
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack itemStack = user.getStackInHand(hand);
+        EquipmentSlot equipmentSlot = MobEntity.getPreferredEquipmentSlot(itemStack);
+        ItemStack itemStack2 = user.getEquippedStack(equipmentSlot);
+        if (itemStack2.isEmpty()) {
+            user.equipStack(equipmentSlot, itemStack.copy());
+            itemStack.setCount(0);
+            return TypedActionResult.success(itemStack, world.isClient());
+        } else {
+            return TypedActionResult.fail(itemStack);
         }
     }
 
