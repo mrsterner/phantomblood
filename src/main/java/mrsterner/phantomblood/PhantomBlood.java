@@ -1,6 +1,7 @@
 package mrsterner.phantomblood;
 
 import moriyashiine.bewitchment.api.BewitchmentAPI;
+import mrsterner.phantomblood.common.statuseffect.UrielEffect;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -35,6 +36,7 @@ public class PhantomBlood implements ModInitializer {
 
     public static final StatusEffect TIME_STOP = new StonemaskEffect();
     public static final StatusEffect STONE_MASK_DEATH = new StonemaskDeath();
+    public static final StatusEffect URIEL_EFFECT = new UrielEffect();
 
     public static DefaultAttributeContainer.Builder createGenericEntityAttributes() {
         return PathAwareEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.80000000298023224D)
@@ -51,6 +53,7 @@ public class PhantomBlood implements ModInitializer {
         PhantomBloodCommands.registerArgumentTypes();
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "timestopeffect"), TIME_STOP);
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "stonemaskeffect"), STONE_MASK_DEATH);
+        Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "urieleffect"), URIEL_EFFECT);
         FabricDefaultAttributeRegistry.register(PhantomBloodObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
 
         ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {

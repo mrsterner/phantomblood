@@ -4,6 +4,7 @@ package mrsterner.phantomblood.mixin;
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.BloodAccessor;
 import moriyashiine.bewitchment.common.registry.BWStatusEffects;
+import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.registry.PhantomBloodDeals;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.enchantment.Enchantments;
@@ -11,6 +12,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
@@ -56,6 +58,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
             int level = 0;
             for (int i = angelDeals.size() - 1; i >= 0; i--) {
                 AngelDeal.Instance instance = angelDeals.get(i);
+                level += instance.cost;
                 instance.angelDeal.tick((PlayerEntity) (Object) this);
                 instance.duration--;
                 if (instance.duration <= 0) {
@@ -63,18 +66,13 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
                 }
             }
             if (level > 0) {
-                addStatusEffect(new StatusEffectInstance(BWStatusEffects.PACT, 10, 1, true, false));
+                addStatusEffect(new StatusEffectInstance(PhantomBlood.URIEL_EFFECT, 10, 1, true, false));
             }
         }
         PlayerEntity playerEntity = (PlayerEntity) (Object) this;
         ItemStack chest = playerEntity.getEquippedStack(EquipmentSlot.CHEST);
-        if (chest.getItem() == PhantomBloodObjects.URIEL_WINGS) {
-            playerEntity.abilities.allowFlying = true;
-            if (!hasAngelDeal(PhantomBloodDeals.WINGS)) {
-                chest.setCount(0);
-            }
-        }
-        if (chest.getItem() != PhantomBloodObjects.URIEL_WINGS && hasAngelDeal(PhantomBloodDeals.WINGS)) {
+
+        if (hasAngelDeal(PhantomBloodDeals.WINGS) && chest.getItem() != PhantomBloodObjects.URIEL_WINGS && !world.isClient) {
             playerEntity.giveItemStack(chest.copy());
             chest.setCount(0);
             ItemStack stack = new ItemStack(PhantomBloodObjects.URIEL_WINGS);
@@ -83,22 +81,18 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
             stack.addEnchantment(Enchantments.VANISHING_CURSE, 1);
             playerEntity.equipStack(EquipmentSlot.CHEST, stack);
         }
-
-    }
-
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        EquipmentSlot equipmentSlot = MobEntity.getPreferredEquipmentSlot(itemStack);
-        ItemStack itemStack2 = user.getEquippedStack(equipmentSlot);
-        if (itemStack2.isEmpty()) {
-            user.equipStack(equipmentSlot, itemStack.copy());
-            itemStack.setCount(0);
-            return TypedActionResult.success(itemStack, world.isClient());
-        } else {
-            return TypedActionResult.fail(itemStack);
+        if (chest.getItem() == PhantomBloodObjects.URIEL_WINGS) {
+            playerEntity.abilities.allowFlying = true;
+            if (!hasAngelDeal(PhantomBloodDeals.WINGS)) {
+                playerEntity.abilities.allowFlying = false;
+                playerEntity.abilities.flying = false;
+                System.out.println("Acc");
+                chest.setCount(0);
+                playerEntity.sendAbilitiesUpdate();
+            }
         }
-    }
 
+    }
     @Inject(method = "eatFood", at = @At("HEAD"))
     private void eat(World world, ItemStack stack, CallbackInfoReturnable<ItemStack> callbackInfo) {
         if (!world.isClient) {

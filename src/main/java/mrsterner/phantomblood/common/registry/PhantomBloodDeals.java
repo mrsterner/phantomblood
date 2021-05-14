@@ -12,7 +12,7 @@ public class PhantomBloodDeals {
     private static final Map<AngelDeal, Identifier> ANGEL_DEALS = new LinkedHashMap<>();
 
     public static final AngelDeal WINGS = create("wings", new AngelDeal());
-    public static final AngelDeal WINGS2 = create("wings2", new AngelDeal());
+    public static final AngelDeal HOLY_MANTEL = create("holy_mantel", new AngelDeal());
     public static final AngelDeal WINGS3 = create("wings3", new AngelDeal());
 
     private static <T extends AngelDeal> T create(String name, T angelDeal) {
