@@ -5,7 +5,7 @@ import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.BloodAccessor;
 import moriyashiine.bewitchment.common.registry.BWStatusEffects;
 import mrsterner.phantomblood.PhantomBlood;
-import mrsterner.phantomblood.common.registry.PhantomBloodDeals;
+import mrsterner.phantomblood.common.registry.*;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -29,10 +29,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import mrsterner.phantomblood.common.registry.AngelDeal;
 import mrsterner.phantomblood.common.entity.interfaces.AngelDealAccessor;
-import mrsterner.phantomblood.common.registry.PhantomBloodObjects;
-import mrsterner.phantomblood.common.registry.PhantomBloodRegisters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +63,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
                 }
             }
             if (level > 0) {
-                addStatusEffect(new StatusEffectInstance(PhantomBlood.URIEL_EFFECT, 10, 1, true, false));
+                addStatusEffect(new StatusEffectInstance(PhantomBloodStatusEffects.URIEL, 10, 1, true, false));
             }
         }
         PlayerEntity playerEntity = (PlayerEntity) (Object) this;
