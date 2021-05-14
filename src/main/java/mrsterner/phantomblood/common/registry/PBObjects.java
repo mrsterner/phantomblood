@@ -20,7 +20,7 @@ import java.util.Map;
 import static mrsterner.phantomblood.PhantomBlood.PHANTOMBLOOD_GROUP;
 
 
-public class PhantomBloodObjects {
+public class PBObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
@@ -42,7 +42,7 @@ public class PhantomBloodObjects {
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
     public static final Item SACRED_HEART = create("sacred_heart", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
     //Spawn Eggs
-    public static final Item ANGEL_SPAWN_EGG = create("angel_spawn_egg", new SpawnEggItem(PhantomBloodEntities.ANGEL_ENTITY, 0xf0e2df, 0xf0bf3a, gen()));
+    public static final Item ANGEL_SPAWN_EGG = create("angel_spawn_egg", new SpawnEggItem(PBEntities.ANGEL_ENTITY, 0xf0e2df, 0xf0bf3a, gen()));
     //Tags
     public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
 

@@ -1,7 +1,6 @@
 package mrsterner.phantomblood;
 
 import moriyashiine.bewitchment.api.BewitchmentAPI;
-import mrsterner.phantomblood.common.statuseffect.UrielEffect;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -17,22 +16,18 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import mrsterner.phantomblood.common.entity.interfaces.AngelDealAccessor;
 import mrsterner.phantomblood.common.registry.*;
-import mrsterner.phantomblood.common.statuseffect.StonemaskDeath;
-import mrsterner.phantomblood.common.statuseffect.StonemaskEffect;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import software.bernie.geckolib3.GeckoLib;
 
 public class PhantomBlood implements ModInitializer {
 
     public static final String MODID = "phantomblood";
-    public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PhantomBloodObjects.STONE_MASK_ITEM));
+    public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PBObjects.STONE_MASK_ITEM));
 
 
     public static DefaultAttributeContainer.Builder createGenericEntityAttributes() {
@@ -43,12 +38,13 @@ public class PhantomBlood implements ModInitializer {
     @Override
     public void onInitialize() {
         GeckoLib.initialize();
-        PhantomBloodObjects.init();
-        PhantomBloodEntities.init();
-        PhantomBloodDeals.init();
-        CommandRegistrationCallback.EVENT.register(PhantomBloodCommands::init);
-        PhantomBloodCommands.registerArgumentTypes();
-        FabricDefaultAttributeRegistry.register(PhantomBloodObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
+        PBObjects.init();
+        PBEntities.init();
+        PBAngelDeals.init();
+        CommandRegistrationCallback.EVENT.register(PBCommands::init);
+        PBCommands.registerArgumentTypes();
+        PBStatusEffects.init();
+        FabricDefaultAttributeRegistry.register(PBObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
 
         ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
             ((AngelDealAccessor) newPlayer).getAngelDeals().addAll(((AngelDealAccessor) oldPlayer).getAngelDeals());
@@ -56,7 +52,7 @@ public class PhantomBlood implements ModInitializer {
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             ItemStack eq = player.getEquippedStack(EquipmentSlot.CHEST);
-            if (hand == Hand.MAIN_HAND && eq.getItem() == PhantomBloodObjects.VAMPIRE_JACKET && entity.isAlive() && BewitchmentAPI.isVampire(player, true) && player.getStackInHand(hand).isEmpty()) {
+            if (hand == Hand.MAIN_HAND && eq.getItem() == PBObjects.VAMPIRE_JACKET && entity.isAlive() && BewitchmentAPI.isVampire(player, true) && player.getStackInHand(hand).isEmpty()) {
                 ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 3));
             }
             return ActionResult.PASS;

@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PhantomBloodStatusEffects {
+public class PBStatusEffects {
     private static final Map<StatusEffect, Identifier> STATUS_EFFECTS = new LinkedHashMap<>();
 
     public static final StatusEffect URIEL = create("urieleffect", new EmptyStatusEffect(StatusEffectType.NEUTRAL, 0x2f5e7b));

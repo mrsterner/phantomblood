@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.client.network;
 
 import io.netty.buffer.Unpooled;
+import mrsterner.phantomblood.common.registry.PBRegisters;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.util.NbtType;
@@ -15,7 +16,6 @@ import net.minecraft.util.Identifier;
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.entity.interfaces.AngelDealAccessor;
 import mrsterner.phantomblood.common.registry.AngelDeal;
-import mrsterner.phantomblood.common.registry.PhantomBloodRegisters;
 
 @SuppressWarnings("ConstantConditions")
 public class SyncAngelDealPacket {
@@ -37,7 +37,7 @@ public class SyncAngelDealPacket {
                 ListTag angelDeals = angelDealsTag.getList("AngelDeals", NbtType.COMPOUND);
                 for (int i = 0; i < angelDeals.size(); i++) {
                     CompoundTag angelDeal = angelDeals.getCompound(i);
-                    ((AngelDealAccessor) client.player).addAngelDeal(new AngelDeal.Instance(PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(angelDeal.getString("AngelDeal"))), angelDeal.getInt("Duration"), angelDeal.getInt("Cost")));
+                    ((AngelDealAccessor) client.player).addAngelDeal(new AngelDeal.Instance(PBRegisters.ANGEL_DEALS.get(new Identifier(angelDeal.getString("AngelDeal"))), angelDeal.getInt("Duration"), angelDeal.getInt("Cost")));
                 }
             }
         });

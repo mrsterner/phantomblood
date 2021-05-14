@@ -53,14 +53,14 @@ public class PhantomBloodClient implements ClientModInitializer {
                 }
             });
         });
-        ScreenRegistry.register(PhantomBloodScreenHandler.ANGEL_SCREEN_HANDLER, AngelScreen::new);
+        ScreenRegistry.register(PBScreenHandler.ANGEL_SCREEN_HANDLER, AngelScreen::new);
 
-        GeoItemRenderer.registerItemRenderer(PhantomBloodObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
-        GeoItemRenderer.registerItemRenderer(PhantomBloodObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
+        GeoItemRenderer.registerItemRenderer(PBObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
+        GeoItemRenderer.registerItemRenderer(PBObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
         StonemaskRenderer.registerArmorRenderer(StonemaskItem.class, new StonemaskRenderer());
         StonemaskRenderer.registerArmorRenderer(BloodStonemaskItem.class, new BloodStonemaskRenderer());
-        EntityRendererRegistry.INSTANCE.register(PhantomBloodObjects.THE_WORLD_ENTITY, (entityRenderDispatcher, context) -> new TheWorldRenderer(entityRenderDispatcher));
-        EntityRendererRegistry.INSTANCE.register(PhantomBloodEntities.ANGEL_ENTITY, (entityRenderDispatcher, context) -> new AngelRenderer(entityRenderDispatcher));
+        EntityRendererRegistry.INSTANCE.register(PBObjects.THE_WORLD_ENTITY, (entityRenderDispatcher, context) -> new TheWorldRenderer(entityRenderDispatcher));
+        EntityRendererRegistry.INSTANCE.register(PBEntities.ANGEL_ENTITY, (entityRenderDispatcher, context) -> new AngelRenderer(entityRenderDispatcher));
         GeoArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         VampireArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         GeoArmorRenderer.registerArmorRenderer(WingsArmorItem.class, new WingsArmorRenderer());

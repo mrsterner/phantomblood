@@ -8,7 +8,7 @@ import mrsterner.phantomblood.PhantomBlood;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PhantomBloodDeals {
+public class PBAngelDeals {
     private static final Map<AngelDeal, Identifier> ANGEL_DEALS = new LinkedHashMap<>();
 
     public static final AngelDeal WINGS = create("wings", new AngelDeal());
@@ -21,7 +21,7 @@ public class PhantomBloodDeals {
     }
 
     public static void init() {
-        ANGEL_DEALS.keySet().forEach(angelDeal -> Registry.register(PhantomBloodRegisters.ANGEL_DEALS, ANGEL_DEALS.get(angelDeal), angelDeal));
+        ANGEL_DEALS.keySet().forEach(angelDeal -> Registry.register(PBRegisters.ANGEL_DEALS, ANGEL_DEALS.get(angelDeal), angelDeal));
     }
 
     private static Item.Settings gen() {

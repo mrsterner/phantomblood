@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.common.item;
 
 import moriyashiine.bewitchment.common.registry.BWSoundEvents;
+import mrsterner.phantomblood.common.registry.PBRegisters;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -20,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.registry.AngelDeal;
 import mrsterner.phantomblood.common.entity.interfaces.AngelDealAccessor;
-import mrsterner.phantomblood.common.registry.PhantomBloodRegisters;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class AngelDealItem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (!world.isClient && stack.hasTag() && user instanceof PlayerEntity) {
-            AngelDeal angelDeal = PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(stack.getOrCreateTag().getString("AngelDeal")));
+            AngelDeal angelDeal = PBRegisters.ANGEL_DEALS.get(new Identifier(stack.getOrCreateTag().getString("AngelDeal")));
             if (angelDeal != null) {
                 ((AngelDealAccessor) user).addAngelDeal(new AngelDeal.Instance(angelDeal, stack.getTag().getInt("Duration"), 0));
                 world.playSound(null, user.getBlockPos(), BWSoundEvents.ITEM_CONTRACT_USE, SoundCategory.PLAYERS, 1, 1);
@@ -64,9 +64,9 @@ public class AngelDealItem extends Item {
     @Override
     public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
         if (isIn(group)) {
-            PhantomBloodRegisters.ANGEL_DEALS.forEach(contract -> {
+            PBRegisters.ANGEL_DEALS.forEach(contract -> {
                 ItemStack stack = new ItemStack(this);
-                stack.getOrCreateTag().putString("AngelDeal", PhantomBloodRegisters.ANGEL_DEALS.getId(contract).toString());
+                stack.getOrCreateTag().putString("AngelDeal", PBRegisters.ANGEL_DEALS.getId(contract).toString());
                 stack.getOrCreateTag().putInt("Duration", 168000);
                 stacks.add(stack);
             });

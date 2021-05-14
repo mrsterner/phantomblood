@@ -1,9 +1,9 @@
 package mrsterner.phantomblood.common.entity.interfaces;
 
 import mrsterner.phantomblood.common.registry.AngelDeal;
+import mrsterner.phantomblood.common.registry.PBRegisters;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import mrsterner.phantomblood.common.registry.PhantomBloodRegisters;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public interface AngelDealAccessor {
         ListTag angelDeals = new ListTag();
         for (AngelDeal.Instance instance : getAngelDeals()) {
             CompoundTag angelDealTag = new CompoundTag();
-            angelDealTag.putString("AngelDeal", PhantomBloodRegisters.ANGEL_DEALS.getId(instance.angelDeal).toString());
+            angelDealTag.putString("AngelDeal", PBRegisters.ANGEL_DEALS.getId(instance.angelDeal).toString());
             angelDealTag.putInt("Duration", instance.duration);
             angelDealTag.putInt("Cost", instance.cost);
             angelDeals.add(angelDealTag);

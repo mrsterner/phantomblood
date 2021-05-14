@@ -206,7 +206,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
     @Override
     public List<AngelEntity.AngelTradeOffer> getOffers() {
         if (offers.isEmpty()) {
-            List<AngelDeal> availableAngelDeal = PhantomBloodRegisters.ANGEL_DEALS.stream().collect(Collectors.toList());
+            List<AngelDeal> availableAngelDeal = PBRegisters.ANGEL_DEALS.stream().collect(Collectors.toList());
             for (int i = 0; i < 3; i++) {
                 AngelDeal angelDeal = availableAngelDeal.get(random.nextInt(availableAngelDeal.size()));
                 offers.add(new AngelTradeOffer(angelDeal, 168000, MathHelper.nextInt(random, 3, 6)));
@@ -244,7 +244,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
         private final int duration, cost;
 
         public AngelTradeOffer(CompoundTag tag) {
-            this(PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(tag.getString("AngelDeal"))), tag.getInt("Duration"), tag.getInt("Cost"));
+            this(PBRegisters.ANGEL_DEALS.get(new Identifier(tag.getString("AngelDeal"))), tag.getInt("Duration"), tag.getInt("Cost"));
         }
 
         public AngelTradeOffer(AngelDeal angelDeal, int duration, int cost) {
@@ -255,7 +255,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
 
         public CompoundTag toTag() {
             CompoundTag tag = new CompoundTag();
-            tag.putString("AngelDeal", PhantomBloodRegisters.ANGEL_DEALS.getId(angelDeal).toString());
+            tag.putString("AngelDeal", PBRegisters.ANGEL_DEALS.getId(angelDeal).toString());
             tag.putInt("Duration", duration);
             tag.putInt("Cost", cost);
             return tag;
@@ -264,7 +264,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
         public static void toPacket(List<AngelTradeOffer> offers, PacketByteBuf buf) {
             buf.writeInt(offers.size());
             for (AngelTradeOffer offer : offers) {
-                buf.writeIdentifier(PhantomBloodRegisters.ANGEL_DEALS.getId(offer.getAngelDeal()));
+                buf.writeIdentifier(PBRegisters.ANGEL_DEALS.getId(offer.getAngelDeal()));
                 buf.writeInt(offer.duration);
                 buf.writeInt(offer.cost);
             }
@@ -274,7 +274,7 @@ public class AngelEntity extends BWHostileEntity implements AngelMerchant, IAnim
             int count = buf.readInt();
             List<AngelTradeOffer> offers = new ArrayList<>(count);
             for (int i = 0; i < count; i++) {
-                offers.add(new AngelTradeOffer(PhantomBloodRegisters.ANGEL_DEALS.get(buf.readIdentifier()), buf.readInt(), buf.readInt()));
+                offers.add(new AngelTradeOffer(PBRegisters.ANGEL_DEALS.get(buf.readIdentifier()), buf.readInt(), buf.readInt()));
             }
             return offers;
         }

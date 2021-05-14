@@ -12,7 +12,7 @@ import mrsterner.phantomblood.common.entity.AngelEntity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PhantomBloodEntities {
+public class PBEntities {
     private static final Map<EntityType<?>, Identifier> ENTITY_TYPES = new LinkedHashMap<>();
 
     public static final EntityType<AngelEntity> ANGEL_ENTITY = create("angel", AngelEntity.createAttributes(), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, AngelEntity::new).dimensions(EntityDimensions.fixed(0.8f, 2f)).fireImmune().build());

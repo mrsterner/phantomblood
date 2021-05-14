@@ -1,6 +1,6 @@
 package mrsterner.phantomblood.common.item;
 
-import mrsterner.phantomblood.common.registry.PhantomBloodObjects;
+import mrsterner.phantomblood.common.registry.PBObjects;
 import moriyashiine.bewitchment.common.misc.BWUtil;
 import moriyashiine.bewitchment.common.registry.BWSoundEvents;
 import moriyashiine.bewitchment.common.registry.BWTags;
@@ -91,7 +91,7 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
             if (entity instanceof MobEntity) {
                 ((MobEntity) entity).setPersistent();
             }
-            BWUtil.addItemToInventoryAndConsume(player, hand, new ItemStack(PhantomBloodObjects.AJA));
+            BWUtil.addItemToInventoryAndConsume(player, hand, new ItemStack(PBObjects.AJA));
         }
         else {
             player.world.playSoundFromEntity(player, entity, BWSoundEvents.ENTITY_GENERIC_PLING, SoundCategory.PLAYERS, 1, 1);

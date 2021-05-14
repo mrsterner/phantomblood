@@ -5,6 +5,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import mrsterner.phantomblood.PhantomBlood;
 
-public class PhantomBloodRegisters {
+public class PBRegisters {
     public static final Registry<AngelDeal> ANGEL_DEALS = FabricRegistryBuilder.createSimple(AngelDeal.class, new Identifier(PhantomBlood.MODID, "angel_deal")).buildAndRegister();
 }

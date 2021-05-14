@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import mrsterner.phantomblood.common.registry.PhantomBloodObjects;
+import mrsterner.phantomblood.common.registry.PBObjects;
 
 
 @Mixin(Bewitchment.class)
@@ -40,7 +40,7 @@ public abstract class BewitchmentMixin implements ModInitializer {
 
 
         ItemStack eq = player.getEquippedStack(EquipmentSlot.HEAD);
-        if (eq.getItem() == PhantomBloodObjects.VAMPIRE_HAT) {
+        if (eq.getItem() == PBObjects.VAMPIRE_HAT) {
             System.out.println("Mixin!");
             playerBlood.fillBlood(toGive, false);
         }

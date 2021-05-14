@@ -3,8 +3,6 @@ package mrsterner.phantomblood.mixin;
 
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.BloodAccessor;
-import moriyashiine.bewitchment.common.registry.BWStatusEffects;
-import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.registry.*;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.enchantment.Enchantments;
@@ -12,17 +10,12 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -63,24 +56,24 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
                 }
             }
             if (level > 0) {
-                addStatusEffect(new StatusEffectInstance(PhantomBloodStatusEffects.URIEL, 10, 1, true, false));
+                addStatusEffect(new StatusEffectInstance(PBStatusEffects.URIEL, 10, 1, true, false));
             }
         }
         PlayerEntity playerEntity = (PlayerEntity) (Object) this;
         ItemStack chest = playerEntity.getEquippedStack(EquipmentSlot.CHEST);
 
-        if (hasAngelDeal(PhantomBloodDeals.WINGS) && chest.getItem() != PhantomBloodObjects.URIEL_WINGS && !world.isClient) {
+        if (hasAngelDeal(PBAngelDeals.WINGS) && chest.getItem() != PBObjects.URIEL_WINGS && !world.isClient) {
             playerEntity.giveItemStack(chest.copy());
             chest.setCount(0);
-            ItemStack stack = new ItemStack(PhantomBloodObjects.URIEL_WINGS);
+            ItemStack stack = new ItemStack(PBObjects.URIEL_WINGS);
             stack.hasTag();
             stack.addEnchantment(Enchantments.BINDING_CURSE, 1);
             stack.addEnchantment(Enchantments.VANISHING_CURSE, 1);
             playerEntity.equipStack(EquipmentSlot.CHEST, stack);
         }
-        if (chest.getItem() == PhantomBloodObjects.URIEL_WINGS) {
+        if (chest.getItem() == PBObjects.URIEL_WINGS) {
             playerEntity.abilities.allowFlying = true;
-            if (!hasAngelDeal(PhantomBloodDeals.WINGS)) {
+            if (!hasAngelDeal(PBAngelDeals.WINGS)) {
                 playerEntity.abilities.allowFlying = false;
                 playerEntity.abilities.flying = false;
                 System.out.println("Acc");
@@ -95,7 +88,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
         if (!world.isClient) {
             FoodComponent foodComponent = stack.getItem().getFoodComponent();
             BloodAccessor playerBlood = (BloodAccessor) this;
-            if (foodComponent != null && PhantomBloodObjects.VAMPIRE_FOODS.contains(stack.getItem())) {
+            if (foodComponent != null && PBObjects.VAMPIRE_FOODS.contains(stack.getItem())) {
                 if (BewitchmentAPI.isVampire(this, true)) {
                     playerBlood.fillBlood(10, false);
                 }
@@ -109,7 +102,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
         ListTag angelDeals = tag.getList("AngelDeals", NbtType.COMPOUND);
         for (int i = 0; i < angelDeals.size(); i++) {
             CompoundTag angelDeal = angelDeals.getCompound(i);
-            addAngelDeal(new AngelDeal.Instance(PhantomBloodRegisters.ANGEL_DEALS.get(new Identifier(angelDeal.getString("AngelDeal"))), angelDeal.getInt("Duration"), angelDeal.getInt("Cost")));
+            addAngelDeal(new AngelDeal.Instance(PBRegisters.ANGEL_DEALS.get(new Identifier(angelDeal.getString("AngelDeal"))), angelDeal.getInt("Duration"), angelDeal.getInt("Cost")));
         }
     }
 

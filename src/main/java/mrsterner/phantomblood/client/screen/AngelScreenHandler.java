@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client.screen;
 
 import moriyashiine.bewitchment.common.registry.BWDamageSources;
+import mrsterner.phantomblood.common.registry.PBObjects;
+import mrsterner.phantomblood.common.registry.PBRegisters;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.LivingEntity;
@@ -18,9 +20,7 @@ import mrsterner.phantomblood.client.network.SyncAngelTradesPacket;
 import mrsterner.phantomblood.common.entity.AngelEntity;
 import mrsterner.phantomblood.common.entity.interfaces.AngelDealAccessor;
 import mrsterner.phantomblood.common.entity.interfaces.AngelMerchant;
-import mrsterner.phantomblood.common.registry.PhantomBloodObjects;
-import mrsterner.phantomblood.common.registry.PhantomBloodRegisters;
-import mrsterner.phantomblood.common.registry.PhantomBloodScreenHandler;
+import mrsterner.phantomblood.common.registry.PBScreenHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class AngelScreenHandler extends ScreenHandler {
     }
 
     public AngelScreenHandler(int syncId, AngelMerchant angelMerchant) {
-        this(PhantomBloodScreenHandler.ANGEL_SCREEN_HANDLER, syncId, angelMerchant);
+        this(PBScreenHandler.ANGEL_SCREEN_HANDLER, syncId, angelMerchant);
     }
 
     protected AngelScreenHandler(ScreenHandlerType<?> type, int syncId, AngelMerchant angelMerchant) {
@@ -125,8 +125,8 @@ public class AngelScreenHandler extends ScreenHandler {
         public ItemStack getStack() {
             AngelEntity.AngelTradeOffer offer = getOffer();
             if (offer != null) {
-                ItemStack angelDeal = new ItemStack(PhantomBloodObjects.ANGEL_DEAL);
-                angelDeal.getOrCreateTag().putString("AngelDeal", PhantomBloodRegisters.ANGEL_DEALS.getId(getOffer().getAngelDeal()).toString());
+                ItemStack angelDeal = new ItemStack(PBObjects.ANGEL_DEAL);
+                angelDeal.getOrCreateTag().putString("AngelDeal", PBRegisters.ANGEL_DEALS.getId(getOffer().getAngelDeal()).toString());
                 angelDeal.getOrCreateTag().putInt("Duration", getOffer().getDuration());
                 return angelDeal;
             }
