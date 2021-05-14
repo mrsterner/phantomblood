@@ -6,6 +6,7 @@ import moriyashiine.bewitchment.api.interfaces.entity.BloodAccessor;
 import moriyashiine.bewitchment.common.registry.BWStatusEffects;
 import mrsterner.phantomblood.common.registry.PhantomBloodDeals;
 import net.fabricmc.fabric.api.util.NbtType;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -76,7 +77,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AngelDea
         if (chest.getItem() != PhantomBloodObjects.URIEL_WINGS && hasAngelDeal(PhantomBloodDeals.WINGS)) {
             playerEntity.giveItemStack(chest.copy());
             chest.setCount(0);
-            playerEntity.equipStack(EquipmentSlot.CHEST, new ItemStack(PhantomBloodObjects.URIEL_WINGS));
+            ItemStack stack = new ItemStack(PhantomBloodObjects.URIEL_WINGS);
+            stack.hasTag();
+            stack.addEnchantment(Enchantments.BINDING_CURSE, 1);
+            stack.addEnchantment(Enchantments.VANISHING_CURSE, 1);
+            playerEntity.equipStack(EquipmentSlot.CHEST, stack);
         }
 
     }
