@@ -1,7 +1,7 @@
 package mrsterner.phantomblood;
 
-import mrsterner.phantomblood.client.renderer.armor.WingsArmorRenderer;
-import mrsterner.phantomblood.common.item.WingsArmorItem;
+import mrsterner.phantomblood.client.renderer.armor.*;
+import mrsterner.phantomblood.common.item.*;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
@@ -9,9 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.screen.ScreenHandler;
 import mrsterner.phantomblood.client.network.SyncAngelDealPacket;
 import mrsterner.phantomblood.client.network.SyncAngelTradesPacket;
-import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
-import mrsterner.phantomblood.client.renderer.armor.StonemaskRenderer;
-import mrsterner.phantomblood.client.renderer.armor.VampireArmorRenderer;
 import mrsterner.phantomblood.client.renderer.entity.AngelRenderer;
 import mrsterner.phantomblood.client.renderer.entity.TheWorldRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
@@ -19,9 +16,6 @@ import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
 import mrsterner.phantomblood.client.screen.AngelScreen;
 import mrsterner.phantomblood.client.screen.AngelScreenHandler;
 import mrsterner.phantomblood.common.entity.AngelEntity;
-import mrsterner.phantomblood.common.item.BloodStonemaskItem;
-import mrsterner.phantomblood.common.item.StonemaskItem;
-import mrsterner.phantomblood.common.item.VampireArmorItem;
 import mrsterner.phantomblood.common.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -65,6 +59,8 @@ public class PhantomBloodClient implements ClientModInitializer {
         VampireArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         GeoArmorRenderer.registerArmorRenderer(WingsArmorItem.class, new WingsArmorRenderer());
         WingsArmorRenderer.registerArmorRenderer(WingsArmorItem.class, new WingsArmorRenderer());
+        GeoArmorRenderer.registerArmorRenderer(AscendedArmorItem.class, new AscendedArmorRenderer());
+        AscendedArmorRenderer.registerArmorRenderer(AscendedArmorItem.class, new AscendedArmorRenderer());
 
     }
 }
