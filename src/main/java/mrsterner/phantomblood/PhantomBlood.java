@@ -44,7 +44,6 @@ public class PhantomBlood implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(PBCommands::init);
         PBCommands.registerArgumentTypes();
         PBStatusEffects.init();
-        FabricDefaultAttributeRegistry.register(PBObjects.THE_WORLD_ENTITY, createGenericEntityAttributes());
 
         ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
             ((AngelDealAccessor) newPlayer).getAngelDeals().addAll(((AngelDealAccessor) oldPlayer).getAngelDeals());

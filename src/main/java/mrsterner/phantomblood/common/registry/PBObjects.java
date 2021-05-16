@@ -7,7 +7,6 @@ import net.minecraft.entity.*;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Rarity;
 import mrsterner.phantomblood.PhantomBlood;
-import mrsterner.phantomblood.common.entity.TheWorldEntity;
 import mrsterner.phantomblood.common.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
@@ -34,9 +33,6 @@ public class PBObjects {
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
     public static final Item URIEL_WINGS = create("wings", new WingsArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.CHEST));
     public static final Item ASCENDED_WINGS = create("ascended", new AscendedArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.CHEST));
-
-    //Entity
-    public static final EntityType<TheWorldEntity> THE_WORLD_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "theworld"), FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TheWorldEntity::new).dimensions(EntityDimensions.fixed(0.9f, 2.5F)).fireImmune().trackRangeBlocks(90).trackedUpdateRate(4).build());
     //Item
     public static final Item AJA = create("aja", new Item(gen()));
     public static final Item ANGEL_DEAL = create("angel_deal", new AngelDealItem(gen().rarity(Rarity.RARE).maxCount(1)));

@@ -10,7 +10,6 @@ import net.minecraft.screen.ScreenHandler;
 import mrsterner.phantomblood.client.network.SyncAngelDealPacket;
 import mrsterner.phantomblood.client.network.SyncAngelTradesPacket;
 import mrsterner.phantomblood.client.renderer.entity.AngelRenderer;
-import mrsterner.phantomblood.client.renderer.entity.TheWorldRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
 import mrsterner.phantomblood.client.screen.AngelScreen;
@@ -53,7 +52,6 @@ public class PhantomBloodClient implements ClientModInitializer {
         GeoItemRenderer.registerItemRenderer(PBObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
         StonemaskRenderer.registerArmorRenderer(StonemaskItem.class, new StonemaskRenderer());
         StonemaskRenderer.registerArmorRenderer(BloodStonemaskItem.class, new BloodStonemaskRenderer());
-        EntityRendererRegistry.INSTANCE.register(PBObjects.THE_WORLD_ENTITY, (entityRenderDispatcher, context) -> new TheWorldRenderer(entityRenderDispatcher));
         EntityRendererRegistry.INSTANCE.register(PBEntities.ANGEL_ENTITY, (entityRenderDispatcher, context) -> new AngelRenderer(entityRenderDispatcher));
         GeoArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         VampireArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
