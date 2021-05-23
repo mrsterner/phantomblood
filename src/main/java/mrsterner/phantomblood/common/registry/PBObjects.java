@@ -30,16 +30,13 @@ public class PBObjects {
     public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.CHEST));
     public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.LEGS));
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
-    public static final Item URIEL_WINGS = create("wings", new WingsArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.CHEST));
-    public static final Item ASCENDED_WINGS = create("ascended", new AscendedArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.CHEST));
     //Item
     public static final Item AJA = create("aja", new Item(gen()));
-    public static final Item ANGEL_DEAL = create("angel_deal", new AngelDealItem(gen().rarity(Rarity.RARE).maxCount(1)));
+
+    public static final Item TEST_ITEM = create("test_item", new TestItem(gen().maxCount(1)));
     //Food
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
     public static final Item SACRED_HEART = create("sacred_heart", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
-    //Spawn Eggs
-    public static final Item ANGEL_SPAWN_EGG = create("angel_spawn_egg", new SpawnEggItem(PBEntities.ANGEL_ENTITY, 0xf0e2df, 0xf0bf3a, gen()));
     //Tags
     public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
 

@@ -1,5 +1,6 @@
 package mrsterner.phantomblood.mixin;
 
+import com.williambl.haema.Vampirable;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import moriyashiine.bewitchment.api.interfaces.entity.CurseAccessor;
 import moriyashiine.bewitchment.api.interfaces.entity.TransformationAccessor;
@@ -23,6 +24,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Map;
+
+import static mrsterner.phantomblood.PhantomBlood.isHaemaLoaded;
 
 @SuppressWarnings("ConstantConditions")
 @Mixin(LivingEntity.class)
@@ -60,8 +63,11 @@ public abstract class LivingEntityMixin extends Entity {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
             ItemStack head = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
-
-            if (head.getItem() == PBObjects.BLOODY_STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
+            if (isHaemaLoaded) {
+                if (head.getItem() == PBObjects.BLOODY_STONE_MASK_ITEM && !((Vampirable) this).isVampire()) {
+                    Vampirable.Companion.convert(((PlayerEntity) (Object) this));
+                }
+            } else if (head.getItem() == PBObjects.BLOODY_STONE_MASK_ITEM && ((CurseAccessor) this).hasCurse(BWCurses.SUSCEPTIBILITY) && ((TransformationAccessor) this).getTransformation() == BWTransformations.HUMAN) {
                 ((TransformationAccessor) this).getTransformation().onRemoved((PlayerEntity) (Object) this);
                 ((TransformationAccessor) this).setTransformation(BWTransformations.VAMPIRE);
                 ((TransformationAccessor) this).getTransformation().onAdded((PlayerEntity) (Object) this);

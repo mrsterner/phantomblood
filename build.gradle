@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '0.7-SNAPSHOT'
 	id 'maven-publish'
+    id "org.jetbrains.kotlin.jvm"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -53,13 +54,30 @@ repositories {
         url "https://maven.abusedmaster.xyz"
     }
     maven {
-        name "requiem"
-        url "https://dl.bintray.com/ladysnake/mods"
+        name = 'Ladysnake Mods'
+        url = 'https://ladysnake.jfrog.io/artifactory/mods'
+        content {
+            includeGroup 'io.github.ladysnake'
+            includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+        }
+    }
+    maven {
+        name = 'Nexus OSS Repository'
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
     }
     maven {
         name "jitpack"
         url "https://jitpack.io"
     }
+    maven {
+        url = "http://maven.fabricmc.net/"
+        name = "Fabric"
+    }
+    maven {
+        name = 'Ladysnake Mods'
+        url = 'https://ladysnake.jfrog.io/artifactory/mods'
+    }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
@@ -96,11 +114,26 @@ dependencies {
     modRuntime "io.github.ladysnake:requiem:${requiem_version}"
 
     modImplementation "curse.maven:bewitchment-394915:${project.bewitchment_version}"
+    modImplementation "curse.maven:haema-391257:${project.haema_version}"
+    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+    modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
+    modApi("me.sargunvohra.mcmods:autoconfig1u:${project.acu_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    include "me.sargunvohra.mcmods:autoconfig1u:${project.acu_version}"
+    modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
+    modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cc_version}"
+    include "io.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
+    include "io.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cc_version}"
+
+
     modImplementation 'software.bernie.geckolib:geckolib-fabric-1.16.5:3.0.34:dev'
 
     modImplementation "io.github.ladysnake:Satin:${satin_version}"
     // Include Satin as a Jar-in-Jar dependency (optional)
     include "io.github.ladysnake:Satin:${satin_version}"
+
+    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 }
 
 processResources {
@@ -158,3 +191,4 @@ publishing {
 		// mavenLocal()
 	}
 }
+compileKotlin.kotlinOptions.jvmTarget = "1.8"

@@ -13,7 +13,6 @@ import java.util.Map;
 public class PBStatusEffects {
     private static final Map<StatusEffect, Identifier> STATUS_EFFECTS = new LinkedHashMap<>();
 
-    public static final StatusEffect URIEL = create("urieleffect", new EmptyStatusEffect(StatusEffectType.NEUTRAL, 0x2f5e7b));
     public static final StatusEffect TIME_STOP = create("timestopeffect", new EmptyStatusEffect(StatusEffectType.NEUTRAL, 0x2f5e7b));
     public static final StatusEffect STONE_MASK_DEATH = create("stonemaskeffect", new EmptyStatusEffect(StatusEffectType.NEUTRAL, 0x2f5e7b));
 
