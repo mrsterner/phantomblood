@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "phantomblood:item/sacred_heart"
+    "layer0": "phantomblood:item/stone_of_aja"
   }
 }

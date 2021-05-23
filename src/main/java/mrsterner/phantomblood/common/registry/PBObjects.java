@@ -31,12 +31,11 @@ public class PBObjects {
     public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.LEGS));
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
     //Item
-    public static final Item AJA = create("aja", new Item(gen()));
+    public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
 
     public static final Item TEST_ITEM = create("test_item", new TestItem(gen().maxCount(1)));
     //Food
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
-    public static final Item SACRED_HEART = create("sacred_heart", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
     //Tags
     public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
 

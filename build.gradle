@@ -78,6 +78,9 @@ repositories {
         url = 'https://ladysnake.jfrog.io/artifactory/mods'
     }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven {
+        url = "https://maven.terraformersmc.com/releases/"
+    }
 }
 
 dependencies {
@@ -134,6 +137,7 @@ dependencies {
     include "io.github.ladysnake:Satin:${satin_version}"
 
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {
