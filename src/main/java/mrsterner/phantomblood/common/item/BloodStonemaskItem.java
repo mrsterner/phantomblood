@@ -91,7 +91,7 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
             if (entity instanceof MobEntity) {
                 ((MobEntity) entity).setPersistent();
             }
-            BWUtil.addItemToInventoryAndConsume(player, hand, new ItemStack(PBObjects.AJA));
+            BWUtil.addItemToInventoryAndConsume(player, hand, new ItemStack(PBObjects.STONE_OF_AJA));
         }
         else {
             player.world.playSoundFromEntity(player, entity, BWSoundEvents.ENTITY_GENERIC_PLING, SoundCategory.PLAYERS, 1, 1);
