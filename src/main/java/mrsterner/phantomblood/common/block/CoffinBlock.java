@@ -10,7 +10,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-
+//This code is directly copied from MoriyaShiine's Bewitchemnt, its sole purpose is to be a placeholder, the textures and models is also copied
 public class CoffinBlock extends BedBlock {
     private static final VoxelShape SHAPE = createCuboidShape(0, 0, 0, 16, 10, 16);
 
