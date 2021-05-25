@@ -1,10 +1,12 @@
 package mrsterner.phantomblood.common.registry;
 
 import moriyashiine.bewitchment.common.registry.BWMaterials;
+import mrsterner.phantomblood.common.block.CoffinBlock;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.tag.Tag;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Rarity;
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.item.*;
@@ -16,7 +18,9 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static moriyashiine.bewitchment.common.registry.BWObjects.CYPRESS_PLANKS;
 import static mrsterner.phantomblood.PhantomBlood.PHANTOMBLOOD_GROUP;
+import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings.copyOf;
 
 
 public class PBObjects {
@@ -32,8 +36,11 @@ public class PBObjects {
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
     //Item
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
+    public static final Item BLOOD_AMPOULE = create("blood_ampoule", new Item(gen()));//Make edible to vampires
+    public static final Item AMPOULE = create("ampoule", new Item(gen()));
+    //Blocks
+    public static final Block RED_COFFIN = create("red_coffin", new CoffinBlock(DyeColor.RED, copyOf(CYPRESS_PLANKS).nonOpaque()), true);
 
-    public static final Item TEST_ITEM = create("test_item", new TestItem(gen().maxCount(1)));
     //Food
     public static final Item BLOODY_MEAL = create("bloody_meal", new Item(gen().food(new FoodComponent.Builder().hunger(1).saturationModifier(1).alwaysEdible().meat().build())));
     //Tags

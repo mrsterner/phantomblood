@@ -6,7 +6,8 @@
     "LivingEntityMixin",
     "BewitchmentMixin",
     "PlayerEntityMixin",
-    "AthameMixin"
+    "AthameMixin",
+    "PlayerEntityRendererMixin"
   ],
   "client": [],
   "server": [],
