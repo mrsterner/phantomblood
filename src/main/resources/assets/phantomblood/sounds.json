@@ -1,22 +1,11 @@
 {
-  "effect.time.stop": {
-    "subtitle": "requiem:subtitles.effect.time.stop",
+  "entity.generic.curse": {
     "sounds": [
       {
-        "name": "block/bell/resonate",
-        "volume": 1,
-        "pitch": 1
-      },
-      {
-        "name": "block/bell/resonate",
-        "volume": 1,
-        "pitch": 0.9
-      },
-      {
-        "name": "block/bell/resonate",
-        "volume": 1,
-        "pitch": 0.85
+        "name": "mob/wither/spawn",
+        "pitch": 0.5
       }
-    ]
+    ],
+    "subtitle": "phantomblood.subtitles.entity.vampire"
   }
 }

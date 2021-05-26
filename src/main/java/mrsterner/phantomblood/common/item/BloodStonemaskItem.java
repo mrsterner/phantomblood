@@ -11,6 +11,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
@@ -18,11 +19,17 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
+import software.bernie.geckolib3.util.GeckoLibUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
@@ -39,14 +46,17 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
 
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        /*
+
+/*
         LivingEntity livingEntity = event.getExtraDataOfType(LivingEntity.class).get(0);
         //PlayerEntity player = (PlayerEntity) livingEntity;
         ItemStack stack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
         AnimationController controller = GeckoLibUtil.getControllerForStack(this.factory, stack, controllerName);
 
 
+
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", false));
+        event.getController().markNeedsReload();
 
 
         if (livingEntity instanceof PlayerEntity) {
@@ -57,13 +67,16 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
 
             List<Item> armorList = equipmentList.subList(2, 6);
 
-            boolean isWearingAll = armorList.containsAll(Arrays.asList(PhantomBloodObjects.BLOODY_STONE_MASK_ITEM));
+            boolean isWearingAll = armorList.containsAll(Arrays.asList(PBObjects.BLOODY_STONE_MASK_ITEM));
             return isWearingAll ? PlayState.CONTINUE : PlayState.STOP;
-        }*/
+
+
+        }
+        */
         return PlayState.CONTINUE;
+
+
     }
-
-
 
     @Override
     public AnimationFactory getFactory() {
@@ -74,25 +87,4 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 
     }
-
-
-
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
-        boolean client = player.world.isClient;
-        ItemStack itemStack = player.getStackInHand(hand);
-        ItemStack stonemask = player.getEquippedStack(EquipmentSlot.HEAD);
-
-        if (!client) {
-            if (entity instanceof MobEntity) {
-                ((MobEntity) entity).setPersistent();
-            }
-            PhantomBlood.addItemToInventoryAndConsume(player, hand, new ItemStack(PBObjects.STONE_OF_AJA));
-        }
-        else {
-            player.world.playSoundFromEntity(player, entity, BWSoundEvents.ENTITY_GENERIC_PLING, SoundCategory.PLAYERS, 1, 1);
-        }
-        return ActionResult.success(client);
-    }
-
 }
