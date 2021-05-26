@@ -1,6 +1,5 @@
 package mrsterner.phantomblood.common.registry;
 
-import moriyashiine.bewitchment.common.registry.BWMaterials;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.fabricmc.loader.FabricLoader;
@@ -8,6 +7,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.*;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.DyeColor;
 import net.minecraft.block.entity.BlockEntityType.Builder;
@@ -17,7 +18,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import software.bernie.example.registry.RegistryUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -30,13 +30,14 @@ public class PBObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
+
     //Armor
     public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
     public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
-    public static final Item VAMPIRE_HAT = create("vampire_hat", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.HEAD));
-    public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.CHEST));
-    public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.LEGS));
-    public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(BWMaterials.BESMIRCHED_ARMOR, EquipmentSlot.FEET));
+    public static final Item VAMPIRE_HAT = create("vampire_hat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD));
+    public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST));
+    public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.LEGS));
+    public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.FEET));
     //Item
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
     public static final Item BLOOD_AMPOULE = create("blood_ampoule", new BloodAmpouleItem(gen()));

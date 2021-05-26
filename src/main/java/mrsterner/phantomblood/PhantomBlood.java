@@ -2,8 +2,6 @@ package mrsterner.phantomblood;
 
 import com.williambl.haema.Vampirable;
 import com.williambl.haema.VampireBloodManager;
-import com.williambl.haema.api.BloodDrinkingEvents;
-import moriyashiine.bewitchment.api.BewitchmentAPI;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
@@ -47,7 +45,6 @@ public class PhantomBlood implements ModInitializer {
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D);
     }
 
-    //addItemToInventoryAndConsume is copied from MoriyaShiine's Bewitchment 1.16.5
     public static void addItemToInventoryAndConsume(PlayerEntity player, Hand hand, ItemStack toAdd) {
         boolean shouldAdd = false;
         ItemStack stack = player.getStackInHand(hand);

@@ -35,14 +35,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private void eat(World world, ItemStack stack, CallbackInfoReturnable<ItemStack> callbackInfo) {
         if (!world.isClient) {
             FoodComponent foodComponent = stack.getItem().getFoodComponent();
-            BloodAccessor playerBlood = (BloodAccessor) this;
-            if (foodComponent != null && PBObjects.VAMPIRE_FOODS.contains(stack.getItem())) {
-                if (((Vampirable) this).isVampire()) {
-                    //Randomly give blood on hit w/o ampoule
-                }
-            }
 
-            }
+
+        }
         }
     }
 
