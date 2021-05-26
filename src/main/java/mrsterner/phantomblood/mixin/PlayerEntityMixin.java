@@ -1,14 +1,19 @@
 package mrsterner.phantomblood.mixin;
 
 
+import com.williambl.haema.Vampirable;
+import com.williambl.haema.VampireBloodManager;
 import moriyashiine.bewitchment.api.BewitchmentAPI;
 import moriyashiine.bewitchment.api.interfaces.entity.BloodAccessor;
 import mrsterner.phantomblood.common.registry.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,11 +37,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             FoodComponent foodComponent = stack.getItem().getFoodComponent();
             BloodAccessor playerBlood = (BloodAccessor) this;
             if (foodComponent != null && PBObjects.VAMPIRE_FOODS.contains(stack.getItem())) {
-                if (BewitchmentAPI.isVampire(this, true)) {
-                    playerBlood.fillBlood(10, false);
+                if (((Vampirable) this).isVampire()) {
+                    //Randomly give blood on hit w/o ampoule
                 }
+            }
 
             }
         }
     }
-}
+
