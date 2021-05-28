@@ -3,8 +3,8 @@ package mrsterner.phantomblood;
 import com.williambl.haema.Vampirable;
 import com.williambl.haema.VampireBloodManager;
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.registry.PBUtil;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.util.TriState;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EquipmentSlot;
@@ -14,10 +14,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -45,58 +43,27 @@ public class PhantomBlood implements ModInitializer {
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D);
     }
 
-    public static void addItemToInventoryAndConsume(PlayerEntity player, Hand hand, ItemStack toAdd) {
-        boolean shouldAdd = false;
-        ItemStack stack = player.getStackInHand(hand);
-        if (stack.getCount() == 1) {
-            if (player.isCreative()) {
-                shouldAdd = true;
-            } else {
-                player.setStackInHand(hand, toAdd);
-            }
-        } else {
-            stack.decrement(1);
-            shouldAdd = true;
-        }
-        if (shouldAdd) {
-            if (!player.inventory.insertStack(toAdd)) {
-                player.dropItem(toAdd, false, true);
-            }
-        }
-    }
 
     @Override
     public void onInitialize() {
-        UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-            ItemStack eq = player.getEquippedStack(EquipmentSlot.FEET);
-            LivingEntity livingEntity = (LivingEntity) (Object) entity;
-            HungerManager var4 = player.getHungerManager();
-            if (!world.isClient && ((Vampirable) player).isVampire() && player.isSneaking() && eq.getItem() == PBObjects.VAMPIRE_BOOTS) {
-                ((VampireBloodManager) var4).feed(livingEntity, player);
-                System.out.println("succ");
-                return ActionResult.SUCCESS;
-            }
-            System.out.println("not");
-            return ActionResult.PASS;
-        });
-
-
         GeckoLib.initialize();
         PBObjects.init();
         PBStatusEffects.init();
         isHaemaLoaded = FabricLoader.getInstance().isModLoaded("haema");
         if (isHaemaLoaded) {
         }
+
         //Vampire Coat abilities, if ampoule is in off-hand, add blood ampoule on villager hit, otherwise, 10% chance to give blood directly to user
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-            ItemStack eq = player.getEquippedStack(EquipmentSlot.CHEST);
-            if (hand == Hand.MAIN_HAND && eq.getItem() == PBObjects.VAMPIRE_JACKET && entity.isAlive() && ((Vampirable) player).isVampire() && player.getStackInHand(hand).isEmpty()) {
-                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 3));
+            ItemStack chest = player.getEquippedStack(EquipmentSlot.CHEST);
+            ItemStack feet = player.getEquippedStack(EquipmentSlot.FEET);
+            if (hand == Hand.MAIN_HAND && chest.getItem() == PBObjects.VAMPIRE_BOOTS && entity.isAlive() && ((Vampirable) player).isVampire() && player.getStackInHand(hand).isEmpty()) {
+                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
                 //Inflict slowness on hit with empty hand
             }
-            if (!world.isClient && eq.getItem() == PBObjects.VAMPIRE_JACKET && ((Vampirable) player).isVampire() && VampireBloodManager.Companion.getGoodBloodTag().contains(entity.getType())) {
+            if (!world.isClient && chest.getItem() == PBObjects.VAMPIRE_JACKET && ((Vampirable) player).isVampire() && VampireBloodManager.Companion.getGoodBloodTag().contains(entity.getType())) {
                 if (player.getOffHandStack().getItem() == PBObjects.AMPOULE) {
-                    addItemToInventoryAndConsume(player, Hand.OFF_HAND, new ItemStack(PBObjects.BLOOD_AMPOULE));
+                    PBUtil.addItemToInventoryAndConsume(player, Hand.OFF_HAND, new ItemStack(PBObjects.BLOOD_AMPOULE));
                     return ActionResult.SUCCESS;
                     //Create blood ampoule
                 }
