@@ -77,7 +77,7 @@
 					"parent": "bipedRightArm",
 					"pivot": [-4, 22, 0],
 					"cubes": [
-						{"origin": [-7.9, 12.6, -2.4], "size": [4, 12, 4.9], "inflate": 0.2, "uv": [48, 52]}
+						{"origin": [-7.9, 12.4, -2.4], "size": [4, 12, 4.9], "inflate": 0.2, "uv": [48, 52]}
 					]
 				},
 				{
@@ -89,7 +89,7 @@
 					"parent": "bipedLeftArm",
 					"pivot": [4, 22, 0],
 					"cubes": [
-						{"origin": [3.9, 12.6, -2.4], "size": [4, 12, 4.9], "inflate": 0.2, "uv": [32, 52]}
+						{"origin": [3.9, 12.4, -2.4], "size": [4, 12, 4.9], "inflate": 0.2, "uv": [32, 52]}
 					]
 				},
 				{
