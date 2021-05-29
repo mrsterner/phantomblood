@@ -2,9 +2,6 @@ package mrsterner.phantomblood.common.item;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.registry.PBObjects;
-import moriyashiine.bewitchment.common.misc.BWUtil;
-import moriyashiine.bewitchment.common.registry.BWSoundEvents;
-import moriyashiine.bewitchment.common.registry.BWTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;

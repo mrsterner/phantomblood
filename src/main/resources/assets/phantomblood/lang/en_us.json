@@ -2,6 +2,7 @@
   "itemGroup.phantomblood.phantomblood": "Phantom Blood",
   "item.phantomblood.vampire_hat": "Vampire Top Hat",
   "item.phantomblood.vampire_coat": "Vampire Coat",
+  "item.phantomblood.vampire_coat_f": "Vampire Coat",
   "item.phantomblood.vampire_pants": "Vampire Pants",
   "item.phantomblood.vampire_shoes": "Vampire Shoes",
   "item.phantomblood.bloodstonemaskitem": "Bloody Stone Mask",
@@ -27,5 +28,6 @@
   "block.phantomblood.orange_coffin": "Orange Coffin",
   "block.phantomblood.white_coffin": "White Coffin",
   "effect.phantomblood.timestopeffect": "Time Stop",
-  "effect.phantomblood.stonemaskeffect": "Stone Mask"
+  "effect.phantomblood.stonemaskeffect": "Stone Mask",
+  "tooltip.phantomblood.vampire_coat_f": "Female"
 }

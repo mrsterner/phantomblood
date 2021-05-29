@@ -1,5 +1,9 @@
 package mrsterner.phantomblood.common.item;
 
+import mrsterner.phantomblood.common.registry.PBObjects;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -8,9 +12,13 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import mrsterner.phantomblood.PhantomBlood;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -19,6 +27,8 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
+
+import java.util.List;
 
 public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
@@ -54,12 +64,14 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
 
     @Override
     public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+        /*
         ItemStack stack = new ItemStack(this);
         stack.hasTag();
         stack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
         if ((group == PhantomBlood.PHANTOMBLOOD_GROUP) || (group == ItemGroup.SEARCH)) {
             stacks.add(stack);
         }
+         */
     }
 
     @Override
@@ -69,8 +81,15 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
 
     @Override
     public void onCraft(ItemStack stack, World world, PlayerEntity player) {
-        stack.hasTag();
-        stack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
+        //stack.hasTag();
+        //stack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
+    }
+    @Environment(EnvType.CLIENT)
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        if (stack.getItem() == PBObjects.VAMPIRE_JACKET_F) {
+            tooltip.add(new TranslatableText("tooltip.phantomblood.vampire_coat_f").formatted(Formatting.DARK_RED));
+        }
     }
 
 }

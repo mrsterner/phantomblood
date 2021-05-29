@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.common.item;
 
-import moriyashiine.bewitchment.common.registry.BWObjects;
+
+import mrsterner.phantomblood.common.registry.PBObjects;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
@@ -31,7 +32,7 @@ public class PhantomBloodMaterials {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.ofItems(BWObjects.BESMIRCHED_WOOL);
+            return Ingredient.ofItems(PBObjects.BLOOD_AMPOULE);
         }
 
         @Override
