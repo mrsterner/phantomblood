@@ -6,14 +6,10 @@ import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.registry.PBUtil;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.util.TriState;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.TranslatableText;
@@ -35,13 +31,6 @@ public class PhantomBlood implements ModInitializer {
 
     public static final String MODID = "phantomblood";
     public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PBObjects.STONE_MASK_ITEM));
-    public static boolean isHaemaLoaded;
-
-
-    public static DefaultAttributeContainer.Builder createGenericEntityAttributes() {
-        return PathAwareEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.80000000298023224D)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D);
-    }
 
 
     @Override
@@ -49,9 +38,6 @@ public class PhantomBlood implements ModInitializer {
         GeckoLib.initialize();
         PBObjects.init();
         PBStatusEffects.init();
-        isHaemaLoaded = FabricLoader.getInstance().isModLoaded("haema");
-        if (isHaemaLoaded) {
-        }
 
         //Vampire Coat abilities, if ampoule is in off-hand, add blood ampoule on villager hit, otherwise, 10% chance to give blood directly to user
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
@@ -77,6 +63,7 @@ public class PhantomBlood implements ModInitializer {
             }
             return ActionResult.PASS;
         });
+        //Somnus and Coffin code for sleep on the day
         WorldSleepEvents.WORLD_WAKE_TIME.register((world, newTime, curTime) -> {
             if (world.isDay()) {
                 long time = curTime;
