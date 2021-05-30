@@ -42,6 +42,8 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
         if (livingEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) livingEntity;
             if (!(player.lastLimbDistance > -0.15F && player.lastLimbDistance < 0.15F)) {
+
+
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", true));
                 return PlayState.CONTINUE;
             }
@@ -91,5 +93,6 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
             tooltip.add(new TranslatableText("tooltip.phantomblood.vampire_coat_f").formatted(Formatting.DARK_RED));
         }
     }
+
 
 }

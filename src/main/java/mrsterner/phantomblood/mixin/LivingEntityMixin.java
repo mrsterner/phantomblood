@@ -17,8 +17,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,7 +26,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Map;
 
-import static mrsterner.phantomblood.PhantomBlood.isHaemaLoaded;
 
 @SuppressWarnings("ConstantConditions")
 @Mixin(LivingEntity.class)
@@ -66,14 +63,12 @@ public abstract class LivingEntityMixin extends Entity {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
             ItemStack head = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
-            if (isHaemaLoaded) {
                 if (head.getItem() == PBObjects.BLOODY_STONE_MASK_ITEM && !((Vampirable) this).isVampire()) {
                     Vampirable.Companion.convert(((PlayerEntity) (Object) this));
                     PlayerLookup.tracking(this).forEach(foundPlayer -> SpawnSmokeParticlesPacket.send(foundPlayer, this));
                     SpawnSmokeParticlesPacket.send((PlayerEntity) (Object) this, this);
                     world.playSound(null, getBlockPos(), PBSoundEvents.VAMPIRE, getSoundCategory(), getSoundVolume(), getSoundPitch());
                 }
-            }
         }
     }
 }
