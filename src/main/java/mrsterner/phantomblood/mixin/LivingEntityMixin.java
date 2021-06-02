@@ -2,19 +2,21 @@ package mrsterner.phantomblood.mixin;
 
 import com.williambl.haema.Vampirable;
 import mrsterner.phantomblood.common.registry.PBObjects;
-import moriyashiine.bewitchment.api.interfaces.entity.CurseAccessor;
-import moriyashiine.bewitchment.api.interfaces.entity.TransformationAccessor;
 import moriyashiine.bewitchment.client.network.packet.SpawnSmokeParticlesPacket;
-import moriyashiine.bewitchment.common.registry.*;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
+import mrsterner.phantomblood.common.registry.PBUtil;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -58,6 +60,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
 
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void tick(CallbackInfo callbackInfo) {
         if (!world.isClient) {
@@ -69,6 +72,11 @@ public abstract class LivingEntityMixin extends Entity {
                     SpawnSmokeParticlesPacket.send((PlayerEntity) (Object) this, this);
                     world.playSound(null, getBlockPos(), PBSoundEvents.VAMPIRE, getSoundCategory(), getSoundVolume(), getSoundPitch());
                 }
+                if(head.getItem() == PBObjects.STONE_MASK_ITEM){
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 3,1));
+                }
+
         }
     }
+
 }

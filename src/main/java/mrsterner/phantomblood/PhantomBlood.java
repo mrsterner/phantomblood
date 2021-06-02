@@ -33,6 +33,7 @@ public class PhantomBlood implements ModInitializer {
     public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PBObjects.STONE_MASK_ITEM));
 
 
+
     @Override
     public void onInitialize() {
         GeckoLib.initialize();
@@ -63,6 +64,7 @@ public class PhantomBlood implements ModInitializer {
             }
             return ActionResult.PASS;
         });
+
         //Somnus and Coffin code for sleep on the day
         WorldSleepEvents.WORLD_WAKE_TIME.register((world, newTime, curTime) -> {
             if (world.isDay()) {

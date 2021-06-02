@@ -1,13 +1,11 @@
 package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.common.block.CoffinBlock;
-import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.*;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.DyeColor;
 import net.minecraft.block.entity.BlockEntityType.Builder;
 import mrsterner.phantomblood.PhantomBlood;
@@ -30,7 +28,7 @@ public class PBObjects {
 
 
     //Armor
-    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
+    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD, gen()));
     public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
     public static final Item VAMPIRE_HAT = create("vampire_hat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD));
     public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST));
@@ -58,9 +56,6 @@ public class PBObjects {
     public static final Block MAGENTA_COFFIN = create("magenta_coffin", new CoffinBlock(DyeColor.MAGENTA, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
     public static final Block ORANGE_COFFIN = create("orange_coffin", new CoffinBlock(DyeColor.ORANGE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
     public static final Block WHITE_COFFIN = create("white_coffin", new CoffinBlock(DyeColor.WHITE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
-
-    //Tags
-    public static final Tag<Item> VAMPIRE_FOODS = TagRegistry.item(new Identifier(PhantomBlood.MODID, "vampire_foods"));
 
 
     //Register
