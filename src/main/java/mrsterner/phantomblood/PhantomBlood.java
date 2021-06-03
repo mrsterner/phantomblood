@@ -122,7 +122,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                 .filter(it -> StandUtils.getStand(it) == Stand.THE_WORLD && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.ATTACKING)
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
-                    world.getOtherEntities(player, player.getBoundingBox().expand(2.0*MathHelper.sin(player.yaw), 0.0, 2.0*MathHelper.cos(player.yaw)))
+                    world.getOtherEntities(player, player.getBoundingBox().expand(2.0*MathHelper.sin(player.yaw), 0.0, 3.0*MathHelper.cos(player.yaw)))
                             .forEach(it -> it.damage(DamageSource.player(player), level == 0 ? 3.0f : 6.0f));
                 })
         );

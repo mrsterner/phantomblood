@@ -41,7 +41,7 @@ public class ClientChunkManagerMixin {
             cir.setReturnValue(false);
         }
     }
-
+    //Range of The World Time Stop squared
     @Inject(method = "shouldTickBlock", at = @At("HEAD"), cancellable = true)
     void doNotTickBlockWhenTimeIsStopped(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.getTimeStopper(world).squaredDistanceTo(Vec3d.ofCenter(pos)) < 8) {

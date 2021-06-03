@@ -135,8 +135,9 @@ void main()
     // Drawing the two circles
     color += pow(vec3(1.) * (outside * inside + outside2 * inside2), vec3(3.));
     // Converting from RGB to HSV to play with hue and saturation
+
     vec3 hsv = rgb2hsv(color);
-    hsv[0] = mix(hsv[0], hsv[0] + sin((STime*0.75))*0.2, inside); // Color shift inside the first circle
+    hsv[0] = mix(hsv[0], 1.0 - hsv[0], inside); // Color shift inside the first circle
     hsv[1] = mix(hsv[1], hsv[1] * OuterSat, outside); // Desaturate outside the first circle
     color = hsv2rgb(hsv);
 
