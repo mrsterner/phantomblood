@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
@@ -8,7 +9,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.*;
 import net.minecraft.util.DyeColor;
 import net.minecraft.block.entity.BlockEntityType.Builder;
-import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
@@ -18,6 +18,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static mrsterner.phantomblood.PhantomBlood.MODID;
 import static mrsterner.phantomblood.PhantomBlood.PHANTOMBLOOD_GROUP;
 import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings.copyOf;
 
@@ -39,6 +40,8 @@ public class PBObjects {
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
     public static final Item BLOOD_AMPOULE = create("blood_ampoule", new BloodAmpouleItem(gen()));
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
+    public static final Item YA = create("ya", new Item(gen()));
+
     //Blocks
     public static final Block BLACK_COFFIN = create("black_coffin", new CoffinBlock(DyeColor.BLACK, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
     public static final Block RED_COFFIN = create("red_coffin", new CoffinBlock(DyeColor.RED, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
@@ -58,9 +61,10 @@ public class PBObjects {
     public static final Block WHITE_COFFIN = create("white_coffin", new CoffinBlock(DyeColor.WHITE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
 
 
+
     //Register
     private static <T extends Block> T create(String name, T block, boolean createItem) {
-        BLOCKS.put(block, new Identifier(PhantomBlood.MODID, name));
+        BLOCKS.put(block, new Identifier(MODID, name));
         if (createItem) {
             ITEMS.put(new BlockItem(block, gen()), BLOCKS.get(block));
         }
@@ -68,7 +72,7 @@ public class PBObjects {
     }
 
     private static <T extends Item> T create(String name, T item) {
-        ITEMS.put(item, new Identifier(PhantomBlood.MODID, name));
+        ITEMS.put(item, new Identifier(MODID, name));
         return item;
     }
 
@@ -80,7 +84,7 @@ public class PBObjects {
     public static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, Builder<T> builder) {
         if (FabricLoader.INSTANCE.isDevelopmentEnvironment()) {
             BlockEntityType<T> blockEntityType = builder.build(null);
-            Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(PhantomBlood.MODID, name), blockEntityType);
+            Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MODID, name), blockEntityType);
             return blockEntityType;
         }
         return null;
