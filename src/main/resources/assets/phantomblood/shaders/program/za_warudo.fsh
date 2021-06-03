@@ -114,7 +114,7 @@ void main()
     // distance of pixel from center
     float r = sqrt(dot(d, d));
     //amount of effect
-    float power = ( 2.0 * 3.141592 / (2.0 * sqrt(dot(m, m))) ) *
+    float power = ( 1.0 * 3.141592 / (2.0 * sqrt(dot(m, m))) ) *
   		(inside * -0.2);
     //radius of 1:1 effect
     float bind = (prop < 1.0) ? m.x : m.y;//stick to borders
