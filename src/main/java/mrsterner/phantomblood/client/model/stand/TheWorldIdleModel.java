@@ -1,12 +1,16 @@
-package mrsterner.phantomblood.common.entity;
+package mrsterner.phantomblood.client.model.stand;
 
+import mrsterner.phantomblood.stand.StandUtils;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.Nullable;
 
-public class TheWorldModelIdle extends EntityModel<Entity> {
+public class TheWorldIdleModel extends EntityModel<LivingEntity> {
     private final ModelPart head;
     private final ModelPart helmTop_r1;
     private final ModelPart tube_r1;
@@ -32,28 +36,31 @@ public class TheWorldModelIdle extends EntityModel<Entity> {
     private final ModelPart arm_r1;
     private final ModelPart hand2;
     private final ModelPart hand_r2;
-    public TheWorldModelIdle() {
+    private double yOffset;
+    private boolean shouldRenderGears;
+
+    public TheWorldIdleModel() {
         textureWidth = 128;
         textureHeight = 128;
         head = new ModelPart(this);
-        head.setPivot(0.0F, 0.0F, 0.0F);
-        head.setTextureOffset(0, 13).addCuboid(-3.5F, -12.0F, -4.0F, 7.0F, 7.0F, 8.0F, 0.0F, false);
-        head.setTextureOffset(2, 1).addCuboid(-4.0F, -12.1F, -3.5F, 8.0F, 4.0F, 8.0F, 0.0F, false);
+        head.setPivot(0.0F, -5.0F, 0.4F);
+        head.setTextureOffset(0, 13).addCuboid(-3.5F, -7.0F, -4.4F, 7.0F, 7.0F, 8.0F, 0.0F, false);
+        head.setTextureOffset(2, 1).addCuboid(-4.0F, -7.1F, -3.9F, 8.0F, 4.0F, 8.0F, 0.0F, false);
 
         helmTop_r1 = new ModelPart(this);
-        helmTop_r1.setPivot(0.0F, -12.0F, 0.0F);
+        helmTop_r1.setPivot(0.0F, -7.0F, -0.4F);
         head.addChild(helmTop_r1);
         setRotationAngle(helmTop_r1, 0.48F, 0.0F, 0.0F);
         helmTop_r1.setTextureOffset(22, 20).addCuboid(-4.0F, -1.95F, -4.0F, 8.0F, 4.0F, 8.0F, 0.1F, false);
 
         tube_r1 = new ModelPart(this);
-        tube_r1.setPivot(0.0F, -8.1F, 1.5F);
+        tube_r1.setPivot(0.0F, -3.1F, 1.1F);
         head.addChild(tube_r1);
         setRotationAngle(tube_r1, -0.1745F, 0.0F, 0.0F);
         tube_r1.setTextureOffset(25, 0).addCuboid(-4.5F, -1.0F, -3.5F, 9.0F, 2.0F, 7.0F, 0.0F, false);
 
         bone = new ModelPart(this);
-        bone.setPivot(0.0F, -10.5F, -4.0F);
+        bone.setPivot(0.0F, -5.5F, -4.4F);
         head.addChild(bone);
         setRotationAngle(bone, 0.1309F, 0.0F, 0.0F);
 
@@ -185,15 +192,26 @@ public class TheWorldModelIdle extends EntityModel<Entity> {
         setRotationAngle(hand_r2, -0.3927F, -0.5672F, -0.0436F);
         hand_r2.setTextureOffset(0, 53).addCuboid(-2.0F, -1.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
     }
-    @Override
-    public void setAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-        //previously the render function, render code was moved to a method below
+
+
+    public void setAngles(@Nullable LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+        this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;
+        this.head.pitch = headPitch * 0.017453292F;
+        this.head.yaw = headYaw * 0.017453292F;
     }
+
+
     @Override
     public void render(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 
-        head.render(matrixStack, buffer, packedLight, packedOverlay);
-        body.render(matrixStack, buffer, packedLight, packedOverlay);
+        matrixStack.translate(-0.45D, this.yOffset - 0.2D, 0.45D);
+        this.head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        matrixStack.translate(0.0D, -this.yOffset, 0.0D);
+        matrixStack.translate(0.0D, -0.3D, -0.2D);
+        matrixStack.scale(2.0F, 2.0F, 2.0F);
+
+
     }
     public void setRotationAngle(ModelPart bone, float x, float y, float z) {
         bone.pitch = x;

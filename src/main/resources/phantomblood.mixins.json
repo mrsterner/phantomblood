@@ -5,7 +5,12 @@
   "mixins": [
     "LivingEntityMixin",
     "PlayerEntityMixin",
-    "PlayerEntityRendererMixin"
+    "PlayerEntityRendererMixin",
+    "ClientChunkManagerMixin",
+    "ClientPlayerEntityMixin",
+    "ParticleAccessor",
+    "ParticleManagerMixin",
+    "ServerChunkManagerMixin"
   ],
   "client": [],
   "server": [],

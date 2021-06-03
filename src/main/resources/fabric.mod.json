@@ -17,7 +17,13 @@
       "mrsterner.phantomblood.PhantomBlood"
     ],
     "client": [
-      "mrsterner.phantomblood.PhantomBloodClient"
+      "mrsterner.phantomblood.client.PhantomBloodClient"
+    ],
+    "cardinal-components-entity": [
+      "mrsterner.phantomblood.PhantomBlood"
+    ],
+    "cardinal-components-world": [
+      "mrsterner.phantomblood.PhantomBlood"
     ],
     "server": []
   },
@@ -28,6 +34,17 @@
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "somnus": "*",
-    "haema": "*"
+    "haema": "*",
+    "satin": ">=1.5.1",
+    "cardinal-components-base": ">=2.8.3",
+    "cardinal-components-world": ">=2.8.3",
+    "cardinal-components-entity": ">=2.8.3",
+    "minecraft": ">=1.16.2"
+  },
+  "custom": {
+    "cardinal-components": [
+      "phantomblood:stand_user",
+      "phantomblood:time_stop"
+    ]
   }
 }
