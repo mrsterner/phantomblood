@@ -18,10 +18,14 @@ public class ArrowHeadItem extends Item {
         if (!world.isClient) {
             if (StandUtils.getStand(user) == Stand.NONE) {
                 StandUtils.setStand(user, Stand.THE_WORLD);
-            } else {
+            } else if(StandUtils.getStandLevel(user) == 0){
                 StandUtils.setStandLevel(user, 1);
+            } else {
+                return TypedActionResult.fail(ItemStack.EMPTY);
             }
         }
         return TypedActionResult.success(ItemStack.EMPTY);
     }
+
+
 }

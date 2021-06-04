@@ -24,8 +24,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin extends DrawableHelper {
     private static final Identifier PHANTOMBLOOD_GUI_ICONS_TEXTURE = new Identifier(PhantomBlood.MODID, "textures/gui/icons.png");
-    private static final Identifier EMPTY_TEXTURE = new Identifier(PhantomBlood.MODID, "textures/gui/empty.png");
-
     @Shadow
     protected abstract PlayerEntity getCameraPlayer();
 
@@ -39,10 +37,26 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Final
     private MinecraftClient client;
 
-    @Inject(method = "renderStatusBars", at = @At(value = "TAIL"))
+    @Inject(method = "renderStatusBars", at = @At(value = "HEAD"))
     private void renderPre(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (StandUtils.getStand(player) == Stand.THE_WORLD) {
+        if (StandUtils.getStand(player) == Stand.THE_WORLD && StandUtils.isStandActive(player)) {
+            client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
+            if(StandUtils.getStandLevel(player) == 0){
+                drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 66) , 27, 0, 53, 38);
+            }else{
+                drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 66) , 27+53, 0, 53, 38);
+            }
+            drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 66) , 27, 53, 53, 38);
+            client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
+
+        }
+    }
+
+    @Inject(method = "renderStatusBars", at = @At(value = "TAIL"))
+    private void renderPost(MatrixStack matrices, CallbackInfo callbackInfo) {
+        PlayerEntity player = getCameraPlayer();
+        if (StandUtils.getStand(player) == Stand.THE_WORLD && StandUtils.isStandActive(player)) {
             client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
             drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 0, 6, 24);
             drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));

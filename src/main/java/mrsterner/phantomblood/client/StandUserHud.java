@@ -18,6 +18,7 @@ import net.minecraft.util.Identifier;
 public class StandUserHud extends DrawableHelper implements HudRenderCallback {
     @Override
     public void onHudRender(MatrixStack matrixStack, float tickDelta) {
+        /*
         matrixStack.push();
         MinecraftClient mc = MinecraftClient.getInstance();
         PlayerEntity player = mc.player;
@@ -38,6 +39,6 @@ public class StandUserHud extends DrawableHelper implements HudRenderCallback {
     void renderText(MatrixStack stack, TextRenderer renderer, Text text, int height, int offset) {
         int textWidth = renderer.getWidth(text);
         drawCenteredText(stack, renderer, text, textWidth/2 + 10, height - 16 - offset*9, 0xffffff);
+    */
     }
-
 }
