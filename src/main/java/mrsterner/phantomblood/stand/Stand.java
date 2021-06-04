@@ -1,11 +1,16 @@
 package mrsterner.phantomblood.stand;
 
 
+import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 import java.util.Locale;
@@ -21,6 +26,7 @@ public enum Stand {
                 StandUtils.setStandEnergy(player, energy - energyForAbility);
                 TimeStopUtils.setTimeStoppedTicks(player.world, ticks);
                 TimeStopUtils.setTimeStopper(player.world, player);
+                player.world.playSound(null, player.getBlockPos(), PBSoundEvents.THE_WORLD, SoundCategory.PLAYERS, 1, 1f);
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, (int) ticks));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, (int) ticks));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, (int) ticks));

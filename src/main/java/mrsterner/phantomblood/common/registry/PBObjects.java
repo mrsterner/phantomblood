@@ -39,7 +39,7 @@ public class PBObjects {
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
     public static final Item BLOOD_AMPOULE = create("blood_ampoule", new BloodAmpouleItem(gen()));
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
-    public static final Item YA = create("ya", new ArrowHeadItem(gen().maxCount(1)));
+    public static final Item ARROW_HEAD = create("arrow_head", new ArrowHeadItem(gen().maxCount(1)));
 
     //Blocks
     public static final Block BLACK_COFFIN = create("black_coffin", new CoffinBlock(DyeColor.BLACK, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);

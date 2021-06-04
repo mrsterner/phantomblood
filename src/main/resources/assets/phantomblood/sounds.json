@@ -1,5 +1,5 @@
 {
-  "entity.generic.curse": {
+  "entity.vampire": {
     "sounds": [
       {
         "name": "mob/wither/spawn",
@@ -7,5 +7,15 @@
       }
     ],
     "subtitle": "phantomblood.subtitles.entity.vampire"
+  },
+  "stand.theworld": {
+    "sounds": [
+      {
+        "name": "phantomblood:zawarudo",
+        "pitch": 1
+      }
+    ],
+    "subtitle": "phantomblood.subtitles.stand.theworld"
   }
 }
+

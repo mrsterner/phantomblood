@@ -37,10 +37,10 @@
   "status.phantomblood.idle": "Idle",
   "status.phantomblood.attacking": "Attacking",
 
-  "item.phantomblood.stand_arrow": "Arrow Head",
-
   "hud.phantomblood.stand": "Stand: %1$s",
   "hud.phantomblood.stage": "Stage: %1$s",
   "hud.phantomblood.energy": "Energy: %1$s / 100000",
-  "hud.phantomblood.skill_cost": "Skill Cost: %1$s"
+  "hud.phantomblood.skill_cost": "Skill Cost: %1$s",
+
+  "item.phantomblood.arrow_head": "Arrow Head"
 }
