@@ -28,12 +28,11 @@ public class ParticleManagerMixin {
         if (TimeStopUtils.getTimeStoppedTicks(world) > 0) {
             PlayerEntity timeStopper = TimeStopUtils.getTimeStopper(world);
             ParticleAccessor particle1 = (ParticleAccessor) particle;
-            if (timeStopper == null || timeStopper.squaredDistanceTo(particle1.getX(), particle1.getY(), particle1.getZ()) < 8) {
                 particle1.setPrevX(particle1.getX());
                 particle1.setPrevY(particle1.getY());
                 particle1.setPrevZ(particle1.getZ());
                 ci.cancel();
-            }
+
         }
     }
 }

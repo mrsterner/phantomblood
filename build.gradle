@@ -85,33 +85,20 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-    modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
-    include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
-    modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${reach_version}"
-    include "com.jamieswhiteshirt:reach-entity-attributes:${reach_version}"
-    modImplementation "com.github.emilyploszaj:step-height-entity-attribute:${step_height_version}"
-    include "com.github.emilyploszaj:step-height-entity-attribute:${step_height_version}"
-    modImplementation "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
-    include "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
 
     modImplementation("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
     modImplementation "top.theillusivec4.somnus:somnus-fabric:${somnus_version}"
-    modImplementation("com.github.virtuoel:pehkui:${pehkui_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-    modImplementation "io.github.ladysnake:Impersonate:${impersonate_version}"
+
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
-    modImplementation "dev.emi:trinkets:${trinkets_version}"
+
 
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rei_version}"
     modRuntime "me.shedaniel:RoughlyEnoughItems:${rei_version}"
-    modImplementation "io.github.emilyalexandra:nourish:${nourish_version}"
-    modImplementation "io.github.ladysnake:requiem-api:${requiem_version}"
-    modRuntime "io.github.ladysnake:requiem:${requiem_version}"
 
-    modImplementation "curse.maven:bewitchment-394915:${project.bewitchment_version}"
+
+
     modImplementation "curse.maven:haema-391257:${project.haema_version}"
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
     modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
@@ -133,7 +120,6 @@ dependencies {
     // Include Satin as a Jar-in-Jar dependency (optional)
     include "io.github.ladysnake:Satin:${satin_version}"
 
-    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 

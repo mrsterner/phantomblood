@@ -4,7 +4,6 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "LivingEntityMixin",
-    "PlayerEntityMixin",
     "PlayerEntityRendererMixin",
     "ParticleAccessor",
     "ServerChunkManagerMixin",
@@ -15,7 +14,6 @@
     "ClientPlayerEntityMixin",
     "ParticleManagerMixin"
   ],
-  "server": [],
   "injectors": {
     "defaultRequire": 1
   }

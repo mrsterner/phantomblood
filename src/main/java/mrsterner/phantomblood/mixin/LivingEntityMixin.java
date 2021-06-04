@@ -2,18 +2,13 @@ package mrsterner.phantomblood.mixin;
 
 import com.williambl.haema.Vampirable;
 import mrsterner.phantomblood.common.registry.PBObjects;
-import moriyashiine.bewitchment.client.network.packet.SpawnSmokeParticlesPacket;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
-import mrsterner.phantomblood.common.registry.PBUtil;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -68,8 +63,6 @@ public abstract class LivingEntityMixin extends Entity {
             ItemStack head = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
                 if (head.getItem() == PBObjects.BLOODY_STONE_MASK_ITEM && !((Vampirable) this).isVampire()) {
                     Vampirable.Companion.convert(((PlayerEntity) (Object) this));
-                    PlayerLookup.tracking(this).forEach(foundPlayer -> SpawnSmokeParticlesPacket.send(foundPlayer, this));
-                    SpawnSmokeParticlesPacket.send((PlayerEntity) (Object) this, this);
                     world.playSound(null, getBlockPos(), PBSoundEvents.VAMPIRE, getSoundCategory(), getSoundVolume(), getSoundPitch());
                 }
                 if(head.getItem() == PBObjects.STONE_MASK_ITEM){
