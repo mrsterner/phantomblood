@@ -1,7 +1,6 @@
 package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.common.block.CoffinBlock;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;

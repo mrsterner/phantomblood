@@ -6,14 +6,15 @@
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "PlayerEntityRendererMixin",
-    "ClientChunkManagerMixin",
-    "ClientPlayerEntityMixin",
     "ParticleAccessor",
-    "ParticleManagerMixin",
     "ServerChunkManagerMixin",
     "InGameHudMixin"
   ],
-  "client": [],
+  "client": [
+    "ClientChunkManagerMixin",
+    "ClientPlayerEntityMixin",
+    "ParticleManagerMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1

@@ -13,6 +13,7 @@ public class ArrowHeadItem extends Item {
     public ArrowHeadItem(Settings settings) {
         super(settings);
     }
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient) {
