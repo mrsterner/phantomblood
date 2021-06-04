@@ -1,0 +1,10 @@
+{
+  "name": "item.phantomblood.lost_book",
+  "landing_text": "item.phantomblood.lost_book.landing_text",
+  "custom_book_item": "phantomblood:lost_book",
+  "book_texture": "phantomblood:textures/gui/patchouli/book.png",
+  "dont_generate_book": true,
+  "link_color": "0000ff",
+  "link_hover_color": "0000ff",
+  "version": 2
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Stone Mask",
+  "category": "phantomblood:vampire",
+  "icon": "phantomblood:stonemaskitem",
+  "entry_color": "6A00C1",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Taint it in blood while wearing it"
+    }
+  ]
+}

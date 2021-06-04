@@ -6,10 +6,10 @@
   ],
   "key": {
     "W": {
-      "item": "bewitchment:besmirched_wool"
+      "item": "minecraft:black_wool"
     },
     "R": {
-      "item": "bewitchment:bottle_of_blood"
+      "item": "haema:vampire_blood"
     }
   },
   "result": {

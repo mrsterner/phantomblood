@@ -29,6 +29,8 @@ public class PBMaterials {
             return Ingredient.ofItems(new ItemConvertible[]{PBObjects.STONE_OF_AJA});
         }
 
+
+
         public String getName() {
             return "vampirearmor";
         }

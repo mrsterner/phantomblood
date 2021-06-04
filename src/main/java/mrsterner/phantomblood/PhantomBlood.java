@@ -55,7 +55,6 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
     public void onInitialize() {
         GeckoLib.initialize();
         PBObjects.init();
-        PBStatusEffects.init();
 
         //Vampire Coat abilities, if ampoule is in off-hand, add blood ampoule on villager hit, otherwise, 10% chance to give blood directly to user
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {

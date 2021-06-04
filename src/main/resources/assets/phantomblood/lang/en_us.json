@@ -42,5 +42,9 @@
   "hud.phantomblood.energy": "Energy: %1$s / 100000",
   "hud.phantomblood.skill_cost": "Skill Cost: %1$s",
 
-  "item.phantomblood.arrow_head": "Arrow Head"
+  "item.phantomblood.arrow_head": "Arrow Head",
+
+  "item.phantomblood.lost_book": "Lost Journal",
+  "item.phantomblood.lost_book.landing_text": "Journal text goes here"
+
 }

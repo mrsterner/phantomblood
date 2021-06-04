@@ -33,8 +33,8 @@ import java.util.List;
 public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public VampireArmorItem(ArmorMaterial materialIn, EquipmentSlot slot) {
-        super(materialIn, slot, new Item.Settings().group(PhantomBlood.PHANTOMBLOOD_GROUP).maxCount(1));
+    public VampireArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Item.Settings builder) {
+        super(materialIn, slot, builder);
     }
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
@@ -64,17 +64,6 @@ public class VampireArmorItem extends GeoArmorItem implements IAnimatable {
         return this.factory;
     }
 
-    @Override
-    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-        /*
-        ItemStack stack = new ItemStack(this);
-        stack.hasTag();
-        stack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
-        if ((group == PhantomBlood.PHANTOMBLOOD_GROUP) || (group == ItemGroup.SEARCH)) {
-            stacks.add(stack);
-        }
-         */
-    }
 
     @Override
     public boolean hasGlint(ItemStack stack) {

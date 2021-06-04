@@ -1,5 +1,6 @@
 package mrsterner.phantomblood.common.registry;
 
+import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
@@ -17,8 +18,6 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static mrsterner.phantomblood.PhantomBlood.MODID;
-import static mrsterner.phantomblood.PhantomBlood.PHANTOMBLOOD_GROUP;
 import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings.copyOf;
 
 
@@ -27,19 +26,13 @@ public class PBObjects {
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
 
-    //Armor
-    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD, gen()));
-    public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
-    public static final Item VAMPIRE_HAT = create("vampire_hat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD));
-    public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST));
-    public static final Item VAMPIRE_JACKET_F = create("vampire_coat_f", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST));
-    public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.LEGS));
-    public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.FEET));
+
     //Item
-    public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
+
+    public static final Item ARROW_HEAD = create("arrow_head", new ArrowHeadItem(gen().maxCount(1)));
     public static final Item BLOOD_AMPOULE = create("blood_ampoule", new BloodAmpouleItem(gen()));
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
-    public static final Item ARROW_HEAD = create("arrow_head", new ArrowHeadItem(gen().maxCount(1)));
+    public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
 
     //Blocks
     public static final Block BLACK_COFFIN = create("black_coffin", new CoffinBlock(DyeColor.BLACK, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
@@ -59,11 +52,23 @@ public class PBObjects {
     public static final Block ORANGE_COFFIN = create("orange_coffin", new CoffinBlock(DyeColor.ORANGE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
     public static final Block WHITE_COFFIN = create("white_coffin", new CoffinBlock(DyeColor.WHITE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
 
+    //Armor
+    public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD, gen()));
+    public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
+    public static final Item VAMPIRE_HAT = create("vampire_hat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD, gen().maxCount(1)));
+    public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST, gen().maxCount(1)));
+    public static final Item VAMPIRE_JACKET_F = create("vampire_coat_f", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST, gen().maxCount(1)));
+    public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.LEGS, gen().maxCount(1)));
+    public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.FEET, gen().maxCount(1)));
+
+    //Book
+    public static final Item LOST_BOOK = create("lost_book", new PBBookItem(gen().maxCount(1)));
+
 
 
     //Register
     private static <T extends Block> T create(String name, T block, boolean createItem) {
-        BLOCKS.put(block, new Identifier(MODID, name));
+        BLOCKS.put(block, new Identifier(PhantomBlood.MODID, name));
         if (createItem) {
             ITEMS.put(new BlockItem(block, gen()), BLOCKS.get(block));
         }
@@ -71,19 +76,19 @@ public class PBObjects {
     }
 
     private static <T extends Item> T create(String name, T item) {
-        ITEMS.put(item, new Identifier(MODID, name));
+        ITEMS.put(item, new Identifier(PhantomBlood.MODID, name));
         return item;
     }
 
 
     private static Item.Settings gen() {
-        return new Item.Settings().group(PHANTOMBLOOD_GROUP);
+        return new Item.Settings().group(PhantomBlood.PHANTOMBLOOD_GROUP);
     }
 
     public static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, Builder<T> builder) {
         if (FabricLoader.INSTANCE.isDevelopmentEnvironment()) {
             BlockEntityType<T> blockEntityType = builder.build(null);
-            Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MODID, name), blockEntityType);
+            Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(PhantomBlood.MODID, name), blockEntityType);
             return blockEntityType;
         }
         return null;
