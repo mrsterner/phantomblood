@@ -10,7 +10,8 @@
     "ClientPlayerEntityMixin",
     "ParticleAccessor",
     "ParticleManagerMixin",
-    "ServerChunkManagerMixin"
+    "ServerChunkManagerMixin",
+    "InGameHudMixin"
   ],
   "client": [],
   "server": [],
