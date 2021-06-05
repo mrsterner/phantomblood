@@ -120,10 +120,10 @@ public final class StandUserComponentImpl implements StandUserComponent, AutoSyn
     @Override
     public void serverTick() {
         standEnergy = Math.min(standEnergy+100, 100000);
-        if (standMode.equals(StandMode.IDLE)) {
+        if (standActive && standMode.equals(StandMode.IDLE)) {
             owner.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 40));
         }
-        if(standMode.equals(StandMode.ATTACKING)){
+        if(standActive &&  standMode.equals(StandMode.ATTACKING)){
             owner.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 40, 2));
         }
         StandUserComponent.entityKey.sync(owner);

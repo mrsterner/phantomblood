@@ -2,8 +2,12 @@ package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
+import mrsterner.phantomblood.common.worldgen.generator.RuinGenerator;
+import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.*;
@@ -13,7 +17,10 @@ import mrsterner.phantomblood.common.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -30,6 +37,7 @@ public class PBObjects {
     //Item
 
     public static final Item ARROW_HEAD = create("arrow_head", new ArrowHeadItem(gen().maxCount(1)));
+    public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, -2, gen()));
     public static final Item BLOOD_AMPOULE = create("blood_ampoule", new BloodAmpouleItem(gen()));
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
@@ -64,6 +72,10 @@ public class PBObjects {
     //Book
     public static final Item LOST_BOOK = create("lost_book", new PBBookItem(gen().maxCount(1)));
 
+    //Structure
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> RUIN = PhantomBlood.RUIN.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(RuinGenerator.STARTING_POOL), 2));
+
+
 
 
     //Register
@@ -97,6 +109,7 @@ public class PBObjects {
     public static void init() {
         BLOCKS.keySet().forEach(block -> Registry.register(Registry.BLOCK, BLOCKS.get(block), block));
         ITEMS.keySet().forEach(item -> Registry.register(Registry.ITEM, ITEMS.get(item), item));
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, RuinStructure.ID, RUIN);
     }
 
 
