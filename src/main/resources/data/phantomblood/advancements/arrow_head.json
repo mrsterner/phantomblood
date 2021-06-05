@@ -1,0 +1,30 @@
+{
+  "display": {
+    "title": {
+      "text": "A piece of an arrow"
+    },
+    "description": {
+      "text": "He who fully controls the Arrow... will control the world!"
+    },
+    "icon": {
+      "item": "phantomblood:arrow_head"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "getarrow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "phantomblood:arrow_head"
+          }
+        ]
+      }
+    }
+  },
+  "parent": "phantomblood:root"
+}

@@ -1,0 +1,30 @@
+{
+  "display": {
+    "title": {
+      "text": "Ancient Stone mask"
+    },
+    "description": {
+      "text": "Apply blood from Villager with Dagger"
+    },
+    "icon": {
+      "item": "phantomblood:stonemaskitem"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+  },
+  "criteria": {
+    "getstonemask": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "phantomblood:stonemaskitem"
+          }
+        ]
+      }
+    }
+  }
+}

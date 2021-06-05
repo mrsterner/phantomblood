@@ -1,0 +1,30 @@
+{
+  "display": {
+    "title": {
+      "text": "I REJECT MY HUMANITY!!"
+    },
+    "description": {
+      "text": ""
+    },
+    "icon": {
+      "item": "phantomblood:bloodstonemaskitem"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "getbloodmask": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "phantomblood:bloodstonemaskitem"
+          }
+        ]
+      }
+    }
+  },
+  "parent": "phantomblood:root"
+}
