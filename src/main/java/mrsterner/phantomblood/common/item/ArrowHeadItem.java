@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class ArrowHeadItem extends Item {
@@ -18,7 +19,21 @@ public class ArrowHeadItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient) {
             if (StandUtils.getStand(user) == Stand.NONE) {
-                StandUtils.setStand(user, Stand.STAR_PLATINUM);
+                int t = MathHelper.nextInt(world.random, 1, 3);
+                switch (t){
+                    case 1:
+                        StandUtils.setStand(user, Stand.STAR_PLATINUM);
+                        break;
+                    case 2:
+                        StandUtils.setStand(user, Stand.THE_WORLD);
+                        break;
+                    case 3:
+                        StandUtils.setStand(user, Stand.KILLER_QUEEN);
+                        break;
+                    default:
+                        break;
+                }
+
             } else if(StandUtils.getStandLevel(user) == 0){
                 StandUtils.setStandLevel(user, 1);
             } else {
