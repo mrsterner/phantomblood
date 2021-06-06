@@ -35,6 +35,24 @@ public enum Stand {
             }
         });
     }),
+    STAR_PLATINUM(40000, (server, player, handler1, buf, responseSender) -> {
+        server.execute(() -> {
+            int energy = StandUtils.getStandEnergy(player);
+            int energyForAbility = StandUtils.getStand(player).energyForAbility;
+            long ticks = StandUtils.getStandLevel(player) == 0 ? 90 : 180;
+            if (energy >= energyForAbility) {
+                StandUtils.setStandEnergy(player, energy - energyForAbility);
+                TimeStopUtils.setTimeStoppedTicks(player.world, ticks);
+                TimeStopUtils.setTimeStopper(player.world, player);
+                player.world.playSound(null, player.getBlockPos(), PBSoundEvents.THE_WORLD, SoundCategory.PLAYERS, 1, 1f);
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, (int) ticks, 2));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, (int) ticks, 2));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, (int) ticks));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, (int) ticks));
+                server.getPlayerManager().sendToAll(ServerPlayNetworking.createS2CPacket(new Identifier("phantomblood:stop_time"), PacketByteBufs.create().writeUuid(player.getUuid()).writeVarLong(ticks)));
+            }
+        });
+    }),
     KILLER_QUEEN(8000, (server, player, handler1, buf, responseSender) -> {
 
     });

@@ -5,6 +5,7 @@ import com.williambl.haema.VampireBloodManager;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentFactoryRegistry;
+import mrsterner.phantomblood.client.StandPunchHandler;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.item.KillerQueenTriggerItem;
 import mrsterner.phantomblood.common.registry.PBUtil;
@@ -25,7 +26,6 @@ import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.fabricmc.fabric.api.util.TriState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.HungerManager;
@@ -55,7 +55,6 @@ import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.function.Predicate;
 
 
@@ -208,14 +207,9 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         });
 
         new StoppedTimeDamageHandler().registerCallbacks();
-        ServerTickEvents.START_WORLD_TICK.register(world -> world.getPlayers().stream()
-                .filter(it -> StandUtils.getStand(it) == Stand.THE_WORLD && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.ATTACKING)
-                .forEach(player -> {
-                    int level = StandUtils.getStandLevel(player);
-                    world.getOtherEntities(player, player.getBoundingBox().expand(2.0*MathHelper.sin(player.yaw), 0.0, 3.0*MathHelper.cos(player.yaw)))
-                            .forEach(it -> it.damage(DamageSource.player(player), level == 0 ? 3.0f : 6.0f));
-                })
-        );
+
+
+        ServerTickEvents.START_WORLD_TICK.register((new StandPunchHandler()));
     }
 
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {

@@ -1,19 +1,13 @@
 package mrsterner.phantomblood.client;
 
-import mrsterner.phantomblood.client.model.stand.KillerQueenAttackingModel;
-import mrsterner.phantomblood.client.model.stand.KillerQueenIdleModel;
-import mrsterner.phantomblood.client.model.stand.TheWorldAttackingModel;
-import mrsterner.phantomblood.client.model.stand.TheWorldIdleModel;
+import mrsterner.phantomblood.client.model.stand.*;
 import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import mrsterner.phantomblood.client.renderer.armor.StonemaskRenderer;
 import mrsterner.phantomblood.client.renderer.armor.VampireArmorFRenderer;
 import mrsterner.phantomblood.client.renderer.armor.VampireArmorRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
-import mrsterner.phantomblood.client.stand.KillerQueenFeatureRenderer;
-import mrsterner.phantomblood.client.stand.KillerQueenFirstPersonArmRenderer;
-import mrsterner.phantomblood.client.stand.TheWorldFeatureRenderer;
-import mrsterner.phantomblood.client.stand.TheWorldFirstPersonArmRenderer;
+import mrsterner.phantomblood.client.stand.*;
 import mrsterner.phantomblood.common.item.BloodStonemaskItem;
 import mrsterner.phantomblood.common.item.StonemaskItem;
 import mrsterner.phantomblood.common.item.VampireArmorItem;
@@ -111,6 +105,7 @@ public class PhantomBloodClient implements ClientModInitializer {
 
         WorldRenderEvents.LAST.register(new TheWorldFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new KillerQueenFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new StarPlatinumFirstPersonArmRenderer());
 
         HudRenderCallback.EVENT.register(new StandUserHud());
 
@@ -119,6 +114,7 @@ public class PhantomBloodClient implements ClientModInitializer {
                 //noinspection unchecked
                 registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldAttackingModel(), new TheWorldIdleModel()));
                 registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenAttackingModel(), new KillerQueenIdleModel()));
+                registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumAttackingModel(), new StarPlatinumIdleModel()));
             }
         });
 

@@ -18,7 +18,7 @@ public class ArrowHeadItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient) {
             if (StandUtils.getStand(user) == Stand.NONE) {
-                StandUtils.setStand(user, Stand.THE_WORLD);
+                StandUtils.setStand(user, Stand.STAR_PLATINUM);
             } else if(StandUtils.getStandLevel(user) == 0){
                 StandUtils.setStandLevel(user, 1);
             } else {

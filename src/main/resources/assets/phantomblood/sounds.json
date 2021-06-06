@@ -16,6 +16,23 @@
       }
     ],
     "subtitle": "phantomblood.subtitles.stand.theworld"
+  },
+  "stand.punch": {
+    "sounds": [
+      {
+        "name": "phantomblood:punch",
+        "pitch": 1.2
+      },
+      {
+        "name": "phantomblood:punch",
+        "pitch": 1
+      },
+      {
+        "name": "phantomblood:punch",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "phantomblood.subtitles.stand.punch"
   }
 }
 
