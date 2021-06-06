@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.common.item;
 
 import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.stand.StandUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -61,18 +62,20 @@ public class KillerQueenTriggerItem extends Item {
         if(t!=null){
             switch (t){
                 case BLOCK:
+                    System.out.println("block");
                     BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
-                    world.createExplosion(user,pos.getX(),pos.getY() + 1,pos.getZ(), 20f, Explosion.DestructionType.NONE);
+                    world.createExplosion(user,pos.getX(),pos.getY() + 1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
                     stack.decrement(1);
                     break;
                 case ENTITY:
+                    System.out.println("entity");
                     String uuid =tag.getString(TAG.UUID.getName());
                     List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(50, 50, 50), null);
                     if(entities!=null) {
                         for(Entity entity : entities){
                             if(entity.getUuid().toString().equals(uuid)){
                                 entity.getEntityWorld().createExplosion(entity, entity.getX(), entity.getY(), entity.getZ(), 2f, Explosion.DestructionType.NONE);
-                                entity.damage(DamageSource.explosion(user), 20f);
+                                entity.damage(DamageSource.explosion(user), 20f + StandUtils.getStandLevel(user));
                             }
                         }
                     }

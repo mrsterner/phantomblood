@@ -1,5 +1,7 @@
 package mrsterner.phantomblood.client;
 
+import mrsterner.phantomblood.client.model.stand.KillerQueenAttackingModel;
+import mrsterner.phantomblood.client.model.stand.KillerQueenIdleModel;
 import mrsterner.phantomblood.client.model.stand.TheWorldAttackingModel;
 import mrsterner.phantomblood.client.model.stand.TheWorldIdleModel;
 import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
@@ -8,6 +10,8 @@ import mrsterner.phantomblood.client.renderer.armor.VampireArmorFRenderer;
 import mrsterner.phantomblood.client.renderer.armor.VampireArmorRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
+import mrsterner.phantomblood.client.stand.KillerQueenFeatureRenderer;
+import mrsterner.phantomblood.client.stand.KillerQueenFirstPersonArmRenderer;
 import mrsterner.phantomblood.client.stand.TheWorldFeatureRenderer;
 import mrsterner.phantomblood.client.stand.TheWorldFirstPersonArmRenderer;
 import mrsterner.phantomblood.common.item.BloodStonemaskItem;
@@ -106,6 +110,7 @@ public class PhantomBloodClient implements ClientModInitializer {
         zaWarudoShader.registerCallbacks();
 
         WorldRenderEvents.LAST.register(new TheWorldFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new KillerQueenFirstPersonArmRenderer());
 
         HudRenderCallback.EVENT.register(new StandUserHud());
 
@@ -113,6 +118,7 @@ public class PhantomBloodClient implements ClientModInitializer {
             if (entityType == EntityType.PLAYER) {
                 //noinspection unchecked
                 registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldAttackingModel(), new TheWorldIdleModel()));
+                registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenAttackingModel(), new KillerQueenIdleModel()));
             }
         });
 

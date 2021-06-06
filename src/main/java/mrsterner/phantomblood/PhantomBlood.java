@@ -131,7 +131,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                     //Randomly give blood on hit w/o ampoule
                 }
             }
-            if(StandUtils.getStand(player) == Stand.THE_WORLD && hand == Hand.MAIN_HAND){
+            if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND){
                 if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
@@ -151,7 +151,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             return ActionResult.PASS;
         });
         AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-            if(StandUtils.getStand(player) == Stand.THE_WORLD && hand == Hand.MAIN_HAND) {
+            if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND) {
                 if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
