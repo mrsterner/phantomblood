@@ -9,9 +9,11 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
 
-public class KillerQueenAttackingModel extends EntityModel<Entity> {
+public class KillerQueenAttackingModel extends EntityModel<LivingEntity> {
 private final ModelPart body;
 	private final ModelPart Shape10;
 	private final ModelPart Shape11;
@@ -43,6 +45,9 @@ private final ModelPart body;
 	private final ModelPart l_hand3;
 	private final ModelPart l_hand4;
 	private final ModelPart l_hand5;
+	private double yOffset;
+	private double zOffset;
+
 public KillerQueenAttackingModel() {
 		textureWidth = 128;
 		textureHeight = 128;
@@ -226,18 +231,40 @@ public KillerQueenAttackingModel() {
 		l_hand5.setTextureOffset(38, 23).addCuboid(0.0F, 13.0F, -8.0F, 8.0F, 3.0F, 4.0F, 0.0F, true);
 }
 @Override
-public void setAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-		//previously the render function, render code was moved to a method below
+public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+	float power = 0.5F;
+	float speed = 2.5F;
+	l_hand1.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f) * 1.2F * power;
+	l_hand2.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)Math.PI/3) * 1.4F * power;
+	l_hand3.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)(2*Math.PI/3)) * 1.6F * power;
+	l_hand4.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)(2.5*Math.PI/3)) * 1.3F * power;
+	l_hand5.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)(3*Math.PI/3)) * 1.3F * power;
+	r_hand1.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(3.5*Math.PI/3)) * 1.2F * power;
+	r_hand2.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(6*Math.PI/3)) * 1.1F * power;
+	r_hand3.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(9*Math.PI/3)) * 1.2F * power;
+	r_hand4.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(10*Math.PI/3)) * 0.7F * power;
+	r_hand5.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(1.5*Math.PI/3) )* 1.6F * power;
+
+	float r = (float)Math.random();
+	float offxl = r * MathHelper.sin(r * speed * animationProgress) * power + 0.2F;
+	float offxr = r * MathHelper.sin(r * speed * animationProgress) * power - 0.2F;
+
+	hands_l.pitch = offxl * 0.017453292F;
+	hands_l.yaw = offxl * 0.017453292F;
+	hands_r.pitch = offxr * 0.017453292F;
+	hands_r.yaw = offxr * 0.017453292F;
 }
 @Override
 public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-
+	    matrixStack.translate(0.0D, this.yOffset - 0.2D, -0.75D);
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
 		head.render(matrixStack, buffer, packedLight, packedOverlay);
+		matrixStack.translate(0.0D, -this.yOffset, 0.0D);
 		leftleg.render(matrixStack, buffer, packedLight, packedOverlay);
 		rightleg.render(matrixStack, buffer, packedLight, packedOverlay);
 		hands_r.render(matrixStack, buffer, packedLight, packedOverlay);
 		hands_l.render(matrixStack, buffer, packedLight, packedOverlay);
+		matrixStack.translate(0.0D, 0.2D, 0.75D);
 }
 public void setRotationAngle(ModelPart bone, float x, float y, float z) {
 		bone.pitch = x;

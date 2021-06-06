@@ -185,9 +185,13 @@ public KillerQueenIdleModel() {
 	}
 	@Override
 	public void render(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		matrixStack.translate(-0.45D, this.yOffset - 0.2D, 0.45D);
+		matrixStack.translate(-0.45D, this.yOffset - 0.2D, 0.75D);
 		this.head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		this.body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+		this.rightarm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+		this.leftarm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+		this.rightleg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+		this.leftleg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		matrixStack.translate(0.0D, -this.yOffset, 0.0D);
 		matrixStack.translate(0.0D, -0.3D, -0.2D);
 		matrixStack.scale(2.0F, 2.0F, 2.0F);
