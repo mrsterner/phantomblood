@@ -6,6 +6,7 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentFactoryRegistry;
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.item.KillerQueenTriggerItem;
 import mrsterner.phantomblood.common.registry.PBUtil;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
 import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
@@ -17,6 +18,7 @@ import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
@@ -28,6 +30,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -49,6 +53,9 @@ import top.theillusivec4.somnus.api.PlayerSleepEvents;
 import top.theillusivec4.somnus.api.WorldSleepEvents;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 
@@ -85,6 +92,14 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             return context.getBiomeKey().getValue().getNamespace().equals("minecraft");
         };
     }
+    public static CompoundTag getTagCompoundSafe(ItemStack stack) {
+        CompoundTag tagCompound = stack.getTag();
+        if (tagCompound == null) {
+            tagCompound = new CompoundTag();
+            stack.setTag(tagCompound);
+        }
+        return tagCompound;
+    }
 
     @Override
     public void onInitialize() {
@@ -116,8 +131,45 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                     //Randomly give blood on hit w/o ampoule
                 }
             }
+            if(StandUtils.getStand(player) == Stand.THE_WORLD && hand == Hand.MAIN_HAND){
+                if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
+                    ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
+                    KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
+                    player.setStackInHand(hand, trigger);
+               }else{
+                    PlayerInventory inventory = player.inventory;
+                    List<ItemStack> mainInventory = inventory.main;
+                    for(ItemStack trigger : mainInventory) {
+                        if(trigger.getItem() == PBObjects.KILLER_QUEEN_TRIGGER) {
+                            KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
+                            break;
+                        }
+                    }
+                }
+
+            }
             return ActionResult.PASS;
         });
+        AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+            if(StandUtils.getStand(player) == Stand.THE_WORLD && hand == Hand.MAIN_HAND) {
+                if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
+                    ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
+                    KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
+                    player.setStackInHand(hand, trigger);
+                }else{
+                    PlayerInventory inventory = player.inventory;
+                    List<ItemStack> mainInventory = inventory.main;
+                    for(ItemStack trigger : mainInventory) {
+                        if(trigger.getItem() == PBObjects.KILLER_QUEEN_TRIGGER) {
+                            KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
+                            break;
+                        }
+                    }
+                }
+            }
+            return ActionResult.PASS;
+        });
+
 
         //Somnus and Coffin code for sleep on the day
         WorldSleepEvents.WORLD_WAKE_TIME.register((world, newTime, curTime) -> {

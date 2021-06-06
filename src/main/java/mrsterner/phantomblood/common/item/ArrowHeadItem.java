@@ -28,5 +28,6 @@ public class ArrowHeadItem extends Item {
         return TypedActionResult.consume(ItemStack.EMPTY);
     }
 
+
 //To do: to succeed in using the arrow, the user wither have to be a vampire or use a totem of undying to prevent death.
 }

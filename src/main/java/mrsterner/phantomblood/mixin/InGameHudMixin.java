@@ -48,6 +48,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
                 drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 66) , 27+53, 0, 53, 38);
             }
             drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 66) , 27, 53, 53, 38);
+            //drawTexture(matrices, scaledWidth / 2 + 100, (scaledHeight - 30) , 27, 53, 53, 38);
             client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
 
         }

@@ -41,6 +41,7 @@ public class PBObjects {
     public static final Item BLOOD_AMPOULE = create("blood_ampoule", new BloodAmpouleItem(gen()));
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
+    public static final Item KILLER_QUEEN_TRIGGER = create("killer_queen_trigger", new KillerQueenTriggerItem(gen()));
 
     //Blocks
     public static final Block BLACK_COFFIN = create("black_coffin", new CoffinBlock(DyeColor.BLACK, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);

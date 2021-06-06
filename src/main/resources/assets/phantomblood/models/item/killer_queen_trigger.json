@@ -1,0 +1,28 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "phantomblood:item/killer_queen_trigger"
+  },
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [0, 90, 0],
+      "translation": [ 0, -1.5, 0 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [0, 90, 0],
+      "translation": [ 0, -1.5, 0 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, 0],
+      "translation": [ 0, -1.5, 0 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, 0],
+      "translation": [ 0, -1.5, 0 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    }
+  }
+}
