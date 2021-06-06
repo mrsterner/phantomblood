@@ -39,7 +39,7 @@ private final ModelPart body;
 	private final ModelPart legdownr;
 	private double yOffset;
 
-public KillerQueenIdleModel() {
+	public KillerQueenIdleModel() {
 		textureWidth = 128;
 		textureHeight = 128;
 		body = new ModelPart(this);
@@ -68,7 +68,7 @@ public KillerQueenIdleModel() {
 		cloth = new ModelPart(this);
 		cloth.setPivot(0.0F, 0.0F, 0.0F);
 		body.addChild(cloth);
-		
+
 
 		cloth1 = new ModelPart(this);
 		cloth1.setPivot(0.0F, 0.0F, 0.0F);
@@ -175,8 +175,8 @@ public KillerQueenIdleModel() {
 		legdownr.setPivot(0.6913F, 9.3405F, 1.5427F);
 		rightleg.addChild(legdownr);
 		setRotationAngle(legdownr, 0.9506F, 0.2473F, 0.0614F);
-		legdownr.setTextureOffset(24, 27).addCuboid(-1.6913F, -4.3405F, -2.5427F, 4.0F, 9.0F, 5.0F, 0.0F, false);
-}
+		legdownr.setTextureOffset(24, 27).addCuboid(-2.6913F, -4.3405F, -2.5427F, 4.0F, 9.0F, 5.0F, 0.0F, false);
+	}
 
 	public void setAngles(@Nullable LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;
@@ -188,8 +188,6 @@ public KillerQueenIdleModel() {
 		matrixStack.translate(-0.45D, this.yOffset - 0.2D, 0.75D);
 		this.head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		this.body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-		this.rightarm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-		this.leftarm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		this.rightleg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		this.leftleg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		matrixStack.translate(0.0D, -this.yOffset, 0.0D);

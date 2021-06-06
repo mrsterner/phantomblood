@@ -27,8 +27,12 @@ public class StandUserHud extends DrawableHelper implements HudRenderCallback {
         if (player == null) return;
         Stand stand = StandUtils.getStand(player);
         if (stand == Stand.NONE) return;
+        if(stand == Stand.KILLER_QUEEN){
+            renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.LIGHT_PURPLE)).formatted(Formatting.BOLD), height, 4);
+        }else{
+            renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.YELLOW)).formatted(Formatting.BOLD), height, 4);
+        }
 
-        renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.YELLOW)).formatted(Formatting.BOLD), height, 4);
         renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stage", StandUtils.getStandLevel(player)).formatted(Formatting.BOLD), height, 3);
         renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.energy", StandUtils.getStandEnergy(player)).formatted(Formatting.BOLD), height, 2);
         renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.skill_cost", stand.energyForAbility).formatted(Formatting.BOLD), height, 1);

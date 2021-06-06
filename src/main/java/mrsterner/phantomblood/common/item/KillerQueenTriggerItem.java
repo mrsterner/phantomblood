@@ -76,7 +76,7 @@ public class KillerQueenTriggerItem extends Item {
                     case ENTITY:
                         System.out.println("entity");
                         String uuid =tag.getString(TAG.UUID.getName());
-                        List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(50, 50, 50), null);
+                        List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(128, 128, 128), null);
                         if(entities!=null) {
                             for(Entity entity : entities){
                                 if(entity.getUuid().toString().equals(uuid)){

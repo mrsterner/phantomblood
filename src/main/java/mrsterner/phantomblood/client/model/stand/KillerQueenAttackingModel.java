@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class KillerQueenAttackingModel extends EntityModel<LivingEntity> {
 private final ModelPart body;
@@ -244,6 +245,7 @@ public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, 
 	r_hand3.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(9*Math.PI/3)) * 1.2F * power;
 	r_hand4.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(10*Math.PI/3)) * 0.7F * power;
 	r_hand5.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(1.5*Math.PI/3) )* 1.6F * power;
+	this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.05D;
 
 	float r = (float)Math.random();
 	float offxl = r * MathHelper.sin(r * speed * animationProgress) * power + 0.2F;
@@ -254,14 +256,18 @@ public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, 
 	hands_r.pitch = offxr * 0.017453292F;
 	hands_r.yaw = offxr * 0.017453292F;
 }
+
+
+
 @Override
 public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-	    matrixStack.translate(0.0D, this.yOffset - 0.2D, -0.75D);
+	    matrixStack.translate(0.0D, this.yOffset, -0.75D);
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
 		head.render(matrixStack, buffer, packedLight, packedOverlay);
-		matrixStack.translate(0.0D, -this.yOffset, 0.0D);
 		leftleg.render(matrixStack, buffer, packedLight, packedOverlay);
 		rightleg.render(matrixStack, buffer, packedLight, packedOverlay);
+		matrixStack.translate(0.0D, -this.yOffset, 0.0D);
+
 		hands_r.render(matrixStack, buffer, packedLight, packedOverlay);
 		hands_l.render(matrixStack, buffer, packedLight, packedOverlay);
 		matrixStack.translate(0.0D, 0.2D, 0.75D);
