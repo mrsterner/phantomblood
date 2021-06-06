@@ -212,6 +212,7 @@ public class TheWorldIdleModel extends EntityModel<LivingEntity> {
         matrixStack.scale(2.0F, 2.0F, 2.0F);
 
 
+
     }
     public void setRotationAngle(ModelPart bone, float x, float y, float z) {
         bone.pitch = x;

@@ -152,6 +152,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         });
         AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
             if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND) {
+
                 if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());

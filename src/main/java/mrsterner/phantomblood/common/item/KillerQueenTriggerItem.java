@@ -55,41 +55,50 @@ public class KillerQueenTriggerItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack stack = user.getStackInHand(hand);
-        CompoundTag tag = getTagCompoundSafe(stack).getCompound(TAG.TAGs.getName());
-        String type = tag.getString(TAG.TYPE.getName());
-        TYPE t =TYPE.getType(type);
-        if(t!=null){
-            switch (t){
-                case BLOCK:
-                    System.out.println("block");
-                    BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
-                    world.createExplosion(user,pos.getX(),pos.getY() + 1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
-                    stack.decrement(1);
-                    break;
-                case ENTITY:
-                    System.out.println("entity");
-                    String uuid =tag.getString(TAG.UUID.getName());
-                    List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(50, 50, 50), null);
-                    if(entities!=null) {
-                        for(Entity entity : entities){
-                            if(entity.getUuid().toString().equals(uuid)){
-                                entity.getEntityWorld().createExplosion(entity, entity.getX(), entity.getY(), entity.getZ(), 2f, Explosion.DestructionType.NONE);
-                                entity.damage(DamageSource.explosion(user), 20f + StandUtils.getStandLevel(user));
+        int energy = StandUtils.getStandEnergy(user);
+        int energyForAbility = StandUtils.getStand(user).energyForAbility;
+        if(energy >= energyForAbility){
+            StandUtils.setStandEnergy(user, energy - energyForAbility);
+
+            ItemStack stack = user.getStackInHand(hand);
+            CompoundTag tag = getTagCompoundSafe(stack).getCompound(TAG.TAGs.getName());
+            String type = tag.getString(TAG.TYPE.getName());
+            TYPE t =TYPE.getType(type);
+            if(t!=null){
+                switch (t){
+                    case BLOCK:
+                        System.out.println("block");
+                        BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
+                        world.createExplosion(user,pos.getX(),pos.getY() + 1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
+                        stack.decrement(1);
+                        StandUtils.getStandEnergy(user);
+                        break;
+                    case ENTITY:
+                        System.out.println("entity");
+                        String uuid =tag.getString(TAG.UUID.getName());
+                        List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(50, 50, 50), null);
+                        if(entities!=null) {
+                            for(Entity entity : entities){
+                                if(entity.getUuid().toString().equals(uuid)){
+                                    entity.getEntityWorld().createExplosion(entity, entity.getX(), entity.getY(), entity.getZ(), 2f, Explosion.DestructionType.NONE);
+                                    entity.damage(DamageSource.explosion(user), 20f + StandUtils.getStandLevel(user));
+                                }
                             }
                         }
-                    }
-                    stack.decrement(1);
-                    break;
-            default:
-                System.out.println("fail");
-                    break;
+                        stack.decrement(1);
+                        break;
+                    default:
+                        System.out.println("fail");
+                        break;
+                }
+
+
             }
 
-
+            return super.use(world, user, hand);
         }
-
         return super.use(world, user, hand);
+
     }
     public static enum TAG {
         TAGs("nbts"),TYPE("type"),UUID("uuid"),POS_X("pos_x"),POS_Y("pos_y"),POS_Z("pos_z");
