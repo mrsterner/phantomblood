@@ -54,17 +54,48 @@ public abstract class InGameHudMixin extends DrawableHelper {
             client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
 
         }
+        if(StandUtils.getStand(player) == Stand.STAR_PLATINUM && StandUtils.isStandActive(player)){
+            client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
+            if(StandUtils.getStandLevel(player) == 0){
+                drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 50) , 27, 0, 53, 26);
+            }else{
+                drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 50) , 27+53, 0, 53, 26);
+            }
+            drawTexture(matrices, scaledWidth / 2 + 100, (scaledHeight - 30) , 83, 53, 53, 38);
+            client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
+        }
     }
 
     @Inject(method = "renderStatusBars", at = @At(value = "TAIL"))
     private void renderPost(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (StandUtils.getStand(player) == Stand.THE_WORLD && StandUtils.isStandActive(player)) {
-            client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
-            drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 0, 6, 24);
-            drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));
-            drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 14, 0, 8, 26);
-            drawTexture(matrices, scaledWidth / 2 + 93, (scaledHeight - (int) (4 + StandUtils.getStand(player).energyForAbility * 26f / 100000)) , 23, 0, 4, 3);
+        if (StandUtils.isStandActive(player)) {
+            switch (StandUtils.getStand(player)) {
+                case THE_WORLD:
+                    client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
+                    drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 0, 6, 24);
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 14, 0, 8, 26);
+                    drawTexture(matrices, scaledWidth / 2 + 93, (scaledHeight - (int) (4 + StandUtils.getStand(player).energyForAbility * 26f / 100000)) , 23, 0, 4, 3);
+                    break;
+                case KILLER_QUEEN:
+                    client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
+                    drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 48, 6, 24);
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 14, 0, 8, 26);
+                    drawTexture(matrices, scaledWidth / 2 + 93, (scaledHeight - (int) (4 + StandUtils.getStand(player).energyForAbility * 26f / 100000)) , 23, 0, 4, 3);
+                    break;
+                case STAR_PLATINUM:
+                    client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
+                    drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 24, 6, 24);
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 14, 0, 8, 26);
+                    drawTexture(matrices, scaledWidth / 2 + 93, (scaledHeight - (int) (4 + StandUtils.getStand(player).energyForAbility * 26f / 100000)) , 23, 0, 4, 3);
+                    break;
+                default:
+                    break;
+            }
         }
+
     }
 }

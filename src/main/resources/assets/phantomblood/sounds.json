@@ -25,7 +25,15 @@
       },
       {
         "name": "phantomblood:punch",
+        "pitch": 1.1
+      },
+      {
+        "name": "phantomblood:punch",
         "pitch": 1
+      },
+      {
+        "name": "phantomblood:punch",
+        "pitch": 0.9
       },
       {
         "name": "phantomblood:punch",

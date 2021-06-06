@@ -20,7 +20,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
 
     @Inject(method = "tickMovement", at = @At("HEAD"), cancellable = true)
     protected void doNotLetPlayersMoveWhenTimeIsStopped(CallbackInfo ci) {
-        if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && StandUtils.getStand(this) != Stand.THE_WORLD && TimeStopUtils.isInRangeOfTimeStop(this)) {
+        if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && StandUtils.getStand(this) != Stand.THE_WORLD && StandUtils.getStand(this) != Stand.STAR_PLATINUM && TimeStopUtils.isInRangeOfTimeStop(this)) {
             ci.cancel();
         }
     }
