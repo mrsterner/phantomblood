@@ -208,7 +208,7 @@ public class StarPlatinumIdleModel extends EntityModel<LivingEntity> {
         this.head.pitch = headPitch * 0.017453292F;
         this.head.yaw = headYaw * 0.017453292F;
 
-        this.off = 1F + MathHelper.cos((float) (0.15*animationProgress)/2)/4;
+        this.off = 1F + MathHelper.cos((float) (0.15*animationProgress))/6;
 
 
 
