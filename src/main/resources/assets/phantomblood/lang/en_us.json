@@ -54,9 +54,11 @@
   "tooltip.phantomblood.the_world_disc": "The World",
   "tooltip.phantomblood.star_platinum_disc": "Star Platinum",
   "tooltip.phantomblood.killer_queen_disc": "Killer Queen",
+  "tooltip.phantomblood.crazy_diamond": "Crazy Diamond",
   "item.phantomblood.the_world_disc": "Stand Disc",
   "item.phantomblood.star_platinum_disc": "Stand Disc",
   "item.phantomblood.killer_queen_disc": "Stand Disc",
+  "item.phantomblood.crazy_diamond": "Stand Disc",
 
   "phantomblood.key.change_stand_mode": "Change Stand Mode",
   "phantomblood.key.toggle_stand": "Toggle Stand",
