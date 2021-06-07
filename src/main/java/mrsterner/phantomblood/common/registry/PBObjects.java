@@ -49,7 +49,6 @@ public class PBObjects {
     public static final Item KILLER_QUEEN_DISC = create("killer_queen_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
-
     //Blocks
     public static final Block BLACK_COFFIN = create("black_coffin", new CoffinBlock(DyeColor.BLACK, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
     public static final Block RED_COFFIN = create("red_coffin", new CoffinBlock(DyeColor.RED, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
