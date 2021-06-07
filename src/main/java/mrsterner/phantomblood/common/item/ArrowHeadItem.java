@@ -35,7 +35,7 @@ public class ArrowHeadItem extends Item {
                 }
 
             } else if(StandUtils.getStandLevel(user) == 0){
-                StandUtils.setStand(user, Stand.NONE);
+                StandUtils.setStandLevel(user, 1);
             } else {
                 return TypedActionResult.fail(ItemStack.EMPTY);
             }
