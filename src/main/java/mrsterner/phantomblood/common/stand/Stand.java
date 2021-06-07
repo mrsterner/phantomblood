@@ -18,7 +18,7 @@ public enum Stand {
         server.execute(() -> {
             int energy = StandUtils.getStandEnergy(player);
             int energyForAbility = StandUtils.getStand(player).energyForAbility;
-            long ticks = StandUtils.getStandLevel(player) == 0 ? 90 : 180;
+            long ticks = StandUtils.getStandLevel(player) == 0 ? 120 : 200;
             if (energy >= energyForAbility) {
                 StandUtils.setStandEnergy(player, energy - energyForAbility);
                 TimeStopUtils.setTimeStoppedTicks(player.world, ticks);

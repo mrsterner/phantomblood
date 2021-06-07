@@ -1,10 +1,13 @@
 package mrsterner.phantomblood.common.item;
 
+import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.MathHelper;
@@ -37,9 +40,11 @@ public class ArrowHeadItem extends Item {
             } else if(StandUtils.getStandLevel(user) == 0){
                 StandUtils.setStandLevel(user, 1);
             } else {
+                world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,1F,1);
                 return TypedActionResult.fail(ItemStack.EMPTY);
             }
         }
+        world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,0.15F,1);
         return TypedActionResult.consume(ItemStack.EMPTY);
     }
 
