@@ -41,20 +41,16 @@ public class ArrowHeadItem extends Item {
                 }
             } else if(StandUtils.getStandLevel(user) == 0){
                 StandUtils.setStandLevel(user, 1);
-            } else {
-                world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,1F,1);
-                return TypedActionResult.fail(ItemStack.EMPTY);
             }
         }
         int t2 = MathHelper.nextInt(world.random, 1, 4);
         if(t2 == 1){
-            user.damage(DamageSource.GENERIC,user.getMaxHealth());
+            user.damage(DamageSource.GENERIC,user.getMaxHealth() + 4);
             return super.use(world, user, hand);
         }else{
-            world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,0.15F,1);
-            user.damage(DamageSource.GENERIC,user.getMaxHealth());
+            world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,1F,1);
+            user.damage(DamageSource.GENERIC,user.getMaxHealth() + 4); //Kills you even if you have 2 absorption hearts
             return TypedActionResult.consume(ItemStack.EMPTY);
         }
     }
-    //To do: to succeed in using the arrow, the user wither have to be a vampire or use a totem of undying to prevent death.
 }
