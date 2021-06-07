@@ -46,12 +46,13 @@ public class ArrowHeadItem extends Item {
                 return TypedActionResult.fail(ItemStack.EMPTY);
             }
         }
-        int t2 = MathHelper.nextInt(world.random, 1, 1);
+        int t2 = MathHelper.nextInt(world.random, 1, 4);
         if(t2 == 1){
             user.damage(DamageSource.GENERIC,user.getMaxHealth());
             return super.use(world, user, hand);
         }else{
             world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,0.15F,1);
+            user.damage(DamageSource.GENERIC,user.getMaxHealth());
             return TypedActionResult.consume(ItemStack.EMPTY);
         }
     }
