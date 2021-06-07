@@ -47,11 +47,11 @@ import java.util.UUID;
 
 @Environment(EnvType.CLIENT)
 public class PhantomBloodClient implements ClientModInitializer {
-    KeyBinding useAbilityKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.use_ability", GLFW.GLFW_KEY_O, "key.categories.gameplay"));
+    KeyBinding useAbilityKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.use_ability", GLFW.GLFW_KEY_O, "key.categories.phantomblood"));
     boolean wasUseAbilityKeybindPressed = false;
-    KeyBinding toggleStandKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.toggle_stand", GLFW.GLFW_KEY_P, "key.categories.gameplay"));
+    KeyBinding toggleStandKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.toggle_stand", GLFW.GLFW_KEY_P, "key.categories.phantomblood"));
     boolean wasToggleStandKeybindPressed = false;
-    KeyBinding changeStandModeKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.change_stand_mode", GLFW.GLFW_KEY_I, "key.categories.gameplay"));
+    KeyBinding changeStandModeKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.change_stand_mode", GLFW.GLFW_KEY_I, "key.categories.phantomblood"));
     boolean wasChangeStandKeybindPressed = false;
 
     ZaWarudoShader zaWarudoShader = new ZaWarudoShader();

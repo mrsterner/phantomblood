@@ -36,6 +36,7 @@
   "stand.phantomblood.none": "None",
   "stand.phantomblood.the_world": "THE WORLD",
   "stand.phantomblood.killer_queen": "Killer Queen",
+  "stand.phantomblood.star_platinum": "Star Platinum",
 
   "status.phantomblood.idle": "Idle",
   "status.phantomblood.attacking": "Attacking",
@@ -55,6 +56,11 @@
   "tooltip.phantomblood.killer_queen_disc": "Killer Queen",
   "item.phantomblood.the_world_disc": "Stand Disc",
   "item.phantomblood.star_platinum_disc": "Stand Disc",
-  "item.phantomblood.killer_queen_disc": "Stand Disc"
+  "item.phantomblood.killer_queen_disc": "Stand Disc",
+
+  "phantomblood.key.change_stand_mode": "Change Stand Mode",
+  "phantomblood.key.toggle_stand": "Toggle Stand",
+  "phantomblood.key.use_ability": "Use Ability",
+  "key.categories.phantomblood": "Phantom Blood"
 
 }
