@@ -46,6 +46,13 @@ repositories {
         name "jitpack"
         url "https://jitpack.io"
     }
+    maven {
+        name = "Jamies"
+        url "https://maven.jamieswhiteshirt.com/libs-release/"
+        content {
+            includeGroup "com.jamieswhiteshirt"
+        }
+    }
 
     maven {
         url = "https://maven.terraformersmc.com/releases/"
@@ -71,7 +78,9 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rei_version}"
     modRuntime "me.shedaniel:RoughlyEnoughItems:${rei_version}"
 
-
+    // Reach Entity Attributes
+    modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}"
+    include "com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}"
 
     modImplementation "curse.maven:haema-391257:${project.haema_version}"
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"

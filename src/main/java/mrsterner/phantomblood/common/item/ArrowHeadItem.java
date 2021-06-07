@@ -3,6 +3,7 @@ package mrsterner.phantomblood.common.item;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,6 +18,8 @@ public class ArrowHeadItem extends Item {
     public ArrowHeadItem(Settings settings) {
         super(settings);
     }
+
+
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -36,7 +39,6 @@ public class ArrowHeadItem extends Item {
                     default:
                         break;
                 }
-
             } else if(StandUtils.getStandLevel(user) == 0){
                 StandUtils.setStandLevel(user, 1);
             } else {
@@ -44,10 +46,14 @@ public class ArrowHeadItem extends Item {
                 return TypedActionResult.fail(ItemStack.EMPTY);
             }
         }
-        world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,0.15F,1);
-        return TypedActionResult.consume(ItemStack.EMPTY);
+        int t2 = MathHelper.nextInt(world.random, 1, 1);
+        if(t2 == 1){
+            user.damage(DamageSource.GENERIC,user.getMaxHealth());
+            return super.use(world, user, hand);
+        }else{
+            world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,0.15F,1);
+            return TypedActionResult.consume(ItemStack.EMPTY);
+        }
     }
-
-
-//To do: to succeed in using the arrow, the user wither have to be a vampire or use a totem of undying to prevent death.
+    //To do: to succeed in using the arrow, the user wither have to be a vampire or use a totem of undying to prevent death.
 }
