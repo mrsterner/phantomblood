@@ -22,6 +22,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
     @Inject(method = "onSpawn", at = @At("RETURN"))
     private void onSpawn(CallbackInfo ci) {
+        StandUtils.setStandActive(this, false);
         StandUtils.setStand(this, Stand.NONE);
     }
 }

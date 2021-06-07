@@ -29,12 +29,15 @@ public class ArrowHeadItem extends Item {
                 switch (t){
                     case 1:
                         StandUtils.setStand(user, Stand.STAR_PLATINUM);
+                        StandUtils.setStandLevel(user, 0);
                         break;
                     case 2:
                         StandUtils.setStand(user, Stand.THE_WORLD);
+                        StandUtils.setStandLevel(user, 0);
                         break;
                     case 3:
                         StandUtils.setStand(user, Stand.KILLER_QUEEN);
+                        StandUtils.setStandLevel(user, 0);
                         break;
                     default:
                         break;
