@@ -42,6 +42,7 @@ public class PBObjects {
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(new Item.Settings())); //Should not register in Item group right now
     public static final Item KILLER_QUEEN_TRIGGER = create("killer_queen_trigger", new KillerQueenTriggerItem(gen()));
+    public static final Item BLACK_FABRIC = create("black_fabric", new Item(gen()));
 
 
     public static final Item STAR_PLATINUM_DISC = create("star_platinum_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));

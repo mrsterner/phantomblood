@@ -7,7 +7,7 @@
   "textures": {
     "1": "phantomblood:block/base",
     "2": "phantomblood:block/inline",
-    "particle": "phantomblood:block/base"
+    "particle": "minecraft:block/blackstone"
   },
   "elements": [
     {

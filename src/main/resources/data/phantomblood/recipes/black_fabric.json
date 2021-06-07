@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " WS",
+    "WRW",
+    "SW "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:black_wool"
+    },
+    "R": {
+      "item": "haema:vampire_blood"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "phantomblood:black_fabric",
+    "count": 1
+  }
+}
+

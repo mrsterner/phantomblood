@@ -1,15 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "R R",
+    "W W",
     "W W"
   ],
   "key": {
     "W": {
-      "item": "minecraft:black_wool"
-    },
-    "R": {
-      "item": "haema:vampire_blood"
+      "item": "phantomblood:black_fabric"
     }
   },
   "result": {

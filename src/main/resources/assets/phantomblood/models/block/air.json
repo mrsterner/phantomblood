@@ -1,6 +1,6 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "particle": "phantomblood:block/base"
+    "particle": "minecraft:block/blackstone"
   }
 }
