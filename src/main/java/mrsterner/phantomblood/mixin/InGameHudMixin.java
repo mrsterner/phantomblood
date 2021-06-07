@@ -2,15 +2,14 @@ package mrsterner.phantomblood.mixin;
 
 
 import mrsterner.phantomblood.PhantomBlood;
-import mrsterner.phantomblood.stand.Stand;
-import mrsterner.phantomblood.stand.StandUtils;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;

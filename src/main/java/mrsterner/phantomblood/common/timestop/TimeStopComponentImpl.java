@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.timestop;
+package mrsterner.phantomblood.common.timestop;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.entity.player.PlayerEntity;

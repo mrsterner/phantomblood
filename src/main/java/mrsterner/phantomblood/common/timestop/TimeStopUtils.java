@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.timestop;
+package mrsterner.phantomblood.common.timestop;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;

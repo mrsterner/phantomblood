@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.client;
+package mrsterner.phantomblood;
 
 import ladysnake.satin.api.event.PostWorldRenderCallback;
 import ladysnake.satin.api.experimental.ReadableDepthFramebuffer;

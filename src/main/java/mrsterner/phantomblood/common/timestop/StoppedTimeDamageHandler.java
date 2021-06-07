@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.timestop;
+package mrsterner.phantomblood.common.timestop;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;

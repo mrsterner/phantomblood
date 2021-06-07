@@ -1,7 +1,7 @@
 package mrsterner.phantomblood.common.item;
 
-import mrsterner.phantomblood.stand.Stand;
-import mrsterner.phantomblood.stand.StandUtils;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

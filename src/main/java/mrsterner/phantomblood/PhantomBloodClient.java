@@ -1,5 +1,6 @@
-package mrsterner.phantomblood.client;
+package mrsterner.phantomblood;
 
+import mrsterner.phantomblood.client.StandUserHud;
 import mrsterner.phantomblood.client.model.stand.*;
 import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import mrsterner.phantomblood.client.renderer.armor.StonemaskRenderer;
@@ -12,9 +13,9 @@ import mrsterner.phantomblood.common.item.BloodStonemaskItem;
 import mrsterner.phantomblood.common.item.StonemaskItem;
 import mrsterner.phantomblood.common.item.VampireArmorItem;
 import mrsterner.phantomblood.common.registry.*;
-import mrsterner.phantomblood.stand.Stand;
-import mrsterner.phantomblood.stand.StandUtils;
-import mrsterner.phantomblood.timestop.TimeStopUtils;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandUtils;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -53,7 +54,7 @@ public class PhantomBloodClient implements ClientModInitializer {
     KeyBinding changeStandModeKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.change_stand_mode", GLFW.GLFW_KEY_I, "key.categories.gameplay"));
     boolean wasChangeStandKeybindPressed = false;
 
-    public ZaWarudoShader zaWarudoShader = new ZaWarudoShader();
+    ZaWarudoShader zaWarudoShader = new ZaWarudoShader();
 
     @Override
     public void onInitializeClient() {

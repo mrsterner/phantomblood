@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.stand;
+package mrsterner.phantomblood.common.stand;
 
 import net.minecraft.entity.player.PlayerEntity;
 

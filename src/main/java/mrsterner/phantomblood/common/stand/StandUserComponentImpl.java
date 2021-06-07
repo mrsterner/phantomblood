@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.stand;
+package mrsterner.phantomblood.common.stand;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.entity.PlayerComponent;

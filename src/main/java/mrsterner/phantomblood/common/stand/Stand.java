@@ -1,16 +1,13 @@
-package mrsterner.phantomblood.stand;
+package mrsterner.phantomblood.common.stand;
 
 
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
-import mrsterner.phantomblood.timestop.TimeStopUtils;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 import java.util.Locale;

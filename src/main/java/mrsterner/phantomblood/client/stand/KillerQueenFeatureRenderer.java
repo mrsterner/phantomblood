@@ -2,11 +2,9 @@ package mrsterner.phantomblood.client.stand;
 
 import mrsterner.phantomblood.client.model.stand.KillerQueenAttackingModel;
 import mrsterner.phantomblood.client.model.stand.KillerQueenIdleModel;
-import mrsterner.phantomblood.client.model.stand.TheWorldAttackingModel;
-import mrsterner.phantomblood.client.model.stand.TheWorldIdleModel;
-import mrsterner.phantomblood.stand.Stand;
-import mrsterner.phantomblood.stand.StandMode;
-import mrsterner.phantomblood.stand.StandUtils;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandMode;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;

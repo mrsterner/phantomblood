@@ -1,9 +1,8 @@
-package mrsterner.phantomblood.client;
+package mrsterner.phantomblood.common;
 
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
-import mrsterner.phantomblood.stand.Stand;
-import mrsterner.phantomblood.stand.StandMode;
-import mrsterner.phantomblood.stand.StandUtils;
+import mrsterner.phantomblood.common.stand.StandMode;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

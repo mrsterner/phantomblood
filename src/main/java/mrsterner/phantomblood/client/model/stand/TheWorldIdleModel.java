@@ -1,12 +1,10 @@
 package mrsterner.phantomblood.client.model.stand;
 
-import mrsterner.phantomblood.stand.StandUtils;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
 

@@ -17,7 +17,7 @@
       "mrsterner.phantomblood.PhantomBlood"
     ],
     "client": [
-      "mrsterner.phantomblood.client.PhantomBloodClient"
+      "mrsterner.phantomblood.PhantomBloodClient"
     ],
     "cardinal-components-entity": [
       "mrsterner.phantomblood.PhantomBlood"

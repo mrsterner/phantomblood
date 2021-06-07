@@ -1,9 +1,9 @@
 package mrsterner.phantomblood.mixin;
 
 import com.mojang.authlib.GameProfile;
-import mrsterner.phantomblood.stand.Stand;
-import mrsterner.phantomblood.stand.StandUtils;
-import mrsterner.phantomblood.timestop.TimeStopUtils;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandUtils;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;

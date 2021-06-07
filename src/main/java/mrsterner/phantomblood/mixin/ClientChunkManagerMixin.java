@@ -1,7 +1,7 @@
 package mrsterner.phantomblood.mixin;
 
 
-import mrsterner.phantomblood.timestop.TimeStopUtils;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.minecraft.client.world.ClientChunkManager;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;

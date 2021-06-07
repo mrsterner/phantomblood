@@ -1,7 +1,7 @@
 package mrsterner.phantomblood.mixin;
 
 
-import mrsterner.phantomblood.timestop.TimeStopUtils;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.particle.ParticleTextureSheet;

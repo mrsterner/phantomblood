@@ -2,10 +2,9 @@ package mrsterner.phantomblood.client.stand;
 
 
 import mrsterner.phantomblood.client.model.stand.StarPlatinumAttackingModel;
-import mrsterner.phantomblood.client.model.stand.TheWorldAttackingModel;
-import mrsterner.phantomblood.stand.Stand;
-import mrsterner.phantomblood.stand.StandMode;
-import mrsterner.phantomblood.stand.StandUtils;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandMode;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
