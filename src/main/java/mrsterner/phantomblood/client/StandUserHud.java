@@ -27,20 +27,22 @@ public class StandUserHud extends DrawableHelper implements HudRenderCallback {
         if (stand == Stand.NONE) return;
         if(stand == Stand.KILLER_QUEEN){
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.LIGHT_PURPLE)).formatted(Formatting.BOLD), height, 4);
-        }else{
+        }else if(stand == Stand.THE_WORLD){
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.YELLOW)).formatted(Formatting.BOLD), height, 4);
+        }else{
+            renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.DARK_PURPLE)).formatted(Formatting.BOLD), height, 4);
         }
 
-        renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stage", StandUtils.getStandLevel(player)).formatted(Formatting.BOLD), height, 3);
-        renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.energy", StandUtils.getStandEnergy(player)).formatted(Formatting.BOLD), height, 2);
-        renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.skill_cost", stand.energyForAbility).formatted(Formatting.BOLD), height, 1);
+        //renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stage", StandUtils.getStandLevel(player)).formatted(Formatting.BOLD), height, 3);
+        //renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.energy", StandUtils.getStandEnergy(player)).formatted(Formatting.BOLD), height, 2);
+        //renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.skill_cost", stand.energyForAbility).formatted(Formatting.BOLD), height, 1);
 
         matrixStack.pop();
     }
 
     void renderText(MatrixStack stack, TextRenderer renderer, Text text, int height, int offset) {
         int textWidth = renderer.getWidth(text);
-        drawCenteredText(stack, renderer, text, textWidth/2 + 10, height - 16 - offset*9, 0xffffff);
+        drawCenteredText(stack, renderer, text, textWidth/2 + 10, height + 18 - offset*9, 0xffffff);
 
     }
 }

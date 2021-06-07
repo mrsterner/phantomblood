@@ -41,7 +41,7 @@
   "status.phantomblood.idle": "Idle",
   "status.phantomblood.attacking": "Attacking",
 
-  "hud.phantomblood.stand": "Stand: %1$s",
+  "hud.phantomblood.stand": "%1$s",
   "hud.phantomblood.stage": "Stage: %1$s",
   "hud.phantomblood.energy": "Energy: %1$s / 100000",
   "hud.phantomblood.skill_cost": "Skill Cost: %1$s",

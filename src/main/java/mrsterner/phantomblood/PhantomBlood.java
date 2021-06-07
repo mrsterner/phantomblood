@@ -122,7 +122,6 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             }
         });
 
-
         //Vampire Coat abilities, if ampoule is in off-hand, add blood ampoule on villager hit, otherwise, 10% chance to give blood directly to user
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             ItemStack chest = player.getEquippedStack(EquipmentSlot.CHEST);
@@ -160,7 +159,6 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                         }
                     }
                 }
-
             }
             return ActionResult.PASS;
         });
@@ -185,8 +183,6 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             return ActionResult.PASS;
         });
 
-
-        //Somnus and Coffin code for sleep on the day
         WorldSleepEvents.WORLD_WAKE_TIME.register((world, newTime, curTime) -> {
             if (world.isDay()) {
                 long time = curTime;
@@ -234,9 +230,4 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
     public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
         registry.register(TimeStopComponent.worldKey, TimeStopComponentImpl::new);
     }
-
-
-
-
-
 }

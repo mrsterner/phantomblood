@@ -49,7 +49,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
                 //drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 66) , 27+53, 0, 53, 38);
             }
             //drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 66) , 27, 53, 53, 38);
-            drawTexture(matrices, scaledWidth / 2 + 100, (scaledHeight - 30) , 27, 53, 53, 38);
+            //drawTexture(matrices, scaledWidth / 2 + 100, (scaledHeight - 30) , 27, 53, 53, 38);
             client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
 
         }
@@ -60,7 +60,17 @@ public abstract class InGameHudMixin extends DrawableHelper {
             }else{
                 drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 50) , 27+53, 0, 53, 26);
             }
-            drawTexture(matrices, scaledWidth / 2 + 100, (scaledHeight - 30) , 83, 53, 53, 38);
+            //drawTexture(matrices, scaledWidth / 2 + 100, (scaledHeight - 30) , 83, 53, 53, 38);
+            client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
+        }
+        if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && StandUtils.isStandActive(player)){
+            client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
+            if(StandUtils.getStandLevel(player) == 0){
+                drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 50) , 27, 0, 53, 26);
+            }else{
+                drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 50) , 27+53, 0, 53, 26);
+            }
+            //drawTexture(matrices, scaledWidth / 2 + 100, (scaledHeight - 30) , 83, 53, 53, 38);
             client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
         }
     }
