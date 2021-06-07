@@ -73,7 +73,7 @@ public class PBObjects {
     public static final Item BLOODY_STONE_MASK_ITEM = create("bloodstonemaskitem", new BloodStonemaskItem(ArmorMaterials.DIAMOND, EquipmentSlot.HEAD, gen()));
     public static final Item VAMPIRE_HAT = create("vampire_hat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD, gen().maxCount(1)));
     public static final Item VAMPIRE_JACKET = create("vampire_coat", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST, gen().maxCount(1)));
-    public static final Item VAMPIRE_JACKET_F = create("vampire_coat_f", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST, gen().maxCount(1)));
+    public static final Item VAMPIRE_JACKET_F = create("vampire_coat_f", new VampireArmorFItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.CHEST, gen().maxCount(1)));
     public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.LEGS, gen().maxCount(1)));
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.FEET, gen().maxCount(1)));
 

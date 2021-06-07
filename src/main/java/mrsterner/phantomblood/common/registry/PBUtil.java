@@ -29,6 +29,22 @@ public class PBUtil {
             }
         }
     }
+    public static void addItemToInventory(PlayerEntity player, Hand hand, ItemStack toAdd) {
+        boolean shouldAdd = false;
+        ItemStack stack = player.getStackInHand(hand);
+        if (stack.getCount() == 1) {
+            if (player.isCreative()) {
+                shouldAdd = true;
+            } else {
+                player.setStackInHand(hand, toAdd);
+            }
+        }
+        if (shouldAdd) {
+            if (!player.inventory.insertStack(toAdd)) {
+                player.dropItem(toAdd, false, true);
+            }
+        }
+    }
     public static List<Entity> getTagetsInRange(Entity entity, double distance) {
         List<Entity> entities = entity.getEntityWorld().getEntitiesByClass(Entity.class, entity.getBoundingBox().expand(distance), null);
         return entities;

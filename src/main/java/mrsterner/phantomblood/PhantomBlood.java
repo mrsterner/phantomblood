@@ -148,7 +148,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                 if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
-                    player.setStackInHand(hand, trigger);
+                    PBUtil.addItemToInventory(player, Hand.MAIN_HAND, trigger);
                }else{
                     PlayerInventory inventory = player.inventory;
                     List<ItemStack> mainInventory = inventory.main;
@@ -168,7 +168,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                 if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
-                    player.setStackInHand(hand, trigger);
+                    PBUtil.addItemToInventory(player, Hand.MAIN_HAND, trigger);
                 }else{
                     PlayerInventory inventory = player.inventory;
                     List<ItemStack> mainInventory = inventory.main;
