@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "W W",
-    "RWR",
-    "WIW"
+    "RIR",
+    "WWW"
   ],
   "key": {
     "W": {
@@ -17,7 +17,7 @@
     }
   },
   "result": {
-    "item": "phantomblood:vampire_coat",
+    "item": "phantomblood:vampire_coat_f",
     "count": 1
   }
 }

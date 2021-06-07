@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "WWW",
+    "BBB"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:blackstone_slab"
+    },
+    "W": {
+      "item": "minecraft:lime_wool"
+    },
+    "B": {
+      "item": "minecraft:blackstone"
+    }
+  },
+  "result": {
+    "item": "phantomblood:lime_coffin",
+    "count": 1
+  }
+}
+

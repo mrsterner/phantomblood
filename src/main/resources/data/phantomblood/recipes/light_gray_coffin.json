@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "WWW",
+    "BBB"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:blackstone_slab"
+    },
+    "W": {
+      "item": "minecraft:light_gray_wool"
+    },
+    "B": {
+      "item": "minecraft:blackstone"
+    }
+  },
+  "result": {
+    "item": "phantomblood:light_gray_coffin",
+    "count": 1
+  }
+}
+

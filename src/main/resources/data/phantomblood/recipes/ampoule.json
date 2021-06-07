@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "result": {
+    "item": "phantomblood:ampoule",
+    "count": 1
+  }
+}
+

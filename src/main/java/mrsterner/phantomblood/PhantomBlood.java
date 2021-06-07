@@ -131,7 +131,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                 ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
                 //Inflict slowness on hit with empty hand
             }
-            if (!world.isClient && chest.getItem() == PBObjects.VAMPIRE_JACKET && ((Vampirable) player).isVampire() && VampireBloodManager.Companion.getGoodBloodTag().contains(entity.getType())) {
+            if (!world.isClient && chest.getItem() == PBObjects.VAMPIRE_JACKET || chest.getItem() == PBObjects.VAMPIRE_JACKET_F && ((Vampirable) player).isVampire() && VampireBloodManager.Companion.getGoodBloodTag().contains(entity.getType())) {
                 if (player.getOffHandStack().getItem() == PBObjects.AMPOULE) {
                     PBUtil.addItemToInventoryAndConsume(player, Hand.OFF_HAND, new ItemStack(PBObjects.BLOOD_AMPOULE));
                     return ActionResult.SUCCESS;

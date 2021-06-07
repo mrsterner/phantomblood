@@ -6,17 +6,17 @@
   "pages": [
     {
       "type": "text",
-      "text": "Usually, the curse of  have some classy attire, might even enhance abilities... Due to the Besmirched Wool  are fine with the outfit."
+      "text": "Usually, the curse of Vampirism have some classy attire, might even enhance abilities..."
     },
     {
       "type": "crafting",
       "recipe": "phantomblood:vampire_hat",
-      "text": "The Top Hat doubles the blood received when drinking blood"
+      "text": "Nothing yet"
     },
     {
       "type": "crafting",
       "recipe": "phantomblood:vampire_coat",
-      "text": "The Coat inflicts slowness upon hitting an enemy with your bare hands"
+      "text": "Fill ampoules with blood on hitting humanoids"
     },
     {
       "type": "crafting",
@@ -26,7 +26,7 @@
     {
       "type": "crafting",
       "recipe": "phantomblood:vampire_shoes",
-      "text": "Nothing yet"
+      "text": "Inflicts slowness upon hitting an enemy with your bare hands"
     }
   ]
 }

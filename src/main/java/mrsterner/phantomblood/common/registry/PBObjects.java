@@ -40,7 +40,7 @@ public class PBObjects {
     public static final Item DAGGER = create("dagger", new DaggerItem(ToolMaterials.IRON, 1, -2, gen()));
     public static final Item BLOOD_AMPOULE = create("blood_ampoule", new BloodAmpouleItem(gen()));
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
-    public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
+    public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(new Item.Settings())); //Should not register in Item group right now
     public static final Item KILLER_QUEEN_TRIGGER = create("killer_queen_trigger", new KillerQueenTriggerItem(gen()));
 
 
@@ -76,8 +76,6 @@ public class PBObjects {
     public static final Item VAMPIRE_PANTS = create("vampire_pants", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.LEGS, gen().maxCount(1)));
     public static final Item VAMPIRE_BOOTS = create("vampire_shoes", new VampireArmorItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.FEET, gen().maxCount(1)));
 
-    //Book
-    public static final Item LOST_BOOK = create("lost_book", new PBBookItem(gen().maxCount(1)));
 
     //Structure
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> RUIN = PhantomBlood.RUIN.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(RuinGenerator.STARTING_POOL), 2));
