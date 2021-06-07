@@ -21,6 +21,8 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.fabricmc.fabric.api.util.TriState;
@@ -31,6 +33,12 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.loot.ConstantLootTableRange;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -96,13 +104,23 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         }
         return tagCompound;
     }
-
     @Override
     public void onInitialize() {
         GeckoLib.initialize();
         PBObjects.init();
         registerStructures();
         putStructures();
+
+        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {
+            Identifier nether_fortress = new Identifier(PhantomBlood.MODID, "inject/nether_fortress");
+            Identifier simple_dungeon = new Identifier(PhantomBlood.MODID, "inject/simple_dungeon");
+            if (LootTables.NETHER_BRIDGE_CHEST.equals(identifier)) {
+                fabricLootSupplierBuilder.withPool(LootPool.builder().with(LootTableEntry.builder(nether_fortress).weight(1)).build());
+            }
+            if (LootTables.DESERT_PYRAMID_CHEST.equals(identifier) || LootTables.SIMPLE_DUNGEON_CHEST.equals(identifier)) {
+                fabricLootSupplierBuilder.withPool(LootPool.builder().with(LootTableEntry.builder(simple_dungeon).weight(1)).build());
+            }
+        });
 
 
         //Vampire Coat abilities, if ampoule is in off-hand, add blood ampoule on villager hit, otherwise, 10% chance to give blood directly to user

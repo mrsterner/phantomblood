@@ -50,7 +50,6 @@ public abstract class LivingEntityMixin extends Entity {
                 }
                 if(head.getItem() == PBObjects.STONE_MASK_ITEM){
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 3,1));
-                    System.out.println("MASKKKKKKKKKKKKKK");
                 }
 
         }

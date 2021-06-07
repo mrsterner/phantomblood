@@ -63,14 +63,12 @@ public class KillerQueenTriggerItem extends Item {
             if(t!=null){
                 switch (t){
                     case BLOCK:
-                        System.out.println("block");
                         BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
                         world.createExplosion(user,pos.getX(),pos.getY() + 1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
                         stack.decrement(1);
                         StandUtils.getStandEnergy(user);
                         break;
                     case ENTITY:
-                        System.out.println("entity");
                         String uuid =tag.getString(TAG.UUID.getName());
                         List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(128, 128, 128), null);
                         if(entities!=null) {
@@ -84,8 +82,6 @@ public class KillerQueenTriggerItem extends Item {
                         stack.decrement(1);
                         break;
                     default:
-                        System.out.println("fail");
-                        break;
                 }
 
 
