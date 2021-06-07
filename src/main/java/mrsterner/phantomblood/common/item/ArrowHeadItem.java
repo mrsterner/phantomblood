@@ -46,7 +46,7 @@ public class ArrowHeadItem extends Item {
                 StandUtils.setStandLevel(user, 1);
             }
         }
-        int t2 = MathHelper.nextInt(world.random, 1, 4);
+        int t2 = MathHelper.nextInt(world.random, 1, 10);
         if(t2 == 1){
             user.damage(DamageSource.GENERIC,user.getMaxHealth() + 4);
             return super.use(world, user, hand);

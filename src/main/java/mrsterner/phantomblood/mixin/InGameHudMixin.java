@@ -78,7 +78,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderStatusBars", at = @At(value = "TAIL"))
     private void renderPost(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (StandUtils.isStandActive(player)) {
+        if (StandUtils.getStand(player) != Stand.NONE) {
             switch (StandUtils.getStand(player)) {
                 case THE_WORLD:
                     client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
