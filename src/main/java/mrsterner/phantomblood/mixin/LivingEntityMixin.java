@@ -3,15 +3,11 @@ package mrsterner.phantomblood.mixin;
 import com.williambl.haema.Vampirable;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
-import mrsterner.phantomblood.common.stand.Stand;
-import mrsterner.phantomblood.common.stand.StandUtils;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,21 +19,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Map;
 
 
 @SuppressWarnings("ConstantConditions")
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
-
-    @Shadow
-    public abstract boolean addStatusEffect(StatusEffectInstance effect);
-
-    @Shadow
-    public abstract boolean clearStatusEffects();
-
-    @Shadow
-    public abstract void setHealth(float health);
 
     @Shadow
     protected abstract float getSoundVolume();
@@ -46,10 +32,6 @@ public abstract class LivingEntityMixin extends Entity {
     protected abstract float getSoundPitch();
 
     @Shadow public abstract boolean damage(DamageSource source, float amount);
-
-    @Shadow public abstract Map<StatusEffect, StatusEffectInstance> getActiveStatusEffects();
-
-    @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
 
 
     public LivingEntityMixin(EntityType<?> type, World world) {

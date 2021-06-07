@@ -2,7 +2,6 @@ package mrsterner.phantomblood.client.renderer.armor;
 
 import mrsterner.phantomblood.client.model.armor.StonemaskModel;
 import mrsterner.phantomblood.common.item.StonemaskItem;
-import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
 import software.bernie.geckolib3.renderer.geo.GeoArmorRenderer;

@@ -2,7 +2,6 @@ package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.PhantomBlood;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 

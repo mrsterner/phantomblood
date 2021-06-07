@@ -1,6 +1,5 @@
 package mrsterner.phantomblood.client.model.stand;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;

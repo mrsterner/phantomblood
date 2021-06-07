@@ -1,7 +1,5 @@
 package mrsterner.phantomblood.common.item;
 
-import mrsterner.phantomblood.PhantomBlood;
-import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
@@ -17,7 +15,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.system.CallbackI;
 
 import java.util.List;
 
