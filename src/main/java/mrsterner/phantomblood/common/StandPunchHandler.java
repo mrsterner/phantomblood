@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.common;
 
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
+import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -15,10 +16,9 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick{
 
     @Override
     public void onStartTick(ServerWorld world) {
-
         ticksSinceSound++;
         world.getPlayers().stream()
-                .filter(it -> StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.ATTACKING)
+                .filter(it -> StandUtils.getStand(it) != Stand.NONE && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.ATTACKING)
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
                     world.getOtherEntities(player, player.getBoundingBox().expand(2.0* MathHelper.sin(player.yaw), 0.0, 2.0*MathHelper.cos(player.yaw))).stream()

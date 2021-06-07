@@ -47,12 +47,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
-import org.apache.logging.log4j.LogManager;
 import software.bernie.geckolib3.GeckoLib;
 import top.theillusivec4.somnus.api.PlayerSleepEvents;
 import top.theillusivec4.somnus.api.WorldSleepEvents;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -61,7 +59,6 @@ import java.util.function.Predicate;
 
 
 public final class PhantomBlood implements ModInitializer, EntityComponentInitializer, WorldComponentInitializer  {
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MODID = "phantomblood";
     public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PBObjects.STONE_MASK_ITEM));

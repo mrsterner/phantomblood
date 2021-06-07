@@ -48,6 +48,13 @@
   "item.phantomblood.arrow_head": "Arrow Head",
 
   "item.phantomblood.lost_book": "Lost Journal",
-  "item.phantomblood.lost_book.landing_text": "Journal text goes here"
+  "item.phantomblood.lost_book.landing_text": "Journal text goes here",
+
+  "tooltip.phantomblood.the_world_disc": "The World",
+  "tooltip.phantomblood.star_platinum_disc": "Star Platinum",
+  "tooltip.phantomblood.killer_queen_disc": "Killer Queen",
+  "item.phantomblood.the_world_disc": "Stand Disc",
+  "item.phantomblood.star_platinum_disc": "Stand Disc",
+  "item.phantomblood.killer_queen_disc": "Stand Disc"
 
 }

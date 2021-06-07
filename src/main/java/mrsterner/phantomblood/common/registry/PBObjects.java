@@ -5,6 +5,7 @@ import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
 import mrsterner.phantomblood.common.worldgen.generator.RuinGenerator;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
+import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
@@ -17,6 +18,7 @@ import mrsterner.phantomblood.common.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
@@ -42,6 +44,13 @@ public class PBObjects {
     public static final Item AMPOULE = create("ampoule", new Item(gen()));
     public static final Item STONE_OF_AJA = create("stone_of_aja", new Item(gen()));
     public static final Item KILLER_QUEEN_TRIGGER = create("killer_queen_trigger", new KillerQueenTriggerItem(gen()));
+
+
+    public static final Item STAR_PLATINUM_DISC = create("star_platinum_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item THE_WORLD_DISC = create("the_world_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item KILLER_QUEEN_DISC = create("killer_queen_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+
+
 
     //Blocks
     public static final Block BLACK_COFFIN = create("black_coffin", new CoffinBlock(DyeColor.BLACK, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);

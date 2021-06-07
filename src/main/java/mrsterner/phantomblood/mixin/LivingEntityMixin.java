@@ -3,6 +3,8 @@ package mrsterner.phantomblood.mixin;
 import com.williambl.haema.Vampirable;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -54,19 +56,19 @@ public abstract class LivingEntityMixin extends Entity {
         super(type, world);
     }
 
-
-
     @Inject(method = "tick", at = @At("TAIL"))
     private void tick(CallbackInfo callbackInfo) {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
             ItemStack head = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
                 if (head.getItem() == PBObjects.BLOODY_STONE_MASK_ITEM && !((Vampirable) this).isVampire()) {
+
                     Vampirable.Companion.convert(((PlayerEntity) (Object) this));
                     world.playSound(null, getBlockPos(), PBSoundEvents.VAMPIRE, getSoundCategory(), getSoundVolume(), getSoundPitch());
                 }
                 if(head.getItem() == PBObjects.STONE_MASK_ITEM){
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 3,1));
+                    System.out.println("MASKKKKKKKKKKKKKK");
                 }
 
         }
