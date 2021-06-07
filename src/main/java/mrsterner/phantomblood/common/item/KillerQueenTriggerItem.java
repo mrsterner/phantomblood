@@ -64,7 +64,8 @@ public class KillerQueenTriggerItem extends Item {
                 switch (t){
                     case BLOCK:
                         BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
-                        world.createExplosion(user,pos.getX(),pos.getY() + 1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
+                        world.createExplosion(user,pos.getX(),pos.getY()+1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
+
                         stack.decrement(1);
                         StandUtils.getStandEnergy(user);
                         break;
