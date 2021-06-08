@@ -29,24 +29,24 @@ public class StandDiscItem extends Item {
         String s = this.asItem().toString();
         switch (s){
             case "the_world_disc":
+                StandUtils.setStandMode(user, StandMode.IDLE);
                 StandUtils.setStand(user, Stand.THE_WORLD);
                 StandUtils.setStandLevel(user, 1);
-                StandUtils.setStandMode(user, StandMode.IDLE);
                 break;
             case "star_platinum_disc":
+                StandUtils.setStandMode(user, StandMode.IDLE);
                 StandUtils.setStand(user, Stand.STAR_PLATINUM);
                 StandUtils.setStandLevel(user, 1);
-                StandUtils.setStandMode(user, StandMode.IDLE);
                 break;
             case "killer_queen_disc":
+                StandUtils.setStandMode(user, StandMode.IDLE);
                 StandUtils.setStand(user, Stand.KILLER_QUEEN);
                 StandUtils.setStandLevel(user, 1);
-                StandUtils.setStandMode(user, StandMode.IDLE);
                 break;
             case "crazy_diamond_disc":
+                StandUtils.setStandMode(user, StandMode.IDLE);
                 StandUtils.setStand(user, Stand.CRAZY_DIAMOND);
                 StandUtils.setStandLevel(user, 1);
-                StandUtils.setStandMode(user, StandMode.IDLE);
             default:
         }
         return super.use(world, user, hand);
