@@ -30,7 +30,7 @@ public class KillerQueenFirstPersonArmRenderer implements WorldRenderEvents.Last
         if (
                 player == null
                 || !StandUtils.isStandActive(player)
-                || StandUtils.getStand(player) != Stand.THE_WORLD
+                || StandUtils.getStand(player) != Stand.KILLER_QUEEN
                 || StandUtils.getStandMode(player) != StandMode.ATTACKING
                 || context.camera().isThirdPerson()
         ) {

@@ -148,7 +148,11 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                 if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
-                    PBUtil.addItemToInventory(player, Hand.MAIN_HAND, trigger);
+                    if(player.getStackInHand(Hand.MAIN_HAND).isEmpty()){
+                        player.setStackInHand(Hand.MAIN_HAND, trigger);
+                    }else{
+                        player.dropItem(trigger, false, true);
+                    }
                }else{
                     PlayerInventory inventory = player.inventory;
                     List<ItemStack> mainInventory = inventory.main;
@@ -164,16 +168,20 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         });
         AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
             if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND) {
-
                 if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
-                    PBUtil.addItemToInventory(player, Hand.MAIN_HAND, trigger);
+                    if(player.getStackInHand(Hand.MAIN_HAND).isEmpty()){
+                        player.setStackInHand(Hand.MAIN_HAND, trigger);
+                    }else{
+                        player.dropItem(trigger, false, true);
+                    }
                 }else{
                     PlayerInventory inventory = player.inventory;
                     List<ItemStack> mainInventory = inventory.main;
                     for(ItemStack trigger : mainInventory) {
                         if(trigger.getItem() == PBObjects.KILLER_QUEEN_TRIGGER) {
+                            System.out.println("Yee");
                             KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
                             break;
                         }
