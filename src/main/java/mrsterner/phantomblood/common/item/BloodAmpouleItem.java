@@ -31,7 +31,7 @@ public class BloodAmpouleItem extends Item {
             playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
             if (!playerEntity.abilities.creativeMode) {
                 HungerManager var4 = playerEntity.getHungerManager();
-                ((VampireBloodManager) var4).addBlood(6.0D);
+                ((VampireBloodManager) var4).addBlood(1.0D);
                 stack.decrement(1);
             }
         }
