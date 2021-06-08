@@ -42,7 +42,7 @@ public enum Stand {
                 TimeStopUtils.setTimeStoppedTicks(player.world, ticks);
                 TimeStopUtils.setTimeStopper(player.world, player);
                 player.world.playSound(null, player.getBlockPos(), PBSoundEvents.THE_WORLD, SoundCategory.PLAYERS, 1, 1f);
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, (int) ticks, 2));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, (int) ticks, 1));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, (int) ticks, 2));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, (int) ticks));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, (int) ticks));
