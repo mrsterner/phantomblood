@@ -129,6 +129,9 @@ public final class StandUserComponentImpl implements StandUserComponent, AutoSyn
         if(standActive && standMode.equals(StandMode.HEALING)){
             owner.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 40, 2));
         }
+        if(stand != Stand.CRAZY_DIAMOND && standMode == StandMode.HEALING){
+            StandUtils.setStandMode(owner, StandMode.IDLE);
+        }
         StandUserComponent.entityKey.sync(owner);
     }
 }
