@@ -6,6 +6,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Hand;
 
 public final class StandUserComponentImpl implements StandUserComponent, AutoSyncedComponent, PlayerComponent<StandUserComponentImpl> {
     private PlayerEntity owner;
@@ -132,6 +133,7 @@ public final class StandUserComponentImpl implements StandUserComponent, AutoSyn
         if(stand != Stand.CRAZY_DIAMOND && standMode == StandMode.HEALING){
             StandUtils.setStandMode(owner, StandMode.IDLE);
         }
+
         StandUserComponent.entityKey.sync(owner);
     }
 }

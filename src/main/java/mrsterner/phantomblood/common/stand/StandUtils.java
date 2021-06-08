@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.common.stand;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 
 public final class StandUtils {
     public static StandMode getStandMode(PlayerEntity playerEntity) {
@@ -43,5 +44,13 @@ public final class StandUtils {
     }
     public static void setStandEnergy(PlayerEntity playerEntity, int energy) {
         StandUserComponent.entityKey.get(playerEntity).setStandEnergy(energy);
+    }
+
+    //Uniquies
+    public static void repairItem(ItemStack stack, int duration){
+        if (!stack.isEmpty()&&stack.getDamage()>0) {
+            int result = stack.getDamage()-duration;
+            stack.setDamage(Math.max(result, 0));
+        }
     }
 }

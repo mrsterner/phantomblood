@@ -49,7 +49,8 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick{
                                 int energy = StandUtils.getStandEnergy(player);
                                 int energyForAbility = StandUtils.getStand(player).energyForAbility;
                                 StandUtils.setStandEnergy(player, energy - energyForAbility);
-                                ((LivingEntity) it).applyStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40,2));
+                                //((LivingEntity) it).applyStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40,2));
+                                ((LivingEntity) it).heal(1);
 
                             });
                 });
