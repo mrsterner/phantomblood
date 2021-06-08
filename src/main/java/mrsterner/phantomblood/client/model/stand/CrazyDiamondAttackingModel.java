@@ -30,8 +30,6 @@ private final ModelPart head;
 	private final ModelPart Shape16;
 	private final ModelPart Shape4;
 	private final ModelPart heart7;
-	private final ModelPart Shape60;
-	private final ModelPart Shape61;
 	private final ModelPart body;
 	private final ModelPart bodydown;
 	private final ModelPart Shape10;
@@ -237,19 +235,7 @@ public CrazyDiamondAttackingModel() {
 		heart7 = new ModelPart(this);
 		heart7.setPivot(-2.55F, 5.5F, -0.8F);
 		head.addChild(heart7);
-		
 
-		Shape60 = new ModelPart(this);
-		Shape60.setPivot(2.1717F, -5.3382F, -2.2F);
-		heart7.addChild(Shape60);
-		setRotationAngle(Shape60, 0.0F, 0.0F, 0.7679F);
-		Shape60.setTextureOffset(40, 17).addCuboid(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
-
-		Shape61 = new ModelPart(this);
-		Shape61.setPivot(2.9111F, -5.3333F, -2.2F);
-		heart7.addChild(Shape61);
-		setRotationAngle(Shape61, 0.0F, 0.0F, -0.7679F);
-		Shape61.setTextureOffset(25, 5).addCuboid(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
 		body = new ModelPart(this);
 		body.setPivot(0.0F, 0.0F, 0.0F);
