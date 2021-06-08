@@ -88,12 +88,14 @@ public abstract class InGameHudMixin extends DrawableHelper {
                     drawTexture(matrices, scaledWidth / 2 + 93, (scaledHeight - (int) (4 + StandUtils.getStand(player).energyForAbility * 26f / 100000)) , 23, 0, 4, 3);
                     break;
                 case KILLER_QUEEN:
+                case CRAZY_DIAMOND:
                     client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
-                    drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 48, 6, 24);
-                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));
-                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 14, 0, 8, 26);
-                    drawTexture(matrices, scaledWidth / 2 + 93, (scaledHeight - (int) (4 + StandUtils.getStand(player).energyForAbility * 26f / 100000)) , 23, 0, 4, 3);
+                    drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26), 0, 48, 6, 24);
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27), 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));
+                    drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27), 14, 0, 8, 26);
+                    drawTexture(matrices, scaledWidth / 2 + 93, (scaledHeight - (int) (4 + StandUtils.getStand(player).energyForAbility * 26f / 100000)), 23, 0, 4, 3);
                     break;
+
                 case STAR_PLATINUM:
                     client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
                     drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 24, 6, 24);
