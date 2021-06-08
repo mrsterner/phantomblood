@@ -50,9 +50,8 @@ public enum Stand {
             }
         });
     }),
-    KILLER_QUEEN(8000, (server, player, handler1, buf, responseSender) -> {
-
-    });
+    KILLER_QUEEN(8000, (server, player, handler1, buf, responseSender) -> {}),
+    CRAZY_DIAMOND(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;
     public ServerPlayNetworking.PlayChannelHandler handler;

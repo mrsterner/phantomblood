@@ -108,6 +108,8 @@ public class PhantomBloodClient implements ClientModInitializer {
         WorldRenderEvents.LAST.register(new TheWorldFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new KillerQueenFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new StarPlatinumFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new CrazyDiamondFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new CrazyDiamondHealFirstPersonArmRenderer());
 
         HudRenderCallback.EVENT.register(new StandUserHud());
 
@@ -117,6 +119,7 @@ public class PhantomBloodClient implements ClientModInitializer {
                 registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldAttackingModel(), new TheWorldIdleModel()));
                 registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenAttackingModel(), new KillerQueenIdleModel()));
                 registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumAttackingModel(), new StarPlatinumIdleModel()));
+                registrationHelper.register(new CrazyDiamondFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new CrazyDiamondAttackingModel(), new CrazyDiamondIdleModel(), new CrazyDiamondHealingModel()));
             }
         });
 

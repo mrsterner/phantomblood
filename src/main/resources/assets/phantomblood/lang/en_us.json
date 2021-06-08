@@ -34,9 +34,10 @@
   "tooltip.phantomblood.vampire_coat_f": "Female",
 
   "stand.phantomblood.none": "None",
-  "stand.phantomblood.the_world": "THE WORLD",
+  "stand.phantomblood.the_world": "The World",
   "stand.phantomblood.killer_queen": "Killer Queen",
   "stand.phantomblood.star_platinum": "Star Platinum",
+  "stand.phantomblood.crazy_diamond": "Crazy Diamond",
 
   "status.phantomblood.idle": "Idle",
   "status.phantomblood.attacking": "Attacking",
@@ -54,17 +55,16 @@
   "tooltip.phantomblood.the_world_disc": "The World",
   "tooltip.phantomblood.star_platinum_disc": "Star Platinum",
   "tooltip.phantomblood.killer_queen_disc": "Killer Queen",
-  "tooltip.phantomblood.crazy_diamond": "Crazy Diamond",
+  "tooltip.phantomblood.crazy_diamond_disc": "Crazy Diamond",
   "item.phantomblood.the_world_disc": "Stand Disc",
   "item.phantomblood.star_platinum_disc": "Stand Disc",
   "item.phantomblood.killer_queen_disc": "Stand Disc",
-  "item.phantomblood.crazy_diamond": "Stand Disc",
+  "item.phantomblood.crazy_diamond_disc": "Stand Disc",
 
   "phantomblood.key.change_stand_mode": "Change Stand Mode",
   "phantomblood.key.toggle_stand": "Toggle Stand",
   "phantomblood.key.use_ability": "Use Ability",
   "key.categories.phantomblood": "Phantom Blood",
-  "stand.phantomblood.crazy_diamond": "Crazy Diamond",
 
   "item.phantomblood.black_fabric": "Black Fabric"
 

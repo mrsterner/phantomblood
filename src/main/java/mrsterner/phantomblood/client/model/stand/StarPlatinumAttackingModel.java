@@ -265,40 +265,54 @@ public class StarPlatinumAttackingModel extends EntityModel<LivingEntity> {
     @Override
     public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch){
         float power = 0.5F;
-        float speed = 2.5F;
-        handl1.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f) * 1.2F * power;
-        handl2.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)Math.PI/3) * 1.4F * power;
-        handl3.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)(2*Math.PI/3)) * 1.6F * power;
-        handl4.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)(2.5*Math.PI/3)) * 1.3F * power;
-        handl5.yaw =-45 + MathHelper.cos(speed*animationProgress*1.5f+(float)(3*Math.PI/3)) * 1.3F * power;
-        handr1.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(3.5*Math.PI/3)) * 1.2F * power;
-        handr2.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(6*Math.PI/3)) * 1.1F * power;
-        handr3.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(9*Math.PI/3)) * 1.2F * power;
-        handr4.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(10*Math.PI/3)) * 0.7F * power;
-        handr5.yaw = 45 - MathHelper.cos(speed*animationProgress*1.5f+(float)(1.5*Math.PI/3) )* 1.6F * power;
-        this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.05D;
-
+        float speed = 3.0F;
+        this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;
+        this.head.pitch = headPitch * 0.017453292F;
+        this.head.yaw = headYaw * 0.017453292F;
+        this.handl1.yaw = MathHelper.cos(speed * animationProgress) * 1.2F * power;
+        this.handl2.yaw = MathHelper.cos(speed * animationProgress + 1.0471976F) * 1.4F * power;
+        this.handl3.yaw = MathHelper.cos(speed * animationProgress + (float)2.0943951023931953D) * 1.6F * power;
+        this.handl4.yaw = MathHelper.cos(speed * animationProgress + (float)2.6179938779914944D) * 1.3F * power;
+        this.handl5.yaw = MathHelper.cos(speed * animationProgress + (float)3.141592653589793D) * 1.7F * power;
+        this.handr1.yaw = MathHelper.cos(speed * animationProgress + (float)3.665191429188092D) * 1.2F * power;
+        this.handr2.yaw = MathHelper.cos(speed * animationProgress + (float)6.283185307179586D) * 1.1F * power;
+        this.handr3.yaw = MathHelper.cos(speed * animationProgress + (float)8.377580409572781D) * 1.4F * power;
+        this.handr4.yaw = MathHelper.cos(speed * animationProgress + (float)10.471975511965978D) * 1.5F * power;
+        this.handr5.yaw = MathHelper.cos(speed * animationProgress + (float)1.5707963267948966D) * 1.6F * power;
+        this.left_hands.pitch = headPitch * 0.017453292F;
+        this.left_hands.yaw = headYaw * 0.017453292F;
+        this.right_hands.pitch = headPitch * 0.017453292F;
+        this.right_hands.yaw = headYaw * 0.017453292F;
         float r = (float)Math.random();
+        float offysin = MathHelper.sin(r * speed * animationProgress) * power - 0.25F;
+        float offycos = MathHelper.cos(r * speed * animationProgress) * power - 0.25F;
+        this.handl1.pivotZ = offysin;
+        this.handl2.pivotZ = offycos;
+        this.handl3.pivotZ = offysin;
+        this.handl4.pivotZ = offycos;
+        this.handl5.pivotZ = offysin;
+        this.handr1.pivotZ = offycos;
+        this.handr2.pivotZ = offysin;
+        this.handr3.pivotZ = offycos;
+        this.handr4.pivotZ = offysin;
+        this.handr5.pivotZ = offycos;
         float offxl = r * MathHelper.sin(r * speed * animationProgress) * power + 0.2F;
         float offxr = r * MathHelper.sin(r * speed * animationProgress) * power - 0.2F;
-
-        left_hands.pitch = offxl * 0.017453292F;
-        left_hands.yaw = offxl * 0.017453292F;
-        right_hands.pitch = offxr * 0.017453292F;
-        right_hands.yaw = offxr * 0.017453292F;
+        this.left_hands.pivotX = offxl;
+        this.right_hands.pivotX = offxr;
     }
     @Override
     public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
         matrixStack.translate(0.0D, this.yOffset, -0.75D);
         body.render(matrixStack, buffer, packedLight, packedOverlay);
-
         head.render(matrixStack, buffer, packedLight, packedOverlay);
         leftleg.render(matrixStack, buffer, packedLight, packedOverlay);
         rightleg.render(matrixStack, buffer, packedLight, packedOverlay);
         matrixStack.translate(0.0D, -this.yOffset, 0.0D);
-        matrixStack.translate(0.0D, 0.2D, -0.85D);
-        left_hands.render(matrixStack, buffer, packedLight, packedOverlay);
+
         right_hands.render(matrixStack, buffer, packedLight, packedOverlay);
+        left_hands.render(matrixStack, buffer, packedLight, packedOverlay);
+        matrixStack.translate(0.0D, 0.2D, 0.75D);
     }
     public void setRotationAngle(ModelPart bone, float x, float y, float z) {
         bone.pitch = x;

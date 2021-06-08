@@ -36,6 +36,8 @@ public class StandDiscItem extends Item {
             case "killer_queen_disc":
                 StandUtils.setStand(user, Stand.KILLER_QUEEN);
                 break;
+            case "crazy_diamond_disc":
+                StandUtils.setStand(user, Stand.CRAZY_DIAMOND);
             default:
         }
         return super.use(world, user, hand);
@@ -54,6 +56,8 @@ public class StandDiscItem extends Item {
             case "killer_queen_disc":
                 tooltip.add(new TranslatableText("tooltip.phantomblood.killer_queen_disc").formatted(Formatting.GOLD));
                 break;
+            case "crazy_diamond_disc":
+                tooltip.add(new TranslatableText("tooltip.phantomblood.crazy_diamond_disc").formatted(Formatting.GOLD));
             default:
     }
 }}

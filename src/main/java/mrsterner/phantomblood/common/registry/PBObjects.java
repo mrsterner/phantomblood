@@ -48,6 +48,7 @@ public class PBObjects {
     public static final Item STAR_PLATINUM_DISC = create("star_platinum_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item THE_WORLD_DISC = create("the_world_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item KILLER_QUEEN_DISC = create("killer_queen_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item CRAZY_DIAMOND_DISC = create("crazy_diamond_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
     //Blocks

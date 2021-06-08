@@ -205,7 +205,7 @@ public class TheWorldAttackingModel extends EntityModel<LivingEntity> {
     @Override
     public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         float power = 0.5F;
-        float speed = 2.5F;
+        float speed = 3.0F;
         this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;
         this.head.pitch = headPitch * 0.017453292F;
         this.head.yaw = headYaw * 0.017453292F;

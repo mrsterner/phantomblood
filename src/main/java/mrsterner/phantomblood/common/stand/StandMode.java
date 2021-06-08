@@ -4,7 +4,8 @@ import java.util.Locale;
 
 public enum StandMode {
     IDLE,
-    ATTACKING;
+    ATTACKING,
+    HEALING;
 
     @Override
     public String toString() {
