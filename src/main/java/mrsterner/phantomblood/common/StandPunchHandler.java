@@ -23,7 +23,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick{
                 .filter(it -> StandUtils.getStand(it) != Stand.NONE && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.ATTACKING)
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
-                    world.getOtherEntities(player, player.getBoundingBox().expand(2.0* MathHelper.sin(player.yaw), 0.0, 2.0*MathHelper.cos(player.yaw))).stream()
+                    world.getOtherEntities(player, player.getBoundingBox().expand(3.0* MathHelper.sin(player.yaw), 0.0, 2.0*MathHelper.cos(player.yaw))).stream()
                             .filter(it -> it instanceof LivingEntity)
                             .forEach(it -> {
                                 if (ticksSinceSound > 10) {
@@ -38,7 +38,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick{
                 .filter(it -> StandUtils.getStand(it) == Stand.CRAZY_DIAMOND && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.HEALING)
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
-                    world.getOtherEntities(player, player.getBoundingBox().expand(2.0* MathHelper.sin(player.yaw), 0.0, 2.0*MathHelper.cos(player.yaw))).stream()
+                    world.getOtherEntities(player, player.getBoundingBox().expand(3.0* MathHelper.sin(player.yaw), 0.0, 2.0*MathHelper.cos(player.yaw))).stream()
                             .filter(it -> it instanceof LivingEntity)
                             .forEach(it -> {
                                 if (ticksSinceSound > 10) {
