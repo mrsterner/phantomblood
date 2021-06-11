@@ -1,7 +1,7 @@
-package mrsterner.phantomblood.client.stand;
+package mrsterner.phantomblood.client.renderer.stand;
 
 
-import mrsterner.phantomblood.client.model.stand.TheWorldAttackingModel;
+import mrsterner.phantomblood.client.model.stand.CrazyDiamondAttackingModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -20,9 +20,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class TheWorldFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final TheWorldAttackingModel model = new TheWorldAttackingModel();
-    private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/the_world.png");
+public class CrazyDiamondFirstPersonArmRenderer implements WorldRenderEvents.Last {
+    private final CrazyDiamondAttackingModel model = new CrazyDiamondAttackingModel();
+    private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/crazy_diamond.png");
 
     @Override
     public void onLast(WorldRenderContext context) {
@@ -30,7 +30,7 @@ public class TheWorldFirstPersonArmRenderer implements WorldRenderEvents.Last {
         if (
                 player == null
                 || !StandUtils.isStandActive(player)
-                || StandUtils.getStand(player) != Stand.THE_WORLD
+                || StandUtils.getStand(player) != Stand.CRAZY_DIAMOND
                 || StandUtils.getStandMode(player) != StandMode.ATTACKING
                 || context.camera().isThirdPerson()
         ) {

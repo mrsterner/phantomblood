@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.client.stand;
+package mrsterner.phantomblood.client.renderer.stand;
 
 import mrsterner.phantomblood.client.model.stand.TheWorldAttackingModel;
 import mrsterner.phantomblood.client.model.stand.TheWorldIdleModel;

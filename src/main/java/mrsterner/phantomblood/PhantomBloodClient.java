@@ -8,7 +8,7 @@ import mrsterner.phantomblood.client.renderer.armor.VampireArmorFRenderer;
 import mrsterner.phantomblood.client.renderer.armor.VampireArmorRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
-import mrsterner.phantomblood.client.stand.*;
+import mrsterner.phantomblood.client.renderer.stand.*;
 import mrsterner.phantomblood.common.item.BloodStonemaskItem;
 import mrsterner.phantomblood.common.item.StonemaskItem;
 import mrsterner.phantomblood.common.item.VampireArmorFItem;

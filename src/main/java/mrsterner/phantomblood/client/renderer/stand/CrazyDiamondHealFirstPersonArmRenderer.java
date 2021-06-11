@@ -1,7 +1,6 @@
-package mrsterner.phantomblood.client.stand;
+package mrsterner.phantomblood.client.renderer.stand;
 
 
-import mrsterner.phantomblood.client.model.stand.CrazyDiamondAttackingModel;
 import mrsterner.phantomblood.client.model.stand.CrazyDiamondHealingModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
