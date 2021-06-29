@@ -1,6 +1,7 @@
 package mrsterner.phantomblood;
 
 import mrsterner.phantomblood.client.StandUserHud;
+import mrsterner.phantomblood.client.ZaWarudoShader;
 import mrsterner.phantomblood.client.model.stand.*;
 import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import mrsterner.phantomblood.client.renderer.armor.StonemaskRenderer;

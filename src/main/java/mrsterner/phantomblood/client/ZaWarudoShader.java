@@ -1,4 +1,4 @@
-package mrsterner.phantomblood;
+package mrsterner.phantomblood.client;
 
 import ladysnake.satin.api.event.PostWorldRenderCallback;
 import ladysnake.satin.api.experimental.ReadableDepthFramebuffer;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-final class ZaWarudoShader implements PostWorldRenderCallback, ClientTickEvents.StartTick {
+public class ZaWarudoShader implements PostWorldRenderCallback, ClientTickEvents.StartTick {
     private int ticks = 0;
     private float prevRadius = 0f;
     private float radius = 0f;
@@ -32,9 +32,9 @@ final class ZaWarudoShader implements PostWorldRenderCallback, ClientTickEvents.
 
     public boolean shouldRender = false;
     public @Nullable PlayerEntity player = null;
-    long effectLength = 0;
+    public long effectLength = 0;
 
-    void registerCallbacks() {
+    public void registerCallbacks() {
         PostWorldRenderCallback.EVENT.register(this);
         ClientTickEvents.START_CLIENT_TICK.register(this);
     }
