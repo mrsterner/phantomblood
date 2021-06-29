@@ -137,6 +137,8 @@ public final class StandUserComponentImpl implements StandUserComponent, AutoSyn
         if(standActive && stand == Stand.DARK_BLUE_MOON){
             if(!owner.isTouchingWaterOrRain()){
                 owner.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, !standMode.equals(StandMode.ATTACKING) ? 1 : 2));
+            }else{
+                owner.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 220, 0));
             }
         }
         StandUserComponent.entityKey.sync(owner);

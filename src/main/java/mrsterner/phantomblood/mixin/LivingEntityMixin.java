@@ -92,10 +92,21 @@ public abstract class LivingEntityMixin extends Entity {
                     this.setVelocity(vec3d.multiply((double)j, 1.0D, (double)j));
                 }else{
                     player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, StandUtils.getStandMode(player) != StandMode.ATTACKING ? 1 : 2));
+
                 }
             }
         }
 
 
+    }
+    @Inject(method = "tickStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"), cancellable = true)
+    private void darkBlueMoonEffect(CallbackInfo callbackInfo) {
+        LivingEntity livingEntity = (LivingEntity) (Object) this;
+        if(livingEntity instanceof PlayerEntity){
+            PlayerEntity player = (PlayerEntity) (Object) this;
+            if(StandUtils.isStandActive(player) && StandUtils.getStand(player) == Stand.DARK_BLUE_MOON && player.isTouchingWaterOrRain()){
+                callbackInfo.cancel();
+            }
+        }
     }
 }
