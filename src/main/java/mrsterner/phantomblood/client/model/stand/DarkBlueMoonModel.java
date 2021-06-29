@@ -105,7 +105,7 @@ public class DarkBlueMoonModel extends EntityModel<LivingEntity> {
 		textureHeight = 128;
 		head = new ModelPart(this);
 		head.setPivot(0.0F, -5.0F, 0.0F);
-		head.setTextureOffset(1, 1).addCuboid(-3.5F, -7.0F, -3.0F, 7.0F, 7.0F, 7.0F, 0.0F, false);
+		head.setTextureOffset(1, 1).addCuboid(-3.5F, -7.0F, -3.8F, 7.0F, 7.0F, 7.0F, 0.0F, false);
 
 		mask = new ModelPart(this);
 		mask.setPivot(0.0F, 0.0F, 0.0F);
@@ -142,7 +142,7 @@ public class DarkBlueMoonModel extends EntityModel<LivingEntity> {
 		head_r4.setTextureOffset(80, 10).addCuboid(6.65F, 0.1F, 0.1F, 1.0F, 3.0F, 2.0F, 0.1F, false);
 
 		finBones = new ModelPart(this);
-		finBones.setPivot(0.0F, -4.0F, 3.5F);
+		finBones.setPivot(0.0F, -4.0F, 2.5F);
 		head.addChild(finBones);
 
 
