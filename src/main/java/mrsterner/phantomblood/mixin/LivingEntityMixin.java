@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Map;
 
 
 @SuppressWarnings("ConstantConditions")
@@ -40,6 +42,8 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow public abstract boolean damage(DamageSource source, float amount);
 
+
+    @Shadow public abstract Map<StatusEffect, StatusEffectInstance> getActiveStatusEffects();
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -72,6 +76,10 @@ public abstract class LivingEntityMixin extends Entity {
                             this.getServer().getPlayerManager().sendToAll(ServerPlayNetworking.createS2CPacket(new Identifier("phantomblood:stop_time"), PacketByteBufs.create().writeUuid(player.getUuid()).writeVarLong(20)));
                         }
                     }
+                    if(StandUtils.getStand(player) == Stand.THE_SUN && StandUtils.isStandActive(player) && !player.isTouchingWaterOrRain()){
+                        player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 60));
+                        player.setOnFireFor(2);
+                    }
             }
         }
     }
@@ -96,12 +104,16 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
     }
+
     @Inject(method = "tickStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"), cancellable = true)
     private void darkBlueMoonEffect(CallbackInfo callbackInfo) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         if(livingEntity instanceof PlayerEntity){
             PlayerEntity player = (PlayerEntity) (Object) this;
             if(StandUtils.isStandActive(player) && StandUtils.getStand(player) == Stand.DARK_BLUE_MOON && player.isTouchingWaterOrRain()){
+                callbackInfo.cancel();
+            }
+            if(StandUtils.isStandActive(player) && StandUtils.getStand(player) == Stand.THE_SUN){
                 callbackInfo.cancel();
             }
         }

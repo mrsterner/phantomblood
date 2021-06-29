@@ -16,7 +16,9 @@
     "ClientPlayerEntityMixin",
     "PlayerEntityRendererMixin",
     "InGameHudMixin",
-    "ParticleManagerMixin"
+    "ParticleManagerMixin",
+    "InGameOverlayRendererMixin",
+    "EntityRenderDispatcherMixin"
   ],
   "injectors": {
     "defaultRequire": 1

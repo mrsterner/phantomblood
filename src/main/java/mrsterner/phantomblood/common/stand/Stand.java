@@ -68,7 +68,8 @@ public enum Stand {
             player.addStatusEffect(new StatusEffectInstance(PhantomBlood.DEEP_BLUE_MOON_EFFECT, (int) ticks));
         });
 
-    });
+    }),
+    THE_SUN(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;
     public ServerPlayNetworking.PlayChannelHandler handler;

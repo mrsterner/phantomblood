@@ -57,6 +57,12 @@ public class StandDiscItem extends Item {
                 StandUtils.setStandMode(user, StandMode.IDLE);
                 StandUtils.setStand(user, Stand.DARK_BLUE_MOON);
                 StandUtils.setStandLevel(user, 1);
+                break;
+            case "the_sun_disc":
+                StandUtils.setStandMode(user, StandMode.IDLE);
+                StandUtils.setStand(user, Stand.THE_SUN);
+                StandUtils.setStandLevel(user, 1);
+                break;
             default:
         }
         return super.use(world, user, hand);
@@ -83,6 +89,9 @@ public class StandDiscItem extends Item {
                 break;
             case "dark_blue_moon_disc":
                 tooltip.add(new TranslatableText("tooltip.phantomblood.dark_blue_moon_disc").formatted(Formatting.GOLD));
+                break;
+            case "the_sun_disc":
+                tooltip.add(new TranslatableText("tooltip.phantomblood.the_sun_disc").formatted(Formatting.GOLD));
                 break;
             default:
     }

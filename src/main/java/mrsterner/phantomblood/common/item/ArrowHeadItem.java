@@ -25,7 +25,7 @@ public class ArrowHeadItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient) {
             if (StandUtils.getStand(user) == Stand.NONE) {
-                int t = MathHelper.nextInt(world.random, 1, 4);
+                int t = MathHelper.nextInt(world.random, 1, 7);
                 switch (t){
                     case 1:
                         StandUtils.setStand(user, Stand.STAR_PLATINUM);
@@ -49,6 +49,10 @@ public class ArrowHeadItem extends Item {
                         break;
                     case 6:
                         StandUtils.setStand(user, Stand.DARK_BLUE_MOON);
+                        StandUtils.setStandLevel(user, 0);
+                        break;
+                    case 7:
+                        StandUtils.setStand(user, Stand.THE_SUN);
                         StandUtils.setStandLevel(user, 0);
                         break;
                     default:

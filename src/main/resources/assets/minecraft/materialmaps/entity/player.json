@@ -1,0 +1,12 @@
+{
+  "map": [
+    {
+      "predicate": {
+        "materialPredicate": {
+          "texture": "phantomblood:textures/entity/stand/the_sun.png"
+        }
+      },
+      "material": "canvas:emissive_transform"
+    }
+  ]
+}
