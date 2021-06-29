@@ -53,7 +53,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
             client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
 
         }
-        if(StandUtils.getStand(player) == Stand.STAR_PLATINUM && StandUtils.isStandActive(player)){
+        if(StandUtils.getStand(player) == Stand.WEATHER_REPORT || StandUtils.getStand(player) == Stand.STAR_PLATINUM || StandUtils.getStand(player) == Stand.DARK_BLUE_MOON && StandUtils.isStandActive(player)){
             client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
             if(StandUtils.getStandLevel(player) == 0){
                 drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 50) , 27, 0, 53, 26);
@@ -97,6 +97,8 @@ public abstract class InGameHudMixin extends DrawableHelper {
                     break;
 
                 case STAR_PLATINUM:
+                case DARK_BLUE_MOON:
+                case WEATHER_REPORT:
                     client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
                     drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 24, 6, 24);
                     drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));

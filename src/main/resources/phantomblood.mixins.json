@@ -4,15 +4,18 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "LivingEntityMixin",
-    "PlayerEntityRendererMixin",
     "ParticleAccessor",
     "ServerChunkManagerMixin",
-    "InGameHudMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "BoatEntityMixin",
+    "MinecartEntityMixin",
+    "HorseEntityMixin"
   ],
   "client": [
     "ClientChunkManagerMixin",
     "ClientPlayerEntityMixin",
+    "PlayerEntityRendererMixin",
+    "InGameHudMixin",
     "ParticleManagerMixin"
   ],
   "injectors": {

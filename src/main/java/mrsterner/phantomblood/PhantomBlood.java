@@ -9,6 +9,8 @@ import mrsterner.phantomblood.common.StandPunchHandler;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.item.KillerQueenTriggerItem;
 import mrsterner.phantomblood.common.registry.PBUtil;
+import mrsterner.phantomblood.common.statuseffects.DarkBlueMoonEffect;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
 import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
 import mrsterner.phantomblood.common.stand.*;
@@ -21,6 +23,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -28,11 +31,13 @@ import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.fabricmc.fabric.api.util.TriState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.loot.ConstantLootTableRange;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
@@ -51,6 +56,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.StructureFeature;
@@ -71,9 +77,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
     public static final String MODID = "phantomblood";
     public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PBObjects.STONE_MASK_ITEM));
 
-
     public static final StructureFeature<StructurePoolFeatureConfig> RUIN = new RuinStructure();
-
 
     private static void registerStructures() { FabricStructureBuilder.create(RuinStructure.ID, RUIN).step(GenerationStep.Feature.SURFACE_STRUCTURES)
             .defaultConfig(50, 25, 165757306).superflatFeature(PBObjects.RUIN).adjustsSurface().register();
@@ -104,12 +108,14 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         }
         return tagCompound;
     }
+    public static final StatusEffect DEEP_BLUE_MOON_EFFECT = new DarkBlueMoonEffect();
     @Override
     public void onInitialize() {
         GeckoLib.initialize();
         PBObjects.init();
         registerStructures();
         putStructures();
+        Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "dark_blue_moon_effect"), DEEP_BLUE_MOON_EFFECT);
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {
             Identifier nether_fortress = new Identifier(PhantomBlood.MODID, "inject/nether_fortress");
@@ -214,6 +220,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             }
             return null;
         });
+
 
         ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:use_ability"), (server, player, handler, buf, response) -> {
             StandUtils.getStand(player).handler.receive(server, player, handler, buf, response);

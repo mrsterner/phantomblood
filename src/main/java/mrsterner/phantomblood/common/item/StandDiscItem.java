@@ -47,6 +47,16 @@ public class StandDiscItem extends Item {
                 StandUtils.setStandMode(user, StandMode.IDLE);
                 StandUtils.setStand(user, Stand.CRAZY_DIAMOND);
                 StandUtils.setStandLevel(user, 1);
+                break;
+            case "weather_report_disc":
+                StandUtils.setStandMode(user, StandMode.IDLE);
+                StandUtils.setStand(user, Stand.WEATHER_REPORT);
+                StandUtils.setStandLevel(user, 1);
+                break;
+            case "dark_blue_moon_disc":
+                StandUtils.setStandMode(user, StandMode.IDLE);
+                StandUtils.setStand(user, Stand.DARK_BLUE_MOON);
+                StandUtils.setStandLevel(user, 1);
             default:
         }
         return super.use(world, user, hand);
@@ -67,6 +77,13 @@ public class StandDiscItem extends Item {
                 break;
             case "crazy_diamond_disc":
                 tooltip.add(new TranslatableText("tooltip.phantomblood.crazy_diamond_disc").formatted(Formatting.GOLD));
+                break;
+            case "weather_report_disc":
+                tooltip.add(new TranslatableText("tooltip.phantomblood.weather_report_disc").formatted(Formatting.GOLD));
+                break;
+            case "dark_blue_moon_disc":
+                tooltip.add(new TranslatableText("tooltip.phantomblood.dark_blue_moon_disc").formatted(Formatting.GOLD));
+                break;
             default:
     }
 }}

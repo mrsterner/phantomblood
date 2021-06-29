@@ -15,6 +15,7 @@ import mrsterner.phantomblood.common.item.VampireArmorFItem;
 import mrsterner.phantomblood.common.item.VampireArmorItem;
 import mrsterner.phantomblood.common.registry.*;
 import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.api.ClientModInitializer;
@@ -52,16 +53,24 @@ public class PhantomBloodClient implements ClientModInitializer {
     boolean wasUseAbilityKeybindPressed = false;
     KeyBinding toggleStandKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.toggle_stand", GLFW.GLFW_KEY_P, "key.categories.phantomblood"));
     boolean wasToggleStandKeybindPressed = false;
-    KeyBinding changeStandModeKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.change_stand_mode", GLFW.GLFW_KEY_I, "key.categories.phantomblood"));
+    KeyBinding changeStandModeKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.change_stand_mode", GLFW.GLFW_KEY_LEFT_ALT, "key.categories.phantomblood"));
     boolean wasChangeStandKeybindPressed = false;
+    boolean wasChangeStandKeybindReleased = false;
+
+    KeyBinding keyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.keybind", GLFW.GLFW_KEY_Y, "key.categories.phantomblood"));
+    boolean wasPressed = false;
+
 
     ZaWarudoShader zaWarudoShader = new ZaWarudoShader();
 
     @Override
     public void onInitializeClient() {
 
+
         ClientTickEvents.START_WORLD_TICK.register(world -> {
             PlayerEntity player = MinecraftClient.getInstance().player;
+
+
             if (player != null && StandUtils.getStand(player) != Stand.NONE) {
                 if (useAbilityKeybind.isPressed()) {
                     if (TimeStopUtils.getTimeStoppedTicks(world) < 0 && !wasUseAbilityKeybindPressed) {
@@ -79,13 +88,28 @@ public class PhantomBloodClient implements ClientModInitializer {
                 } else {
                     wasToggleStandKeybindPressed = false;
                 }
+
+                //Push to Stand
+                //Press
                 if (changeStandModeKeybind.isPressed()) {
                     if (!wasChangeStandKeybindPressed) {
                         ClientPlayNetworking.send(new Identifier("phantomblood:change_stand_mode"), PacketByteBufs.create());
                     }
                     wasChangeStandKeybindPressed = true;
-                } else {
+                }else {
                     wasChangeStandKeybindPressed = false;
+                }
+                //Release
+                if(!changeStandModeKeybind.isPressed() && changeStandModeKeybind.wasPressed()){
+                    if(!wasChangeStandKeybindReleased){
+                        ClientPlayNetworking.send(new Identifier("phantomblood:change_stand_mode"), PacketByteBufs.create());
+                        if(StandUtils.getStand(player) == Stand.CRAZY_DIAMOND && StandUtils.getStandMode(player) == StandMode.ATTACKING){
+                            ClientPlayNetworking.send(new Identifier("phantomblood:change_stand_mode"), PacketByteBufs.create());
+                        }
+                    }
+                    wasChangeStandKeybindReleased = true;
+                }else{
+                    wasChangeStandKeybindReleased = false;
                 }
             }
         });
@@ -110,16 +134,23 @@ public class PhantomBloodClient implements ClientModInitializer {
         WorldRenderEvents.LAST.register(new StarPlatinumFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new CrazyDiamondFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new CrazyDiamondHealFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new WeatherReportFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new DarkBlueMoonFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new HamonFirstPersonArmRenderer());
 
         HudRenderCallback.EVENT.register(new StandUserHud());
+
 
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper) -> {
             if (entityType == EntityType.PLAYER) {
                 //noinspection unchecked
+                //registrationHelper.register(new HamonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new HamonModel()));
                 registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldAttackingModel(), new TheWorldIdleModel()));
                 registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenAttackingModel(), new KillerQueenIdleModel()));
                 registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumAttackingModel(), new StarPlatinumIdleModel()));
                 registrationHelper.register(new CrazyDiamondFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new CrazyDiamondAttackingModel(), new CrazyDiamondIdleModel(), new CrazyDiamondHealingModel()));
+                registrationHelper.register(new WeatherReportFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new WeatherReportModel()));
+                registrationHelper.register(new DarkBlueMoonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new DarkBlueMoonModel()));
             }
         });
 

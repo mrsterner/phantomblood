@@ -1,5 +1,6 @@
 package mrsterner.phantomblood.mixin;
 
+import mrsterner.phantomblood.client.renderer.stand.HamonFeatureRenderer;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -23,6 +24,11 @@ import java.util.Optional;
 public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
     public PlayerEntityRendererMixin(EntityRenderDispatcher dispatcher, PlayerEntityModel<AbstractClientPlayerEntity> model, float shadowRadius) {
         super(dispatcher, model, shadowRadius);
+    }
+
+    @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At("TAIL"))
+    private void PlayerEntityRenderer(EntityRenderDispatcher dispatcher, boolean bl, CallbackInfo callbackInfo) {
+        addFeature(new HamonFeatureRenderer(this));
     }
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)

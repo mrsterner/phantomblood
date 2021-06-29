@@ -43,6 +43,14 @@ public class ArrowHeadItem extends Item {
                         StandUtils.setStand(user, Stand.CRAZY_DIAMOND);
                         StandUtils.setStandLevel(user, 0);
                         break;
+                    case 5:
+                        StandUtils.setStand(user, Stand.WEATHER_REPORT);
+                        StandUtils.setStandLevel(user, 0);
+                        break;
+                    case 6:
+                        StandUtils.setStand(user, Stand.DARK_BLUE_MOON);
+                        StandUtils.setStandLevel(user, 0);
+                        break;
                     default:
                         break;
                 }

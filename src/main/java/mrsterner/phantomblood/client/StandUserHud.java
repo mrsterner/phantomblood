@@ -31,6 +31,10 @@ public class StandUserHud extends DrawableHelper implements HudRenderCallback {
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.YELLOW)).formatted(Formatting.BOLD), height, 4);
         }else if(stand == Stand.STAR_PLATINUM){
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.DARK_PURPLE)).formatted(Formatting.BOLD), height, 4);
+        }else if(stand == Stand.DARK_BLUE_MOON){
+            renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.DARK_BLUE)).formatted(Formatting.BOLD), height, 4);
+        }else if(stand == Stand.WEATHER_REPORT){
+            renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.WHITE)).formatted(Formatting.BOLD), height, 4);
         }else {
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.AQUA)).formatted(Formatting.BOLD), height, 4);
 

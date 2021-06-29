@@ -1,16 +1,21 @@
 package mrsterner.phantomblood.common.timestop;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public final class TimeStopComponentImpl implements TimeStopComponent, AutoSyncedComponent {
     private World owner;
     private long timeStoppedTicks = -1;
     private PlayerEntity timeStopper = null;
+    private MinecraftServer server;
 
     public TimeStopComponentImpl(World owner) {
         this.owner = owner;
