@@ -15,12 +15,12 @@ public class KillerQueenEnchantment extends Enchantment {
     @Override
     protected boolean canAccept(Enchantment other) {
         return super.canAccept(other)
-                && other.canCombine(PhantomBlood.THE_WORLD_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.STAR_PLATINUM_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.THE_SUN_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.CRAZY_DIAMOND_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.WEATHER_REPORT_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.DARK_BLUE_MOON_ENCHANTMENT);
+                && other != PhantomBlood.CRAZY_DIAMOND_ENCHANTMENT
+                && other != PhantomBlood.THE_SUN_ENCHANTMENT
+                && other != PhantomBlood.STAR_PLATINUM_ENCHANTMENT
+                && other != PhantomBlood.THE_WORLD_ENCHANTMENT
+                && other != PhantomBlood.DARK_BLUE_MOON_ENCHANTMENT
+                && other != PhantomBlood.WEATHER_REPORT_ENCHANTMENT;
     }
 
     @Override
@@ -40,4 +40,6 @@ public class KillerQueenEnchantment extends Enchantment {
     public boolean isAcceptableItem(ItemStack stack) {
         return stack.getItem() instanceof ArrowHeadItem;
     }
+
+
 }

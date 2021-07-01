@@ -40,4 +40,9 @@ public class CrazyDiamondEnchantment extends Enchantment {
     public boolean isAcceptableItem(ItemStack stack) {
         return stack.getItem() instanceof ArrowHeadItem;
     }
+
+    @Override
+    public boolean isAvailableForRandomSelection() {
+        return super.isAvailableForRandomSelection();
+    }
 }

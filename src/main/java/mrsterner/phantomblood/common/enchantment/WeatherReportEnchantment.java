@@ -14,12 +14,12 @@ public class WeatherReportEnchantment extends Enchantment {
     @Override
     protected boolean canAccept(Enchantment other) {
         return super.canAccept(other)
-                && other.canCombine(PhantomBlood.THE_WORLD_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.STAR_PLATINUM_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.THE_SUN_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.CRAZY_DIAMOND_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.KILLER_QUEEN_ENCHANTMENT)
-                && other.canCombine(PhantomBlood.DARK_BLUE_MOON_ENCHANTMENT);
+                && other != PhantomBlood.CRAZY_DIAMOND_ENCHANTMENT
+                && other != PhantomBlood.THE_SUN_ENCHANTMENT
+                && other != PhantomBlood.STAR_PLATINUM_ENCHANTMENT
+                && other != PhantomBlood.KILLER_QUEEN_ENCHANTMENT
+                && other != PhantomBlood.DARK_BLUE_MOON_ENCHANTMENT
+                && other != PhantomBlood.THE_WORLD_ENCHANTMENT;
     }
 
     @Override
@@ -39,4 +39,6 @@ public class WeatherReportEnchantment extends Enchantment {
     public boolean isAcceptableItem(ItemStack stack) {
         return stack.getItem() instanceof ArrowHeadItem;
     }
+
+
 }

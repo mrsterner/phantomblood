@@ -5,6 +5,8 @@ import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,6 +22,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ArrowHeadItem extends Item {
     public ArrowHeadItem(Settings settings) {
@@ -113,7 +117,6 @@ public class ArrowHeadItem extends Item {
                 }
             }
         }
-
             world.playSound(null,user.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,1F,1);
             user.damage(DamageSource.GENERIC,user.getMaxHealth() + 4); //Kills you even if you have 2 absorption hearts
             return TypedActionResult.consume(ItemStack.EMPTY);
