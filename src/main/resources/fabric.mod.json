@@ -25,6 +25,9 @@
     "cardinal-components-world": [
       "mrsterner.phantomblood.PhantomBlood"
     ],
+    "mm:early_risers":[
+      "mrsterner.phantomblood.common.asm.EarlyRiser"
+    ],
     "server": []
   },
   "mixins": [

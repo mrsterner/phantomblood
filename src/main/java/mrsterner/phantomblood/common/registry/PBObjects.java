@@ -2,6 +2,7 @@ package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.enchantment.TheWorldEnchantment;
 import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
 import mrsterner.phantomblood.common.worldgen.generator.RuinGenerator;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
@@ -9,6 +10,7 @@ import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.*;
 import net.minecraft.util.DyeColor;
 import net.minecraft.block.entity.BlockEntityType.Builder;
@@ -31,6 +33,7 @@ import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSetting
 public class PBObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
+    private static final Map<Item, Identifier> ENCHANTMENTS = new LinkedHashMap<>();
 
 
 
@@ -84,7 +87,6 @@ public class PBObjects {
 
     //Structure
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> RUIN = PhantomBlood.RUIN.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(RuinGenerator.STARTING_POOL), 2));
-
 
 
 

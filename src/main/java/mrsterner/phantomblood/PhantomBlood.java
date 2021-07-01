@@ -1,5 +1,6 @@
 package mrsterner.phantomblood;
 
+import com.chocohead.mm.api.ClassTinkerers;
 import com.williambl.haema.Vampirable;
 import com.williambl.haema.VampireBloodManager;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
@@ -7,8 +8,8 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentFactoryRegistry;
 import mrsterner.phantomblood.common.StandPunchHandler;
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.enchantment.*;
 import mrsterner.phantomblood.common.item.KillerQueenTriggerItem;
-import mrsterner.phantomblood.common.registry.PBUtil;
 import mrsterner.phantomblood.common.statuseffects.DarkBlueMoonEffect;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
@@ -20,6 +21,7 @@ import mrsterner.phantomblood.common.timestop.TimeStopComponentImpl;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -29,6 +31,8 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.fabricmc.fabric.api.util.TriState;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -44,7 +48,7 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LootTableEntry;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -100,22 +104,40 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             return context.getBiomeKey().getValue().getNamespace().equals("minecraft");
         };
     }
-    public static CompoundTag getTagCompoundSafe(ItemStack stack) {
-        CompoundTag tagCompound = stack.getTag();
+    public static NbtCompound getTagCompoundSafe(ItemStack stack) {
+        NbtCompound tagCompound = stack.getTag();
         if (tagCompound == null) {
-            tagCompound = new CompoundTag();
+            tagCompound = new NbtCompound();
             stack.setTag(tagCompound);
         }
         return tagCompound;
     }
     public static final StatusEffect DEEP_BLUE_MOON_EFFECT = new DarkBlueMoonEffect();
+    public static final EnchantmentTarget ARROW_HEAD = ClassTinkerers.getEnum(EnchantmentTarget.class, "ARROW_HEAD");
+
+    public static final TheWorldEnchantment THE_WORLD_ENCHANTMENT = new TheWorldEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final TheSunEnchantment THE_SUN_ENCHANTMENT = new TheSunEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final StarPlatinumEnchantment STAR_PLATINUM_ENCHANTMENT = new StarPlatinumEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final DarkBlueMoonEnchantment DARK_BLUE_MOON_ENCHANTMENT = new DarkBlueMoonEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final CrazyDiamondEnchantment CRAZY_DIAMOND_ENCHANTMENT = new CrazyDiamondEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final WeatherReportEnchantment WEATHER_REPORT_ENCHANTMENT = new WeatherReportEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final KillerQueenEnchantment KILLER_QUEEN_ENCHANTMENT = new KillerQueenEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+
+
     @Override
     public void onInitialize() {
+
+
         GeckoLib.initialize();
         PBObjects.init();
+        CommandRegistrationCallback.EVENT.register(PBCommands::init);
+        PBCommands.registerArgumentTypes();
         registerStructures();
         putStructures();
+
+
         Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "dark_blue_moon_effect"), DEEP_BLUE_MOON_EFFECT);
+
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {
             Identifier nether_fortress = new Identifier(PhantomBlood.MODID, "inject/nether_fortress");
@@ -236,6 +258,13 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
 
 
         ServerTickEvents.START_WORLD_TICK.register((new StandPunchHandler()));
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "the_world_enchantment"), THE_WORLD_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "the_sun_enchantment"), THE_SUN_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "star_platinum_enchantment"), STAR_PLATINUM_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "dark_blue_moon_enchantment"), DARK_BLUE_MOON_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "crazy_diamond_enchantment"), CRAZY_DIAMOND_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "killer_queen_enchantment"), KILLER_QUEEN_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "weather_report_enchantment"), WEATHER_REPORT_ENCHANTMENT);
     }
 
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {

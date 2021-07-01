@@ -2,12 +2,15 @@ package mrsterner.phantomblood.common.item;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.stand.StandUtils;
+import net.minecraft.block.PotatoesBlock;
+import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -24,12 +27,12 @@ public class KillerQueenTriggerItem extends Item {
         super(settings);
     }
 
-    public static CompoundTag getTagCompoundSafe(ItemStack stack) {
+    public static NbtCompound getTagCompoundSafe(ItemStack stack) {
         return PhantomBlood.getTagCompoundSafe(stack);
     }
 
     public static void setData(ItemStack stack, String type, @Nullable String uuid, float x, float y, float z) {
-        CompoundTag tag = new CompoundTag();
+        NbtCompound tag = new NbtCompound();
         tag.putString(TAG.TYPE.getName(), type);
         TYPE t =TYPE.getType(type);
         switch (t) {
@@ -46,9 +49,7 @@ public class KillerQueenTriggerItem extends Item {
         }
         getTagCompoundSafe(stack).put(TAG.TAGs.getName(), tag);
 
-
     }
-
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         int energy = StandUtils.getStandEnergy(user);
@@ -57,7 +58,7 @@ public class KillerQueenTriggerItem extends Item {
             StandUtils.setStandEnergy(user, energy - energyForAbility);
 
             ItemStack stack = user.getStackInHand(hand);
-            CompoundTag tag = getTagCompoundSafe(stack).getCompound(TAG.TAGs.getName());
+            NbtCompound tag = getTagCompoundSafe(stack).getCompound(TAG.TAGs.getName());
             String type = tag.getString(TAG.TYPE.getName());
             TYPE t =TYPE.getType(type);
             if(t!=null){

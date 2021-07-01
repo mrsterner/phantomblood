@@ -1,0 +1,247 @@
+package mrsterner.phantomblood;
+
+import com.williambl.haema.Vampirable;
+import com.williambl.haema.VampireBloodManager;
+import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
+import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
+import dev.onyxstudios.cca.api.v3.world.WorldComponentFactoryRegistry;
+import mrsterner.phantomblood.common.StandPunchHandler;
+import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.item.KillerQueenTriggerItem;
+import mrsterner.phantomblood.common.statuseffects.DarkBlueMoonEffect;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
+import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
+import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
+import mrsterner.phantomblood.common.stand.*;
+import mrsterner.phantomblood.common.timestop.StoppedTimeDamageHandler;
+import mrsterner.phantomblood.common.timestop.TimeStopComponent;
+import mrsterner.phantomblood.common.timestop.TimeStopComponentImpl;
+import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
+import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
+import net.fabricmc.fabric.api.util.TriState;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.HungerManager;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.loot.ConstantLootTableRange;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootTableEntry;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import mrsterner.phantomblood.common.registry.*;
+import net.fabricmc.api.ModInitializer;
+
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
+import software.bernie.geckolib3.GeckoLib;
+import top.theillusivec4.somnus.api.PlayerSleepEvents;
+import top.theillusivec4.somnus.api.WorldSleepEvents;
+import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
+
+import java.util.List;
+import java.util.function.Predicate;
+
+
+
+
+public final class PhantomBlood implements ModInitializer, EntityComponentInitializer, WorldComponentInitializer  {
+
+    public static final String MODID = "phantomblood";
+    public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PBObjects.STONE_MASK_ITEM));
+
+    public static final StructureFeature<StructurePoolFeatureConfig> RUIN = new RuinStructure();
+
+    private static void registerStructures() { FabricStructureBuilder.create(RuinStructure.ID, RUIN).step(GenerationStep.Feature.SURFACE_STRUCTURES)
+            .defaultConfig(50, 25, 165757306).superflatFeature(PBObjects.RUIN).adjustsSurface().register();
+    }
+    public static void putStructures() {
+        RegistrationHelper.addToBiome(
+                RuinStructure.ID,
+                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(true)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegistrationHelper.addStructure(context, PBObjects.RUIN)
+
+        );
+    }
+    public static Identifier id(String name) {
+        return new Identifier(MODID, name);
+    }
+
+    public static Predicate<BiomeSelectionContext> vanilla() {
+        return context -> {
+            // No data pack check bc it crash
+            return context.getBiomeKey().getValue().getNamespace().equals("minecraft");
+        };
+    }
+    public static NbtCompound getTagCompoundSafe(ItemStack stack) {
+        NbtCompound tagCompound = stack.getTag();
+        if (tagCompound == null) {
+            tagCompound = new NbtCompound();
+            stack.setTag(tagCompound);
+        }
+        return tagCompound;
+    }
+    public static final StatusEffect DEEP_BLUE_MOON_EFFECT = new DarkBlueMoonEffect();
+    @Override
+    public void onInitialize() {
+        GeckoLib.initialize();
+        PBObjects.init();
+        registerStructures();
+        putStructures();
+        Registry.register(Registry.STATUS_EFFECT, new Identifier("phantomblood", "dark_blue_moon_effect"), DEEP_BLUE_MOON_EFFECT);
+
+        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {
+            Identifier nether_fortress = new Identifier(PhantomBlood.MODID, "inject/nether_fortress");
+            Identifier simple_dungeon = new Identifier(PhantomBlood.MODID, "inject/simple_dungeon");
+            if (LootTables.NETHER_BRIDGE_CHEST.equals(identifier)) {
+                fabricLootSupplierBuilder.withPool(LootPool.builder().with(LootTableEntry.builder(nether_fortress).weight(1)).build());
+            }
+            if (LootTables.DESERT_PYRAMID_CHEST.equals(identifier) || LootTables.SIMPLE_DUNGEON_CHEST.equals(identifier)) {
+                fabricLootSupplierBuilder.withPool(LootPool.builder().with(LootTableEntry.builder(simple_dungeon).weight(1)).build());
+            }
+        });
+
+        //Vampire Coat abilities, if ampoule is in off-hand, add blood ampoule on villager hit, otherwise, 10% chance to give blood directly to user
+        AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+            ItemStack chest = player.getEquippedStack(EquipmentSlot.CHEST);
+            ItemStack feet = player.getEquippedStack(EquipmentSlot.FEET);
+            if (hand == Hand.MAIN_HAND && chest.getItem() == PBObjects.VAMPIRE_BOOTS && entity.isAlive() && ((Vampirable) player).isVampire() && player.getStackInHand(hand).isEmpty()) {
+                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
+                //Inflict slowness on hit with empty hand
+            }
+            if (!world.isClient && chest.getItem() == PBObjects.VAMPIRE_JACKET || chest.getItem() == PBObjects.VAMPIRE_JACKET_F && ((Vampirable) player).isVampire() && VampireBloodManager.Companion.getGoodBloodTag().contains(entity.getType())) {
+                if (player.getOffHandStack().getItem() == PBObjects.AMPOULE) {
+                    PBUtil.addItemToInventoryAndConsume(player, Hand.OFF_HAND, new ItemStack(PBObjects.BLOOD_AMPOULE));
+                    return ActionResult.SUCCESS;
+                    //Create blood ampoule
+                }
+                HungerManager var4 = player.getHungerManager();
+                int t = MathHelper.nextInt(world.random, 1, 10);
+                if (t == 1) {
+                    ((VampireBloodManager) var4).addBlood(2F);
+                    return ActionResult.SUCCESS;
+                    //Randomly give blood on hit w/o ampoule
+                }
+            }
+            if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND){
+                if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
+                    ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
+                    KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
+                    if(player.getStackInHand(Hand.MAIN_HAND).isEmpty()){
+                        player.setStackInHand(Hand.MAIN_HAND, trigger);
+                    }else{
+                        player.dropItem(trigger, false, true);
+                    }
+               }else{
+                    PlayerInventory inventory = player.inventory;
+                    List<ItemStack> mainInventory = inventory.main;
+                    for(ItemStack trigger : mainInventory) {
+                        if(trigger.getItem() == PBObjects.KILLER_QUEEN_TRIGGER) {
+                            KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
+                            break;
+                        }
+                    }
+                }
+            }
+            return ActionResult.PASS;
+        });
+        AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+            if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND) {
+                if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
+                    ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
+                    KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
+                    if(player.getStackInHand(Hand.MAIN_HAND).isEmpty()){
+                        player.setStackInHand(Hand.MAIN_HAND, trigger);
+                    }else{
+                        player.dropItem(trigger, false, true);
+                    }
+                }else{
+                    PlayerInventory inventory = player.inventory;
+                    List<ItemStack> mainInventory = inventory.main;
+                    for(ItemStack trigger : mainInventory) {
+                        if(trigger.getItem() == PBObjects.KILLER_QUEEN_TRIGGER) {
+                            System.out.println("Yee");
+                            KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
+                            break;
+                        }
+                    }
+                }
+            }
+            return ActionResult.PASS;
+        });
+
+        WorldSleepEvents.WORLD_WAKE_TIME.register((world, newTime, curTime) -> {
+            if (world.isDay()) {
+                long time = curTime;
+                while (time % 24000 < 13000) {
+                    time++;
+                }
+                return time;
+            }
+            return newTime;
+        });
+        PlayerSleepEvents.CAN_SLEEP_NOW.register((player, pos) -> {
+            if (player.world.getBlockState(pos).getBlock() instanceof CoffinBlock) {
+                return player.world.isDay() ? TriState.TRUE : TriState.FALSE;
+            }
+            return TriState.DEFAULT;
+        });
+        PlayerSleepEvents.TRY_SLEEP.register((player, pos) -> {
+            if (player.world.getBlockState(pos).getBlock() instanceof CoffinBlock && player.world.isNight()) {
+                player.sendMessage(new TranslatableText("block.minecraft.bed.coffin"), true);
+                return PlayerEntity.SleepFailureReason.OTHER_PROBLEM;
+            }
+            return null;
+        });
+
+
+        ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:use_ability"), (server, player, handler, buf, response) -> {
+            StandUtils.getStand(player).handler.receive(server, player, handler, buf, response);
+        });
+        ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:toggle_stand"), (server, player, handler, buf, response) -> {
+            server.execute(() -> StandUtils.toggleStandActive(player));
+        });
+        ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:change_stand_mode"), (server, player, handler, buf, response) -> {
+            server.execute(() -> StandUtils.setToNextStandMode(player));
+        });
+
+        new StoppedTimeDamageHandler().registerCallbacks();
+
+
+        ServerTickEvents.START_WORLD_TICK.register((new StandPunchHandler()));
+    }
+
+    public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
+        registry.registerForPlayers(StandUserComponent.entityKey, StandUserComponentImpl::new, RespawnCopyStrategy.ALWAYS_COPY);
+    }
+
+    public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
+        registry.register(TimeStopComponent.worldKey, TimeStopComponentImpl::new);
+    }
+}

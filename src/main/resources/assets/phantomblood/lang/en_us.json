@@ -47,7 +47,7 @@
   "status.phantomblood.attacking": "Attacking",
 
   "hud.phantomblood.stand": "%1$s",
-  "hud.phantomblood.stage": "Stage: %1$s",
+  "hud.phantomblood.stage": "Stage: %1$s / 1",
   "hud.phantomblood.energy": "Energy: %1$s / 100000",
   "hud.phantomblood.skill_cost": "Skill Cost: %1$s",
 
@@ -79,6 +79,16 @@
 
   "item.phantomblood.black_fabric": "Black Fabric",
 
-  "effect.phantomblood.dark_blue_moon_effect": "Scales"
+  "effect.phantomblood.dark_blue_moon_effect": "Scales",
+
+  "enchantment.phantomblood.the_world_enchantment" : "The World",
+  "enchantment.phantomblood.the_sun_enchantment" : "The Sun",
+  "enchantment.phantomblood.star_platinum_enchantment" : "Star Platinum",
+  "enchantment.phantomblood.weather_report_enchantment" : "Weather Report",
+  "enchantment.phantomblood.dark_blue_moon_enchantment" : "Dark Blue Moon",
+  "enchantment.phantomblood.killer_queen_enchantment" : "Killer Queen",
+  "enchantment.phantomblood.crazy_diamond_enchantment" : "Crazy Diamond",
+
+  "command.phantomblood.remove": "Stand removed"
 
 }
