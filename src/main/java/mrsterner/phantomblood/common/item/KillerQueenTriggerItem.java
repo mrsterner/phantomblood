@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.common.item;
 
 import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.minecraft.block.PotatoesBlock;
 import net.minecraft.enchantment.EnchantmentTarget;
@@ -52,43 +53,46 @@ public class KillerQueenTriggerItem extends Item {
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        int energy = StandUtils.getStandEnergy(user);
-        int energyForAbility = StandUtils.getStand(user).energyForAbility;
-        if(energy >= energyForAbility){
-            StandUtils.setStandEnergy(user, energy - energyForAbility);
+        if(StandUtils.getStand(user) == Stand.KILLER_QUEEN){
+            int energy = StandUtils.getStandEnergy(user);
+            int energyForAbility = StandUtils.getStand(user).energyForAbility;
+            if(energy >= energyForAbility){
+                StandUtils.setStandEnergy(user, energy - energyForAbility);
 
-            ItemStack stack = user.getStackInHand(hand);
-            NbtCompound tag = getTagCompoundSafe(stack).getCompound(TAG.TAGs.getName());
-            String type = tag.getString(TAG.TYPE.getName());
-            TYPE t =TYPE.getType(type);
-            if(t!=null){
-                switch (t){
-                    case BLOCK:
-                        BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
-                        world.createExplosion(user,pos.getX(),pos.getY()+1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
+                ItemStack stack = user.getStackInHand(hand);
+                NbtCompound tag = getTagCompoundSafe(stack).getCompound(TAG.TAGs.getName());
+                String type = tag.getString(TAG.TYPE.getName());
+                TYPE t =TYPE.getType(type);
+                if(t!=null){
+                    switch (t){
+                        case BLOCK:
+                            BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
+                            world.createExplosion(user,pos.getX(),pos.getY()+1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
 
-                        stack.decrement(1);
-                        StandUtils.getStandEnergy(user);
-                        break;
-                    case ENTITY:
-                        String uuid =tag.getString(TAG.UUID.getName());
-                        List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(128, 128, 128), null);
-                        if(entities!=null) {
-                            for(Entity entity : entities){
-                                if(entity.getUuid().toString().equals(uuid)){
-                                    entity.getEntityWorld().createExplosion(entity, entity.getX(), entity.getY(), entity.getZ(), 2f, Explosion.DestructionType.NONE);
-                                    entity.damage(DamageSource.explosion(user), 20f + StandUtils.getStandLevel(user));
+                            stack.decrement(1);
+                            StandUtils.getStandEnergy(user);
+                            break;
+                        case ENTITY:
+                            String uuid =tag.getString(TAG.UUID.getName());
+                            List<Entity> entities = world.getEntitiesByClass(Entity.class, new Box(user.getBlockPos()).expand(128, 128, 128), null);
+                            if(entities!=null) {
+                                for(Entity entity : entities){
+                                    if(entity.getUuid().toString().equals(uuid)){
+                                        entity.getEntityWorld().createExplosion(entity, entity.getX(), entity.getY(), entity.getZ(), 2f, Explosion.DestructionType.NONE);
+                                        entity.damage(DamageSource.explosion(user), 20f + StandUtils.getStandLevel(user));
+                                    }
                                 }
                             }
-                        }
-                        stack.decrement(1);
-                        break;
-                    default:
+                            stack.decrement(1);
+                            break;
+                        default:
+                    }
+
+
                 }
 
-
+                return super.use(world, user, hand);
             }
-
             return super.use(world, user, hand);
         }
         return super.use(world, user, hand);

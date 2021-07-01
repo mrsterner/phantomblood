@@ -1,5 +1,5 @@
 {
-  "name": "Arrow Head",
+  "name": "Dark Blue Moon",
   "category": "phantomblood:stand",
   "icon": "phantomblood:arrow_head",
   "advancement": "phantomblood:arrow_head",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Strange headpiece of an arrow, unknown material, infected with some kind of virus"
+      "text": "Dark Blue Moon"
     }
   ]
 }
