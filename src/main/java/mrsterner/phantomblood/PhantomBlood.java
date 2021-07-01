@@ -91,7 +91,6 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                 RuinStructure.ID,
                 BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(true)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, PBObjects.RUIN)
-
         );
     }
     public static Identifier id(String name) {
@@ -113,6 +112,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         return tagCompound;
     }
     public static final StatusEffect DEEP_BLUE_MOON_EFFECT = new DarkBlueMoonEffect();
+
     public static final EnchantmentTarget ARROW_HEAD = ClassTinkerers.getEnum(EnchantmentTarget.class, "ARROW_HEAD");
 
     public static final TheWorldEnchantment THE_WORLD_ENCHANTMENT = new TheWorldEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});

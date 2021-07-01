@@ -2,12 +2,9 @@ package mrsterner.phantomblood.common.enchantment;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.item.ArrowHeadItem;
-import net.minecraft.block.EnchantingTableBlock;
-import net.minecraft.block.entity.EnchantingTableBlockEntity;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 
 public class DarkBlueMoonEnchantment extends Enchantment {
@@ -41,7 +38,11 @@ public class DarkBlueMoonEnchantment extends Enchantment {
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        return stack.getItem() instanceof ArrowHeadItem;
+        return super.isAcceptableItem(stack);
+    }
+    @Override
+    public boolean isAvailableForEnchantedBookOffer() {
+        return false;
     }
 
 

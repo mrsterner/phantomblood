@@ -38,7 +38,11 @@ public class StarPlatinumEnchantment extends Enchantment {
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        return stack.getItem() instanceof ArrowHeadItem;
+        return super.isAcceptableItem(stack);
+    }
+    @Override
+    public boolean isAvailableForEnchantedBookOffer() {
+        return false;
     }
 
 }
