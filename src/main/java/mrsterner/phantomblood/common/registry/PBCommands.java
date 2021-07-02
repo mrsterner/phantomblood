@@ -53,15 +53,5 @@ public class PBCommands {
     }
 
 
-
-    public static int giveStatFeedback(CommandContext<ServerCommandSource> context, ServerPlayerEntity player) throws CommandSyntaxException {
-        context.getSource().sendFeedback(new TranslatableText("command.phantomblood.remove", player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
-        StandUtils.setStand(player, Stand.NONE);
-        giveSanityFeedback(context, player);
-        return 0;
-    }
-
-    private static void giveSanityFeedback(CommandContext<ServerCommandSource> context, ServerPlayerEntity player) {
-    }
     public static final Registry<Stand> STAND = FabricRegistryBuilder.createSimple(Stand.class, new Identifier(PhantomBlood.MODID, "stand")).buildAndRegister();
 }
