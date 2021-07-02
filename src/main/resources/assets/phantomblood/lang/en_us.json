@@ -89,6 +89,12 @@
   "enchantment.phantomblood.killer_queen_enchantment" : "Killer Queen",
   "enchantment.phantomblood.crazy_diamond_enchantment" : "Crazy Diamond",
 
-  "command.phantomblood.remove": "Stand removed"
-
+  "command.phantomblood.remove": "Stand removed",
+  "command.phantomblood.setstand.stand.phantomblood.the_sun": "Added The Sun to %s",
+  "command.phantomblood.setstand.stand.phantomblood.the_world": "Added The World to %s",
+  "command.phantomblood.setstand.stand.phantomblood.star_platinum": "Added Star Platinum to %s",
+  "command.phantomblood.setstand.stand.phantomblood.killer_queen": "Added Killer Queen to %s",
+  "command.phantomblood.setstand.stand.phantomblood.crazy_diamond": "Added Crazy Diamond to %s",
+  "command.phantomblood.setstand.stand.phantomblood.dark_blue_moon": "Added Dark Blue Moon to %s",
+  "command.phantomblood.setstand.stand.phantomblood.weather_report": "Added Weather Report to %s"
 }
