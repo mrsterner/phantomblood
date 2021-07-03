@@ -7,6 +7,13 @@
         }
       },
       "material": "canvas:emissive_transform"
+    },{
+      "predicate": {
+        "materialPredicate": {
+          "texture": "phantomblood:textures/entity/hamon/hamon1.png"
+        }
+      },
+      "material": "canvas:emissive_transform"
     }
   ]
 }

@@ -13,7 +13,6 @@ import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.ArgumentTypes;
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Style;
@@ -49,6 +48,12 @@ public class PBCommands {
         context.getSource().sendFeedback(new TranslatableText("command.phantomblood.setstand."+stand, player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
         StandUtils.setStand(player, stand);
         StandUtils.setStandLevel(player, 1);
+        return 0;
+    }
+    public static int removeStand(CommandContext<ServerCommandSource> context, ServerPlayerEntity player) throws CommandSyntaxException {
+        context.getSource().sendFeedback(new TranslatableText("command.phantomblood.removestand", player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
+        StandUtils.setStand(player, Stand.NONE);
+        StandUtils.setStandLevel(player, 0);
         return 0;
     }
 

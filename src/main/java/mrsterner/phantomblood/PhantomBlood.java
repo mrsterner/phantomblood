@@ -83,8 +83,7 @@ import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static mrsterner.phantomblood.common.registry.PBCommands.giveStatFeedback;
-import static mrsterner.phantomblood.common.registry.PBCommands.setStand;
+import static mrsterner.phantomblood.common.registry.PBCommands.*;
 import static net.minecraft.server.command.CommandManager.argument;
 
 
@@ -154,12 +153,12 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                     .literal("stand").build();
             LiteralCommandNode<ServerCommandSource> removeNode = CommandManager
                     .literal("remove")
-                    .executes(context -> giveStatFeedback(context, context.getSource().getPlayer())).build();
+                    .executes(context -> removeStand(context, context.getSource().getPlayer())).build();
             LiteralCommandNode<ServerCommandSource> setNode = CommandManager
                     .literal("set").build();
             ArgumentCommandNode<ServerCommandSource, EntitySelector> playerRemoveNode =
                     argument("player", EntityArgumentType.player())
-                            .executes(context -> giveStatFeedback(context, EntityArgumentType.getPlayer(context, "player"))).build();
+                            .executes(context -> removeStand(context, EntityArgumentType.getPlayer(context, "player"))).build();
             ArgumentCommandNode<ServerCommandSource, EntitySelector> playerSetNode =
                     argument("player", EntityArgumentType.player()).build();
             LiteralCommandNode<ServerCommandSource> setTheWorld = CommandManager.literal("the_world").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.THE_WORLD)).build();
