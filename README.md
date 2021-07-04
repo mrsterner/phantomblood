@@ -14,7 +14,7 @@ JoJo Addon for Haema
 
 </div>
   
-phantom Blood is a JoJo **Addon for Haema** that, inspired by JoJo's Bizarre Adventure Manga by Hirohiko Araki, focuses on adding content from JoJo to Minecraft. Some of the features include Vampire attire, Hamon and Stands. With the amount of content able to be added this mod will probably never reach a fully released state and will continuously receiving more stands and such. 
+Phantom Blood is a JoJo **Addon for Haema** that, inspired by JoJo's Bizarre Adventure Manga by Hirohiko Araki, focuses on adding content from JoJo to Minecraft. Some of the features include Vampire attire, Hamon and Stands. With the amount of content able to be added this mod will probably never reach a fully released state and will continuously receiving more stands and such. 
 
 The in-game wiki is added to Haema's Book of Blood. Stands and Hamon have keybinds you can configure.
 
