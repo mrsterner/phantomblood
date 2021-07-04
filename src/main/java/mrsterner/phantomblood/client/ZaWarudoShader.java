@@ -98,6 +98,7 @@ public class ZaWarudoShader implements PostWorldRenderCallback, ClientTickEvents
         }
     }
 
+
     private float lerp(double n, double prevN, float tickDelta) {
         return (float) MathHelper.lerp(tickDelta, prevN, n);
     }

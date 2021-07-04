@@ -119,7 +119,12 @@ dependencies {
     // Include Satin as a Jar-in-Jar dependency (optional)
 
 
+/*
+    modRuntime ("grondag:canvas-mc116:1.0.1511"){
+        exclude module:"modmenu"
+    }
 
+ */
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
     modImplementation 'com.github.Chocohead:Fabric-ASM:v2.0.1'
     include 'com.github.Chocohead:Fabric-ASM:v2.0.1'
