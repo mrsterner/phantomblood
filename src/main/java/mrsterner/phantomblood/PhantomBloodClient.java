@@ -139,7 +139,6 @@ public class PhantomBloodClient implements ClientModInitializer {
         WorldRenderEvents.LAST.register(new CrazyDiamondHealFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new WeatherReportFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new DarkBlueMoonFirstPersonArmRenderer());
-        WorldRenderEvents.LAST.register(new HamonFirstPersonArmRenderer());
 
         HudRenderCallback.EVENT.register(new StandUserHud());
 

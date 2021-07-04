@@ -56,6 +56,17 @@ public class PBCommands {
         StandUtils.setStandLevel(player, 0);
         return 0;
     }
+    public static int hamon(CommandContext<ServerCommandSource> context, ServerPlayerEntity player) throws CommandSyntaxException {
+        context.getSource().sendFeedback(new TranslatableText("command.phantomblood.removestand", player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
+        if(StandUtils.getStand(player) == Stand.HAMON){
+            StandUtils.setStand(player, Stand.NONE);
+        }else{
+            StandUtils.setStand(player, Stand.HAMON);
+        }
+        StandUtils.setStandLevel(player, 0);
+
+        return 0;
+    }
 
 
     public static final Registry<Stand> STAND = FabricRegistryBuilder.createSimple(Stand.class, new Identifier(PhantomBlood.MODID, "stand")).buildAndRegister();

@@ -1,12 +1,9 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
-import mrsterner.phantomblood.client.model.stand.DarkBlueMoonModel;
 import mrsterner.phantomblood.client.model.stand.TheSunModel;
 import mrsterner.phantomblood.common.stand.Stand;
-import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;

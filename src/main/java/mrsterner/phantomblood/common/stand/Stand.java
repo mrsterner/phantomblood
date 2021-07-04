@@ -69,7 +69,8 @@ public enum Stand {
         });
 
     }),
-    THE_SUN(8000, (server, player, handler1, buf, responseSender) -> {});
+    THE_SUN(8000, (server, player, handler1, buf, responseSender) -> {}),
+    HAMON(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;
     public ServerPlayNetworking.PlayChannelHandler handler;

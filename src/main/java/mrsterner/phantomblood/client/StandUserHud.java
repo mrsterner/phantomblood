@@ -24,7 +24,7 @@ public class StandUserHud extends DrawableHelper implements HudRenderCallback {
         int height = mc.getWindow().getScaledHeight();
         if (player == null) return;
         Stand stand = StandUtils.getStand(player);
-        if (stand == Stand.NONE) return;
+        if (stand == Stand.NONE || stand == Stand.HAMON) return;
 
         if(stand == Stand.KILLER_QUEEN){
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.LIGHT_PURPLE)).formatted(Formatting.BOLD), height, 5);

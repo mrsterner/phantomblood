@@ -156,9 +156,18 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
                     .executes(context -> removeStand(context, context.getSource().getPlayer())).build();
             LiteralCommandNode<ServerCommandSource> setNode = CommandManager
                     .literal("set").build();
+            LiteralCommandNode<ServerCommandSource> setHamonNode = CommandManager
+                    .literal("hamon")
+                    .executes(context -> hamon(context, context.getSource().getPlayer()))
+                    .build();
+            ArgumentCommandNode<ServerCommandSource, EntitySelector> hamonNode =
+                    argument("player", EntityArgumentType.player())
+                    .executes(context -> hamon(context, EntityArgumentType.getPlayer(context,"player")))
+                    .build();
             ArgumentCommandNode<ServerCommandSource, EntitySelector> playerRemoveNode =
                     argument("player", EntityArgumentType.player())
-                            .executes(context -> removeStand(context, EntityArgumentType.getPlayer(context, "player"))).build();
+                    .executes(context -> removeStand(context, EntityArgumentType.getPlayer(context, "player")))
+                    .build();
             ArgumentCommandNode<ServerCommandSource, EntitySelector> playerSetNode =
                     argument("player", EntityArgumentType.player()).build();
             LiteralCommandNode<ServerCommandSource> setTheWorld = CommandManager.literal("the_world").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.THE_WORLD)).build();
@@ -171,6 +180,8 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
 
             dispatcher.getRoot().addChild(phantombloodNode);
             phantombloodNode.addChild(standNode);
+            phantombloodNode.addChild(setHamonNode);
+            setHamonNode.addChild(hamonNode);
             standNode.addChild(removeNode);
             standNode.addChild(setNode);
             removeNode.addChild(playerRemoveNode);

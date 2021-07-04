@@ -27,7 +27,7 @@ public class HamonFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEn
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         this.yOffset = 0.6F + MathHelper.cos((float)(0.1D * (double)animationProgress))/2.5;
-         if (StandUtils.getStand((PlayerEntity) entity) == Stand.NONE) {
+         if (StandUtils.getStand((PlayerEntity) entity) == Stand.HAMON) {
         matrices.push();
         getContextModel().rightArm.rotate(matrices);
         model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.4f);

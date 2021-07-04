@@ -654,7 +654,7 @@ public class DarkBlueMoonModel extends EntityModel<LivingEntity> {
 
 	}
 
-	public void renderAttack(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderAttack(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		matrixStack.translate(0.0D, this.yOffset, -0.75D);
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
 		head.render(matrixStack, buffer, packedLight, packedOverlay);
