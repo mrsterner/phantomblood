@@ -12,6 +12,7 @@ public class PBSoundEvents {
     private static final Map<SoundEvent, Identifier> SOUND_EVENTS = new LinkedHashMap();
     public static final SoundEvent VAMPIRE = create("entity.vampire");
     public static final SoundEvent THE_WORLD = create("stand.theworld");
+    public static final SoundEvent THE_WORLD_END = create("stand.theworldend");
     public static final SoundEvent PUNCH = create("stand.punch");
 
 

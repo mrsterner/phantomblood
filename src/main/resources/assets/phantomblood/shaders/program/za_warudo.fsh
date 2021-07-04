@@ -1,3 +1,4 @@
+
 /*
  * Requiem
  * Copyright (C) 2019 Ladysnake
@@ -50,15 +51,15 @@ varying vec4 vPosition;
 
 vec4 CalcEyeFromWindow(in float depth)
 {
-  // derived from https://www.khronos.org/opengl/wiki/Compute_eye_space_from_window_space
-  // ndc = Normalized Device Coordinates
-  vec3 ndcPos;
-  ndcPos.xy = ((2.0 * gl_FragCoord.xy) - (2.0 * ViewPort.xy)) / (ViewPort.zw) - 1;
-  ndcPos.z = (2.0 * depth - gl_DepthRange.near - gl_DepthRange.far) / (gl_DepthRange.far - gl_DepthRange.near);
-  vec4 clipPos = vec4(ndcPos, 1.);
-  vec4 homogeneous = InverseTransformMatrix * clipPos;
-  vec4 eyePos = vec4(homogeneous.xyz / homogeneous.w, homogeneous.w);
-  return eyePos;
+    // derived from https://www.khronos.org/opengl/wiki/Compute_eye_space_from_window_space
+    // ndc = Normalized Device Coordinates
+    vec3 ndcPos;
+    ndcPos.xy = ((2.0 * gl_FragCoord.xy) - (2.0 * ViewPort.xy)) / (ViewPort.zw) - 1;
+    ndcPos.z = (2.0 * depth - gl_DepthRange.near - gl_DepthRange.far) / (gl_DepthRange.far - gl_DepthRange.near);
+    vec4 clipPos = vec4(ndcPos, 1.);
+    vec4 homogeneous = InverseTransformMatrix * clipPos;
+    vec4 eyePos = vec4(homogeneous.xyz / homogeneous.w, homogeneous.w);
+    return eyePos;
 }
 
 // Conversion functions between the RGB and HSV color spaces
@@ -115,16 +116,16 @@ void main()
     float r = sqrt(dot(d, d));
     //amount of effect
     float power = ( 1.0 * 3.141592 / (2.0 * sqrt(dot(m, m))) ) *
-  		(inside * -0.2);
+    (inside * -0.2);
     //radius of 1:1 effect
     float bind = (prop < 1.0) ? m.x : m.y;//stick to borders
 
     //Weird formulas
     vec2 uv;
     if (power < 0.0)//antifisheye
-      uv = m + normalize(d) * atan(r * -power * 10.0) * bind / atan(-power * bind * 10.0);
+    uv = m + normalize(d) * atan(r * -power * 10.0) * bind / atan(-power * bind * 10.0);
     else
-      uv = p;//no effect for power = 0.0
+    uv = p;//no effect for power = 0.0
 
     //Second part of cheat
     //for round effect, not elliptical
@@ -143,3 +144,4 @@ void main()
 
     gl_FragColor = vec4(color, 1.0);
 }
+

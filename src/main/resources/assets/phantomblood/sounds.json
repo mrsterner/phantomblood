@@ -17,6 +17,15 @@
     ],
     "subtitle": "phantomblood.subtitles.stand.theworld"
   },
+  "stand.theworldend": {
+    "sounds": [
+      {
+        "name": "phantomblood:zawarudoend",
+        "pitch": 1
+      }
+    ],
+    "subtitle": "phantomblood.subtitles.stand.theworldend"
+  },
   "stand.punch": {
     "sounds": [
       {

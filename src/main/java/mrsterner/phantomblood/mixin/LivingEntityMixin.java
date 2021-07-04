@@ -6,6 +6,7 @@ import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
+import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.*;
@@ -80,6 +81,11 @@ public abstract class LivingEntityMixin extends Entity {
                         player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 60));
                         player.setOnFireFor(2);
                     }
+            }
+        }
+        if(world.isClient){
+            if(TimeStopUtils.getTimeStoppedTicks(world) == 1){
+                this.playSound(PBSoundEvents.THE_WORLD_END, this.getSoundVolume(),this.getSoundPitch());
             }
         }
     }
