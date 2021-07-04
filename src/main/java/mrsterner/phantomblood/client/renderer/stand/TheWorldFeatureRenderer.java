@@ -1,7 +1,6 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
-import mrsterner.phantomblood.client.model.stand.TheWorldAttackingModel;
-import mrsterner.phantomblood.client.model.stand.TheWorldIdleModel;
+import mrsterner.phantomblood.client.model.stand.TheWorldModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -17,14 +16,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class TheWorldFeatureRenderer<T extends LivingEntity> extends FeatureRenderer<T, EntityModel<T>> {
-    private final TheWorldAttackingModel attackingModel;
-    private final TheWorldIdleModel idleModel;
+    private final TheWorldModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/the_world.png");
 
-    public TheWorldFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, TheWorldAttackingModel attackingModel, TheWorldIdleModel idleModel) {
+    public TheWorldFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, TheWorldModel model) {
         super(context);
-        this.attackingModel = attackingModel;
-        this.idleModel = idleModel;
+        this.model = model;
     }
 
 
@@ -44,11 +41,11 @@ public class TheWorldFeatureRenderer<T extends LivingEntity> extends FeatureRend
 
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
-            attackingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            attackingModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            model.setAnglesAttack(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+            model.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         } else {
-            idleModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            idleModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+            model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         }
         matrices.pop();
     }

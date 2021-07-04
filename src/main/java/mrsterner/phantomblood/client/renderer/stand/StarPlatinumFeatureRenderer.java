@@ -1,7 +1,6 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
-import mrsterner.phantomblood.client.model.stand.StarPlatinumAttackingModel;
-import mrsterner.phantomblood.client.model.stand.StarPlatinumIdleModel;
+import mrsterner.phantomblood.client.model.stand.StarPlatinumModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -17,14 +16,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class StarPlatinumFeatureRenderer<T extends LivingEntity> extends FeatureRenderer<T, EntityModel<T>> {
-    private final StarPlatinumAttackingModel attackingModel;
-    private final StarPlatinumIdleModel idleModel;
+    private final StarPlatinumModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/star_platinum.png");
 
-    public StarPlatinumFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, StarPlatinumAttackingModel attackingModel, StarPlatinumIdleModel idleModel) {
+    public StarPlatinumFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, StarPlatinumModel model) {
         super(context);
-        this.attackingModel = attackingModel;
-        this.idleModel = idleModel;
+        this.model = model;
     }
 
 
@@ -41,14 +38,13 @@ public class StarPlatinumFeatureRenderer<T extends LivingEntity> extends Feature
         float headPitch
     ) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.STAR_PLATINUM) return;
-
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
-            attackingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            attackingModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            model.setAttackAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+            model.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         } else {
-            idleModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            idleModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+            model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         }
         matrices.pop();
     }

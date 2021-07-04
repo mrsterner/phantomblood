@@ -558,10 +558,7 @@ public class WeatherReportModel extends EntityModel<LivingEntity> {
 		this.rightPunch3.yaw =-45+ MathHelper.cos(speed * animationProgress + (float)8.377580409572781D) * 1.4F * power;
 		this.rightPunch4.yaw =-45+ MathHelper.cos(speed * animationProgress + (float)10.471975511965978D) * 1.5F * power;
 		this.rightPunch5.yaw =-45+ MathHelper.cos(speed * animationProgress + (float)1.5707963267948966D) * 1.6F * power;
-		this.leftPuch.pitch = headPitch * 0.017453292F;
-		this.leftPuch.yaw = headYaw * 0.017453292F;
-		this.rightPunch.pitch = headPitch * 0.017453292F;
-		this.rightPunch.yaw = headYaw * 0.017453292F;
+
 		float r = (float)Math.random();
 		float offysin = MathHelper.sin(r * speed * animationProgress) * power - 0.25F;
 		float offycos = MathHelper.cos(r * speed * animationProgress) * power - 0.25F;
@@ -575,10 +572,6 @@ public class WeatherReportModel extends EntityModel<LivingEntity> {
 		this.rightPunch3.pivotZ = offycos;
 		this.rightPunch4.pivotZ = offysin;
 		this.rightPunch5.pivotZ = offycos;
-		float offxl = r * MathHelper.sin(r * speed * animationProgress) * power + 0.2F;
-		float offxr = r * MathHelper.sin(r * speed * animationProgress) * power - 0.2F;
-		this.leftPuch.pivotX = offxl;
-		this.rightPunch.pivotX = offxr;
 	}
 	@Override
 	public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {

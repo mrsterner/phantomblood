@@ -2,7 +2,6 @@ package mrsterner.phantomblood;
 
 import mrsterner.phantomblood.client.StandUserHud;
 import mrsterner.phantomblood.client.ZaWarudoShader;
-import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.client.model.stand.*;
 import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import mrsterner.phantomblood.client.renderer.armor.StonemaskRenderer;
@@ -35,9 +34,7 @@ import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -147,15 +144,13 @@ public class PhantomBloodClient implements ClientModInitializer {
             if (entityType == EntityType.PLAYER) {
                 //noinspection unchecked
                 //registrationHelper.register(new HamonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new HamonModel()));
-                registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldAttackingModel(), new TheWorldIdleModel()));
-                registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenAttackingModel(), new KillerQueenIdleModel()));
-                registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumAttackingModel(), new StarPlatinumIdleModel()));
+                registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldModel()));
+                registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenModel()));
+                registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumModel()));
                 registrationHelper.register(new CrazyDiamondFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new CrazyDiamondAttackingModel(), new CrazyDiamondIdleModel(), new CrazyDiamondHealingModel()));
                 registrationHelper.register(new WeatherReportFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new WeatherReportModel()));
                 registrationHelper.register(new DarkBlueMoonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new DarkBlueMoonModel()));
                 registrationHelper.register(new TheSunFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheSunModel()));
-
-
             }
         });
 

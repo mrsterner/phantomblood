@@ -1,7 +1,6 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
-import mrsterner.phantomblood.client.model.stand.KillerQueenAttackingModel;
-import mrsterner.phantomblood.client.model.stand.KillerQueenIdleModel;
+import mrsterner.phantomblood.client.model.stand.KillerQueenModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -17,13 +16,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class KillerQueenFeatureRenderer<T extends LivingEntity> extends FeatureRenderer<T, EntityModel<T>> {
-    private final KillerQueenAttackingModel attackingModel;
-    private final KillerQueenIdleModel idleModel;
+    private final KillerQueenModel idleModel;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/killer_queen.png");
 
-    public KillerQueenFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, KillerQueenAttackingModel attackingModel, KillerQueenIdleModel idleModel) {
+    public KillerQueenFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, KillerQueenModel idleModel) {
         super(context);
-        this.attackingModel = attackingModel;
         this.idleModel = idleModel;
     }
 
@@ -44,8 +41,8 @@ public class KillerQueenFeatureRenderer<T extends LivingEntity> extends FeatureR
 
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
-            attackingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            attackingModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            idleModel.setAttackAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+            idleModel.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         } else {
             idleModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
             idleModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);

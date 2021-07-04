@@ -1,7 +1,7 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 
-import mrsterner.phantomblood.client.model.stand.StarPlatinumAttackingModel;
+import mrsterner.phantomblood.client.model.stand.StarPlatinumModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -21,7 +21,7 @@ import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class StarPlatinumFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final StarPlatinumAttackingModel model = new StarPlatinumAttackingModel();
+    private final StarPlatinumModel model = new StarPlatinumModel();
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/star_platinum.png");
 
     @Override
@@ -36,15 +36,16 @@ public class StarPlatinumFirstPersonArmRenderer implements WorldRenderEvents.Las
         ) {
             return;
         }
+
         MatrixStack matrixStack = context.matrixStack();
         matrixStack.push();
-        matrixStack.multiply(context.camera().getRotation());
-        matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(0.0f));
+        //matrixStack.multiply(context.camera().getRotation());
         matrixStack.scale(-1.0F, -1.0F, 1.0F);
-        matrixStack.translate(0.0D, -0.2, 1D);
+        matrixStack.translate(0.0D, -0.2, -0.8D);
+
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
         VertexConsumer vertexConsumer2 = immediate.getBuffer(RenderLayer.getEntityTranslucent(texture));
-        model.setAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
+        model.setAttackAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
         //matrixStack.translate(1,1,1);
         model.renderPunchyArms(matrixStack, vertexConsumer2, 15728880, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 0.5f);
         matrixStack.pop();

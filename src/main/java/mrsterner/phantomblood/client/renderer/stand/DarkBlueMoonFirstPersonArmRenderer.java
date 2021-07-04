@@ -38,11 +38,11 @@ public class DarkBlueMoonFirstPersonArmRenderer implements WorldRenderEvents.Las
         }
         MatrixStack matrixStack = context.matrixStack();
         matrixStack.push();
-        matrixStack.multiply(context.camera().getRotation());
+        //matrixStack.multiply(context.camera().getRotation());
         matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(0.0f));
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0f));
+        //matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0f));
         matrixStack.scale(-1.0F, -1.0F, 1.0F);
-        matrixStack.translate(-0.2D, -0.2, -1.0D);
+        matrixStack.translate(0.0D, -0.0, -0.8D);
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
         VertexConsumer vertexConsumer2 = immediate.getBuffer(RenderLayer.getEntityTranslucent(texture));
         model.setAttackAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);

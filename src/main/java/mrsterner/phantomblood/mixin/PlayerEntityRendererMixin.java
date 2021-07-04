@@ -1,6 +1,7 @@
 package mrsterner.phantomblood.mixin;
 
 import mrsterner.phantomblood.client.model.HamonModel;
+import mrsterner.phantomblood.client.model.stand.StarPlatinumModel;
 import mrsterner.phantomblood.client.renderer.stand.HamonFeatureRenderer;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.stand.Stand;
@@ -36,6 +37,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     private final HamonModel model = new HamonModel();
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/hamon/hamon1.png");
 
+
     public PlayerEntityRendererMixin(EntityRenderDispatcher dispatcher, PlayerEntityModel<AbstractClientPlayerEntity> model, float shadowRadius) {
         super(dispatcher, model, shadowRadius);
     }
@@ -67,6 +69,5 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             model.renderHeat(matrices, vertices.getBuffer(RenderLayer.getEntityTranslucent(texture)), lightmap, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.3f);
             matrices.pop();
         }
-
     }
 }
