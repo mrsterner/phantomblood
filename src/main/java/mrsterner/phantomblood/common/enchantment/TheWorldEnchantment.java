@@ -1,7 +1,6 @@
 package mrsterner.phantomblood.common.enchantment;
 
 import mrsterner.phantomblood.PhantomBlood;
-import mrsterner.phantomblood.common.item.ArrowHeadItem;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;

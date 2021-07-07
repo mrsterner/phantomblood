@@ -28,21 +28,8 @@ public class CrazyDiamondFeatureRenderer<T extends LivingEntity> extends Feature
         this.healingModel = healingModel;
     }
 
-
-    @Override public void render(
-        MatrixStack matrices,
-        VertexConsumerProvider vertexConsumers,
-        int light,
-        T entity,
-        float limbAngle,
-        float limbDistance,
-        float tickDelta,
-        float animationProgress,
-        float headYaw,
-        float headPitch
-    ) {
+    @Override public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.CRAZY_DIAMOND) return;
-
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
             attackingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);

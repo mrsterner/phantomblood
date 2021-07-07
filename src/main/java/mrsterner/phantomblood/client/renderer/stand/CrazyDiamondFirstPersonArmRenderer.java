@@ -27,13 +27,7 @@ public class CrazyDiamondFirstPersonArmRenderer implements WorldRenderEvents.Las
     @Override
     public void onLast(WorldRenderContext context) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if (
-                player == null
-                || !StandUtils.isStandActive(player)
-                || StandUtils.getStand(player) != Stand.CRAZY_DIAMOND
-                || StandUtils.getStandMode(player) != StandMode.ATTACKING
-                || context.camera().isThirdPerson()
-        ) {
+        if (player == null || !StandUtils.isStandActive(player) || StandUtils.getStand(player) != Stand.CRAZY_DIAMOND || StandUtils.getStandMode(player) != StandMode.ATTACKING || context.camera().isThirdPerson()) {
             return;
         }
         MatrixStack matrixStack = context.matrixStack();

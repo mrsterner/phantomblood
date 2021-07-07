@@ -1,11 +1,9 @@
 package mrsterner.phantomblood.mixin;
 
 import mrsterner.phantomblood.client.model.HamonModel;
-import mrsterner.phantomblood.client.model.stand.StarPlatinumModel;
 import mrsterner.phantomblood.client.renderer.stand.HamonFeatureRenderer;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.stand.Stand;
-import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -24,7 +22,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3f;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;

@@ -25,25 +25,12 @@ public class WeatherReportFeatureRenderer<T extends LivingEntity> extends Featur
     }
 
 
-    @Override public void render(
-        MatrixStack matrices,
-        VertexConsumerProvider vertexConsumers,
-        int light,
-        T entity,
-        float limbAngle,
-        float limbDistance,
-        float tickDelta,
-        float animationProgress,
-        float headYaw,
-        float headPitch
-    ) {
+    @Override public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.WEATHER_REPORT) return;
-
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
             idleModel.setAttackAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
             idleModel.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
-
         } else {
             idleModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
             idleModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);

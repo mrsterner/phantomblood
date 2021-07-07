@@ -27,26 +27,16 @@ public class StarPlatinumFirstPersonArmRenderer implements WorldRenderEvents.Las
     @Override
     public void onLast(WorldRenderContext context) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if (
-                player == null
-                || !StandUtils.isStandActive(player)
-                || StandUtils.getStand(player) != Stand.STAR_PLATINUM
-                || StandUtils.getStandMode(player) != StandMode.ATTACKING
-                || context.camera().isThirdPerson()
-        ) {
+        if (player == null || !StandUtils.isStandActive(player) || StandUtils.getStand(player) != Stand.STAR_PLATINUM || StandUtils.getStandMode(player) != StandMode.ATTACKING || context.camera().isThirdPerson()) {
             return;
         }
-
         MatrixStack matrixStack = context.matrixStack();
         matrixStack.push();
-        //matrixStack.multiply(context.camera().getRotation());
         matrixStack.scale(-1.0F, -1.0F, 1.0F);
         matrixStack.translate(0.0D, -0.2, -0.8D);
-
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
         VertexConsumer vertexConsumer2 = immediate.getBuffer(RenderLayer.getEntityTranslucent(texture));
         model.setAttackAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
-        //matrixStack.translate(1,1,1);
         model.renderPunchyArms(matrixStack, vertexConsumer2, 15728880, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 0.5f);
         matrixStack.pop();
     }

@@ -22,28 +22,13 @@ public class TheSunFeatureRenderer<T extends LivingEntity> extends FeatureRender
         this.idleModel = idleModel;
     }
 
-    @Override public void render(
-        MatrixStack matrices,
-        VertexConsumerProvider vertexConsumers,
-        int light,
-        T entity,
-        float limbAngle,
-        float limbDistance,
-        float tickDelta,
-        float animationProgress,
-        float headYaw,
-        float headPitch
-    ) {
+    @Override public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.THE_SUN) return;
-
         matrices.push();
-
         idleModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
         idleModel.render(matrices, vertexConsumers.getBuffer(TheSunRenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         idleModel.renderHeat(matrices, vertexConsumers.getBuffer(TheSunRenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.4f);
         idleModel.renderHeat2(matrices, vertexConsumers.getBuffer(TheSunRenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.2f);
-
-
         matrices.pop();
     }
 }

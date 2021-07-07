@@ -10,7 +10,9 @@
     "BoatEntityMixin",
     "MinecartEntityMixin",
     "HorseEntityMixin",
-    "EnchantmentTargetMixin"
+    "EnchantmentTargetMixin",
+    "PigEntityMixin",
+    "StriderEntityMixin"
   ],
   "client": [
     "ClientChunkManagerMixin",

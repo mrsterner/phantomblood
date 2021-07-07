@@ -2,7 +2,6 @@ package mrsterner.phantomblood.client.model.armor;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.item.VampireArmorFItem;
-import mrsterner.phantomblood.common.item.VampireArmorItem;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

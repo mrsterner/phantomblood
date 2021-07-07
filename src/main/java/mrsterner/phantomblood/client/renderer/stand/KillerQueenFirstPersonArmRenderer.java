@@ -31,7 +31,6 @@ public class KillerQueenFirstPersonArmRenderer implements WorldRenderEvents.Last
         }
         MatrixStack matrixStack = context.matrixStack();
         matrixStack.push();
-        //matrixStack.multiply(context.camera().getRotation());
         matrixStack.scale(-1.0F, -1.0F, 1.0F);
         matrixStack.translate(0.0D, 0.0, -0.8D);
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();

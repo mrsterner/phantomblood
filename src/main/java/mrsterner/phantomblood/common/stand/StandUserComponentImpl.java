@@ -2,13 +2,10 @@ package mrsterner.phantomblood.common.stand;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.entity.PlayerComponent;
-import net.minecraft.enchantment.DepthStriderEnchantment;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.Hand;
 
 public final class StandUserComponentImpl implements StandUserComponent, AutoSyncedComponent, PlayerComponent<StandUserComponentImpl> {
     private PlayerEntity owner;

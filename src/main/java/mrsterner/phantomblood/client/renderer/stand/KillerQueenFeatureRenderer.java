@@ -24,21 +24,8 @@ public class KillerQueenFeatureRenderer<T extends LivingEntity> extends FeatureR
         this.idleModel = idleModel;
     }
 
-
-    @Override public void render(
-        MatrixStack matrices,
-        VertexConsumerProvider vertexConsumers,
-        int light,
-        T entity,
-        float limbAngle,
-        float limbDistance,
-        float tickDelta,
-        float animationProgress,
-        float headYaw,
-        float headPitch
-    ) {
+    @Override public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.KILLER_QUEEN) return;
-
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
             idleModel.setAttackAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);

@@ -15,9 +15,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-public class StasisFeatureRenderer extends FeatureRenderer<LivingEntity, EntityModel<LivingEntity>> {
+public class HamonFeatureRenderer extends FeatureRenderer<LivingEntity, EntityModel<LivingEntity>> {
     private EntityModel<LivingEntity> model;
-    public StasisFeatureRenderer(FeatureRendererContext<LivingEntity, EntityModel<LivingEntity>> context) {
+    public HamonFeatureRenderer(FeatureRendererContext<LivingEntity, EntityModel<LivingEntity>> context) {
         super(context);
         this.model = context.getModel();
     }

@@ -27,20 +27,12 @@ public class DarkBlueMoonFirstPersonArmRenderer implements WorldRenderEvents.Las
     @Override
     public void onLast(WorldRenderContext context) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if (
-                player == null
-                || !StandUtils.isStandActive(player)
-                || StandUtils.getStand(player) != Stand.DARK_BLUE_MOON
-                || StandUtils.getStandMode(player) != StandMode.ATTACKING
-                || context.camera().isThirdPerson()
-        ) {
+        if (player == null || !StandUtils.isStandActive(player) || StandUtils.getStand(player) != Stand.DARK_BLUE_MOON || StandUtils.getStandMode(player) != StandMode.ATTACKING || context.camera().isThirdPerson()) {
             return;
         }
         MatrixStack matrixStack = context.matrixStack();
         matrixStack.push();
-        //matrixStack.multiply(context.camera().getRotation());
         matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(0.0f));
-        //matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0f));
         matrixStack.scale(-1.0F, -1.0F, 1.0F);
         matrixStack.translate(0.0D, -0.0, -0.8D);
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
