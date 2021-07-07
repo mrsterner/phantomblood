@@ -2,12 +2,15 @@ package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.block.UrnBlock;
 import mrsterner.phantomblood.common.enchantment.TheWorldEnchantment;
 import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
 import mrsterner.phantomblood.common.worldgen.generator.RuinGenerator;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.enchantment.Enchantment;
@@ -74,6 +77,8 @@ public class PBObjects {
     public static final Block MAGENTA_COFFIN = create("magenta_coffin", new CoffinBlock(DyeColor.MAGENTA, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
     public static final Block ORANGE_COFFIN = create("orange_coffin", new CoffinBlock(DyeColor.ORANGE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
     public static final Block WHITE_COFFIN = create("white_coffin", new CoffinBlock(DyeColor.WHITE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
+
+    public static final Block URNS = create("urns", new UrnBlock(FabricBlockSettings.of(Material.EGG)), true);
 
     //Armor
     public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD, gen()));

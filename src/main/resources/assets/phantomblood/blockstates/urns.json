@@ -1,0 +1,89 @@
+{
+  "variants": {
+    "urns=1": [
+      {
+        "model": "phantomblood:block/urn_one"
+      },
+      {
+        "model": "phantomblood:block/urn_one",
+        "y": 90
+      },
+      {
+        "model": "phantomblood:block/urn_one",
+        "y": 180
+      },
+      {
+        "model": "phantomblood:block/urn_one",
+        "y": 270
+      }
+    ],
+    "urns=2": [
+      {
+        "model": "phantomblood:block/urn_two"
+      },
+      {
+        "model": "phantomblood:block/urn_two",
+        "y": 90
+      },
+      {
+        "model": "phantomblood:block/urn_two",
+        "y": 180
+      },
+      {
+        "model": "phantomblood:block/urn_two",
+        "y": 270
+      }
+    ],
+    "urns=3": [
+      {
+        "model": "phantomblood:block/urn_three"
+      },
+      {
+        "model": "phantomblood:block/urn_three",
+        "y": 90
+      },
+      {
+        "model": "phantomblood:block/urn_three",
+        "y": 180
+      },
+      {
+        "model": "phantomblood:block/urn_three",
+        "y": 270
+      }
+    ],
+    "urns=4": [
+      {
+        "model": "phantomblood:block/urn_four"
+      },
+      {
+        "model": "phantomblood:block/urn_four",
+        "y": 90
+      },
+      {
+        "model": "phantomblood:block/urn_four",
+        "y": 180
+      },
+      {
+        "model": "phantomblood:block/urn_four",
+        "y": 270
+      }
+    ],
+    "urns=5": [
+      {
+        "model": "phantomblood:block/urn_five"
+      },
+      {
+        "model": "phantomblood:block/urn_five",
+        "y": 90
+      },
+      {
+        "model": "phantomblood:block/urn_five",
+        "y": 180
+      },
+      {
+        "model": "phantomblood:block/urn_five",
+        "y": 270
+      }
+    ]
+  }
+}
