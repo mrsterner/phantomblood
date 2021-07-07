@@ -58,9 +58,6 @@ public class PhantomBloodClient implements ClientModInitializer {
     boolean wasChangeStandKeybindPressed = false;
     boolean wasChangeStandKeybindReleased = false;
 
-    KeyBinding keyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.keybind", GLFW.GLFW_KEY_Y, "key.categories.phantomblood"));
-    boolean wasPressed = false;
-
 
     ZaWarudoShader zaWarudoShader = new ZaWarudoShader();
 
