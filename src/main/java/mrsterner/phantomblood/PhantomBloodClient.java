@@ -22,6 +22,7 @@ import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -34,6 +35,7 @@ import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.entity.EntityType;
@@ -63,7 +65,6 @@ public class PhantomBloodClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-
 
         ClientTickEvents.START_WORLD_TICK.register(world -> {
             PlayerEntity player = MinecraftClient.getInstance().player;

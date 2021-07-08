@@ -3,6 +3,7 @@ package mrsterner.phantomblood.common.registry;
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.block.UrnBlock;
+import mrsterner.phantomblood.common.block.VesselBlock;
 import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
 import mrsterner.phantomblood.common.worldgen.generator.RuinGenerator;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
@@ -77,6 +78,7 @@ public class PBObjects {
     public static final Block WHITE_COFFIN = create("white_coffin", new CoffinBlock(DyeColor.WHITE, copyOf(Blocks.BLACKSTONE).nonOpaque()), true);
 
     public static final Block URNS = create("urns", new UrnBlock(FabricBlockSettings.of(Material.EGG)), true);
+    public static final Block VESSEL = create("vessels", new VesselBlock(FabricBlockSettings.of(Material.EGG)), true);
 
     //Armor
     public static final Item STONE_MASK_ITEM = create("stonemaskitem", new StonemaskItem(PBMaterials.VAMPIRE_ARMOR, EquipmentSlot.HEAD, gen()));

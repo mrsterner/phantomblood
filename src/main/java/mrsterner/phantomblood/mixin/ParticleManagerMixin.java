@@ -32,7 +32,6 @@ public class ParticleManagerMixin {
                 particle1.setPrevY(particle1.getY());
                 particle1.setPrevZ(particle1.getZ());
                 ci.cancel();
-
         }
     }
 }
