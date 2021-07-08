@@ -6,15 +6,20 @@ import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.block.TorchBlock;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
     double ticksSinceSound;
+    double ticksSinceSun;
     double boxX = 0;
     double boxY = 0;
     double boxZ = 0;
@@ -91,17 +96,51 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                 .filter(it -> StandUtils.getStand(it) == Stand.CRAZY_DIAMOND && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.HEALING)
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
+                    int energy = StandUtils.getStandEnergy(player);
+                    int energyForAbility = StandUtils.getStand(player).energyForAbility;
                     world.getOtherEntities(player, player.getBoundingBox().expand(3.0 * MathHelper.sin(player.yaw), 1.0, 2.0 * MathHelper.cos(player.yaw))).stream()
                             .filter(it -> it instanceof LivingEntity)
                             .forEach(it -> {
-                                if (ticksSinceSound > 8) {
+
+                                if (ticksSinceSound > 8 && energy >= energyForAbility) {
                                     ticksSinceSound = 0;
                                     world.playSound(null, player.getBlockPos(), PBSoundEvents.PUNCH, SoundCategory.PLAYERS, 0.15F, 1);
+                                    StandUtils.setStandEnergy(player, energy - energyForAbility);
+                                    ((LivingEntity) it).heal(1 + level);
                                 }
-                                int energy = StandUtils.getStandEnergy(player);
-                                int energyForAbility = StandUtils.getStand(player).energyForAbility;
-                                StandUtils.setStandEnergy(player, energy - energyForAbility);
-                                ((LivingEntity) it).heal(1 + level);
+
+                            });
+                });
+        world.getPlayers().stream()
+                .filter(it -> StandUtils.isStandActive(it) && StandUtils.getStand(it) == Stand.THE_SUN && StandUtils.getStandMode(it) == StandMode.ATTACKING)
+                .forEach(player -> {
+                    int level = StandUtils.getStandLevel(player);
+                    int energy = StandUtils.getStandEnergy(player);
+                    int energyForAbility = StandUtils.getStand(player).energyForAbility;
+                    world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.yaw), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.yaw)))
+                            .forEach(it -> {
+                                ticksSinceSun++;
+
+                                if(ticksSinceSun > 8 && energy >= energyForAbility){
+                                    StandUtils.setStandEnergy(player, energy - energyForAbility);
+                                    ticksSinceSun =0;
+                                    Vec3d playerVec = player.getPos().add(0,3.2D,0);
+                                    Vec3d targetVec = it.getPos();
+                                    Vec3d diff = targetVec.subtract(playerVec);
+                                    double distance = diff.length();
+                                    for(int i=0; i < distance; i++){
+                                        double randx = MathHelper.nextDouble(world.random, -0.05,0.05);
+                                        double randy = MathHelper.nextDouble(world.random, -0.05,0.05);
+                                        double randz = MathHelper.nextDouble(world.random, -0.05,0.05);
+                                        double progress = i / distance;
+                                        Vec3d lerp = playerVec.add(diff.multiply((progress)));
+                                        MinecraftClient.getInstance().worldRenderer.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, lerp.x, lerp.y, lerp.z, randx,randy,randz);
+                                        MinecraftClient.getInstance().worldRenderer.addParticle(ParticleTypes.FLAME, true, lerp.x, lerp.y, lerp.z, randx,randy,randz);
+                                    }
+                                    it.setOnFireFor(level == 0 ? 2 : 4);
+                                    it.damage(DamageSource.LAVA, level + 1);
+                                }
+
                             });
                 });
     }

@@ -6,10 +6,16 @@ import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.Locale;
 
@@ -52,8 +58,7 @@ public enum Stand {
         });
     }),
     KILLER_QUEEN(8000, (server, player, handler1, buf, responseSender) -> {}),
-    CRAZY_DIAMOND(800, (server, player, handler1, buf, responseSender) -> {
-        System.out.println("Test");
+    CRAZY_DIAMOND(3000, (server, player, handler1, buf, responseSender) -> {
         if(StandUtils.isStandActive(player) && StandUtils.getStandMode(player) == StandMode.HEALING){
             StandUtils.setStandMode(player, StandMode.ATTACKING);
         }
@@ -69,7 +74,7 @@ public enum Stand {
         });
 
     }),
-    THE_SUN(8000, (server, player, handler1, buf, responseSender) -> {}),
+    THE_SUN(3000, (server, player, handler1, buf, responseSender) -> {}),
     HAMON(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;
@@ -77,6 +82,24 @@ public enum Stand {
     Stand(int i, ServerPlayNetworking.PlayChannelHandler handlerIn) {
         energyForAbility = i;
         handler = handlerIn;
+    }
+    /*
+    Vec3d start = something;
+    Vec3d end = somethingElse;
+    double dist = end.distanceTo(start);
+for(int i = 0;i<dist;i++) {
+        double progress = i/dist;
+        double currentX = lerp(start.x,end.x,progress);
+        double currentY = lerp(start.y,end.y,progress);
+        double currentZ = lerp(start.z,end.z,progress);
+        Vec3d current = new Vec3d(currentX,currentY,currentZ);
+        // do whatever with current
+    }
+
+     */
+
+    double lerp(double i, double o, double p) {
+        return (i + (o - i) * MathHelper.clamp(p, 0, 1));
     }
 
     @Override

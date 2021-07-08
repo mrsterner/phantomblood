@@ -39,7 +39,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderStatusBars", at = @At(value = "HEAD"))
     private void renderPre(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (StandUtils.getStand(player) == Stand.THE_WORLD && StandUtils.isStandActive(player)) {
+        if (StandUtils.getStand(player) == Stand.THE_WORLD || StandUtils.getStand(player) == Stand.THE_SUN && StandUtils.isStandActive(player)) {
             client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
             if(StandUtils.getStandLevel(player) == 0){
                 drawTexture(matrices, scaledWidth / 2 - 27, (scaledHeight - 50) , 27, 0, 53, 26);
@@ -81,6 +81,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
         if (StandUtils.getStand(player) != Stand.NONE) {
             switch (StandUtils.getStand(player)) {
                 case THE_WORLD:
+                case THE_SUN:
                     client.getTextureManager().bindTexture(PHANTOMBLOOD_GUI_ICONS_TEXTURE);
                     drawTexture(matrices, scaledWidth / 2 + 95, (scaledHeight - 26) , 0, 0, 6, 24);
                     drawTexture(matrices, scaledWidth / 2 + 94, (scaledHeight - 27) , 6, 0, 8, (int) (26 - StandUtils.getStandEnergy(player) * 26f / 100000));

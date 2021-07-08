@@ -61,7 +61,6 @@ public class TheSunModel extends EntityModel<LivingEntity> {
 	public void render(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		matrixStack.translate(-0.45D, this.yOffset - 0.2D, 0.75D);
 		this.head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-
 	}
 
 	public void renderHeat(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
@@ -69,6 +68,20 @@ public class TheSunModel extends EntityModel<LivingEntity> {
 
 	}
 	public void renderHeat2(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+		this.heat2.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+
+	}
+
+	public void renderAttack(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+		matrixStack.translate(0.1D, this.yOffset - 1D, -0.1D);
+		this.head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+	}
+
+	public void renderHeatAttack(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+		this.heat.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+
+	}
+	public void renderHeat2Attack(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		this.heat2.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 
 	}
