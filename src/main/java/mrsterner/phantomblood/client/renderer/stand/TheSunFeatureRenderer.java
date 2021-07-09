@@ -25,6 +25,7 @@ public class TheSunFeatureRenderer<T extends LivingEntity> extends FeatureRender
 
     @Override public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.THE_SUN) return;
+
         matrices.push();
         if(StandUtils.getStandMode((PlayerEntity) entity) == StandMode.IDLE){
             idleModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
@@ -40,6 +41,8 @@ public class TheSunFeatureRenderer<T extends LivingEntity> extends FeatureRender
 
         }
         matrices.pop();
+
+
 
     }
 }

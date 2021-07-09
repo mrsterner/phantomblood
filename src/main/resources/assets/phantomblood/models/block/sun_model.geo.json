@@ -1,0 +1,38 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "head",
+					"pivot": [-3.5, 36, 3.2],
+					"cubes": [
+						{"origin": [-10.5, 29, -3.8], "size": [14, 14, 14], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "heat",
+					"pivot": [-3.5, 36, 3.2],
+					"cubes": [
+						{"origin": [-10.5, 29, -3.8], "size": [14, 14, 14], "inflate": 1, "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "heat2",
+					"pivot": [-3.5, 36, 3.2],
+					"cubes": [
+						{"origin": [-10.5, 29, -3.8], "size": [14, 14, 14], "inflate": 2, "uv": [0, 0]}
+					]
+				}
+			]
+		}
+	]
+}
