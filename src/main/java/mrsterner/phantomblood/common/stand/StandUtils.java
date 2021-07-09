@@ -46,7 +46,7 @@ public final class StandUtils {
         StandUserComponent.entityKey.get(playerEntity).setStandEnergy(energy);
     }
 
-    //Uniquies
+    //Uniques
     public static void repairItem(ItemStack stack, int duration){
         if (!stack.isEmpty()&&stack.getDamage()>0) {
             int result = stack.getDamage()-duration;

@@ -28,36 +28,22 @@ public class BloodStonemaskItem extends GeoArmorItem implements IAnimatable {
 
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-
-/*
+        /*
         LivingEntity livingEntity = event.getExtraDataOfType(LivingEntity.class).get(0);
-        //PlayerEntity player = (PlayerEntity) livingEntity;
         ItemStack stack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
         AnimationController controller = GeckoLibUtil.getControllerForStack(this.factory, stack, controllerName);
 
-
-
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", false));
-        event.getController().markNeedsReload();
-
-
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.stonemask.tendril", true));
         if (livingEntity instanceof PlayerEntity) {
-
             PlayerEntity player = (PlayerEntity) livingEntity;
             List<Item> equipmentList = new ArrayList<>();
             player.getItemsEquipped().forEach((x) -> equipmentList.add(x.getItem()));
-
             List<Item> armorList = equipmentList.subList(2, 6);
-
             boolean isWearingAll = armorList.containsAll(Arrays.asList(PBObjects.BLOODY_STONE_MASK_ITEM));
             return isWearingAll ? PlayState.CONTINUE : PlayState.STOP;
-
-
         }
         */
         return PlayState.CONTINUE;
-
-
     }
 
     @Override

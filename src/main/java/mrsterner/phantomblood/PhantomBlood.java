@@ -130,6 +130,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
 
         GeckoLib.initialize();
         PBObjects.init();
+        PBStatusEffects.init();
         PBCommands.registerArgumentTypes();
         registerStructures();
         putStructures();
@@ -292,7 +293,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             return null;
         });
 
-
+        //Keybind Serverside
         ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:use_ability"), (server, player, handler, buf, response) -> {
             StandUtils.getStand(player).handler.receive(server, player, handler, buf, response);
         });

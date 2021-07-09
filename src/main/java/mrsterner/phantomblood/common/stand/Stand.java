@@ -98,10 +98,6 @@ for(int i = 0;i<dist;i++) {
 
      */
 
-    double lerp(double i, double o, double p) {
-        return (i + (o - i) * MathHelper.clamp(p, 0, 1));
-    }
-
     @Override
     public String toString() {
         return "stand.phantomblood."+name().toLowerCase(Locale.ROOT);
