@@ -1,6 +1,7 @@
-package mrsterner.phantomblood.client.renderer.stand;
+package mrsterner.phantomblood.client.renderer.stand.GeckoTest;
 
 import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.client.renderer.stand.GeckoTest.SunEntity;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

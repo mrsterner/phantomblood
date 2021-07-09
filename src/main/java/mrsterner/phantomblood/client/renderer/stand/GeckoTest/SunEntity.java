@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.client.renderer.stand;
+package mrsterner.phantomblood.client.renderer.stand.GeckoTest;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
