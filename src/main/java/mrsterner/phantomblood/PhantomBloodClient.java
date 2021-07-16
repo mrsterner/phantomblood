@@ -35,8 +35,12 @@ import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
+import net.minecraft.client.render.entity.feature.IronGolemFlowerFeatureRenderer;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.IronGolemEntityModel;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.GolemEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -130,6 +134,8 @@ public class PhantomBloodClient implements ClientModInitializer {
         WorldRenderEvents.LAST.register(new CrazyDiamondHealFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new WeatherReportFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new DarkBlueMoonFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new KingCrimsonFirstPersonArmRenderer());
+        WorldRenderEvents.LAST.register(new PurpleHazeFirstPersonArmRenderer());
 
         HudRenderCallback.EVENT.register(new StandUserHud());
 
@@ -137,7 +143,6 @@ public class PhantomBloodClient implements ClientModInitializer {
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper) -> {
             if (entityType == EntityType.PLAYER) {
                 //noinspection unchecked
-                //registrationHelper.register(new HamonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new HamonModel()));
                 registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldModel()));
                 registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenModel()));
                 registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumModel()));
@@ -145,6 +150,8 @@ public class PhantomBloodClient implements ClientModInitializer {
                 registrationHelper.register(new WeatherReportFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new WeatherReportModel()));
                 registrationHelper.register(new DarkBlueMoonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new DarkBlueMoonModel()));
                 registrationHelper.register(new TheSunFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheSunModel()));
+                registrationHelper.register(new KingCrimsonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KingCrimsonModel()));
+                registrationHelper.register(new PurpleHazeFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new PurpleHazeModel()));
             }
         });
 

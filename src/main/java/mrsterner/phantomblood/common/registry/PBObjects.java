@@ -57,6 +57,8 @@ public class PBObjects {
     public static final Item WEATHER_REPORT_DISC = create("weather_report_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item DARK_BLUE_MOON_DISC = create("dark_blue_moon_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item THE_SUN_DISC = create("the_sun_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item KING_CRIMSON_DISC = create("king_crimson_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item PURPLE_HAZE_DISC = create("purple_haze_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
     //Blocks

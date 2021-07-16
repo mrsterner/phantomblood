@@ -43,6 +43,9 @@
   "stand.phantomblood.weather_report": "Weather Report",
   "stand.phantomblood.dark_blue_moon": "Dark Blue Moon",
   "stand.phantomblood.the_sun": "The Sun",
+  "stand.phantomblood.king_crimson": "King Crimson",
+  "stand.phantomblood.purple_haze": "Purple Haze",
+
   "block.minecraft.bed.coffin": "You can only sleep during the day",
 
   "status.phantomblood.idle": "Idle",
@@ -65,6 +68,8 @@
   "tooltip.phantomblood.weather_report_disc": "Weather Report",
   "tooltip.phantomblood.dark_blue_moon_disc": "Dark Blue Moon",
   "tooltip.phantomblood.the_sun_disc": "The Sun",
+  "tooltip.phantomblood.king_crimson_disc": "King Crimson",
+  "tooltip.phantomblood.purple_haze_disc": "Purple Haze",
 
   "item.phantomblood.the_world_disc": "Stand Disc",
   "item.phantomblood.star_platinum_disc": "Stand Disc",
@@ -73,6 +78,8 @@
   "item.phantomblood.weather_report_disc": "Stand Disc",
   "item.phantomblood.dark_blue_moon_disc": "Stand Disc",
   "item.phantomblood.the_sun_disc": "Stand Disc",
+  "item.phantomblood.king_crimson_disc": "Stand Disc",
+  "item.phantomblood.purple_haze_disc": "Stand Disc",
 
   "phantomblood.key.change_stand_mode": "Change Stand Mode",
   "phantomblood.key.toggle_stand": "Toggle Stand",
@@ -90,6 +97,8 @@
   "enchantment.phantomblood.dark_blue_moon_enchantment" : "Dark Blue Moon",
   "enchantment.phantomblood.killer_queen_enchantment" : "Killer Queen",
   "enchantment.phantomblood.crazy_diamond_enchantment" : "Crazy Diamond",
+  "enchantment.phantomblood.king_crimson_enchantment" : "King Crimson",
+  "enchantment.phantomblood.purple_haze_enchantment" : "Purple Haze",
 
   "command.phantomblood.remove": "Stand removed",
   "command.phantomblood.setstand.stand.phantomblood.the_sun": "Added The Sun to %s",
@@ -98,5 +107,7 @@
   "command.phantomblood.setstand.stand.phantomblood.killer_queen": "Added Killer Queen to %s",
   "command.phantomblood.setstand.stand.phantomblood.crazy_diamond": "Added Crazy Diamond to %s",
   "command.phantomblood.setstand.stand.phantomblood.dark_blue_moon": "Added Dark Blue Moon to %s",
-  "command.phantomblood.setstand.stand.phantomblood.weather_report": "Added Weather Report to %s"
+  "command.phantomblood.setstand.stand.phantomblood.weather_report": "Added Weather Report to %s",
+  "command.phantomblood.setstand.stand.phantomblood.king_crimson": "Added King Crimson Moon to %s",
+  "command.phantomblood.setstand.stand.phantomblood.purple_haze": "Added Purple Haze to %s"
 }

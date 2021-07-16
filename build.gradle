@@ -68,7 +68,7 @@ repositories {
         url 'http://server.bbkr.space:8081/artifactory/libs-release'
         allowInsecureProtocol = true
     }
-    maven { url "https://maven.terraformersmc.com/releases/"}
+    maven { url "https://maven.kotlindiscord.com/repository/terraformers/"}
 }
 
 dependencies {

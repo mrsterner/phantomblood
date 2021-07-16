@@ -122,6 +122,8 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
     public static final CrazyDiamondEnchantment CRAZY_DIAMOND_ENCHANTMENT = new CrazyDiamondEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
     public static final WeatherReportEnchantment WEATHER_REPORT_ENCHANTMENT = new WeatherReportEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
     public static final KillerQueenEnchantment KILLER_QUEEN_ENCHANTMENT = new KillerQueenEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final KingCrimsonEnchantment KING_CRIMSON_ENCHANTMENT = new KingCrimsonEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+    public static final PurpleHazeEnchantment PURPLE_HAZE_ENCHANTMENT = new PurpleHazeEnchantment(Enchantment.Rarity.COMMON, ARROW_HEAD, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
 
 
     @Override
@@ -167,6 +169,8 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             LiteralCommandNode<ServerCommandSource> setKillerQueen = CommandManager.literal("killer_queen").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.KILLER_QUEEN)).build();
             LiteralCommandNode<ServerCommandSource> setDarkBlueMoon = CommandManager.literal("dark_blue_moon").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.DARK_BLUE_MOON)).build();
             LiteralCommandNode<ServerCommandSource> setCrazyDiamond = CommandManager.literal("crazy_diamond").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.CRAZY_DIAMOND)).build();
+            LiteralCommandNode<ServerCommandSource> setKingCrimson = CommandManager.literal("king_crimson").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.KING_CRIMSON)).build();
+            LiteralCommandNode<ServerCommandSource> setPurpleHaze = CommandManager.literal("purple_haze").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.PURPLE_HAZE)).build();
 
             dispatcher.getRoot().addChild(phantombloodNode);
             phantombloodNode.addChild(standNode);
@@ -183,6 +187,8 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             playerSetNode.addChild(setKillerQueen);
             playerSetNode.addChild(setDarkBlueMoon);
             playerSetNode.addChild(setCrazyDiamond);
+            playerSetNode.addChild(setKingCrimson);
+            playerSetNode.addChild(setPurpleHaze);
         });
 
 
@@ -315,6 +321,8 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "crazy_diamond_enchantment"), CRAZY_DIAMOND_ENCHANTMENT);
         Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "killer_queen_enchantment"), KILLER_QUEEN_ENCHANTMENT);
         Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "weather_report_enchantment"), WEATHER_REPORT_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "king_crimson_enchantment"), KING_CRIMSON_ENCHANTMENT);
+        Registry.register(Registry.ENCHANTMENT, new Identifier(PhantomBlood.MODID, "purple_haze_enchantment"), PURPLE_HAZE_ENCHANTMENT);
     }
 
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {

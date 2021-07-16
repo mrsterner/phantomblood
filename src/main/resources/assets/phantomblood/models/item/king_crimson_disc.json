@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "phantomblood:item/king_crimson_disc"
+  }
+}

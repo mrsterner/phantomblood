@@ -8,9 +8,17 @@ import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.entity.feature.ShoulderParrotFeatureRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.BatEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.PickaxeItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -27,7 +35,19 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
 
     @Override
     public void onStartTick(ServerWorld world) {
+        /* Checks if a bat has bamboo near it
+        world.getEntitiesByType(EntityType.BAT, entity -> { return true; }).stream()
+            .forEach(entity -> {
+            //System.out.println(entity);
+            world.getOtherEntities(entity, entity.getBoundingBox()
+                    .expand(10,10,10)).stream()
+                    .filter(it -> it instanceof ItemEntity)
+                    .forEach(it -> {
+                        System.out.println(it);
+                    });
+        });
 
+         */
         ticksSinceSound++;
         world.getPlayers().stream()
                 .filter(it -> StandUtils.getStand(it) != Stand.NONE && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.ATTACKING)
