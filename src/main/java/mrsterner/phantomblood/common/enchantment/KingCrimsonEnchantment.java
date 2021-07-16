@@ -6,8 +6,8 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class TheSunEnchantment extends Enchantment {
-    public TheSunEnchantment(Rarity weight, EnchantmentTarget type, EquipmentSlot[] slotTypes) {
+public class KingCrimsonEnchantment extends Enchantment {
+    public KingCrimsonEnchantment(Rarity weight, EnchantmentTarget type, EquipmentSlot[] slotTypes) {
         super(weight, type, slotTypes);
     }
 
@@ -15,13 +15,13 @@ public class TheSunEnchantment extends Enchantment {
     protected boolean canAccept(Enchantment other) {
         return super.canAccept(other)
                 && other != PhantomBlood.CRAZY_DIAMOND_ENCHANTMENT
-                && other != PhantomBlood.THE_WORLD_ENCHANTMENT
+                && other != PhantomBlood.THE_SUN_ENCHANTMENT
                 && other != PhantomBlood.STAR_PLATINUM_ENCHANTMENT
-                && other != PhantomBlood.KILLER_QUEEN_ENCHANTMENT
+                && other != PhantomBlood.THE_WORLD_ENCHANTMENT
                 && other != PhantomBlood.DARK_BLUE_MOON_ENCHANTMENT
-                && other != PhantomBlood.KING_CRIMSON_ENCHANTMENT
+                && other != PhantomBlood.WEATHER_REPORT_ENCHANTMENT
                 && other != PhantomBlood.PURPLE_HAZE_ENCHANTMENT
-                && other != PhantomBlood.WEATHER_REPORT_ENCHANTMENT;
+                && other != PhantomBlood.KILLER_QUEEN_ENCHANTMENT;
     }
 
     @Override
@@ -45,5 +45,6 @@ public class TheSunEnchantment extends Enchantment {
     public boolean isAvailableForEnchantedBookOffer() {
         return false;
     }
+
 
 }

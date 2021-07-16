@@ -18,6 +18,8 @@ public class WeatherReportEnchantment extends Enchantment {
                 && other != PhantomBlood.STAR_PLATINUM_ENCHANTMENT
                 && other != PhantomBlood.KILLER_QUEEN_ENCHANTMENT
                 && other != PhantomBlood.DARK_BLUE_MOON_ENCHANTMENT
+                && other != PhantomBlood.KING_CRIMSON_ENCHANTMENT
+                && other != PhantomBlood.PURPLE_HAZE_ENCHANTMENT
                 && other != PhantomBlood.THE_WORLD_ENCHANTMENT;
     }
 

@@ -75,6 +75,8 @@ public enum Stand {
 
     }),
     THE_SUN(3000, (server, player, handler1, buf, responseSender) -> {}),
+    KING_CRIMSON(3000, (server, player, handler1, buf, responseSender) -> {}),
+    PURPLE_HAZE(3000, (server, player, handler1, buf, responseSender) -> {}),
     HAMON(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;

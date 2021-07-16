@@ -27,43 +27,40 @@ public class StandDiscItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         String s = this.asItem().toString();
-        switch (s){
-            case "the_world_disc":
-                StandUtils.setStandMode(user, StandMode.IDLE);
-                StandUtils.setStand(user, Stand.THE_WORLD);
-                StandUtils.setStandLevel(user, 1);
-                break;
-            case "star_platinum_disc":
-                StandUtils.setStandMode(user, StandMode.IDLE);
-                StandUtils.setStand(user, Stand.STAR_PLATINUM);
-                StandUtils.setStandLevel(user, 1);
-                break;
-            case "killer_queen_disc":
-                StandUtils.setStandMode(user, StandMode.IDLE);
-                StandUtils.setStand(user, Stand.KILLER_QUEEN);
-                StandUtils.setStandLevel(user, 1);
-                break;
-            case "crazy_diamond_disc":
-                StandUtils.setStandMode(user, StandMode.IDLE);
-                StandUtils.setStand(user, Stand.CRAZY_DIAMOND);
-                StandUtils.setStandLevel(user, 1);
-                break;
-            case "weather_report_disc":
-                StandUtils.setStandMode(user, StandMode.IDLE);
-                StandUtils.setStand(user, Stand.WEATHER_REPORT);
-                StandUtils.setStandLevel(user, 1);
-                break;
-            case "dark_blue_moon_disc":
-                StandUtils.setStandMode(user, StandMode.IDLE);
-                StandUtils.setStand(user, Stand.DARK_BLUE_MOON);
-                StandUtils.setStandLevel(user, 1);
-                break;
-            case "the_sun_disc":
-                StandUtils.setStandMode(user, StandMode.IDLE);
-                StandUtils.setStand(user, Stand.THE_SUN);
-                StandUtils.setStandLevel(user, 1);
-                break;
-            default:
+        if(s!=null){
+            StandUtils.setStandMode(user, StandMode.IDLE);
+            switch (s){
+                case "the_world_disc":
+                    StandUtils.setStand(user, Stand.THE_WORLD);
+                    break;
+                case "star_platinum_disc":
+                    StandUtils.setStand(user, Stand.STAR_PLATINUM);
+                    break;
+                case "killer_queen_disc":
+                    StandUtils.setStand(user, Stand.KILLER_QUEEN);
+                    break;
+                case "crazy_diamond_disc":
+                    StandUtils.setStand(user, Stand.CRAZY_DIAMOND);
+                    break;
+                case "weather_report_disc":
+                    StandUtils.setStand(user, Stand.WEATHER_REPORT);
+                    break;
+                case "dark_blue_moon_disc":
+                    StandUtils.setStand(user, Stand.DARK_BLUE_MOON);
+                    break;
+                case "the_sun_disc":
+                    StandUtils.setStand(user, Stand.THE_SUN);
+                    break;
+                case "king_crimson_disc":
+                    StandUtils.setStand(user, Stand.KING_CRIMSON);
+                    break;
+                case "purple_haze_disc":
+                    StandUtils.setStand(user, Stand.PURPLE_HAZE);
+                    break;
+                default:
+                    break;
+            }
+            StandUtils.setStandLevel(user, 1);
         }
         return super.use(world, user, hand);
     }
@@ -71,28 +68,7 @@ public class StandDiscItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         String s = this.asItem().toString();
-        switch (s){
-            case "the_world_disc":
-                tooltip.add(new TranslatableText("tooltip.phantomblood.the_world_disc").formatted(Formatting.GOLD));
-                break;
-            case "star_platinum_disc":
-                tooltip.add(new TranslatableText("tooltip.phantomblood.star_platinum_disc").formatted(Formatting.GOLD));
-                break;
-            case "killer_queen_disc":
-                tooltip.add(new TranslatableText("tooltip.phantomblood.killer_queen_disc").formatted(Formatting.GOLD));
-                break;
-            case "crazy_diamond_disc":
-                tooltip.add(new TranslatableText("tooltip.phantomblood.crazy_diamond_disc").formatted(Formatting.GOLD));
-                break;
-            case "weather_report_disc":
-                tooltip.add(new TranslatableText("tooltip.phantomblood.weather_report_disc").formatted(Formatting.GOLD));
-                break;
-            case "dark_blue_moon_disc":
-                tooltip.add(new TranslatableText("tooltip.phantomblood.dark_blue_moon_disc").formatted(Formatting.GOLD));
-                break;
-            case "the_sun_disc":
-                tooltip.add(new TranslatableText("tooltip.phantomblood.the_sun_disc").formatted(Formatting.GOLD));
-                break;
-            default:
+        tooltip.add(new TranslatableText("tooltip.phantomblood."+s).formatted(Formatting.GOLD));
+
     }
-}}
+}
