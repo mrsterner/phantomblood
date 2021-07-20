@@ -31,11 +31,14 @@ public class PurpleHazeFeatureRenderer<T extends LivingEntity> extends FeatureRe
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
             model.setAttackAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
             model.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            model.renderAttackGlass(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.2f);
+
         } else {
             model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
             model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            model.renderGlass(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.2f);
+
         }
-        model.renderGlass(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.2f);
         matrices.pop();
     }
 }

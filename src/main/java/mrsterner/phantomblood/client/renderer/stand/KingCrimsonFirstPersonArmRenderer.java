@@ -18,6 +18,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class KingCrimsonFirstPersonArmRenderer implements WorldRenderEvents.Last {
@@ -32,8 +33,9 @@ public class KingCrimsonFirstPersonArmRenderer implements WorldRenderEvents.Last
         }
         MatrixStack matrixStack = context.matrixStack();
         matrixStack.push();
+        matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(0.0f));
         matrixStack.scale(-1.0F, -1.0F, 1.0F);
-        matrixStack.translate(0.0D, -0.2, -0.8D);
+        matrixStack.translate(0.0D, -0.0, -0.8D);
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
         VertexConsumer vertexConsumer2 = immediate.getBuffer(RenderLayer.getEntityTranslucent(texture));
         model.setAttackAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
