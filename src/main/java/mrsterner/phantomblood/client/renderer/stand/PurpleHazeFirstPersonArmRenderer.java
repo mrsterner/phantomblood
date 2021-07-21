@@ -31,6 +31,7 @@ public class PurpleHazeFirstPersonArmRenderer implements WorldRenderEvents.Last 
         if (player == null || !StandUtils.isStandActive(player) || StandUtils.getStand(player) != Stand.PURPLE_HAZE || StandUtils.getStandMode(player) != StandMode.ATTACKING || context.camera().isThirdPerson()) {
             return;
         }
+        /*
         MatrixStack matrixStack = context.matrixStack();
         matrixStack.push();
         matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(0.0f));
@@ -41,5 +42,7 @@ public class PurpleHazeFirstPersonArmRenderer implements WorldRenderEvents.Last 
         model.setAttackAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
         model.renderPunchyArms(matrixStack, vertexConsumer2, 15728880, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 0.5f);
         matrixStack.pop();
+
+         */
     }
 }

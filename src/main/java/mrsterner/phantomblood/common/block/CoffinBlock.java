@@ -7,6 +7,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 public class CoffinBlock extends BedBlock {
     private static final VoxelShape SHAPE = createCuboidShape(0, 0, 0, 16, 10, 16);
@@ -19,6 +20,7 @@ public class CoffinBlock extends BedBlock {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
+
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {

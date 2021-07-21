@@ -16,15 +16,16 @@ public class BloodAmpouleItem extends Item {
     public BloodAmpouleItem(Settings settings) {
         super(settings);
     }
-
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
     }
-
+    @Override
     public int getMaxUseTime(ItemStack stack) {
         return 32;
     }
 
+    @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
         if (playerEntity != null) {
@@ -48,7 +49,7 @@ public class BloodAmpouleItem extends Item {
 
         return stack;
     }
-
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
     }

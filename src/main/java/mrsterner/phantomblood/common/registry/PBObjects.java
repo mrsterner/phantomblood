@@ -7,6 +7,7 @@ import mrsterner.phantomblood.common.block.VesselBlock;
 import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
 import mrsterner.phantomblood.common.worldgen.generator.RuinGenerator;
 import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
@@ -14,6 +15,7 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.*;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.DyeColor;
 import net.minecraft.block.entity.BlockEntityType.Builder;
 import mrsterner.phantomblood.common.item.*;
@@ -37,8 +39,6 @@ public class PBObjects {
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ENCHANTMENTS = new LinkedHashMap<>();
 
-
-
     //Item
 
     public static final Item ARROW_HEAD = create("arrow_head", new ArrowHeadItem(gen().maxCount(1)));
@@ -59,6 +59,7 @@ public class PBObjects {
     public static final Item THE_SUN_DISC = create("the_sun_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item KING_CRIMSON_DISC = create("king_crimson_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item PURPLE_HAZE_DISC = create("purple_haze_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item TWENTY_CENTURY_BOY_DISC = create("20_century_boy_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
     //Blocks

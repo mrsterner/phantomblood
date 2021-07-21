@@ -171,6 +171,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             LiteralCommandNode<ServerCommandSource> setCrazyDiamond = CommandManager.literal("crazy_diamond").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.CRAZY_DIAMOND)).build();
             LiteralCommandNode<ServerCommandSource> setKingCrimson = CommandManager.literal("king_crimson").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.KING_CRIMSON)).build();
             LiteralCommandNode<ServerCommandSource> setPurpleHaze = CommandManager.literal("purple_haze").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.PURPLE_HAZE)).build();
+            LiteralCommandNode<ServerCommandSource> setTwentyCenturyBoy = CommandManager.literal("20_century_boy").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.TWENTY_CENTURY_BOY)).build();
 
             dispatcher.getRoot().addChild(phantombloodNode);
             phantombloodNode.addChild(standNode);
@@ -189,6 +190,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             playerSetNode.addChild(setCrazyDiamond);
             playerSetNode.addChild(setKingCrimson);
             playerSetNode.addChild(setPurpleHaze);
+            playerSetNode.addChild(setTwentyCenturyBoy);
         });
 
 

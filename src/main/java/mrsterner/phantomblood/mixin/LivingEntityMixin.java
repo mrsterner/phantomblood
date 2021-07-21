@@ -9,7 +9,6 @@ import mrsterner.phantomblood.common.stand.StandUtils;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
@@ -21,12 +20,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
 
@@ -47,6 +46,8 @@ public abstract class LivingEntityMixin extends Entity {
 
 
     @Shadow public abstract Map<StatusEffect, StatusEffectInstance> getActiveStatusEffects();
+
+    @Shadow public abstract void setMovementSpeed(float movementSpeed);
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -91,7 +92,7 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
     }
-    @Inject(method = "travel", at = @At("TAIL"))
+    @Inject(method = "travel", at = @At("HEAD"))
     private void darkBlueMoonTravel(Vec3d movementInput, CallbackInfo callbackInfo) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         if(livingEntity instanceof PlayerEntity) {
@@ -110,6 +111,9 @@ public abstract class LivingEntityMixin extends Entity {
                     player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, StandUtils.getStandMode(player) != StandMode.ATTACKING ? 1 : 2));
                 }
             }
+            if(StandUtils.isStandActive(player) && StandUtils.getStand(player) == Stand.TWENTY_CENTURY_BOY){
+                this.setVelocity(this.getVelocity().multiply(0,-0.01F,0));
+            }
         }
     }
 
@@ -123,6 +127,18 @@ public abstract class LivingEntityMixin extends Entity {
             }
             if(StandUtils.isStandActive(player) && StandUtils.getStand(player) == Stand.THE_SUN){
                 callbackInfo.cancel();
+            }
+        }
+    }
+    @Inject(method = "damage", at = @At(value = "HEAD"), cancellable = true)
+    private void nullDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity livingEntity = (LivingEntity) (Object) this;
+        if (!world.isClient) {
+            if(livingEntity instanceof PlayerEntity){
+                PlayerEntity player = (PlayerEntity) (Object) this;
+                if(StandUtils.getStand(player) == Stand.TWENTY_CENTURY_BOY && StandUtils.isStandActive(player)){
+                    cir.setReturnValue(false);
+                }
             }
         }
     }

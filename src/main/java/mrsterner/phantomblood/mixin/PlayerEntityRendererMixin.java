@@ -2,6 +2,7 @@ package mrsterner.phantomblood.mixin;
 
 import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.client.renderer.stand.HamonFeatureRenderer;
+import mrsterner.phantomblood.client.renderer.stand.TwentyCenturyBoyFeatureRenderer;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -45,6 +46,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At("TAIL"))
     private void PlayerEntityRenderer(EntityRenderDispatcher dispatcher, boolean bl, CallbackInfo callbackInfo) {
         addFeature(new HamonFeatureRenderer(this));
+        addFeature(new TwentyCenturyBoyFeatureRenderer(this));
     }
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)

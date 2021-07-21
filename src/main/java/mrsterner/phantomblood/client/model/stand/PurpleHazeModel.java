@@ -346,7 +346,7 @@ public class PurpleHazeModel extends EntityModel<LivingEntity> {
         bone7.setPivot(4.0F, -0.5F, -3.5F);
         bone5.addChild(bone7);
         setRotationAngle(bone7, 0.0F, 0.6109F, 0.0F);
-        bone7.setTextureOffset(0, 86).addCuboid(-1.5F, 2.501F, -5.5F, 1.0F, 3.0F, 5.0F, -0.1F, false);
+        bone7.setTextureOffset(0, 86).addCuboid(-1.5F, 1.501F, -5.5F, 1.0F, 4.0F, 5.0F, -0.1F, false);
 
         bone8 = new ModelPart(this);
         bone8.setPivot(-4.0F, -0.5F, -3.5F);
@@ -530,7 +530,7 @@ public class PurpleHazeModel extends EntityModel<LivingEntity> {
         rightArm2.addChild(shoulder_r4);
         setRotationAngle(shoulder_r4, 0.0F, -0.0873F, 0.0F);
         shoulder_r4.setTextureOffset(52, 49).addCuboid(-4.0F, -2.0F, -2.5F, 4.0F, 4.0F, 5.0F, 0.0F, false);
-    }
+  }
     @Override
     public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch){
         this.yOffset = (double) MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;

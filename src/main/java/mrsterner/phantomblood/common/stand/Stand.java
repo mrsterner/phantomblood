@@ -6,16 +6,10 @@ import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 
 import java.util.Locale;
 
@@ -77,6 +71,7 @@ public enum Stand {
     THE_SUN(3000, (server, player, handler1, buf, responseSender) -> {}),
     KING_CRIMSON(3000, (server, player, handler1, buf, responseSender) -> {}),
     PURPLE_HAZE(3000, (server, player, handler1, buf, responseSender) -> {}),
+    TWENTY_CENTURY_BOY(3000, (server, player, handler1, buf, responseSender) -> {}),
     HAMON(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;

@@ -29,9 +29,9 @@ public class PurpleHazeFeatureRenderer<T extends LivingEntity> extends FeatureRe
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.PURPLE_HAZE) return;
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {
-            model.setAttackAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            model.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
-            model.renderAttackGlass(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.2f);
+            //model.setAttackAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+            //model.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
+            //model.renderAttackGlass(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.2f);
 
         } else {
             model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
