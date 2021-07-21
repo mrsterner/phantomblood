@@ -112,7 +112,7 @@ public abstract class LivingEntityMixin extends Entity {
                 }
             }
             if(StandUtils.isStandActive(player) && StandUtils.getStand(player) == Stand.TWENTY_CENTURY_BOY){
-                this.setVelocity(this.getVelocity().multiply(0,-0.01F,0));
+                this.setVelocity(this.getVelocity().multiply(0,0,0));
             }
         }
     }

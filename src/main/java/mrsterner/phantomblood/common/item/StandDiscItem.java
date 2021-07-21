@@ -6,6 +6,7 @@ import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -57,7 +58,7 @@ public class StandDiscItem extends Item {
                 case "purple_haze_disc":
                     StandUtils.setStand(user, Stand.PURPLE_HAZE);
                     break;
-                case "20_century_boy_disc":
+                case "20th_century_boy_disc":
                     StandUtils.setStand(user, Stand.TWENTY_CENTURY_BOY);
                     break;
                 default:

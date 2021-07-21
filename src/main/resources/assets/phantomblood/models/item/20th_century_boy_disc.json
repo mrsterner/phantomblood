@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "phantomblood:item/20th_century_boy_disc"
+  }
+}
