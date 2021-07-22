@@ -12,7 +12,8 @@
     "HorseEntityMixin",
     "EnchantmentTargetMixin",
     "PigEntityMixin",
-    "StriderEntityMixin"
+    "StriderEntityMixin",
+    "PlayerEntityMixin"
   ],
   "client": [
     "ClientChunkManagerMixin",

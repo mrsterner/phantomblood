@@ -111,9 +111,7 @@ public abstract class LivingEntityMixin extends Entity {
                     player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, StandUtils.getStandMode(player) != StandMode.ATTACKING ? 1 : 2));
                 }
             }
-            if(StandUtils.isStandActive(player) && StandUtils.getStand(player) == Stand.TWENTY_CENTURY_BOY){
-                this.setVelocity(this.getVelocity().multiply(0,0,0));
-            }
+
         }
     }
 
