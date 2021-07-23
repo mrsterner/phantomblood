@@ -21,19 +21,12 @@ import java.util.List;
 
 public class RuinGenerator {
     public static final StructurePool STARTING_POOL;
-    private static final Identifier RUIN = PhantomBlood.id("arrow_head/arrow");
+    private static final Identifier RUIN = new Identifier(PhantomBlood.MODID, "arrow_head/arrow");
 
     static {
         STARTING_POOL = StructurePools.register(
-                new StructurePool(
-                        RUIN,
-                        new Identifier("empty"),
-                        ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(PhantomBlood.MODID + ":arrow_head/arrow"), 1)
-                        ),
-                        StructurePool.Projection.RIGID
-                )
-        );
+                new StructurePool(RUIN, new Identifier("empty"), ImmutableList.of(
+                new Pair<>(StructurePoolElement.method_30425(PhantomBlood.MODID + ":arrow_head/arrow"), 1)), StructurePool.Projection.RIGID));
     }
 
     public static void addPieces(DynamicRegistryManager registry, StructurePoolFeatureConfig config, ChunkGenerator chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {

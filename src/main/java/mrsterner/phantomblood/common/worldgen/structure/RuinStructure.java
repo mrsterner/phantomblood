@@ -14,7 +14,7 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class RuinStructure extends StructureFeature<StructurePoolFeatureConfig> {
-    public static final Identifier ID = PhantomBlood.id("arrow");
+    public static final Identifier ID = new Identifier(PhantomBlood.MODID,"arrow");
 
     public RuinStructure() {
         super(StructurePoolFeatureConfig.CODEC);

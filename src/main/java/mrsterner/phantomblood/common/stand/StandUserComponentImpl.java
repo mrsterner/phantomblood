@@ -120,23 +120,14 @@ public final class StandUserComponentImpl implements StandUserComponent, AutoSyn
     @Override
     public void serverTick() {
         standEnergy = Math.min(standEnergy+100, 100000);
-        if(standActive && standMode.equals(StandMode.ATTACKING) && stand != Stand.DARK_BLUE_MOON){
+        if(standActive && standMode.equals(StandMode.ATTACKING)){
             owner.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 2));
-
         }
         if(standActive && standMode.equals(StandMode.HEALING)){
             owner.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 40, 2));
         }
         if(stand != Stand.CRAZY_DIAMOND && standMode == StandMode.HEALING){
             StandUtils.setStandMode(owner, StandMode.IDLE);
-        }
-
-        if(standActive && stand == Stand.DARK_BLUE_MOON){
-            if(!owner.isTouchingWaterOrRain()){
-                owner.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, !standMode.equals(StandMode.ATTACKING) ? 1 : 2));
-            }else{
-                owner.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 220, 0));
-            }
         }
         StandUserComponent.entityKey.sync(owner);
     }

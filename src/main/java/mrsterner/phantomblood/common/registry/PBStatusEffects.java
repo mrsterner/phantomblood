@@ -1,7 +1,10 @@
 package mrsterner.phantomblood.common.registry;
 
 import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.common.statuseffect.BaseStatusEffect;
+import mrsterner.phantomblood.common.statuseffect.PurpleHazeEffect;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -10,6 +13,9 @@ import java.util.Map;
 
 public class PBStatusEffects {
     private static final Map<StatusEffect, Identifier> STATUS_EFFECTS = new LinkedHashMap<>();
+
+    public static final StatusEffect DARK_BLUE_MOON = create("dark_blue_moon_effect", new BaseStatusEffect(StatusEffectType.BENEFICIAL, 0x75c1ff));
+    public static final StatusEffect KILLER_INFECTION = create("killer_infection_effect", new PurpleHazeEffect());
 
 
 

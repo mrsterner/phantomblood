@@ -3,6 +3,7 @@ package mrsterner.phantomblood.common.block;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import net.minecraft.block.*;
 import net.minecraft.client.render.entity.model.IronGolemEntityModel;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -40,7 +41,6 @@ public class UrnBlock extends Block {
         super(settings);
         this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(URNS, 1)));
     }
-
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {

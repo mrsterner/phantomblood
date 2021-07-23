@@ -3,12 +3,14 @@ package mrsterner.phantomblood.mixin;
 import com.williambl.haema.Vampirable;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
+import mrsterner.phantomblood.common.registry.PBStatusEffects;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.SoulFireBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
@@ -16,6 +18,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MilkBucketItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
@@ -111,7 +114,6 @@ public abstract class LivingEntityMixin extends Entity {
                     player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, StandUtils.getStandMode(player) != StandMode.ATTACKING ? 1 : 2));
                 }
             }
-
         }
     }
 

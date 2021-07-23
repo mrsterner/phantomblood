@@ -35,7 +35,7 @@ public class RegistrationHelper {
     }
 
     public static StructureProcessorList registerStructureProcessor(String id, ImmutableList<StructureProcessor> processorList) {
-        Identifier identifier = PhantomBlood.id(id);
+        Identifier identifier = new Identifier(PhantomBlood.MODID,"id");
         StructureProcessorList structureProcessorList = new StructureProcessorList(processorList);
         return BuiltinRegistries.add(BuiltinRegistries.STRUCTURE_PROCESSOR_LIST, identifier, structureProcessorList);
     }

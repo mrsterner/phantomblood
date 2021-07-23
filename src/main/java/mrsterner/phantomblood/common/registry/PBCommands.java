@@ -41,7 +41,7 @@ public class PBCommands {
             return CommandSource.suggestIdentifiers(STAND.getIds(), builder);
         }
     }
-    public static void registerArgumentTypes() {
+    public static void init() {
         ArgumentTypes.register("mrsterner.phantomblood:stand", StandArgumentType.class, new ConstantArgumentSerializer<>(StandArgumentType::stand));
     }
     public static int setStand(CommandContext<ServerCommandSource> context, ServerPlayerEntity player, Stand stand) throws CommandSyntaxException {

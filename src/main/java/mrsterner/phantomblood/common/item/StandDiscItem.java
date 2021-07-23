@@ -61,6 +61,9 @@ public class StandDiscItem extends Item {
                 case "20th_century_boy_disc":
                     StandUtils.setStand(user, Stand.TWENTY_CENTURY_BOY);
                     break;
+                case "hierophant_green_disc":
+                    StandUtils.setStand(user, Stand.HIEROPHANT_GREEN);
+                    break;
                 default:
                     break;
             }

@@ -2,6 +2,7 @@ package mrsterner.phantomblood.common;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
+import mrsterner.phantomblood.common.registry.PBStatusEffects;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -103,7 +104,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                 });
         //Dark blue moons ability triggered by the scales status effect
         world.getPlayers().stream()
-                .filter(it -> StandUtils.getStand(it) == Stand.DARK_BLUE_MOON && StandUtils.isStandActive(it) && it.hasStatusEffect(PhantomBlood.DEEP_BLUE_MOON_EFFECT)  && it.isTouchingWaterOrRain())
+                .filter(it -> StandUtils.getStand(it) == Stand.DARK_BLUE_MOON && StandUtils.isStandActive(it) && it.hasStatusEffect(PBStatusEffects.DARK_BLUE_MOON)  && it.isTouchingWaterOrRain())
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
                     world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.yaw), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.yaw))).stream()

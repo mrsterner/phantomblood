@@ -3,6 +3,7 @@ package mrsterner.phantomblood.common.stand;
 
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
+import mrsterner.phantomblood.common.registry.PBStatusEffects;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -64,7 +65,7 @@ public enum Stand {
     DARK_BLUE_MOON(8000, (server, player, handler1, buf, responseSender) -> {
         server.execute(() -> {
             long ticks = StandUtils.getStandLevel(player) == 0 ? 200 : 300;
-            player.addStatusEffect(new StatusEffectInstance(PhantomBlood.DEEP_BLUE_MOON_EFFECT, (int) ticks));
+            player.addStatusEffect(new StatusEffectInstance(PBStatusEffects.DARK_BLUE_MOON, (int) ticks));
         });
 
     }),
@@ -72,6 +73,7 @@ public enum Stand {
     KING_CRIMSON(3000, (server, player, handler1, buf, responseSender) -> {}),
     PURPLE_HAZE(3000, (server, player, handler1, buf, responseSender) -> {}),
     TWENTY_CENTURY_BOY(3000, (server, player, handler1, buf, responseSender) -> {}),
+    HIEROPHANT_GREEN(3000, (server, player, handler1, buf, responseSender) -> {}),
     HAMON(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;

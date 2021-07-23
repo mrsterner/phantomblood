@@ -26,4 +26,5 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
             ci.cancel();
         }
     }
+
 }

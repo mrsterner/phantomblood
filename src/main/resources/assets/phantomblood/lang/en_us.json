@@ -34,6 +34,7 @@
   "tooltip.phantomblood.vampire_coat_f": "Female",
 
   "block.phantomblood.urns": "Urn",
+  "block.phantomblood.vessel": "Vessel",
 
   "stand.phantomblood.none": "None",
   "stand.phantomblood.the_world": "The World",
@@ -45,6 +46,8 @@
   "stand.phantomblood.the_sun": "The Sun",
   "stand.phantomblood.king_crimson": "King Crimson",
   "stand.phantomblood.purple_haze": "Purple Haze",
+  "stand.phantomblood.twenty_century_boy": "20th Century Boy",
+  "stand.phantomblood.hierophant_green": "Hierophant Green",
 
   "block.minecraft.bed.coffin": "You can only sleep during the day",
 
@@ -58,9 +61,6 @@
 
   "item.phantomblood.arrow_head": "Arrow Head",
 
-  "item.phantomblood.lost_book": "Lost Journal",
-  "item.phantomblood.lost_book.landing_text": "Journal text goes here",
-
   "tooltip.phantomblood.the_world_disc": "The World",
   "tooltip.phantomblood.star_platinum_disc": "Star Platinum",
   "tooltip.phantomblood.killer_queen_disc": "Killer Queen",
@@ -70,6 +70,9 @@
   "tooltip.phantomblood.the_sun_disc": "The Sun",
   "tooltip.phantomblood.king_crimson_disc": "King Crimson",
   "tooltip.phantomblood.purple_haze_disc": "Purple Haze",
+  "tooltip.phantomblood.20th_century_boy_disc": "Twenty Century Boy",
+  "tooltip.phantomblood.hierophant_green_disc": "Hierophant Green",
+
 
   "item.phantomblood.the_world_disc": "Stand Disc",
   "item.phantomblood.star_platinum_disc": "Stand Disc",
@@ -80,6 +83,8 @@
   "item.phantomblood.the_sun_disc": "Stand Disc",
   "item.phantomblood.king_crimson_disc": "Stand Disc",
   "item.phantomblood.purple_haze_disc": "Stand Disc",
+  "item.phantomblood.20th_century_boy_disc": "Stand Disc",
+  "item.phantomblood.hierophant_green_disc": "Stand Disc",
 
   "phantomblood.key.change_stand_mode": "Change Stand Mode",
   "phantomblood.key.toggle_stand": "Toggle Stand",
@@ -89,6 +94,7 @@
   "item.phantomblood.black_fabric": "Black Fabric",
 
   "effect.phantomblood.dark_blue_moon_effect": "Scales",
+  "effect.phantomblood.killer_virus_effect": "Killer Virus",
 
   "enchantment.phantomblood.the_world_enchantment" : "The World",
   "enchantment.phantomblood.the_sun_enchantment" : "The Sun",
@@ -99,6 +105,8 @@
   "enchantment.phantomblood.crazy_diamond_enchantment" : "Crazy Diamond",
   "enchantment.phantomblood.king_crimson_enchantment" : "King Crimson",
   "enchantment.phantomblood.purple_haze_enchantment" : "Purple Haze",
+  "enchantment.phantomblood.twenty_century_boy_enchantment" : "20th Century Boy",
+  "enchantment.phantomblood.hierophant_green_enchantment" : "Hierophant Green",
 
   "command.phantomblood.remove": "Stand removed",
   "command.phantomblood.setstand.stand.phantomblood.the_sun": "Added The Sun to %s",
@@ -109,5 +117,7 @@
   "command.phantomblood.setstand.stand.phantomblood.dark_blue_moon": "Added Dark Blue Moon to %s",
   "command.phantomblood.setstand.stand.phantomblood.weather_report": "Added Weather Report to %s",
   "command.phantomblood.setstand.stand.phantomblood.king_crimson": "Added King Crimson Moon to %s",
-  "command.phantomblood.setstand.stand.phantomblood.purple_haze": "Added Purple Haze to %s"
+  "command.phantomblood.setstand.stand.phantomblood.purple_haze": "Added Purple Haze to %s",
+  "command.phantomblood.setstand.stand.phantomblood.twenty_century_boy": "Added 20th Century Boy to %s",
+  "command.phantomblood.setstand.stand.phantomblood.hierophant_green": "Added Hierophant Green to %s"
 }

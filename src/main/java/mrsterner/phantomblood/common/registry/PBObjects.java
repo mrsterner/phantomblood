@@ -37,7 +37,6 @@ import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSetting
 public class PBObjects {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
-    private static final Map<Item, Identifier> ENCHANTMENTS = new LinkedHashMap<>();
 
     //Item
 
@@ -60,6 +59,7 @@ public class PBObjects {
     public static final Item KING_CRIMSON_DISC = create("king_crimson_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item PURPLE_HAZE_DISC = create("purple_haze_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item TWENTY_CENTURY_BOY_DISC = create("20th_century_boy_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item HIEROPHANT_GREEN_DISC = create("hierophant_green_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
     //Blocks
@@ -94,7 +94,6 @@ public class PBObjects {
 
 
     //Structure
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> RUIN = PhantomBlood.RUIN.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(RuinGenerator.STARTING_POOL), 2));
 
 
 
@@ -129,8 +128,5 @@ public class PBObjects {
     public static void init() {
         BLOCKS.keySet().forEach(block -> Registry.register(Registry.BLOCK, BLOCKS.get(block), block));
         ITEMS.keySet().forEach(item -> Registry.register(Registry.ITEM, ITEMS.get(item), item));
-        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, RuinStructure.ID, RUIN);
     }
-
-
 }

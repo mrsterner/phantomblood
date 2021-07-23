@@ -10,41 +10,29 @@ import mrsterner.phantomblood.client.renderer.armor.VampireArmorRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.stand.*;
+import mrsterner.phantomblood.client.PBClientTickEvents;
 import mrsterner.phantomblood.common.item.BloodStonemaskItem;
 import mrsterner.phantomblood.common.item.StonemaskItem;
 import mrsterner.phantomblood.common.item.VampireArmorFItem;
 import mrsterner.phantomblood.common.item.VampireArmorItem;
 import mrsterner.phantomblood.common.registry.*;
-import mrsterner.phantomblood.common.stand.Stand;
-import mrsterner.phantomblood.common.stand.StandMode;
-import mrsterner.phantomblood.common.stand.StandUtils;
-import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRendererRegistrationCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.feature.IronGolemFlowerFeatureRenderer;
 import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.IronGolemEntityModel;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.GolemEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import org.lwjgl.glfw.GLFW;
 import software.bernie.geckolib3.renderer.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderer.geo.GeoItemRenderer;
 
@@ -54,64 +42,13 @@ import java.util.UUID;
 
 @Environment(EnvType.CLIENT)
 public class PhantomBloodClient implements ClientModInitializer {
-    KeyBinding useAbilityKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.use_ability", GLFW.GLFW_KEY_O, "key.categories.phantomblood"));
-    boolean wasUseAbilityKeybindPressed = false;
-    KeyBinding toggleStandKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.toggle_stand", GLFW.GLFW_KEY_P, "key.categories.phantomblood"));
-    boolean wasToggleStandKeybindPressed = false;
-    KeyBinding changeStandModeKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.change_stand_mode", GLFW.GLFW_KEY_LEFT_ALT, "key.categories.phantomblood"));
-    boolean wasChangeStandKeybindPressed = false;
-    boolean wasChangeStandKeybindReleased = false;
-
 
     ZaWarudoShader zaWarudoShader = new ZaWarudoShader();
 
     @Override
     public void onInitializeClient() {
+        PBClientTickEvents.init();
 
-        ClientTickEvents.START_WORLD_TICK.register(world -> {
-            PlayerEntity player = MinecraftClient.getInstance().player;
-            if (player != null && StandUtils.getStand(player) != Stand.NONE) {
-                if (useAbilityKeybind.isPressed()) {
-                    if (TimeStopUtils.getTimeStoppedTicks(world) < 0 && !wasUseAbilityKeybindPressed) {
-                        ClientPlayNetworking.send(new Identifier("phantomblood:use_ability"), PacketByteBufs.create());
-                    }
-                    wasUseAbilityKeybindPressed = true;
-                } else {
-                    wasUseAbilityKeybindPressed = false;
-                }
-                if (toggleStandKeybind.isPressed()) {
-                    if (!wasToggleStandKeybindPressed) {
-                        ClientPlayNetworking.send(new Identifier("phantomblood:toggle_stand"), PacketByteBufs.create());
-                    }
-                    wasToggleStandKeybindPressed = true;
-                } else {
-                    wasToggleStandKeybindPressed = false;
-                }
-
-                //Push to Stand
-                //Press
-                if (changeStandModeKeybind.isPressed()) {
-                    if (!wasChangeStandKeybindPressed) {
-                        ClientPlayNetworking.send(new Identifier("phantomblood:change_stand_mode"), PacketByteBufs.create());
-                    }
-                    wasChangeStandKeybindPressed = true;
-                }else {
-                    wasChangeStandKeybindPressed = false;
-                }
-                //Release
-                if(!changeStandModeKeybind.isPressed() && changeStandModeKeybind.wasPressed()){
-                    if(!wasChangeStandKeybindReleased){
-                        ClientPlayNetworking.send(new Identifier("phantomblood:change_stand_mode"), PacketByteBufs.create());
-                        if(StandUtils.getStand(player) == Stand.CRAZY_DIAMOND && StandUtils.getStandMode(player) == StandMode.ATTACKING){
-                            ClientPlayNetworking.send(new Identifier("phantomblood:change_stand_mode"), PacketByteBufs.create());
-                        }
-                    }
-                    wasChangeStandKeybindReleased = true;
-                }else{
-                    wasChangeStandKeybindReleased = false;
-                }
-            }
-        });
 
         ClientPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:stop_time"), (client, handler, buf, responseSender) -> {
             UUID uuid = buf.readUuid();
@@ -152,11 +89,10 @@ public class PhantomBloodClient implements ClientModInitializer {
                 registrationHelper.register(new TheSunFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheSunModel()));
                 registrationHelper.register(new KingCrimsonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KingCrimsonModel()));
                 registrationHelper.register(new PurpleHazeFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new PurpleHazeModel()));
-                //registrationHelper.register(new TwentyCenturyBoyFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TwentyCenturyBoyModel()));
+                registrationHelper.register(new HierophantGreenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new HierophantGreenModel()));
             }
         });
 
-        //GeoArmorRenderer.registerArmorRenderer(BloodStonemaskItem.class, new BloodStonemaskRenderer());
         GeoItemRenderer.registerItemRenderer(PBObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
         GeoItemRenderer.registerItemRenderer(PBObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
         StonemaskRenderer.registerArmorRenderer(StonemaskItem.class, new StonemaskRenderer());
