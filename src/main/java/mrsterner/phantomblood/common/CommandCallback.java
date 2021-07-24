@@ -51,6 +51,7 @@ public class CommandCallback implements CommandRegistrationCallback {
             LiteralCommandNode<ServerCommandSource> setPurpleHaze = CommandManager.literal("purple_haze").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.PURPLE_HAZE)).build();
             LiteralCommandNode<ServerCommandSource> setTwentyCenturyBoy = CommandManager.literal("20th_century_boy").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.TWENTY_CENTURY_BOY)).build();
             LiteralCommandNode<ServerCommandSource> setHierophantGreen = CommandManager.literal("hierophant_green").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.HIEROPHANT_GREEN)).build();
+            LiteralCommandNode<ServerCommandSource> setAnubis = CommandManager.literal("anubis").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.ANUBIS)).build();
 
 
             dispatcher.getRoot().addChild(phantombloodNode);
@@ -72,6 +73,7 @@ public class CommandCallback implements CommandRegistrationCallback {
             playerSetNode.addChild(setPurpleHaze);
             playerSetNode.addChild(setTwentyCenturyBoy);
             playerSetNode.addChild(setHierophantGreen);
+            playerSetNode.addChild(setAnubis);
         });
     }
     @Override

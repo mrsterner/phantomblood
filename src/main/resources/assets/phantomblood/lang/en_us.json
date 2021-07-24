@@ -48,6 +48,7 @@
   "stand.phantomblood.purple_haze": "Purple Haze",
   "stand.phantomblood.twenty_century_boy": "20th Century Boy",
   "stand.phantomblood.hierophant_green": "Hierophant Green",
+  "stand.phantomblood.anubis": "Anubis",
 
   "block.minecraft.bed.coffin": "You can only sleep during the day",
 
@@ -72,6 +73,7 @@
   "tooltip.phantomblood.purple_haze_disc": "Purple Haze",
   "tooltip.phantomblood.20th_century_boy_disc": "Twenty Century Boy",
   "tooltip.phantomblood.hierophant_green_disc": "Hierophant Green",
+  "tooltip.phantomblood.anubis_disc": "Anubis",
 
 
   "item.phantomblood.the_world_disc": "Stand Disc",
@@ -85,6 +87,7 @@
   "item.phantomblood.purple_haze_disc": "Stand Disc",
   "item.phantomblood.20th_century_boy_disc": "Stand Disc",
   "item.phantomblood.hierophant_green_disc": "Stand Disc",
+  "item.phantomblood.anubis_disc": "Stand Disc",
 
   "phantomblood.key.change_stand_mode": "Change Stand Mode",
   "phantomblood.key.toggle_stand": "Toggle Stand",
@@ -107,6 +110,7 @@
   "enchantment.phantomblood.purple_haze_enchantment" : "Purple Haze",
   "enchantment.phantomblood.twenty_century_boy_enchantment" : "20th Century Boy",
   "enchantment.phantomblood.hierophant_green_enchantment" : "Hierophant Green",
+  "enchantment.phantomblood.abunis_enchantment" : "Anubis",
 
   "command.phantomblood.remove": "Stand removed",
   "command.phantomblood.setstand.stand.phantomblood.the_sun": "Added The Sun to %s",
@@ -119,5 +123,6 @@
   "command.phantomblood.setstand.stand.phantomblood.king_crimson": "Added King Crimson Moon to %s",
   "command.phantomblood.setstand.stand.phantomblood.purple_haze": "Added Purple Haze to %s",
   "command.phantomblood.setstand.stand.phantomblood.twenty_century_boy": "Added 20th Century Boy to %s",
-  "command.phantomblood.setstand.stand.phantomblood.hierophant_green": "Added Hierophant Green to %s"
+  "command.phantomblood.setstand.stand.phantomblood.hierophant_green": "Added Hierophant Green to %s",
+  "command.phantomblood.setstand.stand.phantomblood.anubis": "Added Anubis to %s"
 }

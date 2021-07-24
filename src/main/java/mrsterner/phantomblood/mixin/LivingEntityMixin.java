@@ -19,6 +19,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MilkBucketItem;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
@@ -69,7 +70,6 @@ public abstract class LivingEntityMixin extends Entity {
                 if(head.getItem() == PBObjects.STONE_MASK_ITEM){
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 3,1));
                 }
-
                 if(livingEntity instanceof PlayerEntity){
                     PlayerEntity player = (PlayerEntity) (Object) this;
                     ItemStack hand = livingEntity.getStackInHand(Hand.MAIN_HAND);

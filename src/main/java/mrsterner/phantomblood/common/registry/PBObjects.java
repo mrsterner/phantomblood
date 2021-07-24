@@ -4,10 +4,6 @@ import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.block.UrnBlock;
 import mrsterner.phantomblood.common.block.VesselBlock;
-import mrsterner.phantomblood.common.worldgen.RegistrationHelper;
-import mrsterner.phantomblood.common.worldgen.generator.RuinGenerator;
-import mrsterner.phantomblood.common.worldgen.structure.RuinStructure;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.loader.FabricLoader;
 import net.minecraft.block.Blocks;
@@ -15,7 +11,6 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.*;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.DyeColor;
 import net.minecraft.block.entity.BlockEntityType.Builder;
 import mrsterner.phantomblood.common.item.*;
@@ -23,10 +18,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
-import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -48,6 +40,7 @@ public class PBObjects {
     public static final Item KILLER_QUEEN_TRIGGER = create("killer_queen_trigger", new KillerQueenTriggerItem(new Item.Settings()));
     public static final Item BLACK_FABRIC = create("black_fabric", new Item(gen()));
 
+    public static final Item ANUBIS_SWORD = create("anubis_sword", new AnubisSwordItem(ToolMaterials.IRON,4,1, gen()));
 
     public static final Item STAR_PLATINUM_DISC = create("star_platinum_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item THE_WORLD_DISC = create("the_world_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
@@ -60,6 +53,7 @@ public class PBObjects {
     public static final Item PURPLE_HAZE_DISC = create("purple_haze_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item TWENTY_CENTURY_BOY_DISC = create("20th_century_boy_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item HIEROPHANT_GREEN_DISC = create("hierophant_green_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item ANUBIS_DISC = create("anubis_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
 
 
     //Blocks

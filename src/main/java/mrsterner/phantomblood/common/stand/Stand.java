@@ -74,6 +74,7 @@ public enum Stand {
     PURPLE_HAZE(3000, (server, player, handler1, buf, responseSender) -> {}),
     TWENTY_CENTURY_BOY(3000, (server, player, handler1, buf, responseSender) -> {}),
     HIEROPHANT_GREEN(3000, (server, player, handler1, buf, responseSender) -> {}),
+    ANUBIS(3000, (server, player, handler1, buf, responseSender) -> {}),
     HAMON(8000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;

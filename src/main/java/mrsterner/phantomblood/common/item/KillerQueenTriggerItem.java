@@ -3,7 +3,9 @@ package mrsterner.phantomblood.common.item;
 import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.PotatoesBlock;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
@@ -11,11 +13,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
@@ -67,8 +73,7 @@ public class KillerQueenTriggerItem extends Item {
                     switch (t){
                         case BLOCK:
                             BlockPos pos = new BlockPos(tag.getDouble(TAG.POS_X.getName()), tag.getDouble(TAG.POS_Y.getName()), tag.getDouble(TAG.POS_Z.getName()));
-                            world.createExplosion(user,pos.getX(),pos.getY()+1,pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
-
+                            world.createExplosion(user,pos.getX(),pos.getY(),pos.getZ(), 3f + StandUtils.getStandLevel(user), Explosion.DestructionType.NONE);
                             stack.decrement(1);
                             StandUtils.getStandEnergy(user);
                             break;

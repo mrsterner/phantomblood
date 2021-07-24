@@ -69,6 +69,7 @@ repositories {
         allowInsecureProtocol = true
     }
     maven { url "https://maven.kotlindiscord.com/repository/terraformers/"}
+    maven {url "https://hephaestus.dev/release"}
 }
 
 dependencies {
@@ -118,7 +119,8 @@ dependencies {
     modImplementation "io.github.ladysnake:Satin:${satin_version}"
     // Include Satin as a Jar-in-Jar dependency (optional)
 
-
+    modImplementation "dev.monarkhes:myron:1.6.0"
+    include "dev.monarkhes:myron:1.6.0"
 /*
     modRuntime ("grondag:canvas-mc116:1.0.1511"){
         exclude module:"modmenu"
