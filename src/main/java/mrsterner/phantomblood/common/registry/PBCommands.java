@@ -54,6 +54,7 @@ public class PBCommands {
         context.getSource().sendFeedback(new TranslatableText("command.phantomblood.removestand", player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
         StandUtils.setStand(player, Stand.NONE);
         StandUtils.setStandLevel(player, 0);
+        StandUtils.setStandActive(player, false);
         return 0;
     }
     public static int hamon(CommandContext<ServerCommandSource> context, ServerPlayerEntity player) throws CommandSyntaxException {

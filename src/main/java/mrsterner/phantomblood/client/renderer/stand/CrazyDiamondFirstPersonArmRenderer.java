@@ -1,7 +1,7 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 
-import mrsterner.phantomblood.client.model.stand.CrazyDiamondAttackingModel;
+import mrsterner.phantomblood.client.model.stand.CrazyDiamondModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -21,13 +21,13 @@ import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class CrazyDiamondFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final CrazyDiamondAttackingModel model = new CrazyDiamondAttackingModel();
+    private final CrazyDiamondModel model = new CrazyDiamondModel();
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/crazy_diamond.png");
 
     @Override
     public void onLast(WorldRenderContext context) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if (player == null || !StandUtils.isStandActive(player) || StandUtils.getStand(player) != Stand.CRAZY_DIAMOND || StandUtils.getStandMode(player) != StandMode.ATTACKING || context.camera().isThirdPerson()) {
+        if (player == null || !StandUtils.isStandActive(player) || StandUtils.getStand(player) != Stand.CRAZY_DIAMOND || context.camera().isThirdPerson()) {
             return;
         }
         MatrixStack matrixStack = context.matrixStack();
@@ -38,8 +38,13 @@ public class CrazyDiamondFirstPersonArmRenderer implements WorldRenderEvents.Las
         matrixStack.translate(0.0D, -0.2, 1.5D);
         VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
         VertexConsumer vertexConsumer2 = immediate.getBuffer(RenderLayer.getEntityTranslucent(texture));
-        model.setAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
-        model.renderPunchyArms(matrixStack, vertexConsumer2, 15728880, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 0.5f);
+        if(StandUtils.getStandMode(player) == StandMode.ATTACKING){
+            model.setAttackAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
+            model.renderPunchyArms(matrixStack, vertexConsumer2, 15728880, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 0.5f);
+        }else if(StandUtils.getStandMode(player) == StandMode.HEALING){
+            model.setHealingAngles(player, player.limbAngle, player.limbDistance, player.age+context.tickDelta(), 0.0f, 0.0f);
+            model.renderPunchyArmsHeal(matrixStack, vertexConsumer2, 15728880, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 0.5f);
+        }
         matrixStack.pop();
     }
 }

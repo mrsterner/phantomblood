@@ -26,7 +26,7 @@ public class PBMaterials {
         }
 
         public Ingredient getRepairIngredient() {
-            return Ingredient.ofItems(new ItemConvertible[]{PBObjects.STONE_OF_AJA});
+            return Ingredient.ofItems(PBObjects.STONE_OF_AJA);
         }
 
 

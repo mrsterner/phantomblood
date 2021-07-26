@@ -22,7 +22,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRendererRegistrationCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
@@ -69,7 +68,6 @@ public class PhantomBloodClient implements ClientModInitializer {
         WorldRenderEvents.LAST.register(new KillerQueenFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new StarPlatinumFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new CrazyDiamondFirstPersonArmRenderer());
-        WorldRenderEvents.LAST.register(new CrazyDiamondHealFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new WeatherReportFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new DarkBlueMoonFirstPersonArmRenderer());
         WorldRenderEvents.LAST.register(new KingCrimsonFirstPersonArmRenderer());
@@ -84,7 +82,7 @@ public class PhantomBloodClient implements ClientModInitializer {
                 registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldModel()));
                 registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenModel()));
                 registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumModel()));
-                registrationHelper.register(new CrazyDiamondFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new CrazyDiamondAttackingModel(), new CrazyDiamondIdleModel(), new CrazyDiamondHealingModel()));
+                registrationHelper.register(new CrazyDiamondFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new CrazyDiamondModel()));
                 registrationHelper.register(new WeatherReportFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new WeatherReportModel()));
                 registrationHelper.register(new DarkBlueMoonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new DarkBlueMoonModel()));
                 registrationHelper.register(new TheSunFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheSunModel()));

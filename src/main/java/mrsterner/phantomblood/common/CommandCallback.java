@@ -54,6 +54,7 @@ public class CommandCallback implements CommandRegistrationCallback {
             LiteralCommandNode<ServerCommandSource> setAnubis = CommandManager.literal("anubis").executes(context -> setStand(context, EntityArgumentType.getPlayer(context, "player"), Stand.ANUBIS)).build();
 
 
+
             dispatcher.getRoot().addChild(phantombloodNode);
             phantombloodNode.addChild(standNode);
             phantombloodNode.addChild(setHamonNode);
