@@ -83,20 +83,6 @@ public enum Stand {
         energyForAbility = i;
         handler = handlerIn;
     }
-    /*
-    Vec3d start = something;
-    Vec3d end = somethingElse;
-    double dist = end.distanceTo(start);
-for(int i = 0;i<dist;i++) {
-        double progress = i/dist;
-        double currentX = lerp(start.x,end.x,progress);
-        double currentY = lerp(start.y,end.y,progress);
-        double currentZ = lerp(start.z,end.z,progress);
-        Vec3d current = new Vec3d(currentX,currentY,currentZ);
-        // do whatever with current
-    }
-
-     */
 
     @Override
     public String toString() {

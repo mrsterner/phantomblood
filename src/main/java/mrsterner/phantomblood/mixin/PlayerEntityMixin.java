@@ -48,19 +48,23 @@ public abstract class PlayerEntityMixin extends LivingEntity{
                 System.out.println("Remove");
                 movementSpeedAttribute.removeModifier(TWENTYCB_MOVEMENT_SPEED_MODIFIER);
             }
-            if(StandUtils.getStand(player) == Stand.ANUBIS){
 
-                if(StandUtils.isStandActive(player)){
-
-                    if(player.getStackInHand(Hand.MAIN_HAND).isEmpty()){
+        }
+        if (world.isClient) {
+            PlayerEntity player = (PlayerEntity) (Object) this;
+            ItemStack itemStack = new ItemStack(PBObjects.ANUBIS_SWORD);
+            if (StandUtils.getStand(player) == Stand.ANUBIS) {
+                if (StandUtils.isStandActive(player)) {
+                    if ((player.inventory.getCursorStack().getItem() != itemStack.getItem()) && !player.inventory.contains(itemStack) && player.getStackInHand(Hand.MAIN_HAND).isEmpty()) {
                         player.setStackInHand(Hand.MAIN_HAND, itemStack);
-                }else{
-                        if(player.inventory.contains(itemStack)){
-                            player.inventory.remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.method_29281());
-                        }
                     }
+                    if (player.inventory.count(itemStack.getItem()) > 1) {
+                        player.inventory.remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.method_29281());
+                    }
+                } else if (player.inventory.contains(itemStack)) {
+                    player.inventory.remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.method_29281());
                 }
-            }else if(player.inventory.contains(itemStack)){
+            } else if (player.inventory.contains(itemStack)) {
                 player.inventory.remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.method_29281());
             }
         }
