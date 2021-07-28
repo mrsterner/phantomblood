@@ -7,6 +7,8 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.common.hamon.Hamon;
+import mrsterner.phantomblood.common.hamon.HamonUtils;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
@@ -58,13 +60,13 @@ public class PBCommands {
         return 0;
     }
     public static int hamon(CommandContext<ServerCommandSource> context, ServerPlayerEntity player) throws CommandSyntaxException {
-        context.getSource().sendFeedback(new TranslatableText("command.phantomblood.removestand", player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
-        if(StandUtils.getStand(player) == Stand.HAMON){
-            StandUtils.setStand(player, Stand.NONE);
+        context.getSource().sendFeedback(new TranslatableText("command.phantomblood.hamon", player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
+        if(HamonUtils.getHamon(player) == Hamon.HAMON){
+            HamonUtils.setHamon(player, Hamon.NONE);
         }else{
-            StandUtils.setStand(player, Stand.HAMON);
+            HamonUtils.setHamon(player, Hamon.HAMON);
         }
-        StandUtils.setStandLevel(player, 0);
+        HamonUtils.setHamonLevel(player, 0);
 
         return 0;
     }

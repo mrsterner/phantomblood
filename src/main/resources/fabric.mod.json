@@ -47,6 +47,7 @@
   "custom": {
     "cardinal-components": [
       "phantomblood:stand_user",
+      "phantomblood:hamon_user",
       "phantomblood:time_stop"
     ]
   }

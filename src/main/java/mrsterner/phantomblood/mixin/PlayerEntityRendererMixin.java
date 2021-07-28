@@ -4,6 +4,8 @@ import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.client.renderer.stand.HamonFeatureRenderer;
 import mrsterner.phantomblood.client.renderer.stand.TwentyCenturyBoyFeatureRenderer;
 import mrsterner.phantomblood.common.block.CoffinBlock;
+import mrsterner.phantomblood.common.hamon.Hamon;
+import mrsterner.phantomblood.common.hamon.HamonUtils;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
@@ -61,7 +63,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Inject(method = "renderRightArm", at = @At("HEAD"), cancellable = true)
     private void renderRightArm(MatrixStack matrices, VertexConsumerProvider vertices, int lightmap, AbstractClientPlayerEntity renderedPlayer, CallbackInfo ci) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        if(StandUtils.getStand(player) == Stand.HAMON){
+        if(HamonUtils.getHamon(player) == Hamon.HAMON){
             matrices.push();
             PlayerEntityModel<AbstractClientPlayerEntity> playerEntityModel = (PlayerEntityModel)this.getModel();
             playerEntityModel.copyStateTo(model);

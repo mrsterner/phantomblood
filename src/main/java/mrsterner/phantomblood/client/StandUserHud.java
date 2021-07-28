@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client;
 
 
+import mrsterner.phantomblood.common.hamon.Hamon;
+import mrsterner.phantomblood.common.hamon.HamonUtils;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -24,7 +26,8 @@ public class StandUserHud extends DrawableHelper implements HudRenderCallback {
         int height = mc.getWindow().getScaledHeight();
         if (player == null) return;
         Stand stand = StandUtils.getStand(player);
-        if (stand == Stand.NONE || stand == Stand.HAMON) return;
+        Hamon hamon = HamonUtils.getHamon(player);
+        if (stand == Stand.NONE) return;
 
         if(stand == Stand.KILLER_QUEEN){
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.LIGHT_PURPLE)).formatted(Formatting.BOLD), height, 5);
@@ -40,6 +43,9 @@ public class StandUserHud extends DrawableHelper implements HudRenderCallback {
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.AQUA)).formatted(Formatting.BOLD), height, 5);
         } else{
             renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stand", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.WHITE)).formatted(Formatting.BOLD), height, 5);
+        }
+        if(hamon == Hamon.HAMON){
+            renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.hamon", new TranslatableText(stand.toString()).formatted(Formatting.BOLD, Formatting.GOLD)).formatted(Formatting.BOLD), height, 6);
         }
 
         renderText(matrixStack, textRenderer, new TranslatableText("hud.phantomblood.stage", StandUtils.getStandLevel(player)).formatted(Formatting.BOLD), height, 4);

@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 import mrsterner.phantomblood.client.model.HamonModel;
+import mrsterner.phantomblood.common.hamon.Hamon;
+import mrsterner.phantomblood.common.hamon.HamonUtils;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -25,7 +27,7 @@ public class HamonFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEn
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         this.yOffset = 0.6F + MathHelper.cos((float)(0.1D * (double)animationProgress))/2.5;
-         if (StandUtils.getStand((PlayerEntity) entity) == Stand.HAMON) {
+         if (HamonUtils.getHamon((PlayerEntity) entity) == Hamon.HAMON) {
         matrices.push();
         getContextModel().rightArm.rotate(matrices);
         model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.4f);
