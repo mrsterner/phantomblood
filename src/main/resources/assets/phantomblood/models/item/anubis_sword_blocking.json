@@ -4,14 +4,14 @@
   "display": {
     "thirdperson_righthand": {
       "rotation": [
-        0,
-        -180,
-        0
+        -36,
+        -164,
+        -57
       ],
       "translation": [
         0,
-        -3.25,
-        0.75
+        -1.75,
+        1.25
       ],
       "scale": [
         2,
@@ -38,9 +38,9 @@
     },
     "firstperson_righthand": {
       "rotation": [
-        0,
-        -180,
-        0
+        -90,
+        -135,
+        -90
       ],
       "translation": [
         0,
@@ -99,13 +99,5 @@
         0
       ]
     }
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "blocking": 1
-      },
-      "model": "phantomblood:item/anubis_sword_blocking"
-    }
-  ]
+  }
 }

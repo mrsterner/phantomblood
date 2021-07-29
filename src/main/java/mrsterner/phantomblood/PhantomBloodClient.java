@@ -12,10 +12,7 @@ import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.stand.*;
 import mrsterner.phantomblood.client.PBClientTickEvents;
-import mrsterner.phantomblood.common.item.BloodStonemaskItem;
-import mrsterner.phantomblood.common.item.StonemaskItem;
-import mrsterner.phantomblood.common.item.VampireArmorFItem;
-import mrsterner.phantomblood.common.item.VampireArmorItem;
+import mrsterner.phantomblood.common.item.*;
 import mrsterner.phantomblood.common.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -25,13 +22,17 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRend
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.renderer.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderer.geo.GeoItemRenderer;
@@ -48,6 +49,13 @@ public class PhantomBloodClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         PBClientTickEvents.init();
+
+        Registry.ITEM.forEach((item) -> {
+            if(item instanceof AnubisSwordItem) {
+                FabricModelPredicateProviderRegistry.register(item, new Identifier("blocking"), (stack, world, entity) ->
+                        entity != null && entity.isUsingItem() ? 1.0F : 0.0F);
+            }
+        });
 
 
         ClientPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:stop_time"), (client, handler, buf, responseSender) -> {

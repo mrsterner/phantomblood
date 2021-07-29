@@ -6,6 +6,7 @@ import mrsterner.phantomblood.client.renderer.stand.TwentyCenturyBoyFeatureRende
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.hamon.Hamon;
 import mrsterner.phantomblood.common.hamon.HamonUtils;
+import mrsterner.phantomblood.common.item.AnubisSwordItem;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
@@ -20,10 +21,14 @@ import net.minecraft.client.render.entity.IronGolemEntityRenderer;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.feature.IronGolemFlowerFeatureRenderer;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShieldItem;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3f;
@@ -31,6 +36,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
@@ -49,6 +55,15 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     private void PlayerEntityRenderer(EntityRenderDispatcher dispatcher, boolean bl, CallbackInfo callbackInfo) {
         addFeature(new HamonFeatureRenderer(this));
         addFeature(new TwentyCenturyBoyFeatureRenderer(this));
+    }
+
+    @Inject(at = @At("HEAD"), method = "getArmPose", cancellable = true)
+    @Environment(EnvType.CLIENT)
+    private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
+        ItemStack itemStack = abstractClientPlayerEntity.getStackInHand(hand);
+        if (itemStack.getItem() instanceof AnubisSwordItem && abstractClientPlayerEntity.isUsingItem()) {
+            cir.setReturnValue(BipedEntityModel.ArmPose.BLOCK);
+        }
     }
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
