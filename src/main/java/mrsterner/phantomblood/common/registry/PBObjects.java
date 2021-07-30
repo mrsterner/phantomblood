@@ -41,6 +41,7 @@ public class PBObjects {
     public static final Item BLACK_FABRIC = create("black_fabric", new Item(gen()));
 
     public static final Item ANUBIS_SWORD = create("anubis_sword", new AnubisSwordItem(ToolMaterials.IRON,4,1, gen()));
+    public static final Item KILLER_VIRUS = create("killer_virus", new KillerVirusItem(gen().maxCount(1)));
 
     public static final Item STAR_PLATINUM_DISC = create("star_platinum_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));
     public static final Item THE_WORLD_DISC = create("the_world_disc", new StandDiscItem(gen().rarity(Rarity.RARE).maxCount(1)));

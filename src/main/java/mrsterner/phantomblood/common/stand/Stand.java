@@ -2,6 +2,8 @@ package mrsterner.phantomblood.common.stand;
 
 
 import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.common.entity.KillerVirusEntity;
+import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.registry.PBStatusEffects;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
@@ -9,6 +11,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 
@@ -71,7 +74,15 @@ public enum Stand {
     }),
     THE_SUN(3000, (server, player, handler1, buf, responseSender) -> {}),
     KING_CRIMSON(3000, (server, player, handler1, buf, responseSender) -> {}),
-    PURPLE_HAZE(3000, (server, player, handler1, buf, responseSender) -> {}),
+    PURPLE_HAZE(3000, (server, player, handler1, buf, responseSender) -> {
+        server.execute(() ->{
+            ItemStack itemStack = new ItemStack(PBObjects.KILLER_VIRUS);
+            KillerVirusEntity killerVirusEntity = new KillerVirusEntity(player.world, player);
+            killerVirusEntity.setItem(itemStack);
+            killerVirusEntity.setProperties(player, player.pitch, player.yaw, 0.0F, 0.5F, 0F); //modifierZ is the power thrown, 1.5F is standard
+            player.world.spawnEntity(killerVirusEntity); // spawns entity
+        });
+    }),
     TWENTY_CENTURY_BOY(3000, (server, player, handler1, buf, responseSender) -> {}),
     HIEROPHANT_GREEN(3000, (server, player, handler1, buf, responseSender) -> {}),
     ANUBIS(3000, (server, player, handler1, buf, responseSender) -> {});

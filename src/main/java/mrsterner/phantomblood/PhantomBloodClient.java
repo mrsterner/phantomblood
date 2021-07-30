@@ -1,5 +1,6 @@
 package mrsterner.phantomblood;
 
+import mrsterner.phantomblood.client.EntitySpawnPacket;
 import mrsterner.phantomblood.client.StandUserHud;
 import mrsterner.phantomblood.client.ZaWarudoShader;
 import mrsterner.phantomblood.client.model.stand.*;
@@ -18,20 +19,24 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.renderer.geo.GeoArmorRenderer;
@@ -46,9 +51,41 @@ public class PhantomBloodClient implements ClientModInitializer {
 
     ZaWarudoShader zaWarudoShader = new ZaWarudoShader();
 
+    public static final Identifier PacketID = new Identifier(PhantomBlood.MODID, "spawn_packet");
+
+    public void receiveEntityPacket() {
+        ClientSidePacketRegistry.INSTANCE.register(PacketID, (ctx, byteBuf) -> {
+            EntityType<?> et = Registry.ENTITY_TYPE.get(byteBuf.readVarInt());
+            UUID uuid = byteBuf.readUuid();
+            int entityId = byteBuf.readVarInt();
+            Vec3d pos = EntitySpawnPacket.PacketBufUtil.readVec3d(byteBuf);
+            float pitch = EntitySpawnPacket.PacketBufUtil.readAngle(byteBuf);
+            float yaw = EntitySpawnPacket.PacketBufUtil.readAngle(byteBuf);
+            ctx.getTaskQueue().execute(() -> {
+                if (MinecraftClient.getInstance().world == null)
+                    throw new IllegalStateException("Tried to spawn entity in a null world!");
+                Entity e = et.create(MinecraftClient.getInstance().world);
+                if (e == null)
+                    throw new IllegalStateException("Failed to create instance of entity \"" + Registry.ENTITY_TYPE.getId(et) + "\"!");
+                e.updateTrackedPosition(pos);
+                e.setPos(pos.x, pos.y, pos.z);
+                e.pitch = pitch;
+                e.yaw = yaw;
+                e.setEntityId(entityId);
+                e.setUuid(uuid);
+                MinecraftClient.getInstance().world.addEntity(entityId, e);
+            });
+        });
+    }
+
+
     @Override
     public void onInitializeClient() {
         PBClientTickEvents.init();
+
+        EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
+        EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusCloudEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
+
 
         Registry.ITEM.forEach((item) -> {
             if(item instanceof AnubisSwordItem) {

@@ -7,6 +7,8 @@ import mrsterner.phantomblood.common.CommandCallback;
 import mrsterner.phantomblood.common.StandCallback;
 import mrsterner.phantomblood.common.StandPunchHandler;
 import mrsterner.phantomblood.common.VampireCallback;
+import mrsterner.phantomblood.common.entity.KillerVirusCloudEntity;
+import mrsterner.phantomblood.common.entity.KillerVirusEntity;
 import mrsterner.phantomblood.common.hamon.HamonUserComponent;
 import mrsterner.phantomblood.common.hamon.HamonUserComponentImpl;
 import mrsterner.phantomblood.common.stand.*;
@@ -17,6 +19,10 @@ import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.LootTableEntry;
@@ -28,6 +34,7 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import software.bernie.geckolib3.GeckoLib;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
 
@@ -46,6 +53,14 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         }
         return tagCompound;
     }
+    public static final EntityType<KillerVirusEntity> KillerVirusEntityType = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "killer_virus"),
+            FabricEntityTypeBuilder.<KillerVirusEntity>create(SpawnGroup.MISC, KillerVirusEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build()
+    );
+    public static final EntityType<KillerVirusCloudEntity> KillerVirusCloudEntityType = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "killer_virus_cloud"),
+            FabricEntityTypeBuilder.<KillerVirusCloudEntity>create(SpawnGroup.MISC, KillerVirusCloudEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build()
+    );
 
     @Override
     public void onInitialize() {
