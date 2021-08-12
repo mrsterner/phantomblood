@@ -9,11 +9,15 @@ import mrsterner.phantomblood.common.registry.PBStatusEffects;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.DropperBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Locale;
 
@@ -74,16 +78,24 @@ public enum Stand {
     }),
     THE_SUN(3000, (server, player, handler1, buf, responseSender) -> {}),
     KING_CRIMSON(3000, (server, player, handler1, buf, responseSender) -> {}),
-    PURPLE_HAZE(3000, (server, player, handler1, buf, responseSender) -> {
+    PURPLE_HAZE(60000, (server, player, handler1, buf, responseSender) -> {
         server.execute(() ->{
-            ItemStack itemStack = new ItemStack(PBObjects.KILLER_VIRUS);
-            KillerVirusEntity killerVirusEntity = new KillerVirusEntity(player.world, player);
-            killerVirusEntity.setItem(itemStack);
-            killerVirusEntity.setProperties(player, player.pitch, player.yaw, 0.0F, 0.5F, 0F); //modifierZ is the power thrown, 1.5F is standard
-            player.world.spawnEntity(killerVirusEntity); // spawns entity
+            int energy = StandUtils.getStandEnergy(player);
+            int energyForAbility = StandUtils.getStand(player).energyForAbility;
+            if (energy >= energyForAbility) {
+                ItemStack itemStack = new ItemStack(PBObjects.KILLER_VIRUS);
+                KillerVirusEntity killerVirusEntity = new KillerVirusEntity(player.world, player);
+                killerVirusEntity.setItem(itemStack);
+                killerVirusEntity.setPosition(player.getX() - MathHelper.cos(player.getHeadYaw()) , player.getY() + 1D, player.getZ() - MathHelper.cos(player.getHeadYaw()));
+
+                //killerVirusEntity.setPos(player.getX()-1D, player.getY() + 1D, player.getZ());
+                killerVirusEntity.setProperties(player, player.pitch, player.yaw, 0.0F, 0.5F, 2F); //modifierZ is the power thrown, 1.5F is standard
+                float f = player.getHeadYaw();
+                player.world.spawnEntity(killerVirusEntity); // spawns entity
+            }
         });
     }),
-    TWENTY_CENTURY_BOY(3000, (server, player, handler1, buf, responseSender) -> {}),
+    TWENTY_CENTURY_BOY(30000, (server, player, handler1, buf, responseSender) -> {}),
     HIEROPHANT_GREEN(3000, (server, player, handler1, buf, responseSender) -> {}),
     ANUBIS(3000, (server, player, handler1, buf, responseSender) -> {});
 

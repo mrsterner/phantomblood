@@ -73,6 +73,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         VampireCallback.init();
         StandCallback.init();
         PBStructures.init();
+        PBParticles.init();
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {
             Identifier nether_fortress = new Identifier(PhantomBlood.MODID, "inject/nether_fortress");

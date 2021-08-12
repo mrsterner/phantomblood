@@ -5,6 +5,8 @@ import mrsterner.phantomblood.PhantomBloodClient;
 import mrsterner.phantomblood.client.EntitySpawnPacket;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.registry.PBStatusEffects;
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.AreaEffectCloudEntity;
@@ -67,17 +69,21 @@ public class KillerVirusEntity extends ThrownItemEntity {
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
         super.onBlockHit(blockHitResult);
-
-        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(this.world, this.getX(), this.getY(), this.getZ());
-        areaEffectCloudEntity.setWaitTime(40);
-        areaEffectCloudEntity.setRadius(3.5F);
-        areaEffectCloudEntity.setRadiusOnUse(-0.5F);
-        areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 2);
-        areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
-        StatusEffectInstance statusEffectInstance = new StatusEffectInstance(PBStatusEffects.KILLER_INFECTION, 80);
-        areaEffectCloudEntity.addEffect(new StatusEffectInstance(statusEffectInstance));
-        this.world.spawnEntity(areaEffectCloudEntity);
-
+        PlayerEntity playerEntity = (PlayerEntity) getOwner();
+        if(playerEntity != null && StandUtils.getStand(playerEntity) == Stand.PURPLE_HAZE){
+            int level = StandUtils.getStandLevel(playerEntity);
+            AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(this.world, this.getX(), this.getY(), this.getZ());
+            areaEffectCloudEntity.setWaitTime(40);
+            areaEffectCloudEntity.setRadius(3.5F);
+            areaEffectCloudEntity.setRadiusOnUse(-0.5F);
+            areaEffectCloudEntity.setParticleType(ParticleTypes.DRAGON_BREATH);
+            areaEffectCloudEntity.setDuration(level == 0 ? 600 : 1200);
+            //areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 2);
+            areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
+            StatusEffectInstance statusEffectInstance = new StatusEffectInstance(PBStatusEffects.KILLER_INFECTION, 80);
+            areaEffectCloudEntity.addEffect(new StatusEffectInstance(statusEffectInstance));
+            this.world.spawnEntity(areaEffectCloudEntity);
+        }
 
         /*
 
