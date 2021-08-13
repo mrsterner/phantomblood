@@ -1,7 +1,5 @@
 package mrsterner.phantomblood.common.callback;
 
-import com.williambl.haema.Vampirable;
-import com.williambl.haema.VampireBloodManager;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.item.KillerQueenTriggerItem;
 import mrsterner.phantomblood.common.registry.PBObjects;
@@ -34,6 +32,7 @@ import java.util.List;
 public class VampireCallback extends WorldSleepEvents implements AttackEntityCallback {
 
     public static void init(){
+        /*
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             ItemStack chest = player.getEquippedStack(EquipmentSlot.CHEST);
             if (hand == Hand.MAIN_HAND && chest.getItem() == PBObjects.VAMPIRE_BOOTS && entity.isAlive() && ((Vampirable) player).isVampire() && player.getStackInHand(hand).isEmpty()) {
@@ -79,10 +78,14 @@ public class VampireCallback extends WorldSleepEvents implements AttackEntityCal
             }
             return null;
         });
+
+         */
     }
 
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult) {
         return null;
     }
+
+
 }

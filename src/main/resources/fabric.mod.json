@@ -26,7 +26,7 @@
       "mrsterner.phantomblood.PhantomBlood"
     ],
     "mm:early_risers":[
-      "mrsterner.phantomblood.common.asm.EarlyRiser"
+
     ],
     "server": []
   },
@@ -34,15 +34,14 @@
     "phantomblood.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.11.6",
     "fabric": "*",
     "somnus": "*",
-    "haema": "*",
-    "satin": ">=1.5.1",
-    "cardinal-components-base": ">=2.8.3",
-    "cardinal-components-world": ">=2.8.3",
-    "cardinal-components-entity": ">=2.8.3",
-    "minecraft": ">=1.16.2"
+    "satin": ">=1.6.1",
+    "cardinal-components-base": ">=3.1.1",
+    "cardinal-components-world": ">=3.1.1",
+    "cardinal-components-entity": ">=3.1.1",
+    "minecraft": ">=1.17"
   },
   "custom": {
     "cardinal-components": [

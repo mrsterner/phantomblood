@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 
+import mrsterner.phantomblood.PhantomBloodClient;
+import mrsterner.phantomblood.client.model.stand.KillerQueenModel;
 import mrsterner.phantomblood.client.model.stand.KingCrimsonModel;
 import mrsterner.phantomblood.client.model.stand.PurpleHazeModel;
 import mrsterner.phantomblood.common.stand.Stand;
@@ -15,6 +17,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
@@ -22,8 +25,12 @@ import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class PurpleHazeFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final PurpleHazeModel model = new PurpleHazeModel();
+    private final PurpleHazeModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/purple_haze.png");
+
+    public PurpleHazeFirstPersonArmRenderer(EntityModelLoader loader) {
+        model = new PurpleHazeModel(loader.getModelPart(PhantomBloodClient.PURPLE_HAZE_MODEL_LAYER));
+    }
 
     @Override
     public void onLast(WorldRenderContext context) {

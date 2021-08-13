@@ -23,12 +23,12 @@ public class KillerVirusItem extends Item {
         if (!world.isClient) {
             KillerVirusEntity killerVirusEntity = new KillerVirusEntity(world, user);
             killerVirusEntity.setItem(itemStack);
-            killerVirusEntity.setProperties(user, user.pitch, user.yaw, 0.0F, 0.5F, 0F); //modifierZ is the power thrown, 1.5F is standard
+            //killerVirusEntity.setProperties(user, user.pitch, user.yaw, 0.0F, 0.5F, 0F); //modifierZ is the power thrown, 1.5F is standard
             world.spawnEntity(killerVirusEntity); // spawns entity
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!user.abilities.creativeMode) {
+        if (!user.getAbilities().creativeMode) {
             itemStack.decrement(1); // decrements itemStack if user is not in creative mode
         }
 

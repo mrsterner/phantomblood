@@ -2,26 +2,29 @@ package mrsterner.phantomblood.mixin;
 
 
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
-import net.minecraft.client.world.ClientChunkManager;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.world.ScheduledTick;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(ClientChunkManager.class)
-public class ClientChunkManagerMixin {
-    @Shadow @Final private ClientWorld world;
-/*
-    @Inject(method = "shouldTickEntity", at = @At("HEAD"), cancellable = true)
-    void doNotTickEntityWhenTimeIsStopped(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+@Mixin(ServerWorld.class)
+public class ServerWorldMixin {
+
+
+    @Final
+    private ServerWorld world;
+
+    @Inject(method = "tickEntity", at = @At("HEAD"), cancellable = true)
+    void doNotTickEntityWhenTimeIsStopped(Entity entity, CallbackInfo ci) {
         if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.isInRangeOfTimeStop(entity)) {
             entity.prevHorizontalSpeed = entity.horizontalSpeed;
             entity.prevPitch = entity.getPitch();
@@ -39,16 +42,14 @@ public class ClientChunkManagerMixin {
                 lEntity.lastHandSwingProgress = lEntity.handSwingProgress;
                 lEntity.lastLimbDistance = lEntity.limbDistance;
             }
-            cir.setReturnValue(false);
+            ci.cancel();
         }
-    }
-    //Range of The World Time Stop squared
-    @Inject(method = "shouldTickBlock", at = @At("HEAD"), cancellable = true)
-    void doNotTickBlockWhenTimeIsStopped(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.getTimeStopper(world).squaredDistanceTo(Vec3d.ofCenter(pos)) < 8) {
-            cir.setReturnValue(false);
-        }
-    }
 
- */
+    }
+    @Inject(method = "tickBlock", at = @At("HEAD"), cancellable = true)
+    void doNotTickBlockWhenTimeIsStopped(ScheduledTick<Block> tick, CallbackInfo ci) {
+        if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.isInRangeOfTimeStop(tick.pos, world)) {
+            ci.cancel();
+        }
+    }
 }

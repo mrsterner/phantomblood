@@ -26,11 +26,8 @@ public class RuinGenerator {
     static {
         STARTING_POOL = StructurePools.register(
                 new StructurePool(RUIN, new Identifier("empty"), ImmutableList.of(
-                new Pair<>(StructurePoolElement.method_30425(PhantomBlood.MODID + ":arrow_head/arrow"), 1)), StructurePool.Projection.RIGID));
+                new Pair<>(StructurePoolElement.ofLegacySingle(PhantomBlood.MODID + ":arrow_head/arrow"), 1)), StructurePool.Projection.RIGID));
     }
 
-    public static void addPieces(DynamicRegistryManager registry, StructurePoolFeatureConfig config, ChunkGenerator chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.method_30419(registry, config, PoolStructurePiece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
-    }
 }
 

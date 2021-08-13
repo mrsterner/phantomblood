@@ -1,6 +1,5 @@
 package mrsterner.phantomblood.common.item;
 
-import com.williambl.haema.VampireBloodManager;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.HungerManager;
@@ -30,20 +29,20 @@ public class BloodAmpouleItem extends Item {
         PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
         if (playerEntity != null) {
             playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-            if (!playerEntity.abilities.creativeMode) {
+            if (!playerEntity.getAbilities().creativeMode) {
                 HungerManager var4 = playerEntity.getHungerManager();
-                ((VampireBloodManager) var4).addBlood(1.0D);
+                //((VampireBloodManager) var4).addBlood(1.0D);
                 stack.decrement(1);
             }
         }
 
-        if (playerEntity == null || !playerEntity.abilities.creativeMode) {
+        if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
             if (stack.isEmpty()) {
                 return new ItemStack(PBObjects.AMPOULE);
             }
 
             if (playerEntity != null) {
-                playerEntity.inventory.insertStack(new ItemStack(PBObjects.AMPOULE));
+                playerEntity.getInventory().insertStack(new ItemStack(PBObjects.AMPOULE));
             }
         }
 

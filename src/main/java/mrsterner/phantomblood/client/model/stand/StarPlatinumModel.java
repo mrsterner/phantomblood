@@ -1,6 +1,7 @@
+// Made with Model Converter by Globox_Z
+// Generate all required imports
 package mrsterner.phantomblood.client.model.stand;
-
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
@@ -8,7 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 public class StarPlatinumModel extends EntityModel<LivingEntity> {
     private final ModelPart body;
     private final ModelPart chest;
@@ -58,274 +58,147 @@ public class StarPlatinumModel extends EntityModel<LivingEntity> {
     private final ModelPart rightarm2;
     private double yOffset;
     private float off;
-    public StarPlatinumModel() {
-        textureWidth = 64;
-        textureHeight = 128;
-        body = new ModelPart(this);
-        body.setPivot(0.0F, 0.0F, 0.0F);
-        body.setTextureOffset(16, 16).addCuboid(-4.0F, 0.0F, -2.0F, 8.0F, 7.0F, 4.0F, 0.0F, false);
-
-        chest = new ModelPart(this);
-        chest.setPivot(0.0F, 0.0F, -2.3F);
-        body.addChild(chest);
+    public StarPlatinumModel(ModelPart root) {
+        this.body = root.getChild("body");
+        this.chesttop = this.body.getChild("chesttop");
+        this.scarf2 = this.body.getChild("scarf2");
+        this.scarf = this.body.getChild("scarf");
+        this.crotch = this.body.getChild("crotch");
+        this.cloth2 = this.body.getChild("cloth2");
+        this.cloth1 = this.body.getChild("cloth1");
+        this.bodybot = this.body.getChild("bodybot");
+        this.chest = this.body.getChild("chest");
+        this.head = root.getChild("head");
+        this.hair6 = this.head.getChild("hair6");
+        this.hair5 = this.head.getChild("hair5");
+        this.hair4 = this.head.getChild("hair4");
+        this.hair3 = this.head.getChild("hair3");
+        this.hair2 = this.head.getChild("hair2");
+        this.hair1 = this.head.getChild("hair1");
+        this.headband = this.head.getChild("headband");
+        this.leftleg = root.getChild("leftleg");
+        this.leftlegbot = this.leftleg.getChild("leftlegbot");
+        this.rightleg = root.getChild("rightleg");
+        this.rightlegbot = this.rightleg.getChild("rightlegbot");
+        this.hands = root.getChild("hands");
+        this.lefthands = root.getChild("lefthands");
+        this.lefthand5 = this.lefthands.getChild("lefthand5");
+        this.lefthand4 = this.lefthands.getChild("lefthand4");
+        this.lefthand3 = this.lefthands.getChild("lefthand3");
+        this.lefthand2 = this.lefthands.getChild("lefthand2");
+        this.lefthand1 = this.lefthands.getChild("lefthand1");
+        this.righthands = root.getChild("righthands");
+        this.righthand5 = this.righthands.getChild("righthand5");
+        this.righthand4 = this.righthands.getChild("righthand4");
+        this.righthand3 = this.righthands.getChild("righthand3");
+        this.righthand2 = this.righthands.getChild("righthand2");
+        this.righthand1 = this.righthands.getChild("righthand1");
+        this.idlearms = root.getChild("idlearms");
+        this.leftarm = this.idlearms.getChild("leftarm");
+        this.armorl = this.leftarm.getChild("armorl");
+        this.lefthand = this.leftarm.getChild("lefthand");
+        this.rightarm = this.idlearms.getChild("rightarm");
+        this.armorr = this.rightarm.getChild("armorr");
+        this.righthand = this.rightarm.getChild("righthand");
+        this.shoulder = root.getChild("shoulder");
+        this.rightarm2 = this.shoulder.getChild("rightarm2");
+        this.leftarm2 = this.shoulder.getChild("leftarm2");
+        this.armorl2 = this.shoulder.getChild("armorl2");
+        this.armorr2 = this.shoulder.getChild("armorr2");
+    }
+    public static TexturedModelData getTexturedModelData() {
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
+/*
         setRotationAngle(chest, -0.0873F, 0.0F, 0.0F);
-        chest.setTextureOffset(35, 56).addCuboid(-1.5F, 4.0F, 0.0F, 3.0F, 3.0F, 1.0F, 0.0F, false);
-
-        bodybot = new ModelPart(this);
-        bodybot.setPivot(0.0F, 0.0F, 0.0F);
-        body.addChild(bodybot);
         setRotationAngle(bodybot, -0.0175F, 0.0F, 0.0F);
-        bodybot.setTextureOffset(19, 66).addCuboid(-3.5F, 7.0F, -2.0F, 7.0F, 4.0F, 4.0F, 0.0F, false);
-
-        cloth1 = new ModelPart(this);
-        cloth1.setPivot(0.0F, 12.0F, -4.5F);
-        body.addChild(cloth1);
         setRotationAngle(cloth1, -0.0611F, 0.0F, 0.0F);
-        cloth1.setTextureOffset(48, 67).addCuboid(-2.0F, -1.5F, 0.5F, 4.0F, 8.0F, 1.0F, 0.0F, false);
-
-        cloth2 = new ModelPart(this);
-        cloth2.setPivot(0.0F, 11.0F, 1.0F);
-        body.addChild(cloth2);
         setRotationAngle(cloth2, 0.4538F, 0.0F, 0.0F);
-        cloth2.setTextureOffset(48, 56).addCuboid(-2.5F, 0.0F, 1.0F, 5.0F, 9.0F, 1.0F, 0.0F, false);
-
-        crotch = new ModelPart(this);
-        crotch.setPivot(0.0F, 0.0F, 0.0F);
-        body.addChild(crotch);
         setRotationAngle(crotch, 0.0349F, 0.0F, 0.0F);
-        crotch.setTextureOffset(16, 82).addCuboid(-4.0F, 10.0F, -3.5F, 8.0F, 2.0F, 6.0F, 0.0F, false);
-
-        scarf = new ModelPart(this);
-        scarf.setPivot(0.0F, 0.0F, 0.0F);
-        body.addChild(scarf);
         setRotationAngle(scarf, 0.576F, 0.0F, 0.0F);
-        scarf.setTextureOffset(24, 35).addCuboid(-5.0F, -1.0F, -4.0F, 10.0F, 2.0F, 10.0F, 0.0F, false);
-
-        scarf2 = new ModelPart(this);
-        scarf2.setPivot(0.0F, 0.0F, 0.0F);
-        body.addChild(scarf2);
         setRotationAngle(scarf2, 0.2443F, 0.0F, 0.0F);
-        scarf2.setTextureOffset(28, 35).addCuboid(-4.5F, -1.0F, -4.5F, 9.0F, 3.0F, 9.0F, 0.0F, false);
-
-        chesttop = new ModelPart(this);
-        chesttop.setPivot(0.0F, 0.0F, 0.0F);
-        body.addChild(chesttop);
         setRotationAngle(chesttop, -0.0873F, 0.0F, 0.0F);
-        chesttop.setTextureOffset(35, 49).addCuboid(-3.5F, 0.2F, -2.5F, 7.0F, 4.0F, 1.0F, 0.0F, false);
 
-        head = new ModelPart(this);
-        head.setPivot(0.0F, 0.0F, 0.0F);
-        head.setTextureOffset(0, 0).addCuboid(-3.5F, -6.0F, -4.0F, 7.0F, 6.0F, 8.0F, 0.0F, false);
-
-        headband = new ModelPart(this);
-        headband.setPivot(0.0F, 0.0F, 0.0F);
-        head.addChild(headband);
-        headband.setTextureOffset(0, 118).addCuboid(-4.0F, -6.5F, -4.5F, 8.0F, 2.0F, 8.0F, 0.0F, false);
-
-        hair1 = new ModelPart(this);
-        hair1.setPivot(0.0F, 0.0F, 0.0F);
-        head.addChild(hair1);
+ */
+        ModelPartData modelPartData1 = modelPartData.addChild("body", ModelPartBuilder.create().uv(16,16).cuboid(-4.0F, 0.0F, -2.0F, 8.0F, 7.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData1.addChild("chest", ModelPartBuilder.create().uv(35,56).cuboid(-1.5F, 4.0F, 0.0F, 3.0F, 3.0F, 1.0F), ModelTransform.pivot(0.0F,0.0F,-2.3F));
+        modelPartData1.addChild("bodybot", ModelPartBuilder.create().uv(19,66).cuboid(-3.5F, 7.0F, -2.0F, 7.0F, 4.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData1.addChild("cloth1", ModelPartBuilder.create().uv(48,67).cuboid(-2.0F, -1.5F, 0.5F, 4.0F, 8.0F, 1.0F), ModelTransform.pivot(0.0F,12.0F,-4.5F));
+        modelPartData1.addChild("cloth2", ModelPartBuilder.create().uv(48,56).cuboid(-2.5F, 0.0F, 1.0F, 5.0F, 9.0F, 1.0F), ModelTransform.pivot(0.0F,11.0F,1.0F));
+        modelPartData1.addChild("crotch", ModelPartBuilder.create().uv(16,82).cuboid(-4.0F, 10.0F, -3.5F, 8.0F, 2.0F, 6.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData1.addChild("scarf", ModelPartBuilder.create().uv(24,35).cuboid(-5.0F, -1.0F, -4.0F, 10.0F, 2.0F, 10.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData1.addChild("scarf2", ModelPartBuilder.create().uv(28,35).cuboid(-4.5F, -1.0F, -4.5F, 9.0F, 3.0F, 9.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData1.addChild("chesttop", ModelPartBuilder.create().uv(35,49).cuboid(-3.5F, 0.2F, -2.5F, 7.0F, 4.0F, 1.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        ModelPartData modelPartData2 = modelPartData.addChild("head", ModelPartBuilder.create().uv(0,0).cuboid(-3.5F, -6.0F, -4.0F, 7.0F, 6.0F, 8.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData2.addChild("headband", ModelPartBuilder.create().uv(0,118).cuboid(-4.0F, -6.5F, -4.5F, 8.0F, 2.0F, 8.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData2.addChild("hair1", ModelPartBuilder.create().uv(0,35).cuboid(-4.0F, -8.0F, 0.5F, 3.0F, 3.0F, 6.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData2.addChild("hair2", ModelPartBuilder.create().uv(0,49).cuboid(-3.9F, -8.3F, -2.5F, 8.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData2.addChild("hair3", ModelPartBuilder.create().uv(0,35).cuboid(-2.0F, -9.0F, 0.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData2.addChild("hair4", ModelPartBuilder.create().uv(0,49).cuboid(0.2F, -8.0F, 0.0F, 3.0F, 4.0F, 7.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData2.addChild("hair5", ModelPartBuilder.create().uv(0,49).cuboid(-3.2F, -8.0F, 0.0F, 2.0F, 4.0F, 7.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData2.addChild("hair6", ModelPartBuilder.create().uv(0,35).cuboid(1.0F, -8.0F, 0.5F, 3.0F, 3.0F, 6.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        ModelPartData modelPartData3 = modelPartData.addChild("leftleg", ModelPartBuilder.create().uv(21,100).cuboid(-2.0F, 0.0F, -3.5F, 5.0F, 7.0F, 5.0F), ModelTransform.pivot(2.0F,12.0F,1.0F));
+        modelPartData3.addChild("leftlegbot", ModelPartBuilder.create().uv(0,100).cuboid(-2.5F, -0.5F, -2.5F, 5.0F, 9.0F, 5.0F), ModelTransform.pivot(0.4313F,5.9635F,-0.0644F));
+        ModelPartData modelPartData4 = modelPartData.addChild("rightleg", ModelPartBuilder.create().uv(21,100).cuboid(-3.0F, 0.0F, -2.5F, 5.0F, 7.0F, 5.0F, true), ModelTransform.pivot(-2.0F,12.0F,0.0F));
+        modelPartData4.addChild("rightlegbot", ModelPartBuilder.create().uv(0,100).cuboid(-4.1154F, -1.9128F, -2.5F, 5.0F, 9.0F, 5.0F, true), ModelTransform.pivot(1.6154F,6.7528F,1.5678F));
+        modelPartData.addChild("hands", ModelPartBuilder.create().uv(48,4).cuboid(-8.0F, -19.0F, -2.0F, 4.0F, 8.0F, 4.0F, true).uv(48,4).cuboid(18.0F, -12.0F, -2.0F, 4.0F, 8.0F, 4.0F).uv(48,4).cuboid(-13.0F, -13.0F, 6.0F, 4.0F, 8.0F, 4.0F, true).uv(48,4).cuboid(24.0F, -20.0F, 4.0F, 4.0F, 8.0F, 4.0F).uv(48,4).cuboid(-8.0F, -19.0F, 12.0F, 4.0F, 8.0F, 4.0F, true).uv(48,4).cuboid(19.0F, -17.0F, 12.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(-7.0F,-4.0F,-8.0F));
+        ModelPartData modelPartData5 = modelPartData.addChild("idlearms", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,24.0F,0.0F));
+        ModelPartData modelPartData6 = modelPartData5.addChild("rightarm", ModelPartBuilder.create().uv(40,16).cuboid(-3.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F, true).uv(46,103).cuboid(-2.5F, 2.0F, -1.5F, 3.0F, 3.0F, 4.0F, true), ModelTransform.pivot(-5.0F,-21.0F,0.0F));
+        modelPartData6.addChild("righthand", ModelPartBuilder.create().uv(48,4).cuboid(-1.7F, -3.0F, -1.7F, 4.0F, 8.0F, 4.0F, true), ModelTransform.pivot(-1.3F,5.0F,0.2F));
+        modelPartData6.addChild("armorr", ModelPartBuilder.create().uv(0,74).cuboid(-9.0F, -1.0F, -3.5F, 4.0F, 1.0F, 6.0F, true), ModelTransform.pivot(5.0F,-2.0F,1.0F));
+        ModelPartData modelPartData7 = modelPartData5.addChild("leftarm", ModelPartBuilder.create().uv(40,16).cuboid(-1.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F).uv(46,103).cuboid(-1.0F, 2.0F, -1.5F, 3.0F, 3.0F, 4.0F), ModelTransform.pivot(5.0F,-21.0F,0.0F));
+        modelPartData7.addChild("lefthand", ModelPartBuilder.create().uv(48,4).cuboid(-2.5F, -2.0F, -4.5F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F,8.0F,0.5F));
+        modelPartData7.addChild("armorl", ModelPartBuilder.create().uv(0,74).cuboid(-2.0F, -0.5F, -3.4F, 4.0F, 1.0F, 6.0F), ModelTransform.pivot(2.0F,-2.5F,0.9F));
+        ModelPartData modelPartData8 = modelPartData.addChild("shoulder", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,24.0F,0.0F));
+        modelPartData8.addChild("armorr2", ModelPartBuilder.create().uv(0,74).cuboid(-9.0F, -1.0F, -3.5F, 4.0F, 1.0F, 6.0F, true), ModelTransform.pivot(0.0F,-24.0F,0.0F));
+        modelPartData8.addChild("armorl2", ModelPartBuilder.create().uv(0,74).cuboid(5.0F, -1.0F, -3.5F, 4.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F,-24.0F,0.0F));
+        modelPartData8.addChild("leftarm2", ModelPartBuilder.create().uv(40,16).cuboid(-1.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F), ModelTransform.pivot(5.0F,-22.0F,0.0F));
+        modelPartData8.addChild("rightarm2", ModelPartBuilder.create().uv(40,16).cuboid(-3.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F, true), ModelTransform.pivot(-5.0F,-22.0F,0.0F));
+        ModelPartData modelPartData9 = modelPartData.addChild("lefthands", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData9.addChild("lefthand1", ModelPartBuilder.create().uv(48,4).cuboid(8.0F, 10.0F, 3.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(5.0F,2.0F,0.0F));
+        modelPartData9.addChild("lefthand2", ModelPartBuilder.create().uv(48,4).cuboid(9.0F, 3.0F, 0.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData9.addChild("lefthand3", ModelPartBuilder.create().uv(48,4).cuboid(7.0F, -5.0F, 4.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData9.addChild("lefthand4", ModelPartBuilder.create().uv(48,4).cuboid(15.0F, -11.0F, -1.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData9.addChild("lefthand5", ModelPartBuilder.create().uv(48,4).cuboid(11.0F, -3.0F, -4.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        ModelPartData modelPartData10 = modelPartData.addChild("righthands", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData10.addChild("righthand1", ModelPartBuilder.create().uv(48,4).cuboid(-14.0F, 11.0F, -1.0F, 4.0F, 8.0F, 4.0F, true), ModelTransform.pivot(5.0F,2.0F,0.0F));
+        modelPartData10.addChild("righthand2", ModelPartBuilder.create().uv(48,4).cuboid(-14.0F, -5.0F, -4.0F, 4.0F, 8.0F, 4.0F, true), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData10.addChild("righthand3", ModelPartBuilder.create().uv(48,4).cuboid(-17.0F, 8.0F, 1.0F, 4.0F, 8.0F, 4.0F, true), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData10.addChild("righthand4", ModelPartBuilder.create().uv(48,4).cuboid(-20.0F, -10.0F, 2.0F, 4.0F, 8.0F, 4.0F, true), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData10.addChild("righthand5", ModelPartBuilder.create().uv(48,4).cuboid(-13.0F, 2.0F, 6.0F, 4.0F, 8.0F, 4.0F, true), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        return TexturedModelData.of(modelData,64,64);
+/*
         setRotationAngle(hair1, 0.6109F, -0.1571F, 0.0349F);
-        hair1.setTextureOffset(0, 35).addCuboid(-4.0F, -8.0F, 0.5F, 3.0F, 3.0F, 6.0F, 0.0F, false);
-
-        hair2 = new ModelPart(this);
-        hair2.setPivot(0.0F, 0.0F, 0.0F);
-        head.addChild(hair2);
         setRotationAngle(hair2, 0.1222F, 0.0F, 0.0F);
-        hair2.setTextureOffset(0, 49).addCuboid(-3.9F, -8.3F, -2.5F, 8.0F, 4.0F, 8.0F, 0.0F, false);
-
-        hair3 = new ModelPart(this);
-        hair3.setPivot(0.0F, 0.0F, 0.0F);
-        head.addChild(hair3);
         setRotationAngle(hair3, 0.576F, 0.0F, 0.0F);
-        hair3.setTextureOffset(0, 35).addCuboid(-2.0F, -9.0F, 0.0F, 4.0F, 4.0F, 8.0F, 0.0F, false);
-
-        hair4 = new ModelPart(this);
-        hair4.setPivot(0.0F, 0.0F, 0.0F);
-        head.addChild(hair4);
         setRotationAngle(hair4, 0.4363F, 0.2269F, 0.2094F);
-        hair4.setTextureOffset(0, 49).addCuboid(0.2F, -8.0F, 0.0F, 3.0F, 4.0F, 7.0F, 0.0F, false);
-
-        hair5 = new ModelPart(this);
-        hair5.setPivot(0.0F, 0.0F, 0.0F);
-        head.addChild(hair5);
         setRotationAngle(hair5, 0.4363F, -0.2269F, -0.2094F);
-        hair5.setTextureOffset(0, 49).addCuboid(-3.2F, -8.0F, 0.0F, 2.0F, 4.0F, 7.0F, 0.0F, false);
-
-        hair6 = new ModelPart(this);
-        hair6.setPivot(0.0F, 0.0F, 0.0F);
-        head.addChild(hair6);
         setRotationAngle(hair6, 0.6109F, 0.1396F, -0.0349F);
-        hair6.setTextureOffset(0, 35).addCuboid(1.0F, -8.0F, 0.5F, 3.0F, 3.0F, 6.0F, 0.0F, false);
-
-        leftleg = new ModelPart(this);
-        leftleg.setPivot(2.0F, 12.0F, 1.0F);
         setRotationAngle(leftleg, -0.0262F, -0.1396F, -0.1745F);
-        leftleg.setTextureOffset(21, 100).addCuboid(-2.0F, 0.0F, -3.5F, 5.0F, 7.0F, 5.0F, 0.0F, false);
-
-        leftlegbot = new ModelPart(this);
-        leftlegbot.setPivot(0.4313F, 5.9635F, -0.0644F);
-        leftleg.addChild(leftlegbot);
         setRotationAngle(leftlegbot, 0.5236F, 0.0F, 0.0F);
-        leftlegbot.setTextureOffset(0, 100).addCuboid(-2.5F, -0.5F, -2.5F, 5.0F, 9.0F, 5.0F, 0.0F, false);
-
-        rightleg = new ModelPart(this);
-        rightleg.setPivot(-2.0F, 12.0F, 0.0F);
         setRotationAngle(rightleg, -0.1047F, 0.1745F, 0.1571F);
-        rightleg.setTextureOffset(21, 100).addCuboid(-3.0F, 0.0F, -2.5F, 5.0F, 7.0F, 5.0F, 0.0F, true);
-
-        rightlegbot = new ModelPart(this);
-        rightlegbot.setPivot(1.6154F, 6.7528F, 1.5678F);
-        rightleg.addChild(rightlegbot);
         setRotationAngle(rightlegbot, 0.9506F, 0.1601F, 0.1487F);
-        rightlegbot.setTextureOffset(0, 100).addCuboid(-4.1154F, -1.9128F, -2.5F, 5.0F, 9.0F, 5.0F, 0.0F, true);
-
-        hands = new ModelPart(this);
-        hands.setPivot(-7.0F, -4.0F, -8.0F);
         setRotationAngle(hands, -1.5708F, 0.0F, 0.0F);
-        hands.setTextureOffset(48, 4).addCuboid(-8.0F, -19.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-        hands.setTextureOffset(48, 4).addCuboid(18.0F, -12.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-        hands.setTextureOffset(48, 4).addCuboid(-13.0F, -13.0F, 6.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-        hands.setTextureOffset(48, 4).addCuboid(24.0F, -20.0F, 4.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-        hands.setTextureOffset(48, 4).addCuboid(-8.0F, -19.0F, 12.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-        hands.setTextureOffset(48, 4).addCuboid(19.0F, -17.0F, 12.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-
-        idlearms = new ModelPart(this);
-        idlearms.setPivot(0.0F, 24.0F, 0.0F);
-
-
-        rightarm = new ModelPart(this);
-        rightarm.setPivot(-5.0F, -21.0F, 0.0F);
-        idlearms.addChild(rightarm);
         setRotationAngle(rightarm, 0.1745F, 0.4363F, 0.5236F);
-        rightarm.setTextureOffset(40, 16).addCuboid(-3.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F, 0.0F, true);
-        rightarm.setTextureOffset(46, 103).addCuboid(-2.5F, 2.0F, -1.5F, 3.0F, 3.0F, 4.0F, 0.0F, true);
-
-        righthand = new ModelPart(this);
-        righthand.setPivot(-1.3F, 5.0F, 0.2F);
-        rightarm.addChild(righthand);
         setRotationAngle(righthand, -1.4835F, 0.0873F, -0.5236F);
-        righthand.setTextureOffset(48, 4).addCuboid(-1.7F, -3.0F, -1.7F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-
-        armorr = new ModelPart(this);
-        armorr.setPivot(5.0F, -2.0F, 1.0F);
-        rightarm.addChild(armorr);
-        armorr.setTextureOffset(0, 74).addCuboid(-9.0F, -1.0F, -3.5F, 4.0F, 1.0F, 6.0F, 0.0F, true);
-
-        leftarm = new ModelPart(this);
-        leftarm.setPivot(5.0F, -21.0F, 0.0F);
-        idlearms.addChild(leftarm);
         setRotationAngle(leftarm, 0.2618F, -0.0873F, -0.4363F);
-        leftarm.setTextureOffset(40, 16).addCuboid(-1.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F, 0.0F, false);
-        leftarm.setTextureOffset(46, 103).addCuboid(-1.0F, 2.0F, -1.5F, 3.0F, 3.0F, 4.0F, 0.0F, false);
-
-        lefthand = new ModelPart(this);
-        lefthand.setPivot(0.0F, 8.0F, 0.5F);
-        leftarm.addChild(lefthand);
         setRotationAngle(lefthand, -1.7453F, -0.2618F, 0.6981F);
-        lefthand.setTextureOffset(48, 4).addCuboid(-2.5F, -2.0F, -4.5F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-
-        armorl = new ModelPart(this);
-        armorl.setPivot(2.0F, -2.5F, 0.9F);
-        leftarm.addChild(armorl);
-        armorl.setTextureOffset(0, 74).addCuboid(-2.0F, -0.5F, -3.4F, 4.0F, 1.0F, 6.0F, 0.0F, false);
-
-        shoulder = new ModelPart(this);
-        shoulder.setPivot(0.0F, 24.0F, 0.0F);
-
-
-        armorr2 = new ModelPart(this);
-        armorr2.setPivot(0.0F, -24.0F, 0.0F);
-        shoulder.addChild(armorr2);
         setRotationAngle(armorr2, 0.5236F, 0.0F, 0.0F);
-        armorr2.setTextureOffset(0, 74).addCuboid(-9.0F, -1.0F, -3.5F, 4.0F, 1.0F, 6.0F, 0.0F, true);
-
-        armorl2 = new ModelPart(this);
-        armorl2.setPivot(0.0F, -24.0F, 0.0F);
-        shoulder.addChild(armorl2);
         setRotationAngle(armorl2, 0.5236F, 0.0F, 0.0F);
-        armorl2.setTextureOffset(0, 74).addCuboid(5.0F, -1.0F, -3.5F, 4.0F, 1.0F, 6.0F, 0.0F, false);
-
-        leftarm2 = new ModelPart(this);
-        leftarm2.setPivot(5.0F, -22.0F, 0.0F);
-        shoulder.addChild(leftarm2);
         setRotationAngle(leftarm2, 0.5236F, 0.0F, 0.0F);
-        leftarm2.setTextureOffset(40, 16).addCuboid(-1.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F, 0.0F, false);
-
-        rightarm2 = new ModelPart(this);
-        rightarm2.setPivot(-5.0F, -22.0F, 0.0F);
-        shoulder.addChild(rightarm2);
         setRotationAngle(rightarm2, 0.5236F, 0.0F, 0.0F);
-        rightarm2.setTextureOffset(40, 16).addCuboid(-3.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F, 0.0F, true);
-
-        lefthands = new ModelPart(this);
-        lefthands.setPivot(0.0F, 0.0F, 0.0F);
-
-
-        lefthand1 = new ModelPart(this);
-        lefthand1.setPivot(5.0F, 2.0F, 0.0F);
-        lefthands.addChild(lefthand1);
         setRotationAngle(lefthand1, -1.5708F, 0.0F, 0.0F);
-        lefthand1.setTextureOffset(48, 4).addCuboid(8.0F, 10.0F, 3.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-
-        lefthand2 = new ModelPart(this);
-        lefthand2.setPivot(0.0F, 0.0F, 0.0F);
-        lefthands.addChild(lefthand2);
         setRotationAngle(lefthand2, -1.5708F, 0.0F, 0.0F);
-        lefthand2.setTextureOffset(48, 4).addCuboid(9.0F, 3.0F, 0.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-
-        lefthand3 = new ModelPart(this);
-        lefthand3.setPivot(0.0F, 0.0F, 0.0F);
-        lefthands.addChild(lefthand3);
         setRotationAngle(lefthand3, -1.5708F, 0.0F, 0.0F);
-        lefthand3.setTextureOffset(48, 4).addCuboid(7.0F, -5.0F, 4.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-
-        lefthand4 = new ModelPart(this);
-        lefthand4.setPivot(0.0F, 0.0F, 0.0F);
-        lefthands.addChild(lefthand4);
         setRotationAngle(lefthand4, -1.5708F, 0.0F, 0.0F);
-        lefthand4.setTextureOffset(48, 4).addCuboid(15.0F, -11.0F, -1.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-
-        lefthand5 = new ModelPart(this);
-        lefthand5.setPivot(0.0F, 0.0F, 0.0F);
-        lefthands.addChild(lefthand5);
         setRotationAngle(lefthand5, -1.5708F, 0.0F, 0.0F);
-        lefthand5.setTextureOffset(48, 4).addCuboid(11.0F, -3.0F, -4.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-
-        righthands = new ModelPart(this);
-        righthands.setPivot(0.0F, 0.0F, 0.0F);
-
-
-        righthand1 = new ModelPart(this);
-        righthand1.setPivot(5.0F, 2.0F, 0.0F);
-        righthands.addChild(righthand1);
         setRotationAngle(righthand1, -1.5708F, 0.0F, 0.0F);
-        righthand1.setTextureOffset(48, 4).addCuboid(-14.0F, 11.0F, -1.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-
-        righthand2 = new ModelPart(this);
-        righthand2.setPivot(0.0F, 0.0F, 0.0F);
-        righthands.addChild(righthand2);
         setRotationAngle(righthand2, -1.5708F, 0.0F, 0.0F);
-        righthand2.setTextureOffset(48, 4).addCuboid(-14.0F, -5.0F, -4.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-
-        righthand3 = new ModelPart(this);
-        righthand3.setPivot(0.0F, 0.0F, 0.0F);
-        righthands.addChild(righthand3);
         setRotationAngle(righthand3, -1.5708F, 0.0F, 0.0F);
-        righthand3.setTextureOffset(48, 4).addCuboid(-17.0F, 8.0F, 1.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-
-        righthand4 = new ModelPart(this);
-        righthand4.setPivot(0.0F, 0.0F, 0.0F);
-        righthands.addChild(righthand4);
         setRotationAngle(righthand4, -1.5708F, 0.0F, 0.0F);
-        righthand4.setTextureOffset(48, 4).addCuboid(-20.0F, -10.0F, 2.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-
-        righthand5 = new ModelPart(this);
-        righthand5.setPivot(0.0F, 0.0F, 0.0F);
-        righthands.addChild(righthand5);
         setRotationAngle(righthand5, -1.5708F, 0.0F, 0.0F);
-        righthand5.setTextureOffset(48, 4).addCuboid(-13.0F, 2.0F, 6.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
 
+ */
     }
     @Override
     public void setAngles(@Nullable LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch){
@@ -333,9 +206,7 @@ public class StarPlatinumModel extends EntityModel<LivingEntity> {
         this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;
         this.head.pitch = headPitch * 0.017453292F;
         this.head.yaw = headYaw * 0.017453292F;
-
         this.off = 1F + MathHelper.cos((float) (0.15*animationProgress))/6;
-
     }
     public void setAttackAngles(LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch){
         float power = 0.5F;
@@ -386,9 +257,7 @@ public class StarPlatinumModel extends EntityModel<LivingEntity> {
         matrixStack.translate(0.0D, -this.yOffset, 0.0D);
         matrixStack.translate(0.0D, -0.3D, -0.2D);
         this.hands.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, 0.5F*off);
-
     }
-
     public void renderAttack(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
         matrixStack.translate(0.0D, this.yOffset, -0.75D);
         body.render(matrixStack, buffer, packedLight, packedOverlay);
@@ -398,19 +267,16 @@ public class StarPlatinumModel extends EntityModel<LivingEntity> {
         //matrixStack.translate(0.0D, 1.5D, 0.0D);
         shoulder.render(matrixStack, buffer, packedLight, packedOverlay);
         matrixStack.translate(0.0D, -this.yOffset, 0.0D);
-
         righthands.render(matrixStack, buffer, packedLight, packedOverlay);
         lefthands.render(matrixStack, buffer, packedLight, packedOverlay);
     }
     public final void renderPunchyArms(@NotNull MatrixStack matrices, @NotNull VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
         this.righthands.render(matrices, vertices, light, overlay, red, green, blue, alpha);
         this.lefthands.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-
     }
     public void setRotationAngle(ModelPart bone, float x, float y, float z) {
         bone.pitch = x;
         bone.yaw = y;
         bone.roll = z;
     }
-
 }

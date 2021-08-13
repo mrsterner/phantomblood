@@ -1,10 +1,10 @@
 plugins {
-	id 'fabric-loom' version '0.7-SNAPSHOT'
+	id 'fabric-loom' version '0.9-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -17,6 +17,10 @@ repositories {
     maven {
         name = 'Ladysnake Mods'
         url = 'https://ladysnake.jfrog.io/artifactory/mods'
+        content {
+            includeGroup 'io.github.ladysnake'
+            includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+        }
     }
     maven { url 'https://repo.repsy.io/mvn/gandiber/geckolib' }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
@@ -26,7 +30,7 @@ repositories {
     }
 
     maven {
-        name "cloth config, roughly enough items"
+        name "cloth config, rei"
         url "https://maven.shedaniel.me"
     }
     maven {
@@ -68,8 +72,24 @@ repositories {
         url 'http://server.bbkr.space:8081/artifactory/libs-release'
         allowInsecureProtocol = true
     }
-    maven { url "https://maven.kotlindiscord.com/repository/terraformers/"}
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/releases/"
+        content {
+            includeGroup "io.github.prospector"
+            includeGroup "com.terraformersmc"
+        }
+    }
     maven {url "https://hephaestus.dev/release"}
+    mavenLocal()
+    maven {
+        name 'AperLambda'
+        url 'https://aperlambda.github.io/maven'
+    }
+    maven {
+        name 'Gegy'
+        url 'https://maven.gegy.dev'
+    }
 }
 
 dependencies {
@@ -88,24 +108,17 @@ dependencies {
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
 
 
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rei_version}"
-    modRuntime "me.shedaniel:RoughlyEnoughItems:${rei_version}"
+    //modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
+    //modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
 
-    // Reach Entity Attributes
-    modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}"
-    include "com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}"
-
-    modImplementation "curse.maven:haema-391257:${project.haema_version}"
+    //modImplementation "curse.maven:haema-391257:${project.haema_version}"
     modImplementation "curse.maven:lambdynamiclights-393442:${project.lambdynamiclights_version}"
-    modImplementation "com.github.lambdaurora:spruceui:${project.spruceui_version}"
-    include "com.github.lambdaurora:spruceui:${project.spruceui_version}"
+    modImplementation "dev.lambdaurora:spruceui:${project.spruceui_version}"
+    include "dev.lambdaurora:spruceui:${project.spruceui_version}"
 
-    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
-    modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
-    modApi("me.sargunvohra.mcmods:autoconfig1u:${project.acu_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-    include "me.sargunvohra.mcmods:autoconfig1u:${project.acu_version}"
+    //modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+    //modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
+
     modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
     include "io.github.onyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cc_version}"
@@ -114,22 +127,19 @@ dependencies {
     include "io.github.onyxStudios.Cardinal-Components-API:cardinal-components-world:${project.cc_version}"
 
 
-    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.16.5:3.0.42:dev'
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev'
 
-    modImplementation "io.github.ladysnake:Satin:${satin_version}"
-    // Include Satin as a Jar-in-Jar dependency (optional)
+    modImplementation "io.github.ladysnake:satin:${project.satin_version}"
+    include "io.github.ladysnake:satin:${project.satin_version}"
 
-    modImplementation "dev.monarkhes:myron:1.6.0"
-    include "dev.monarkhes:myron:1.6.0"
 /*
     modRuntime ("grondag:canvas-mc116:1.0.1511"){
         exclude module:"modmenu"
     }
-
  */
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-    modImplementation 'com.github.Chocohead:Fabric-ASM:v2.0.1'
-    include 'com.github.Chocohead:Fabric-ASM:v2.0.1'
+    modImplementation 'com.github.Chocohead:Fabric-ASM:v2.3'
+    include 'com.github.Chocohead:Fabric-ASM:v2.3'
 
 }
 
@@ -149,6 +159,7 @@ processResources {
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
+    it.options.release = 16
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task

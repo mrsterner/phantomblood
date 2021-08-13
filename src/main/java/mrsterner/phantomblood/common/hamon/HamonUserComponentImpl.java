@@ -13,6 +13,8 @@ public final class HamonUserComponentImpl implements HamonUserComponent, AutoSyn
     private int hamonEnergy = 100000;
     private int hamonLevel = 0;
 
+
+
     public HamonUserComponentImpl(PlayerEntity user) {
         this.user = user;
     }
@@ -94,8 +96,9 @@ public final class HamonUserComponentImpl implements HamonUserComponent, AutoSyn
         tag.putInt("HamonLevel", hamonLevel);
     }
 
+
     @Override
-    public void copyForRespawn(HamonUserComponentImpl original, boolean lossless, boolean keepInventory) {
+    public void copyForRespawn(HamonUserComponentImpl original, boolean lossless, boolean keepInventory, boolean sameCharacter) {
         if (lossless) {
             copyFrom(original);
         } else {

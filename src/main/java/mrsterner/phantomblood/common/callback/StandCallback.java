@@ -28,7 +28,7 @@ public class StandCallback implements AttackEntityCallback, AttackBlockCallback 
     public static void init(){
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND){
-                if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
+                if(!player.getInventory().contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     ItemStack trigger = new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER);
                     KillerQueenTriggerItem.setData(trigger, KillerQueenTriggerItem.TYPE.ENTITY.getName(), entity.getUuid().toString(), 0, 0, 0);
                     if(player.getStackInHand(Hand.MAIN_HAND).isEmpty()){
@@ -37,7 +37,7 @@ public class StandCallback implements AttackEntityCallback, AttackBlockCallback 
                         player.dropItem(trigger, false, true);
                     }
                 }else{
-                    PlayerInventory inventory = player.inventory;
+                    PlayerInventory inventory = player.getInventory();
                     List<ItemStack> mainInventory = inventory.main;
                     for(ItemStack trigger : mainInventory) {
                         if(trigger.getItem() == PBObjects.KILLER_QUEEN_TRIGGER) {
@@ -51,7 +51,7 @@ public class StandCallback implements AttackEntityCallback, AttackBlockCallback 
         });
         AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
             if(StandUtils.getStand(player) == Stand.KILLER_QUEEN && hand == Hand.MAIN_HAND) {
-                if(!player.inventory.contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
+                if(!player.getInventory().contains(new ItemStack(PBObjects.KILLER_QUEEN_TRIGGER))){
                     HitResult hitResult = MinecraftClient.getInstance().crosshairTarget;
 
                     float newPosX = pos.getX();
@@ -92,7 +92,7 @@ public class StandCallback implements AttackEntityCallback, AttackBlockCallback 
                         player.dropItem(trigger, false, true);
                     }
                 }else{
-                    PlayerInventory inventory = player.inventory;
+                    PlayerInventory inventory = player.getInventory();
                     List<ItemStack> mainInventory = inventory.main;
                     for(ItemStack trigger : mainInventory) {
                         if(trigger.getItem() == PBObjects.KILLER_QUEEN_TRIGGER) {

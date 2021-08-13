@@ -2,9 +2,10 @@ package mrsterner.phantomblood.client.model;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.entity.model.PiglinEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
@@ -17,29 +18,32 @@ public class HamonModel <T extends LivingEntity> extends BipedEntityModel<T> {
     private final ModelPart heat;
     private final ModelPart rightHeat;
     private double yOffset;
-    public HamonModel() {
-        super(1, 0, 64, 64);
-        textureWidth = 64;
-        textureHeight = 64;
-        body = new ModelPart(this);
-        body.setPivot(0.0F, 24.0F, 0.0F);
-        body.setTextureOffset(0, 0).addCuboid(-1.0F, -21.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 
-        right = new ModelPart(this);
-        right.setPivot(3.5F, -21.5F, 0.0F);
-        body.addChild(right);
-        right.setTextureOffset(0, 0).addCuboid(-0.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.0F, false);
+    public HamonModel(ModelPart root) {
+        super(root);
+        this.body = root.getChild("body");
+        this.right = root.getChild("left_arm");
+        this.rightHeat = root.getChild("left_arm");
+        this.heat = root.getChild("left_arm");
+    }
 
-        heat = new ModelPart(this);
-        heat.setPivot(0.0F, 24.0F, 0.0F);
-        heat.setTextureOffset(0, 0).addCuboid(-1.0F, -21.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.3F, false);
+    public static TexturedModelData getTexturedModelData() {
+        ModelData data = new ModelData();
+        ModelPartData root = data.getRoot();
+        ModelPartData heat = root.addChild("heat",
+                ModelPartBuilder.create().cuboid(-1.0F, -21.0F, 0.0F, 1.0F, 1.0F, 1.0F, new Dilation(0.3F, 0.3F, 0.3F)),
+                ModelTransform.of(0.0F, 24.0F, 0.0F, 0.0F, 0.0F, 0.0F));heat.addChild("right",
+                ModelPartBuilder.create().cuboid(-0.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F),
+                ModelTransform.of(3.5F, -21.5F, 0.0F, 0.0F, 0.0F, 0.0F));
+        ModelPartData body = root.addChild("body",
+                ModelPartBuilder.create().cuboid(-1.0F, -21.0F, 0.0F, 1.0F, 1.0F, 1.0F),
+                ModelTransform.of(0.0F, 24.0F, 0.0F, 0.0F, 0.0F, 0.0F));body.addChild("right",
+                ModelPartBuilder.create().cuboid(-0.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F),
+                ModelTransform.of(3.5F, -21.5F, 0.0F, 0.0F, 0.0F, 0.0F));root.addChild("rightHeat",
+                ModelPartBuilder.create().cuboid(-0.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, new Dilation(0.3F, 0.3F, 0.3F)),
+                ModelTransform.of(3.5F, -21.5F, 0.0F, 0.0F, 0.0F, 0.0F));
 
-        rightHeat = new ModelPart(this);
-        rightHeat.setPivot(3.5F, -21.5F, 0.0F);
-        heat.addChild(right);
-        rightHeat.setTextureOffset(0, 0).addCuboid(-0.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.3F, false);
-
-
+        return TexturedModelData.of(data, 64, 64);
 
     }
     public void setAngles(@Nullable T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {

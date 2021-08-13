@@ -1,6 +1,9 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 
+import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.PhantomBloodClient;
+import mrsterner.phantomblood.client.model.stand.DarkBlueMoonModel;
 import mrsterner.phantomblood.client.model.stand.KillerQueenModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
@@ -14,14 +17,19 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class KillerQueenFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final KillerQueenModel model = new KillerQueenModel();
+    private final KillerQueenModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/killer_queen.png");
+
+    public KillerQueenFirstPersonArmRenderer(EntityModelLoader loader) {
+        model = new KillerQueenModel(loader.getModelPart(PhantomBloodClient.CRAZY_DIAMOND_MODEL_LAYER));
+    }
 
     @Override
     public void onLast(WorldRenderContext context) {

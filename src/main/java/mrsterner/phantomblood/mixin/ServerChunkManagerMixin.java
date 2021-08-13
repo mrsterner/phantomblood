@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerChunkManager.class)
 public class ServerChunkManagerMixin {
-
+/*
     @Shadow @Final private ServerWorld world;
 
     @Inject(method = "shouldTickEntity", at = @At("HEAD"), cancellable = true)
@@ -31,4 +31,6 @@ public class ServerChunkManagerMixin {
             cir.setReturnValue(false);
         }
     }
+
+ */
 }

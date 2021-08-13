@@ -92,7 +92,7 @@ public enum Stand {
                 killerVirusEntity.setPosition(player.getX() - MathHelper.cos(player.getHeadYaw()) , player.getY() + 1D, player.getZ() - MathHelper.cos(player.getHeadYaw()));
 
                 //killerVirusEntity.setPos(player.getX()-1D, player.getY() + 1D, player.getZ());
-                killerVirusEntity.setProperties(player, player.pitch, player.yaw, 0.0F, 0.5F, 2F); //modifierZ is the power thrown, 1.5F is standard
+                //killerVirusEntity.setProperties(player, player.pitch, player.yaw, 0.0F, 0.5F, 2F); //modifierZ is the power thrown, 1.5F is standard
                 float f = player.getHeadYaw();
                 player.world.spawnEntity(killerVirusEntity); // spawns entity
             }

@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 
+import mrsterner.phantomblood.PhantomBloodClient;
+import mrsterner.phantomblood.client.model.stand.KillerQueenModel;
 import mrsterner.phantomblood.client.model.stand.TheWorldModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
@@ -14,6 +16,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
@@ -21,8 +24,12 @@ import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class TheWorldFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final TheWorldModel model = new TheWorldModel();
+    private final TheWorldModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/the_world.png");
+
+    public TheWorldFirstPersonArmRenderer(EntityModelLoader loader) {
+        model = new TheWorldModel(loader.getModelPart(PhantomBloodClient.THE_WORLD_MODEL_LAYER));
+    }
 
     @Override
     public void onLast(WorldRenderContext context) {

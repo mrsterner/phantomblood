@@ -1,5 +1,6 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
+import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.common.hamon.Hamon;
 import mrsterner.phantomblood.common.hamon.HamonUtils;
@@ -9,6 +10,8 @@ import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,11 +19,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 public class HamonFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
-    private static final HamonModel model = new HamonModel();
+    private static HamonModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/hamon/hamon1.png");
     double yOffset;
+    public static final EntityModelLayer HAMON_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "hamon"), "main");
 
-    public HamonFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
+    public HamonFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context, EntityModelLoader loader) {
         super(context);
     }
 

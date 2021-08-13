@@ -97,7 +97,7 @@ public final class StandUserComponentImpl implements StandUserComponent, AutoSyn
     }
 
     @Override
-    public void copyForRespawn(StandUserComponentImpl original, boolean lossless, boolean keepInventory) {
+    public void copyForRespawn(StandUserComponentImpl original, boolean lossless, boolean keepInventory, boolean sameCharacter) {
         if (lossless) {
             copyFrom(original);
         } else {

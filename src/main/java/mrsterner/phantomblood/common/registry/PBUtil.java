@@ -24,7 +24,7 @@ public class PBUtil {
             shouldAdd = true;
         }
         if (shouldAdd) {
-            if (!player.inventory.insertStack(toAdd)) {
+            if (!player.getInventory().insertStack(toAdd)) {
                 player.dropItem(toAdd, false, true);
             }
         }

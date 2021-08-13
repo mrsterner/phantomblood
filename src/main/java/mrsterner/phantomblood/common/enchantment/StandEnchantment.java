@@ -16,7 +16,8 @@ public class StandEnchantment extends Enchantment {
 
     @Override
     protected boolean canAccept(Enchantment other) {
-        return super.canAccept(other)
+        return super.canAccept(other);
+                /*
                 && other != PBEnchantments.CRAZY_DIAMOND_ENCHANTMENT
                 && other != PBEnchantments.THE_SUN_ENCHANTMENT
                 && other != PBEnchantments.STAR_PLATINUM_ENCHANTMENT
@@ -29,6 +30,8 @@ public class StandEnchantment extends Enchantment {
                 && other != PBEnchantments.WEATHER_REPORT_ENCHANTMENT
                 && other != PBEnchantments.HIEROPHANT_GREEN_ENCHANTMENT
                 && other != PBEnchantments.ANUBIS_ENCHANTMENT;
+
+                 */
     }
 
     @Override

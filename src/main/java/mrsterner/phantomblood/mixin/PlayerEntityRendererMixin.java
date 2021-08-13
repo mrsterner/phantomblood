@@ -1,7 +1,11 @@
 package mrsterner.phantomblood.mixin;
 
+import mrsterner.phantomblood.PhantomBloodClient;
 import mrsterner.phantomblood.client.model.HamonModel;
+import mrsterner.phantomblood.client.model.stand.CrazyDiamondModel;
+import mrsterner.phantomblood.client.model.stand.TheWorldModel;
 import mrsterner.phantomblood.client.renderer.stand.HamonFeatureRenderer;
+import mrsterner.phantomblood.client.renderer.stand.TheWorldFeatureRenderer;
 import mrsterner.phantomblood.client.renderer.stand.TwentyCenturyBoyFeatureRenderer;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.hamon.Hamon;
@@ -15,6 +19,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -22,6 +27,7 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -31,26 +37,26 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import software.bernie.geckolib3.model.provider.GeoModelProvider;
-import software.bernie.geckolib3.renderer.geo.IGeoRenderer;
 
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
-    private final HamonModel model = new HamonModel();
+    private final HamonModel hamonModel;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/hamon/hamon1.png");
 
-
-    public PlayerEntityRendererMixin(EntityRenderDispatcher dispatcher, PlayerEntityModel<AbstractClientPlayerEntity> model, float shadowRadius) {
-        super(dispatcher, model, shadowRadius);
+    public PlayerEntityRendererMixin(EntityRendererFactory.Context ctx, PlayerEntityModel<AbstractClientPlayerEntity> model, float shadowRadius) {
+        super(ctx, model, shadowRadius);
+        hamonModel = new HamonModel(ctx.getPart(PhantomBloodClient.HAMON_MODEL_LAYER));
     }
 
-    @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At("TAIL"))
-    private void PlayerEntityRenderer(EntityRenderDispatcher dispatcher, boolean bl, CallbackInfo callbackInfo) {
-        addFeature(new HamonFeatureRenderer(this));
-        addFeature(new TwentyCenturyBoyFeatureRenderer(this));
+
+    @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRendererFactory$Context;Z)V", at = @At("TAIL"))
+    private void PlayerEntityRenderer(EntityRendererFactory.Context ctx, boolean slim, CallbackInfo ci) {
+        addFeature(new HamonFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new TwentyCenturyBoyFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new TheWorldFeatureRenderer(this, ctx.getModelLoader()));
     }
 
     @Inject(at = @At("HEAD"), method = "getArmPose", cancellable = true)
@@ -80,8 +86,8 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             playerEntityModel.copyStateTo(model);
             matrices.translate(-0.3F,0.1F,-0.01F);
             matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(7.5f));
-            model.render(matrices, vertices.getBuffer(RenderLayer.getEntityTranslucent(texture)), lightmap, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.6f);
-            model.renderHeat(matrices, vertices.getBuffer(RenderLayer.getEntityTranslucent(texture)), lightmap, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.3f);
+            hamonModel.render(matrices, vertices.getBuffer(RenderLayer.getEntityTranslucent(texture)), lightmap, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.6f);
+            hamonModel.renderHeat(matrices, vertices.getBuffer(RenderLayer.getEntityTranslucent(texture)), lightmap, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.3f);
             matrices.pop();
         }
     }

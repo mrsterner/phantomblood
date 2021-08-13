@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 
+import mrsterner.phantomblood.PhantomBloodClient;
+import mrsterner.phantomblood.client.model.stand.KillerQueenModel;
 import mrsterner.phantomblood.client.model.stand.KingCrimsonModel;
 import mrsterner.phantomblood.client.model.stand.StarPlatinumModel;
 import mrsterner.phantomblood.common.stand.Stand;
@@ -15,6 +17,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
@@ -22,8 +25,12 @@ import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class KingCrimsonFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final KingCrimsonModel model = new KingCrimsonModel();
+    private final KingCrimsonModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/king_crimson.png");
+
+    public KingCrimsonFirstPersonArmRenderer(EntityModelLoader loader) {
+        model = new KingCrimsonModel(loader.getModelPart(PhantomBloodClient.KING_CRIMSON_MODEL_LAYER));
+    }
 
     @Override
     public void onLast(WorldRenderContext context) {

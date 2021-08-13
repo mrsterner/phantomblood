@@ -18,8 +18,8 @@ public class PBEnchantments {
 
     public static final Map<Enchantment, Identifier> ENCHANTMENT = new LinkedHashMap<>();
 
-    public static final EnchantmentTarget ARROW_HEAD = ClassTinkerers.getEnum(EnchantmentTarget.class, "ARROW_HEAD");
-
+    //public static final EnchantmentTarget ARROW_HEAD = ClassTinkerers.getEnum(EnchantmentTarget.class, "ARROW_HEAD");
+/*
     public static final Enchantment THE_WORLD_ENCHANTMENT = create("the_world_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
     public static final Enchantment STAR_PLATINUM_ENCHANTMENT = create("star_platinum_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
     public static final Enchantment THE_SUN_ENCHANTMENT = create("the_sun_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
@@ -33,6 +33,8 @@ public class PBEnchantments {
     public static final Enchantment CRAZY_DIAMOND_ENCHANTMENT = create("crazy_diamond_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
     public static final Enchantment ANUBIS_ENCHANTMENT = create("anubis_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
 
+
+ */
 
 
     private static <T extends Enchantment> T create(String name, T enchant) {

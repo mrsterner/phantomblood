@@ -120,7 +120,7 @@ public class KillerVirusEntity extends ThrownItemEntity {
 
         if (!this.world.isClient) { // checks if the world is client
             this.world.sendEntityStatus(this, (byte)3); // particle?
-            this.remove(); // kills the projectile
+            this.kill(); // kills the projectile
         }
 
     }

@@ -45,20 +45,20 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 movementSpeedAttribute.removeModifier(TWENTYCB_MOVEMENT_SPEED_MODIFIER);
             }
             ItemStack itemStack = new ItemStack(PBObjects.ANUBIS_SWORD);
-            if(player.inventory.count(itemStack.getItem()) > 1){
-                player.inventory.remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.method_29281());
+            if(player.getInventory().count(itemStack.getItem()) > 1){
+                player.getInventory().remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.getCraftingInput());
                 player.dropItem(new ItemStack(PBObjects.ANUBIS_SWORD), false);
             }
-            if (StandUtils.getStand(player) == Stand.ANUBIS && !player.inventory.contains(itemStack)) {
+            if (StandUtils.getStand(player) == Stand.ANUBIS && !player.getInventory().contains(itemStack)) {
                 StandUtils.setStandActive(player, false);
                 StandUtils.setStandLevel(player, 0);
                 StandUtils.setStand(player, Stand.NONE);
             }
-            if(StandUtils.getStand(player) != Stand.ANUBIS && StandUtils.getStand(player) != Stand.NONE && player.inventory.contains(itemStack)){
-                player.inventory.remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.method_29281());
+            if(StandUtils.getStand(player) != Stand.ANUBIS && StandUtils.getStand(player) != Stand.NONE && player.getInventory().contains(itemStack)){
+                player.getInventory().remove(itemStack2 -> itemStack2.getItem() == PBObjects.ANUBIS_SWORD, 1, player.playerScreenHandler.getCraftingInput());
                 player.dropItem(new ItemStack(PBObjects.ANUBIS_SWORD), false);
             }
-            if (player.inventory.contains(itemStack) && StandUtils.getStand(player) == Stand.NONE) {
+            if (player.getInventory().contains(itemStack) && StandUtils.getStand(player) == Stand.NONE) {
                 StandUtils.setStandActive(player, false);
                 StandUtils.setStandLevel(player, 0);
                 StandUtils.setStand(player, Stand.ANUBIS);

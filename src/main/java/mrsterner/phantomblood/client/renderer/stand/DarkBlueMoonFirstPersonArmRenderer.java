@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
 
+import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.client.model.stand.CrazyDiamondModel;
 import mrsterner.phantomblood.client.model.stand.DarkBlueMoonModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
@@ -14,6 +16,8 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
@@ -21,8 +25,13 @@ import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class DarkBlueMoonFirstPersonArmRenderer implements WorldRenderEvents.Last {
-    private final DarkBlueMoonModel model = new DarkBlueMoonModel();
+    private final DarkBlueMoonModel model;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/dark_blue_moon.png");
+    public static final EntityModelLayer CRAZY_DIAMOND_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "crazy_diamond"), "main");
+
+    public DarkBlueMoonFirstPersonArmRenderer(EntityModelLoader loader) {
+        model = new DarkBlueMoonModel(loader.getModelPart(CRAZY_DIAMOND_MODEL_LAYER));
+    }
 
     @Override
     public void onLast(WorldRenderContext context) {

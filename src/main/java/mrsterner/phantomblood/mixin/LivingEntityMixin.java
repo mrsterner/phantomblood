@@ -1,6 +1,5 @@
 package mrsterner.phantomblood.mixin;
 
-import com.williambl.haema.Vampirable;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
 import mrsterner.phantomblood.common.registry.PBStatusEffects;
@@ -62,14 +61,17 @@ public abstract class LivingEntityMixin extends Entity {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
             ItemStack head = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
+            /*
                 if (head.getItem() == PBObjects.BLOODY_STONE_MASK_ITEM && !((Vampirable) this).isVampire()) {
 
-                    Vampirable.Companion.convert(((PlayerEntity) (Object) this));
+                    //Vampirable.Companion.convert(((PlayerEntity) (Object) this));
                     world.playSound(null, getBlockPos(), PBSoundEvents.VAMPIRE, getSoundCategory(), getSoundVolume(), getSoundPitch());
                 }
                 if(head.getItem() == PBObjects.STONE_MASK_ITEM){
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 3,1));
                 }
+
+             */
                 if(livingEntity instanceof PlayerEntity){
                     PlayerEntity player = (PlayerEntity) (Object) this;
                     ItemStack hand = livingEntity.getStackInHand(Hand.MAIN_HAND);
@@ -88,6 +90,8 @@ public abstract class LivingEntityMixin extends Entity {
                         player.setOnFireFor(2);
                     }
             }
+
+
         }
         if(world.isClient){
             if(TimeStopUtils.getTimeStoppedTicks(world) == 1){

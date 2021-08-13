@@ -61,7 +61,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                             break;
                     }
                     world.getOtherEntities(player, player.getBoundingBox()
-                            .expand(boxX * MathHelper.sin(player.yaw), boxY, boxZ * MathHelper.cos(player.yaw))).stream()
+                            .expand(boxX * MathHelper.sin(player.getYaw()), boxY, boxZ * MathHelper.cos(player.getYaw()))).stream()
                             .filter(it -> it instanceof LivingEntity)
                             .forEach(it -> {
                                 if (ticksSinceSound > 8) {
@@ -85,7 +85,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                 .filter(it -> StandUtils.getStand(it) == Stand.WEATHER_REPORT && StandUtils.isStandActive(it) && StandUtils.getStandMode(it) == StandMode.ATTACKING)
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
-                    world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.yaw), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.yaw)))
+                    world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.getYaw()), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.getYaw())))
                             .forEach(it -> {
                                 double distanceX = player.getX() - it.getX();
                                 double distanceZ = player.getZ() - it.getZ();
@@ -97,7 +97,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                 .filter(it -> StandUtils.getStand(it) == Stand.DARK_BLUE_MOON && StandUtils.isStandActive(it) && it.hasStatusEffect(PBStatusEffects.DARK_BLUE_MOON)  && it.isTouchingWaterOrRain())
                 .forEach(player -> {
                     int level = StandUtils.getStandLevel(player);
-                    world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.yaw), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.yaw))).stream()
+                    world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.getYaw()), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.getYaw()))).stream()
                             .filter(Entity::isTouchingWaterOrRain)
                             .forEach(it -> {
                                 it.damage(DamageSource.player(player), level == 0 ? 1.0f : 2.0f);
@@ -109,7 +109,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                     int level = StandUtils.getStandLevel(player);
                     int energy = StandUtils.getStandEnergy(player);
                     int energyForAbility = StandUtils.getStand(player).energyForAbility;
-                    world.getOtherEntities(player, player.getBoundingBox().expand(3.0 * MathHelper.sin(player.yaw), 1.0, 2.0 * MathHelper.cos(player.yaw))).stream()
+                    world.getOtherEntities(player, player.getBoundingBox().expand(3.0 * MathHelper.sin(player.getYaw()), 1.0, 2.0 * MathHelper.cos(player.getYaw()))).stream()
                             .filter(it -> it instanceof LivingEntity)
                             .forEach(it -> {
 
@@ -128,7 +128,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                     int level = StandUtils.getStandLevel(player);
                     int energy = StandUtils.getStandEnergy(player);
                     int energyForAbility = StandUtils.getStand(player).energyForAbility;
-                    world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.yaw), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.yaw)))
+                    world.getOtherEntities(player, player.getBoundingBox().expand(10.0 * MathHelper.sin(player.getYaw()), 10.0, (level == 0 ? 10.0f : 15.0f) * MathHelper.cos(player.getYaw())))
                             .forEach(it -> {
                                 ticksSinceSun++;
 

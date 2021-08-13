@@ -2,6 +2,7 @@ package mrsterner.phantomblood;
 
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
+import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentFactoryRegistry;
 import mrsterner.phantomblood.common.callback.CommandCallback;
 import mrsterner.phantomblood.common.callback.StandCallback;
@@ -15,7 +16,6 @@ import mrsterner.phantomblood.common.stand.*;
 import mrsterner.phantomblood.common.timestop.StoppedTimeDamageHandler;
 import mrsterner.phantomblood.common.timestop.TimeStopComponent;
 import mrsterner.phantomblood.common.timestop.TimeStopComponentImpl;
-import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -46,10 +46,10 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
 
     //Killer Queen Tagger
     public static NbtCompound getTagCompoundSafe(ItemStack stack) {
-        NbtCompound tagCompound = stack.getTag();
+        NbtCompound tagCompound = stack.getNbt();
         if (tagCompound == null) {
             tagCompound = new NbtCompound();
-            stack.setTag(tagCompound);
+            stack.setNbt(tagCompound);
         }
         return tagCompound;
     }
