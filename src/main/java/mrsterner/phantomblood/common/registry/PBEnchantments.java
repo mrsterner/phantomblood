@@ -31,6 +31,7 @@ public class PBEnchantments {
     public static final Enchantment HIEROPHANT_GREEN_ENCHANTMENT = create("hierophant_green_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
     public static final Enchantment KILLER_QUEEN_ENCHANTMENT = create("killer_queen_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
     public static final Enchantment CRAZY_DIAMOND_ENCHANTMENT = create("crazy_diamond_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
+    public static final Enchantment ANUBIS_ENCHANTMENT = create("anubis_enchantment", new StandEnchantment(gen(), ARROW_HEAD, gen2()));
 
 
 

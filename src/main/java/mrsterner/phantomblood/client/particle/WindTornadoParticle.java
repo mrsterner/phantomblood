@@ -1,14 +1,11 @@
-package mrsterner.phantomblood.client.patricle;
+package mrsterner.phantomblood.client.particle;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 class WindTornadoParticle extends SpriteBillboardParticle {

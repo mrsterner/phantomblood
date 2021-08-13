@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.common;
+package mrsterner.phantomblood.common.callback;
 
 import com.williambl.haema.Vampirable;
 import com.williambl.haema.VampireBloodManager;

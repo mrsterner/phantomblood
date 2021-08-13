@@ -3,10 +3,10 @@ package mrsterner.phantomblood;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.world.WorldComponentFactoryRegistry;
-import mrsterner.phantomblood.common.CommandCallback;
-import mrsterner.phantomblood.common.StandCallback;
+import mrsterner.phantomblood.common.callback.CommandCallback;
+import mrsterner.phantomblood.common.callback.StandCallback;
 import mrsterner.phantomblood.common.StandPunchHandler;
-import mrsterner.phantomblood.common.VampireCallback;
+import mrsterner.phantomblood.common.callback.VampireCallback;
 import mrsterner.phantomblood.common.entity.KillerVirusCloudEntity;
 import mrsterner.phantomblood.common.entity.KillerVirusEntity;
 import mrsterner.phantomblood.common.hamon.HamonUserComponent;
@@ -73,7 +73,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         VampireCallback.init();
         StandCallback.init();
         PBStructures.init();
-        PBParticles.init();
+       //PBParticles.init();
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {
             Identifier nether_fortress = new Identifier(PhantomBlood.MODID, "inject/nether_fortress");

@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.common;
+package mrsterner.phantomblood.common.callback;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.ArgumentCommandNode;

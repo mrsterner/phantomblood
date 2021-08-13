@@ -1,4 +1,4 @@
-package mrsterner.phantomblood.common;
+package mrsterner.phantomblood.common.callback;
 
 import mrsterner.phantomblood.common.item.KillerQueenTriggerItem;
 import mrsterner.phantomblood.common.registry.PBObjects;

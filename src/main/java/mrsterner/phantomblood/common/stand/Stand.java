@@ -60,11 +60,14 @@ public enum Stand {
         });
     }),
     KILLER_QUEEN(8000, (server, player, handler1, buf, responseSender) -> {}),
-    CRAZY_DIAMOND(3000, (server, player, handler1, buf, responseSender) -> {
+    CRAZY_DIAMOND(10000, (server, player, handler1, buf, responseSender) -> {
+        int energy = StandUtils.getStandEnergy(player);
+        int energyForAbility = StandUtils.getStand(player).energyForAbility;
         if(StandUtils.isStandActive(player) && StandUtils.getStandMode(player) == StandMode.HEALING){
             StandUtils.setStandMode(player, StandMode.ATTACKING);
         }
-        else if(StandUtils.isStandActive(player) && StandUtils.getStandMode(player) == StandMode.ATTACKING){
+        else if(StandUtils.isStandActive(player) && StandUtils.getStandMode(player) == StandMode.ATTACKING && energy >= energyForAbility){
+            StandUtils.setStandEnergy(player, energy - energyForAbility);
             StandUtils.setStandMode(player, StandMode.HEALING);
         }
     }),

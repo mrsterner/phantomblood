@@ -26,7 +26,9 @@ public class StandEnchantment extends Enchantment {
                 && other != PBEnchantments.PURPLE_HAZE_ENCHANTMENT
                 && other != PBEnchantments.THE_WORLD_ENCHANTMENT
                 && other != PBEnchantments.TWENTY_CENTURY_BOY_ENCHANTMENT
-                && other != PBEnchantments.WEATHER_REPORT_ENCHANTMENT;
+                && other != PBEnchantments.WEATHER_REPORT_ENCHANTMENT
+                && other != PBEnchantments.HIEROPHANT_GREEN_ENCHANTMENT
+                && other != PBEnchantments.ANUBIS_ENCHANTMENT;
     }
 
     @Override

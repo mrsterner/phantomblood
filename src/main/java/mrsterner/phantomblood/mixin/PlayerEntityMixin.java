@@ -32,6 +32,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         super(entityType, world);
     }
 
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void stop20CB(CallbackInfo callbackInfo) {
         if (!world.isClient) {
