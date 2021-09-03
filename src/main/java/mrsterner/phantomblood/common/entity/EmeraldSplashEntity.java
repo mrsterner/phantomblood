@@ -40,15 +40,16 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         this.pickupType = PickupPermission.DISALLOWED;
         this.target = target;
         setNoGravity(true);
+        setPos(getX()+world.random.nextGaussian(), getY()+world.random.nextDouble(), getZ()+world.random.nextGaussian());
     }
 
     @Override
     public void tick() {
         super.tick();
         if (target != null && target.isAlive()) {
-            if (!inGround) {
+            if (!inGround && age > 10) {
                 Vec3d vel = getVelocity();
-                Vec3d dir = target.getPos().subtract(getPos()).normalize().multiply(0.2);
+                Vec3d dir = new Vec3d(target.getX(), target.getEyeY(), target.getZ()).subtract(getPos()).normalize().multiply(0.2+world.random.nextGaussian()*0.05);
                 if (Math.acos(vel.dotProduct(dir)/(vel.length()*dir.length())) > 0.3) {
                     setVelocity(getVelocity().multiply(0.85));
                 }
