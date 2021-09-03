@@ -50,7 +50,7 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         if (target != null && target.isAlive()) {
             if (!inGround && age > 10) {
                 Vec3d vel = getVelocity();
-                Vec3d dir = new Vec3d(target.getX(), target.getEyeY(), target.getZ()).subtract(getPos()).normalize().multiply(0.2+world.random.nextGaussian()*0.05);
+                Vec3d dir = new Vec3d(target.getX(), target.getRandomBodyY(), target.getZ()).subtract(getPos()).normalize().multiply(0.2+world.random.nextGaussian()*0.05);
                 if (Math.acos(vel.dotProduct(dir)/(vel.length()*dir.length())) > 0.3) {
                     setVelocity(getVelocity().multiply(0.85));
                 }
@@ -59,6 +59,8 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         }
         if (world.isClient) {
             world.addParticle(new DustParticleEffect(0.0f, 1.0f, 0.0f, 1.0f), getX(), getY(), getZ(), 0.0, 0.0, 0.0);
+        } else if (inGround || target == null || !target.isAlive()) {
+            remove();
         }
     }
 
