@@ -2,6 +2,7 @@ package mrsterner.phantomblood.common.stand;
 
 
 import mrsterner.phantomblood.PhantomBlood;
+import mrsterner.phantomblood.common.entity.EmeraldSplashEntity;
 import mrsterner.phantomblood.common.entity.KillerVirusEntity;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.registry.PBSoundEvents;
@@ -11,6 +12,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.DropperBlock;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BowItem;
@@ -99,7 +101,15 @@ public enum Stand {
         });
     }),
     TWENTY_CENTURY_BOY(30000, (server, player, handler1, buf, responseSender) -> {}),
-    HIEROPHANT_GREEN(3000, (server, player, handler1, buf, responseSender) -> {}),
+    HIEROPHANT_GREEN(3000, (server, player, handler1, buf, responseSender) -> {
+        server.execute(() -> {
+            int energy = StandUtils.getStandEnergy(player);
+            int energyForAbility = StandUtils.getStand(player).energyForAbility;
+            if (energy >= energyForAbility) {
+                player.world.spawnEntity(new EmeraldSplashEntity(player, player.world.getOtherEntities(player, player.getBoundingBox().expand(20.0), p -> p instanceof LivingEntity).get(0), player.world));
+            }
+        });
+    }),
     ANUBIS(3000, (server, player, handler1, buf, responseSender) -> {});
 
     public int energyForAbility;
