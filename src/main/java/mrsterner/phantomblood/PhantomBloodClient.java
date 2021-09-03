@@ -87,6 +87,7 @@ public class PhantomBloodClient implements ClientModInitializer {
 
         //EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
         //EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusCloudEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
+        EntityRendererRegistry.INSTANCE.register(PhantomBlood.EMERALD_SPLASH_ENTITY_TYPE, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));
 
 
         Registry.ITEM.forEach((item) -> {
