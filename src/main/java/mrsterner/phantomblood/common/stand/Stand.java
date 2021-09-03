@@ -106,7 +106,9 @@ public enum Stand {
             int energy = StandUtils.getStandEnergy(player);
             int energyForAbility = StandUtils.getStand(player).energyForAbility;
             if (energy >= energyForAbility) {
-                player.world.spawnEntity(new EmeraldSplashEntity(player, player.world.getOtherEntities(player, player.getBoundingBox().expand(20.0), p -> p instanceof LivingEntity).get(0), player.world));
+                for (int i = 0; i < 20; i++) {
+                    player.world.spawnEntity(new EmeraldSplashEntity(player, player.world.getOtherEntities(player, player.getBoundingBox().expand(20.0), p -> p instanceof LivingEntity).get(0), player.world));
+                }
             }
         });
     }),
