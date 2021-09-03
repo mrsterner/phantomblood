@@ -17,6 +17,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.Packet;
+import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -55,6 +56,9 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
                 }
                 setVelocity(getVelocity().add(dir));
             }
+        }
+        if (world.isClient) {
+            world.addParticle(new DustParticleEffect(0.0f, 1.0f, 0.0f, 1.0f), getX(), getY(), getZ(), 0.0, 0.0, 0.0);
         }
     }
 
