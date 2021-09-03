@@ -7,6 +7,7 @@ import mrsterner.phantomblood.common.callback.CommandCallback;
 import mrsterner.phantomblood.common.callback.StandCallback;
 import mrsterner.phantomblood.common.StandPunchHandler;
 import mrsterner.phantomblood.common.callback.VampireCallback;
+import mrsterner.phantomblood.common.entity.EmeraldSplashEntity;
 import mrsterner.phantomblood.common.entity.KillerVirusCloudEntity;
 import mrsterner.phantomblood.common.entity.KillerVirusEntity;
 import mrsterner.phantomblood.common.hamon.HamonUserComponent;
@@ -61,6 +62,9 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
             FabricEntityTypeBuilder.<KillerVirusCloudEntity>create(SpawnGroup.MISC, KillerVirusCloudEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build()
     );
+    public static final EntityType<EmeraldSplashEntity> EMERALD_SPLASH_ENTITY_TYPE = Registry.register(Registry.ENTITY_TYPE, new Identifier(PhantomBlood.MODID, "emerald_splash"),
+            FabricEntityTypeBuilder.<EmeraldSplashEntity>create(SpawnGroup.MISC, EmeraldSplashEntity::new)
+    .dimensions(EntityDimensions.fixed(0.25f, 0.25f)).trackRangeBlocks(64).trackedUpdateRate(10).build());
 
     @Override
     public void onInitialize() {
