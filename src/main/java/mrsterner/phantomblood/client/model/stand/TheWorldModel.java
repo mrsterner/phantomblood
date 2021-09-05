@@ -35,19 +35,19 @@ public class TheWorldModel extends EntityModel<LivingEntity> {
     private final ModelPart arm_r1;
     private final ModelPart hand2;
     private final ModelPart hand_r2;
-    private final ModelPart punchLeft;
-    private final ModelPart punchLeft1;
-    private final ModelPart punchLeft2;
-    private final ModelPart punchLeft3;
-    private final ModelPart punchLeft4;
-    private final ModelPart punchLeft5;
     private final ModelPart punchRight;
     private final ModelPart punchRight1;
     private final ModelPart punchRight2;
     private final ModelPart punchRight3;
     private final ModelPart punchRight4;
     private final ModelPart punchRight5;
-    private final ModelPart bodyattack;
+    private final ModelPart punchLeft;
+    private final ModelPart punchLeft1;
+    private final ModelPart punchLeft2;
+    private final ModelPart punchLeft3;
+    private final ModelPart punchLeft4;
+    private final ModelPart punchLeft5;
+    private final ModelPart body2;
     private final ModelPart lower2;
     private final ModelPart right2;
     private final ModelPart rightLower2;
@@ -84,42 +84,81 @@ public class TheWorldModel extends EntityModel<LivingEntity> {
         this.right = this.lower.getChild("right");
         this.rightLower = this.right.getChild("rightLower");
         this.rightUpper_r1 = this.right.getChild("rightUpper_r1");
-        this.punchLeft = root.getChild("punchLeft");
-        this.punchLeft5 = this.punchLeft.getChild("punchLeft5");
-        this.punchLeft4 = this.punchLeft.getChild("punchLeft4");
-        this.punchLeft3 = this.punchLeft.getChild("punchLeft3");
-        this.punchLeft2 = this.punchLeft.getChild("punchLeft2");
-        this.punchLeft1 = this.punchLeft.getChild("punchLeft1");
         this.punchRight = root.getChild("punchRight");
         this.punchRight5 = this.punchRight.getChild("punchRight5");
         this.punchRight4 = this.punchRight.getChild("punchRight4");
         this.punchRight3 = this.punchRight.getChild("punchRight3");
         this.punchRight2 = this.punchRight.getChild("punchRight2");
         this.punchRight1 = this.punchRight.getChild("punchRight1");
-        this.bodyattack = root.getChild("bodyattack");
-        this.upper2 = this.bodyattack.getChild("upper2");
+        this.punchLeft = root.getChild("punchLeft");
+        this.punchLeft5 = this.punchLeft.getChild("punchLeft5");
+        this.punchLeft4 = this.punchLeft.getChild("punchLeft4");
+        this.punchLeft3 = this.punchLeft.getChild("punchLeft3");
+        this.punchLeft2 = this.punchLeft.getChild("punchLeft2");
+        this.punchLeft1 = this.punchLeft.getChild("punchLeft1");
+        this.body2 = root.getChild("body2");
+        this.upper2 = this.body2.getChild("upper2");
         this.rightArm2 = this.upper2.getChild("rightArm2");
         this.leftArm2 = this.upper2.getChild("leftArm2");
-        this.lower2 = this.bodyattack.getChild("lower2");
+        this.lower2 = this.body2.getChild("lower2");
         this.left2 = this.lower2.getChild("left2");
         this.leftLower2 = this.left2.getChild("leftLower2");
         this.leftLower_r2 = this.leftLower2.getChild("leftLower_r2");
         this.right2 = this.lower2.getChild("right2");
         this.rightLower2 = this.right2.getChild("rightLower2");
-    }
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-/*
         setRotationAngle(helmTop_r1, 0.48F, 0.0F, 0.0F);
         setRotationAngle(tube_r1, -0.1745F, 0.0F, 0.0F);
         setRotationAngle(bone, 0.1309F, 0.0F, 0.0F);
+
         setRotationAngle(faceplate_r1, 0.0F, 0.2618F, 0.0F);
         setRotationAngle(faceplate_r2, 0.0F, -0.2618F, 0.0F);
         setRotationAngle(body, 0.2182F, -0.1745F, -0.3054F);
         setRotationAngle(lower, 0.1309F, 0.0F, 0.0F);
 
- */
+        setRotationAngle(right, -0.7854F, 0.1745F, 0.1745F);
+        setRotationAngle(rightUpper_r1, -0.6545F, 0.0F, 0.0F);
+        setRotationAngle(rightLower, 1.9635F, 0.0F, 0.0F);
+        setRotationAngle(left, 0.0873F, -0.4363F, -0.3927F);
+
+        setRotationAngle(leftLower_r1, 0.6109F, 0.0F, 0.0F);
+
+        setRotationAngle(leftArm, 0.8727F, 0.0F, -0.4363F);
+
+        setRotationAngle(hand_r1, -1.0908F, 0.0F, 0.0F);
+        setRotationAngle(rightArm, -1.5708F, 0.2618F, 0.6981F);
+
+        setRotationAngle(shoulder_r1, 0.0F, -0.0873F, 0.0F);
+
+        setRotationAngle(arm_r1, 0.0F, -0.3054F, 0.0F);
+
+        setRotationAngle(hand_r2, -0.3927F, -0.5672F, -0.0436F);
+
+
+        setRotationAngle(body2, 0.1309F, 0.0F, 0.0F);
+        setRotationAngle(lower2, 0.1309F, 0.0F, 0.0F);
+        setRotationAngle(right2, -0.5672F, 0.1745F, 0.3927F);
+        setRotationAngle(rightLower2, 1.0036F, 0.0F, 0.0F);
+        setRotationAngle(left2, -0.5672F, -0.1745F, -0.3927F);
+
+        setRotationAngle(leftLower_r2, 0.6109F, 0.0F, 0.0F);
+
+        setRotationAngle(leftArm2, -1.1345F, 0.0F, -0.7418F);
+        setRotationAngle(rightArm2, -1.1345F, 0.0F, 0.7418F);
+    }
+    public static TexturedModelData getTexturedModelData() {
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
+        /*
+        setRotationAngle(helmTop_r1, 0.48F, 0.0F, 0.0F);
+        setRotationAngle(tube_r1, -0.1745F, 0.0F, 0.0F);
+        setRotationAngle(bone, 0.1309F, 0.0F, 0.0F);
+
+        setRotationAngle(faceplate_r1, 0.0F, 0.2618F, 0.0F);
+        setRotationAngle(faceplate_r2, 0.0F, -0.2618F, 0.0F);
+        setRotationAngle(body, 0.2182F, -0.1745F, -0.3054F);
+        setRotationAngle(lower, 0.1309F, 0.0F, 0.0F);
+
+         */
         ModelPartData modelPartData1 = modelPartData.addChild("head", ModelPartBuilder.create().uv(0,13).cuboid(-3.5F, -12.0F, -4.0F, 7.0F, 7.0F, 8.0F).uv(2,1).cuboid(-4.0F, -12.1F, -3.5F, 8.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
         modelPartData1.addChild("helmTop_r1", ModelPartBuilder.create().uv(22,20).cuboid(-4.0F, -1.95F, -4.0F, 8.0F, 4.0F, 8.0F, new Dilation(0.1F)), ModelTransform.pivot(0.0F,-12.0F,0.0F));
         modelPartData1.addChild("tube_r1", ModelPartBuilder.create().uv(25,0).cuboid(-4.5F, -1.0F, -3.5F, 9.0F, 2.0F, 7.0F), ModelTransform.pivot(0.0F,-8.1F,1.5F));
@@ -145,19 +184,19 @@ public class TheWorldModel extends EntityModel<LivingEntity> {
         modelPartData13.addChild("arm_r1", ModelPartBuilder.create().uv(62,61).cuboid(-1.5F, 0.0F, -2.0F, 3.0F, 4.0F, 4.0F), ModelTransform.pivot(-6.0F,-1.0F,0.0F));
         ModelPartData modelPartData14 = modelPartData13.addChild("hand2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,0.0F,0.0F));
         modelPartData14.addChild("hand_r2", ModelPartBuilder.create().uv(0,53).cuboid(-2.0F, -1.0F, -2.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(-6.0F,3.0F,0.0F));
-        ModelPartData modelPartData15 = modelPartData.addChild("punchLeft", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-3.0F,0.0F));
-        modelPartData15.addChild("punchLeft1", ModelPartBuilder.create().uv(24,76).cuboid(-14.0F, -7.0F, -4.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
-        modelPartData15.addChild("punchLeft2", ModelPartBuilder.create().uv(24,76).cuboid(-14.0F, -28.0F, 1.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        modelPartData15.addChild("punchLeft3", ModelPartBuilder.create().uv(24,76).cuboid(-18.0F, -31.0F, -8.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        modelPartData15.addChild("punchLeft4", ModelPartBuilder.create().uv(24,76).cuboid(-15.0F, -24.0F, -8.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        modelPartData15.addChild("punchLeft5", ModelPartBuilder.create().uv(24,76).cuboid(-20.0F, -28.0F, -13.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        ModelPartData modelPartData16 = modelPartData.addChild("punchRight", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-3.0F,0.0F));
-        modelPartData16.addChild("punchRight1", ModelPartBuilder.create().uv(0,76).cuboid(11.0F, -34.0F, -3.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        modelPartData16.addChild("punchRight2", ModelPartBuilder.create().uv(0,76).cuboid(10.0F, -30.0F, 4.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        modelPartData16.addChild("punchRight3", ModelPartBuilder.create().uv(0,76).cuboid(13.0F, -26.0F, -3.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        modelPartData16.addChild("punchRight4", ModelPartBuilder.create().uv(0,76).cuboid(15.0F, -30.0F, -10.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        modelPartData16.addChild("punchRight5", ModelPartBuilder.create().uv(0,76).cuboid(11.0F, -24.0F, -8.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
-        ModelPartData modelPartData17 = modelPartData.addChild("bodyattack", ModelPartBuilder.create().uv(0,28).cuboid(-4.0F, 0.0F, -2.0F, 8.0F, 7.0F, 4.0F).uv(47,65).cuboid(-2.5F, 0.0F, 3.0F, 2.0F, 8.0F, 2.0F).uv(0,65).cuboid(0.5F, 0.0F, 3.0F, 2.0F, 8.0F, 2.0F).uv(20,46).cuboid(1.0F, -1.0F, -3.0F, 2.0F, 11.0F, 6.0F).uv(38,40).cuboid(-3.0F, -1.0F, -3.0F, 2.0F, 11.0F, 6.0F), ModelTransform.pivot(0.0F,-5.0F,0.0F));
+        ModelPartData modelPartData15 = modelPartData.addChild("punchRight", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-3.0F,0.0F));
+        modelPartData15.addChild("punchRight1", ModelPartBuilder.create().uv(0,76).cuboid(11.0F, -34.0F, -3.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        modelPartData15.addChild("punchRight2", ModelPartBuilder.create().uv(0,76).cuboid(10.0F, -30.0F, 4.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        modelPartData15.addChild("punchRight3", ModelPartBuilder.create().uv(0,76).cuboid(13.0F, -26.0F, -3.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        modelPartData15.addChild("punchRight4", ModelPartBuilder.create().uv(0,76).cuboid(15.0F, -30.0F, -10.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        modelPartData15.addChild("punchRight5", ModelPartBuilder.create().uv(0,76).cuboid(11.0F, -24.0F, -8.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        ModelPartData modelPartData16 = modelPartData.addChild("punchLeft", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-3.0F,0.0F));
+        modelPartData16.addChild("punchLeft1", ModelPartBuilder.create().uv(24,76).cuboid(-14.0F, -7.0F, -4.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
+        modelPartData16.addChild("punchLeft2", ModelPartBuilder.create().uv(24,76).cuboid(-14.0F, -28.0F, 1.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        modelPartData16.addChild("punchLeft3", ModelPartBuilder.create().uv(24,76).cuboid(-18.0F, -31.0F, -8.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        modelPartData16.addChild("punchLeft4", ModelPartBuilder.create().uv(24,76).cuboid(-15.0F, -24.0F, -8.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        modelPartData16.addChild("punchLeft5", ModelPartBuilder.create().uv(24,76).cuboid(-20.0F, -28.0F, -13.0F, 4.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,27.0F,0.0F));
+        ModelPartData modelPartData17 = modelPartData.addChild("body2", ModelPartBuilder.create().uv(0,28).cuboid(-4.0F, 0.0F, -2.0F, 8.0F, 7.0F, 4.0F).uv(47,65).cuboid(-2.5F, 0.0F, 3.0F, 2.0F, 8.0F, 2.0F).uv(0,65).cuboid(0.5F, 0.0F, 3.0F, 2.0F, 8.0F, 2.0F).uv(20,46).cuboid(1.0F, -1.0F, -3.0F, 2.0F, 11.0F, 6.0F).uv(38,40).cuboid(-3.0F, -1.0F, -3.0F, 2.0F, 11.0F, 6.0F), ModelTransform.pivot(0.0F,-5.0F,0.0F));
         ModelPartData modelPartData18 = modelPartData17.addChild("lower2", ModelPartBuilder.create().uv(46,18).cuboid(-3.5F, 0.0F, -2.0F, 7.0F, 4.0F, 4.0F).uv(27,9).cuboid(-4.0F, 3.0F, -3.5F, 8.0F, 2.0F, 7.0F).uv(66,53).cuboid(3.0F, 2.0F, -1.5F, 2.0F, 3.0F, 3.0F).uv(65,29).cuboid(-5.0F, 2.0F, -1.5F, 2.0F, 3.0F, 3.0F), ModelTransform.pivot(0.0F,7.0F,0.0F));
         ModelPartData modelPartData19 = modelPartData18.addChild("right2", ModelPartBuilder.create().uv(48,32).cuboid(-2.75F, -0.5F, -2.5F, 5.0F, 7.0F, 5.0F), ModelTransform.pivot(-2.25F,5.0F,-1.0F));
         modelPartData19.addChild("rightLower2", ModelPartBuilder.create().uv(24,32).cuboid(-2.5F, -1.5F, -1.5F, 5.0F, 9.0F, 5.0F, new Dilation(-0.2F)), ModelTransform.pivot(-0.25F,6.5F,0.0F));
@@ -167,30 +206,10 @@ public class TheWorldModel extends EntityModel<LivingEntity> {
         ModelPartData modelPartData22 = modelPartData17.addChild("upper2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,5.0F,0.0F));
         modelPartData22.addChild("leftArm2", ModelPartBuilder.create().uv(31,58).cuboid(0.0F, -3.0F, -2.5F, 4.0F, 4.0F, 5.0F), ModelTransform.pivot(4.0F,-2.0F,0.0F));
         modelPartData22.addChild("rightArm2", ModelPartBuilder.create().uv(54,44).cuboid(-4.0F, -3.0F, -2.5F, 4.0F, 4.0F, 5.0F), ModelTransform.pivot(-4.0F,-2.0F,0.0F));
-        return TexturedModelData.of(modelData,128,128);
-/*
-        setRotationAngle(right, -0.7854F, 0.1745F, 0.1745F);
-        setRotationAngle(rightUpper_r1, -0.6545F, 0.0F, 0.0F);
-        setRotationAngle(rightLower, 1.9635F, 0.0F, 0.0F);
-        setRotationAngle(left, 0.0873F, -0.4363F, -0.3927F);
-        setRotationAngle(leftLower_r1, 0.6109F, 0.0F, 0.0F);
-        setRotationAngle(leftArm, 0.8727F, 0.0F, -0.4363F);
-        setRotationAngle(hand_r1, -1.0908F, 0.0F, 0.0F);
-        setRotationAngle(rightArm, -1.5708F, 0.2618F, 0.6981F);
-        setRotationAngle(shoulder_r1, 0.0F, -0.0873F, 0.0F);
-        setRotationAngle(arm_r1, 0.0F, -0.3054F, 0.0F);
-        setRotationAngle(hand_r2, -0.3927F, -0.5672F, -0.0436F);
-        setRotationAngle(bodyattack, 0.1309F, 0.0F, 0.0F);
-        setRotationAngle(lower2, 0.1309F, 0.0F, 0.0F);
-        setRotationAngle(right2, -0.5672F, 0.1745F, 0.3927F);
-        setRotationAngle(rightLower2, 1.0036F, 0.0F, 0.0F);
-        setRotationAngle(left2, -0.5672F, -0.1745F, -0.3927F);
-        setRotationAngle(leftLower_r2, 0.6109F, 0.0F, 0.0F);
-        setRotationAngle(leftArm2, -1.1345F, 0.0F, -0.7418F);
-        setRotationAngle(rightArm2, -1.1345F, 0.0F, 0.7418F);
 
- */
+        return TexturedModelData.of(modelData,128,128);
     }
+
     public void setAngles(@Nullable LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;
         this.head.pitch = headPitch * 0.017453292F;
@@ -238,7 +257,7 @@ public class TheWorldModel extends EntityModel<LivingEntity> {
     public void renderAttack(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
         matrixStack.translate(0.0D, this.yOffset - 0.2D, -0.75D);
         head.render(matrixStack, buffer, packedLight, packedOverlay);
-        bodyattack.render(matrixStack, buffer, packedLight, packedOverlay);
+        body2.render(matrixStack, buffer, packedLight, packedOverlay);
         matrixStack.translate(0.0D, -this.yOffset, 0.0D);
         punchRight.render(matrixStack, buffer, packedLight, packedOverlay);
         punchLeft.render(matrixStack, buffer, packedLight, packedOverlay);

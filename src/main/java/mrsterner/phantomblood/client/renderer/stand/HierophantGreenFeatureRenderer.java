@@ -1,31 +1,37 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
+import mrsterner.phantomblood.PhantomBloodClient;
 import mrsterner.phantomblood.client.model.stand.DarkBlueMoonModel;
 import mrsterner.phantomblood.client.model.stand.HierophantGreenModel;
+import mrsterner.phantomblood.client.model.stand.KillerQueenModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
-public class HierophantGreenFeatureRenderer<T extends LivingEntity> extends FeatureRenderer<T, EntityModel<T>> {
-    private final HierophantGreenModel idleModel;
+public class HierophantGreenFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
+    private static HierophantGreenModel idleModel;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/hierophant_green.png");
 
-    public HierophantGreenFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, HierophantGreenModel idleModel) {
+    public HierophantGreenFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context, EntityModelLoader modelLoader) {
         super(context);
-        this.idleModel = idleModel;
+        idleModel = new HierophantGreenModel(modelLoader.getModelPart(PhantomBloodClient.HIEROPHANT_GREEN_MODEL_LAYER));
     }
 
-    @Override public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    @Override
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.HIEROPHANT_GREEN) return;
         matrices.push();
         if (StandUtils.getStandMode((PlayerEntity) entity) == StandMode.ATTACKING) {

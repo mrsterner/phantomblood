@@ -94,6 +94,40 @@ public class KillerQueenModel extends EntityModel<LivingEntity> {
 		this.lefthand2 = this.lefthands.getChild("lefthand2");
 		this.lefthand1 = this.lefthands.getChild("lefthand1");
 
+		setRotationAngle(body, -0.1745F, 0.0F, 0.0F);
+		setRotationAngle(chest, -0.0873F, 0.0F, 0.0F);
+		setRotationAngle(chestbot, -0.0437F, 0.0F, 0.0F);
+		setRotationAngle(bodybot, -0.0175F, 0.0F, 0.0F);
+		setRotationAngle(cloth1, -0.1484F, 0.0F, 0.0F);
+		setRotationAngle(cloth2, 0.5411F, 0.0F, 0.0F);
+		setRotationAngle(cloth3, -0.0628F, 0.0873F, 1.1345F);
+		setRotationAngle(cloth4, -0.0628F, -0.0873F, -0.7854F);
+
+		setRotationAngle(cloth5, -0.2269F, -0.0873F, -0.4363F);
+		setRotationAngle(cloth6, -0.2269F, 0.0873F, 0.48F);
+		setRotationAngle(leftleg, -0.288F, -0.4014F, -0.4363F);
+		setRotationAngle(leftlegbot, 0.5934F, -0.0524F, 0.0262F);
+		setRotationAngle(rightleg, -0.3665F, 0.3316F, 0.2443F);
+		setRotationAngle(rightlegbot, 0.9425F, 0.2443F, 0.0611F);
+		setRotationAngle(leftarm2, -0.2618F, 0.0F, 0.0F);
+		setRotationAngle(rightarm2, -0.6109F, 0.0F, 0.0F);
+		setRotationAngle(lefthand1, -1.5708F, -1.5708F, 0.0F);
+		setRotationAngle(lefthand2, -1.5708F, -1.5708F, 0.0F);
+		setRotationAngle(lefthand3, -1.5708F, -1.5708F, 0.0F);
+		setRotationAngle(lefthand4, -1.5708F, -1.5708F, 0.0F);
+		setRotationAngle(lefthand5, -1.5708F, -1.5708F, 0.0F);
+		setRotationAngle(righthand1, -1.5708F, 1.5708F, 0.0F);
+		setRotationAngle(righthand2, -1.5708F, 1.5708F, 0.0F);
+		setRotationAngle(righthand3, -1.5708F, 1.5708F, 0.0F);
+		setRotationAngle(righthand4, -1.5708F, 1.5708F, 0.0F);
+		setRotationAngle(righthand5, -1.5708F, 1.5708F, 0.0F);
+		setRotationAngle(rightarm, -0.6109F, 0.0F, 0.0F);
+		setRotationAngle(rightarmtop, -0.2618F, -0.2618F, 0.1745F);
+		setRotationAngle(rightarmdown, -0.9599F, -0.0873F, 0.0873F);
+		setRotationAngle(leftarm, -0.2618F, 0.0F, 0.0F);
+		setRotationAngle(leftarmtop, -0.6109F, 0.6109F, 0.2618F);
+		setRotationAngle(leftarmbot, 0.1745F, 0.0873F, 0.6981F);
+
 	}
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();

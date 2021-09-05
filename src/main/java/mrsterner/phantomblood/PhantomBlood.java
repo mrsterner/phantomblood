@@ -17,6 +17,7 @@ import mrsterner.phantomblood.common.timestop.StoppedTimeDamageHandler;
 import mrsterner.phantomblood.common.timestop.TimeStopComponent;
 import mrsterner.phantomblood.common.timestop.TimeStopComponentImpl;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -43,6 +44,15 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
 
     public static final String MODID = "phantomblood";
     public static final ItemGroup PHANTOMBLOOD_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(PBObjects.STONE_MASK_ITEM));
+
+    public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
+        registry.registerForPlayers(StandUserComponent.entityKey, StandUserComponentImpl::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(HamonUserComponent.entityKey, HamonUserComponentImpl::new, RespawnCopyStrategy.ALWAYS_COPY);
+    }
+
+    public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
+        registry.register(TimeStopComponent.worldKey, TimeStopComponentImpl::new);
+    }
 
     //Killer Queen Tagger
     public static NbtCompound getTagCompoundSafe(ItemStack stack) {
@@ -73,7 +83,7 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         VampireCallback.init();
         StandCallback.init();
         PBStructures.init();
-       //PBParticles.init();
+        //PBParticles.init();
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {
             Identifier nether_fortress = new Identifier(PhantomBlood.MODID, "inject/nether_fortress");
@@ -104,12 +114,5 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
 
     }
 
-    public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerForPlayers(StandUserComponent.entityKey, StandUserComponentImpl::new, RespawnCopyStrategy.ALWAYS_COPY);
-        registry.registerForPlayers(HamonUserComponent.entityKey, HamonUserComponentImpl::new, RespawnCopyStrategy.ALWAYS_COPY);
-    }
 
-    public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
-        registry.register(TimeStopComponent.worldKey, TimeStopComponentImpl::new);
-    }
 }

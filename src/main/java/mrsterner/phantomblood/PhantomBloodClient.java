@@ -88,9 +88,10 @@ public class PhantomBloodClient implements ClientModInitializer {
     public static final EntityModelLayer DARK_BLUE_MOON_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "dark_blue_moon"), "main");
     public static final EntityModelLayer THE_SUN_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "the_sun"), "main");
     public static final EntityModelLayer KING_CRIMSON_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "king_crimson"), "main");
-    public static final EntityModelLayer PURPLE_HAZE_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "hierophant_green"), "main");
+    public static final EntityModelLayer PURPLE_HAZE_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "purple_haze"), "main");
     public static final EntityModelLayer HIEROPHANT_GREEN_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "hierophant_green"), "main");
     public static final EntityModelLayer HAMON_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "hamon"), "main");
+    public static final EntityModelLayer TWENTY_CENTURY_BOY_MODEL_LAYER = new EntityModelLayer(new Identifier(PhantomBlood.MODID, "twenty_century_boy"), "main");
 
     @Override
     public void onInitializeClient() {
@@ -153,7 +154,7 @@ public class PhantomBloodClient implements ClientModInitializer {
 
 
         EntityModelLayerRegistry.registerModelLayer(THE_WORLD_MODEL_LAYER, TheWorldModel::getTexturedModelData);
-        /*
+
         EntityModelLayerRegistry.registerModelLayer(KILLER_QUEEN_MODEL_LAYER, KillerQueenModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(STAR_PLATINUM_MODEL_LAYER, StarPlatinumModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(CRAZY_DIAMOND_MODEL_LAYER, CrazyDiamondModel::getTexturedModelData);
@@ -163,9 +164,10 @@ public class PhantomBloodClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(KING_CRIMSON_MODEL_LAYER, KingCrimsonModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(PURPLE_HAZE_MODEL_LAYER, PurpleHazeModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(HIEROPHANT_GREEN_MODEL_LAYER, HierophantGreenModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(TWENTY_CENTURY_BOY_MODEL_LAYER, TwentyCenturyBoyModel::getTexturedModelData);
 
 
-         */
+
 
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper, context) -> {
             if (entityType == EntityType.PLAYER) {

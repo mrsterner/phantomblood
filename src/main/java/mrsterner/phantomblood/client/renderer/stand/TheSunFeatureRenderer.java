@@ -1,29 +1,36 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
+import mrsterner.phantomblood.PhantomBloodClient;
 import mrsterner.phantomblood.client.model.stand.TheSunModel;
+import mrsterner.phantomblood.client.model.stand.TheWorldModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
-public class TheSunFeatureRenderer<T extends LivingEntity> extends FeatureRenderer<T, EntityModel<T>> {
-    private final TheSunModel idleModel;
+public class TheSunFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
+    private static TheSunModel idleModel;
     private static final Identifier texture = new Identifier("phantomblood:textures/entity/stand/the_sun.png");
 
-    public TheSunFeatureRenderer(FeatureRendererContext<T, EntityModel<T>> context, TheSunModel idleModel) {
+    public TheSunFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context, EntityModelLoader modelLoader) {
         super(context);
-        this.idleModel = idleModel;
+        idleModel = new TheSunModel(modelLoader.getModelPart(PhantomBloodClient.THE_SUN_MODEL_LAYER));
     }
 
-    @Override public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+
+    @Override
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) != Stand.THE_SUN) return;
 
         matrices.push();
@@ -41,8 +48,5 @@ public class TheSunFeatureRenderer<T extends LivingEntity> extends FeatureRender
 
         }
         matrices.pop();
-
-
-
     }
 }

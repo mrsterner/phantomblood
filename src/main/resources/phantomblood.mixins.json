@@ -3,8 +3,29 @@
   "package": "mrsterner.phantomblood.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "BoatEntityMixin",
+    "EnchantmentTargetMixin",
+    "EntityMixin",
+    "EntityRenderDispatcherMixin",
+    "HorseEntityMixin",
+    "LivingEntityMixin",
+    "MinecartEntityMixin",
+    "PigEntityMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
+    "ServerWorldMixin",
+    "StriderEntityMixin",
+    "WorldChunkMixin"
   ],
   "client": [
+    "ClientPlayerEntityMixin",
+    "ClientWorldMixin",
+    "InGameHudMixin",
+    "InGameOverlayRendererMixin",
+    "ParticleAccessor",
+    "ParticleManagerMixin",
+    "PlayerEntityRendererMixin",
+    "WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

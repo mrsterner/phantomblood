@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameOverlayRenderer.class)
 public abstract class InGameOverlayRendererMixin {
 
-
     @Inject(method = "renderFireOverlay", at = @At("HEAD"), cancellable = true)
     private static void dontGetSprite(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci){
         if(StandUtils.getStand(minecraftClient.player) == Stand.THE_SUN){

@@ -1,6 +1,8 @@
 package mrsterner.phantomblood.client.renderer.stand;
 
+import mrsterner.phantomblood.PhantomBloodClient;
 import mrsterner.phantomblood.client.model.HamonModel;
+import mrsterner.phantomblood.client.model.stand.TheWorldModel;
 import mrsterner.phantomblood.client.model.stand.TwentyCenturyBoyModel;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -24,6 +26,7 @@ public class TwentyCenturyBoyFeatureRenderer extends FeatureRenderer<AbstractCli
 
     public TwentyCenturyBoyFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context, EntityModelLoader modelLoader) {
         super(context);
+        model = new TwentyCenturyBoyModel(modelLoader.getModelPart(PhantomBloodClient.TWENTY_CENTURY_BOY_MODEL_LAYER));
     }
 
     @Override

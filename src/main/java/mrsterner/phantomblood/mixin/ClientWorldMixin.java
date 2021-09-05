@@ -2,27 +2,33 @@ package mrsterner.phantomblood.mixin;
 
 
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
-import net.minecraft.client.world.ClientChunkManager;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ClientChunkManager.class)
-public class ClientChunkManagerMixin {
-    @Shadow @Final private ClientWorld world;
-/*
-    @Inject(method = "shouldTickEntity", at = @At("HEAD"), cancellable = true)
-    void doNotTickEntityWhenTimeIsStopped(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.isInRangeOfTimeStop(entity)) {
+import static mrsterner.phantomblood.common.timestop.TimeStopUtils.getTimeStopper;
+
+@Mixin(ClientWorld.class)
+public class ClientWorldMixin {
+
+   @Shadow @Final private final MinecraftClient client = MinecraftClient.getInstance();
+
+    @Inject(method = "tickEntity", at = @At("HEAD"), cancellable = true)
+    private void doNotTickEntityWhenTimeIsStopped(Entity entity, CallbackInfo ci) {
+        if (TimeStopUtils.getTimeStoppedTicks(entity.world) > 0 && TimeStopUtils.isInRangeOfTimeStop(entity) && !(entity instanceof PlayerEntity)) {
             entity.prevHorizontalSpeed = entity.horizontalSpeed;
             entity.prevPitch = entity.getPitch();
             entity.prevYaw = entity.getYaw();
@@ -39,16 +45,14 @@ public class ClientChunkManagerMixin {
                 lEntity.lastHandSwingProgress = lEntity.handSwingProgress;
                 lEntity.lastLimbDistance = lEntity.limbDistance;
             }
-            cir.setReturnValue(false);
+            ci.cancel();
         }
     }
-    //Range of The World Time Stop squared
-    @Inject(method = "shouldTickBlock", at = @At("HEAD"), cancellable = true)
-    void doNotTickBlockWhenTimeIsStopped(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.getTimeStopper(world).squaredDistanceTo(Vec3d.ofCenter(pos)) < 8) {
-            cir.setReturnValue(false);
+    @Inject(method = "addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V", at = @At("HEAD"), cancellable = true)
+    private void doNotSpawnParticles(ParticleEffect parameters, double x, double y, double z, double velocityX, double velocityY, double velocityZ, CallbackInfo ci) {
+        if (TimeStopUtils.getTimeStoppedTicks(client.world) > 0 && TimeStopUtils.isInRangeOfTimeStop(getTimeStopper(client.world))){
+            ci.cancel();
         }
     }
 
- */
 }

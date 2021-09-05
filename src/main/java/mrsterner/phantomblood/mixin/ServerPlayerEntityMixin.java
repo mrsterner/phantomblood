@@ -19,7 +19,6 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         super(world, pos, yaw, profile);
     }
 
-
     @Inject(method = "onDeath", at = @At("RETURN"))
     private void onDeathStandKiller(CallbackInfo ci) {
         StandUtils.setStandActive(this, false);

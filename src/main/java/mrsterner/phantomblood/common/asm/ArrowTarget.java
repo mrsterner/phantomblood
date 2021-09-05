@@ -1,6 +1,5 @@
 package mrsterner.phantomblood.common.asm;
 
-
 import mrsterner.phantomblood.common.item.ArrowHeadItem;
 import mrsterner.phantomblood.mixin.EnchantmentTargetMixin;
 import net.minecraft.item.Item;

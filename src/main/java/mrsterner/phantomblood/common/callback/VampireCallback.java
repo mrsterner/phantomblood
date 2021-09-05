@@ -24,12 +24,10 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import top.theillusivec4.somnus.api.PlayerSleepEvents;
-import top.theillusivec4.somnus.api.WorldSleepEvents;
 
 import java.util.List;
 
-public class VampireCallback extends WorldSleepEvents implements AttackEntityCallback {
+public class VampireCallback implements AttackEntityCallback {
 
     public static void init(){
         /*

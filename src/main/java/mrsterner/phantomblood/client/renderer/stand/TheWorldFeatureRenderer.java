@@ -25,6 +25,7 @@ public class TheWorldFeatureRenderer extends FeatureRenderer<AbstractClientPlaye
 
     public TheWorldFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context, EntityModelLoader modelLoader) {
         super(context);
+        model = new TheWorldModel(modelLoader.getModelPart(PhantomBloodClient.THE_WORLD_MODEL_LAYER));
     }
 
     @Override

@@ -26,9 +26,10 @@
       "mrsterner.phantomblood.PhantomBlood"
     ],
     "mm:early_risers":[
-
+      "mrsterner.phantomblood.common.asm.EarlyRiser"
     ],
     "server": []
+
   },
   "mixins": [
     "phantomblood.mixins.json"
@@ -36,7 +37,6 @@
   "depends": {
     "fabricloader": ">=0.11.6",
     "fabric": "*",
-    "somnus": "*",
     "satin": ">=1.6.1",
     "cardinal-components-base": ">=3.1.1",
     "cardinal-components-world": ">=3.1.1",

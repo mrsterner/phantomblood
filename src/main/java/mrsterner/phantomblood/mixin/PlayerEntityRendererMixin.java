@@ -4,9 +4,7 @@ import mrsterner.phantomblood.PhantomBloodClient;
 import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.client.model.stand.CrazyDiamondModel;
 import mrsterner.phantomblood.client.model.stand.TheWorldModel;
-import mrsterner.phantomblood.client.renderer.stand.HamonFeatureRenderer;
-import mrsterner.phantomblood.client.renderer.stand.TheWorldFeatureRenderer;
-import mrsterner.phantomblood.client.renderer.stand.TwentyCenturyBoyFeatureRenderer;
+import mrsterner.phantomblood.client.renderer.stand.*;
 import mrsterner.phantomblood.common.block.CoffinBlock;
 import mrsterner.phantomblood.common.hamon.Hamon;
 import mrsterner.phantomblood.common.hamon.HamonUtils;
@@ -57,6 +55,16 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         addFeature(new HamonFeatureRenderer(this, ctx.getModelLoader()));
         addFeature(new TwentyCenturyBoyFeatureRenderer(this, ctx.getModelLoader()));
         addFeature(new TheWorldFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new TheSunFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new StarPlatinumFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new KillerQueenFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new HierophantGreenFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new CrazyDiamondFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new PurpleHazeFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new DarkBlueMoonFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new WeatherReportFeatureRenderer(this, ctx.getModelLoader()));
+        addFeature(new KingCrimsonFeatureRenderer(this, ctx.getModelLoader()));
+
     }
 
     @Inject(at = @At("HEAD"), method = "getArmPose", cancellable = true)

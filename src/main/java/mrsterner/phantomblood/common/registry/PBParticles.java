@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class PBParticles {
-    /*
+
     public static final DefaultParticleType WIND = FabricParticleTypes.simple(true);
 
     public static <T> T register(Registry<? super T> registry, String name, T entry) {
@@ -18,5 +18,5 @@ public class PBParticles {
         register(Registry.PARTICLE_TYPE, "wind", WIND);
     }
 
-     */
+
 }

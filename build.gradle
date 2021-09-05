@@ -93,54 +93,64 @@ repositories {
 }
 
 dependencies {
-	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-
+    //Cloth Config
     modImplementation("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-    modImplementation "top.theillusivec4.somnus:somnus-fabric:${somnus_version}"
-
+    //Patchouli
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
-
-
-    //modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
-    //modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
-
-    //modImplementation "curse.maven:haema-391257:${project.haema_version}"
-    modImplementation "curse.maven:lambdynamiclights-393442:${project.lambdynamiclights_version}"
-    modImplementation "dev.lambdaurora:spruceui:${project.spruceui_version}"
-    include "dev.lambdaurora:spruceui:${project.spruceui_version}"
-
-    //modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
-    //modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
-
+    //CCA
     modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
     include "io.github.onyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cc_version}"
     include "io.github.onyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cc_version}"
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-world:${project.cc_version}"
     include "io.github.onyxStudios.Cardinal-Components-API:cardinal-components-world:${project.cc_version}"
-
-
+    //Geckolib
     modImplementation 'software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev'
-
+    //Satin
     modImplementation "io.github.ladysnake:satin:${project.satin_version}"
     include "io.github.ladysnake:satin:${project.satin_version}"
-
-/*
-    modRuntime ("grondag:canvas-mc116:1.0.1511"){
-        exclude module:"modmenu"
-    }
- */
+    //Mod Menu
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+    //Fabric ASM
     modImplementation 'com.github.Chocohead:Fabric-ASM:v2.3'
     include 'com.github.Chocohead:Fabric-ASM:v2.3'
 
+    //Canvas
+    //modImplementation "grondag:canvas-mc117-1.17:1.0.1985"
+
+    //REI
+    /*
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
+    modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
+     */
+
+    //Haema
+    //modImplementation "curse.maven:haema-391257:${project.haema_version}"
+
+    //LambdaDynamicLights
+    /*
+    modImplementation "curse.maven:lambdynamiclights-393442:${project.lambdynamiclights_version}"
+    modImplementation "dev.lambdaurora:spruceui:${project.spruceui_version}"
+    include "dev.lambdaurora:spruceui:${project.spruceui_version}"
+     */
+
+    //Kotlin
+    /*
+    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+    modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
+     */
+
+    //Somnus
+    /*
+    modImplementation "top.theillusivec4.somnus:somnus-fabric:${project.somnus_version}"
+    include "top.theillusivec4.somnus:somnus-fabric:${project.somnus_version}"
+     */
 }
 
 processResources {
