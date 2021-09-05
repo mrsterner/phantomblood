@@ -25,6 +25,11 @@ versions of [Minecraft][minecraft] Java Edition.
 
 @MrSterner me in #wills-stuff in the [Minecraft Mod Development Discord][contributing]
 
+## Licence
+
+* Sounds
+  - (c) 2021, mrsterner
+  - [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%203.0-yellow.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 [contributing]: https://discord.gg/G3QsRGzj9B
 [curseforge]: https://curseforge.com/minecraft/mc-mods/phantom-blood
