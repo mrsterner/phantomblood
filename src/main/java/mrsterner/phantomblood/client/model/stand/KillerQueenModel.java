@@ -65,9 +65,6 @@ public class KillerQueenModel extends EntityModel<LivingEntity> {
 		this.bodybot = this.body.getChild("bodybot");
 		this.chest = this.body.getChild("chest");
 		this.chestbot = this.chest.getChild("chestbot");
-		this.idelarms = root.getChild("idelarms");
-		this.leftarm = this.idelarms.getChild("leftarm");
-		this.rightarm = this.idelarms.getChild("rightarm");
 		this.head = root.getChild("head");
 		this.leftleg = root.getChild("leftleg");
 		this.leftlegbot = this.leftleg.getChild("leftlegbot");
@@ -75,6 +72,9 @@ public class KillerQueenModel extends EntityModel<LivingEntity> {
 		this.rightlegbot = this.rightleg.getChild("rightlegbot");
 		this.shoulders = root.getChild("shoulders");
 		this.rightarm2 = this.shoulders.getChild("rightarm2");
+		this.idelarms = root.getChild("idelarms");
+		this.leftarm = this.idelarms.getChild("leftarm");
+		this.rightarm = this.idelarms.getChild("rightarm");
 		this.rightarmtop = this.rightarm.getChild("rightarmtop");
 		this.rightarmdown = this.rightarmtop.getChild("rightarmdown");
 		this.leftarm2 = this.shoulders.getChild("leftarm2");
@@ -94,55 +94,52 @@ public class KillerQueenModel extends EntityModel<LivingEntity> {
 		this.lefthand2 = this.lefthands.getChild("lefthand2");
 		this.lefthand1 = this.lefthands.getChild("lefthand1");
 
+
+
 		setRotationAngle(body, -0.1745F, 0.0F, 0.0F);
 		setRotationAngle(chest, -0.0873F, 0.0F, 0.0F);
 		setRotationAngle(chestbot, -0.0437F, 0.0F, 0.0F);
 		setRotationAngle(bodybot, -0.0175F, 0.0F, 0.0F);
+
 		setRotationAngle(cloth1, -0.1484F, 0.0F, 0.0F);
 		setRotationAngle(cloth2, 0.5411F, 0.0F, 0.0F);
+
 		setRotationAngle(cloth3, -0.0628F, 0.0873F, 1.1345F);
 		setRotationAngle(cloth4, -0.0628F, -0.0873F, -0.7854F);
-
 		setRotationAngle(cloth5, -0.2269F, -0.0873F, -0.4363F);
 		setRotationAngle(cloth6, -0.2269F, 0.0873F, 0.48F);
 		setRotationAngle(leftleg, -0.288F, -0.4014F, -0.4363F);
 		setRotationAngle(leftlegbot, 0.5934F, -0.0524F, 0.0262F);
 		setRotationAngle(rightleg, -0.3665F, 0.3316F, 0.2443F);
 		setRotationAngle(rightlegbot, 0.9425F, 0.2443F, 0.0611F);
+
 		setRotationAngle(leftarm2, -0.2618F, 0.0F, 0.0F);
 		setRotationAngle(rightarm2, -0.6109F, 0.0F, 0.0F);
+
+
 		setRotationAngle(lefthand1, -1.5708F, -1.5708F, 0.0F);
 		setRotationAngle(lefthand2, -1.5708F, -1.5708F, 0.0F);
 		setRotationAngle(lefthand3, -1.5708F, -1.5708F, 0.0F);
 		setRotationAngle(lefthand4, -1.5708F, -1.5708F, 0.0F);
 		setRotationAngle(lefthand5, -1.5708F, -1.5708F, 0.0F);
+
 		setRotationAngle(righthand1, -1.5708F, 1.5708F, 0.0F);
 		setRotationAngle(righthand2, -1.5708F, 1.5708F, 0.0F);
 		setRotationAngle(righthand3, -1.5708F, 1.5708F, 0.0F);
 		setRotationAngle(righthand4, -1.5708F, 1.5708F, 0.0F);
 		setRotationAngle(righthand5, -1.5708F, 1.5708F, 0.0F);
+
 		setRotationAngle(rightarm, -0.6109F, 0.0F, 0.0F);
 		setRotationAngle(rightarmtop, -0.2618F, -0.2618F, 0.1745F);
 		setRotationAngle(rightarmdown, -0.9599F, -0.0873F, 0.0873F);
 		setRotationAngle(leftarm, -0.2618F, 0.0F, 0.0F);
 		setRotationAngle(leftarmtop, -0.6109F, 0.6109F, 0.2618F);
-		setRotationAngle(leftarmbot, 0.1745F, 0.0873F, 0.6981F);
 
 	}
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-/*
-		setRotationAngle(body, -0.1745F, 0.0F, 0.0F);
-		setRotationAngle(chest, -0.0873F, 0.0F, 0.0F);
-		setRotationAngle(chestbot, -0.0437F, 0.0F, 0.0F);
-		setRotationAngle(bodybot, -0.0175F, 0.0F, 0.0F);
-		setRotationAngle(cloth1, -0.1484F, 0.0F, 0.0F);
-		setRotationAngle(cloth2, 0.5411F, 0.0F, 0.0F);
-		setRotationAngle(cloth3, -0.0628F, 0.0873F, 1.1345F);
-		setRotationAngle(cloth4, -0.0628F, -0.0873F, -0.7854F);
 
- */
 		ModelPartData modelPartData1 = modelPartData.addChild("body", ModelPartBuilder.create().uv(0,23).cuboid(-4.0F, 0.0F, -2.0F, 8.0F, 7.0F, 4.0F), ModelTransform.pivot(0.0F,-1.0F,0.0F));
 		ModelPartData modelPartData2 = modelPartData1.addChild("chest", ModelPartBuilder.create().uv(52,36).cuboid(-3.5F, 0.2F, -2.5F, 7.0F, 4.0F, 1.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData2.addChild("chestbot", ModelPartBuilder.create().uv(0,0).cuboid(-1.5F, 4.0F, 0.0F, 3.0F, 3.0F, 1.0F), ModelTransform.pivot(0.0F,0.0F,-2.3F));
@@ -162,14 +159,14 @@ public class KillerQueenModel extends EntityModel<LivingEntity> {
 		ModelPartData modelPartData6 = modelPartData.addChild("shoulders", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,24.0F,0.0F));
 		modelPartData6.addChild("leftarm2", ModelPartBuilder.create().uv(0,48).cuboid(-1.0F, -2.0F, -2.0F, 4.0F, 4.0F, 5.0F), ModelTransform.pivot(5.0F,-24.0F,0.0F));
 		modelPartData6.addChild("rightarm2", ModelPartBuilder.create().uv(47,0).cuboid(-2.0F, -2.0F, -2.5F, 4.0F, 4.0F, 5.0F), ModelTransform.pivot(-6.0F,-24.0F,0.5F));
-		ModelPartData modelPartData7 = modelPartData.addChild("punch", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,1.0F,-8.0F));
-		ModelPartData modelPartData8 = modelPartData7.addChild("lefthands", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-1.0F,8.0F));
+		ModelPartData modelPartData7 = modelPartData.addChild("punch", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,24.0F,0.0F));
+		ModelPartData modelPartData8 = modelPartData7.addChild("lefthands", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-24.0F,0.0F));
 		modelPartData8.addChild("lefthand1", ModelPartBuilder.create().uv(38,23).cuboid(-12.0F, 18.0F, -1.0F, 8.0F, 3.0F, 4.0F, true), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData8.addChild("lefthand2", ModelPartBuilder.create().uv(38,23).cuboid(-4.0F, 13.0F, 5.0F, 8.0F, 3.0F, 4.0F, true), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData8.addChild("lefthand3", ModelPartBuilder.create().uv(38,23).cuboid(0.0F, 13.0F, -8.0F, 8.0F, 3.0F, 4.0F, true), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData8.addChild("lefthand4", ModelPartBuilder.create().uv(38,23).cuboid(0.0F, 10.0F, -8.0F, 8.0F, 3.0F, 4.0F, true), ModelTransform.pivot(3.0F,6.0F,4.0F));
 		modelPartData8.addChild("lefthand5", ModelPartBuilder.create().uv(38,23).cuboid(0.0F, 13.0F, -8.0F, 8.0F, 3.0F, 4.0F, true), ModelTransform.pivot(-2.0F,3.0F,-10.0F));
-		ModelPartData modelPartData9 = modelPartData7.addChild("righthands", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-1.0F,8.0F));
+		ModelPartData modelPartData9 = modelPartData7.addChild("righthands", ModelPartBuilder.create(), ModelTransform.pivot(0.0F,-24.0F,0.0F));
 		modelPartData9.addChild("righthand1", ModelPartBuilder.create().uv(38,23).cuboid(-8.0F, 19.0F, -1.0F, 8.0F, 3.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData9.addChild("righthand2", ModelPartBuilder.create().uv(38,23).cuboid(-3.0F, 12.0F, 5.0F, 8.0F, 3.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData9.addChild("righthand3", ModelPartBuilder.create().uv(38,23).cuboid(0.0F, 12.0F, -8.0F, 8.0F, 3.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
@@ -183,33 +180,6 @@ public class KillerQueenModel extends EntityModel<LivingEntity> {
 		ModelPartData modelPartData14 = modelPartData13.addChild("leftarmtop", ModelPartBuilder.create().uv(14,53).cuboid(0.0F, 1.0F, -0.5F, 3.0F, 6.0F, 4.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData14.addChild("leftarmbot", ModelPartBuilder.create().uv(20,15).cuboid(0.0F, -4.0F, -6.5F, 3.0F, 4.0F, 8.0F), ModelTransform.pivot(0.0F,7.0F,1.5F));
 		return TexturedModelData.of(modelData,128,128);
-/*
-		setRotationAngle(cloth5, -0.2269F, -0.0873F, -0.4363F);
-		setRotationAngle(cloth6, -0.2269F, 0.0873F, 0.48F);
-		setRotationAngle(leftleg, -0.288F, -0.4014F, -0.4363F);
-		setRotationAngle(leftlegbot, 0.5934F, -0.0524F, 0.0262F);
-		setRotationAngle(rightleg, -0.3665F, 0.3316F, 0.2443F);
-		setRotationAngle(rightlegbot, 0.9425F, 0.2443F, 0.0611F);
-		setRotationAngle(leftarm2, -0.2618F, 0.0F, 0.0F);
-		setRotationAngle(rightarm2, -0.6109F, 0.0F, 0.0F);
-		setRotationAngle(lefthand1, -1.5708F, -1.5708F, 0.0F);
-		setRotationAngle(lefthand2, -1.5708F, -1.5708F, 0.0F);
-		setRotationAngle(lefthand3, -1.5708F, -1.5708F, 0.0F);
-		setRotationAngle(lefthand4, -1.5708F, -1.5708F, 0.0F);
-		setRotationAngle(lefthand5, -1.5708F, -1.5708F, 0.0F);
-		setRotationAngle(righthand1, -1.5708F, 1.5708F, 0.0F);
-		setRotationAngle(righthand2, -1.5708F, 1.5708F, 0.0F);
-		setRotationAngle(righthand3, -1.5708F, 1.5708F, 0.0F);
-		setRotationAngle(righthand4, -1.5708F, 1.5708F, 0.0F);
-		setRotationAngle(righthand5, -1.5708F, 1.5708F, 0.0F);
-		setRotationAngle(rightarm, -0.6109F, 0.0F, 0.0F);
-		setRotationAngle(rightarmtop, -0.2618F, -0.2618F, 0.1745F);
-		setRotationAngle(rightarmdown, -0.9599F, -0.0873F, 0.0873F);
-		setRotationAngle(leftarm, -0.2618F, 0.0F, 0.0F);
-		setRotationAngle(leftarmtop, -0.6109F, 0.6109F, 0.2618F);
-		setRotationAngle(leftarmbot, 0.1745F, 0.0873F, 0.6981F);
-
- */
 	}
 	@Override
 	public void setAngles(@Nullable LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
