@@ -49,11 +49,11 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                         case "stand.phantomblood.the_world":
                         case "stand.phantomblood.crazy_diamond":
                         case "stand.phantomblood.star_platinum":
+                        case "stand.phantomblood.killer_queen":
                             boxX = 3.0;
                             boxY = 1.0;
                             boxZ = 2.0;
                             break;
-                        case "stand.phantomblood.killer_queen":
                         case "stand.phantomblood.weather_report":
                             boxX = 10.0;
                             boxY = 10.0;
@@ -66,7 +66,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
                             .forEach(it -> {
                                 if (ticksSinceSound > 8) {
                                     ticksSinceSound = 0;
-                                    world.playSound(null, player.getBlockPos(), PBSoundEvents.PUNCH, SoundCategory.PLAYERS, 0.15F, 1);
+                                    world.playSound(null, player.getBlockPos(), PBSoundEvents.PUNCH, SoundCategory.PLAYERS, 0.05F, 1);
                                 }
                                 switch (stand) {
                                     case "stand.phantomblood.the_world":
@@ -115,7 +115,7 @@ public class StandPunchHandler implements ServerTickEvents.StartWorldTick {
 
                                 if (ticksSinceSound > 8 && energy >= energyForAbility) {
                                     ticksSinceSound = 0;
-                                    world.playSound(null, player.getBlockPos(), PBSoundEvents.PUNCH, SoundCategory.PLAYERS, 0.15F, 1);
+                                    world.playSound(null, player.getBlockPos(), PBSoundEvents.PUNCH, SoundCategory.PLAYERS, 0.05F, 1);
                                     StandUtils.setStandEnergy(player, energy - energyForAbility);
                                     ((LivingEntity) it).heal(1 + level);
                                 }

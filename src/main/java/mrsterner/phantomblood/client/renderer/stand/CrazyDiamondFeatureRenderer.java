@@ -38,7 +38,6 @@ public class CrazyDiamondFeatureRenderer extends FeatureRenderer<AbstractClientP
             idleModel.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         }else if(StandUtils.getStandMode((PlayerEntity) entity) == StandMode.HEALING){
             idleModel.setHealingAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            //idleModel.renderAttack(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
             idleModel.renderHeal(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
         }
         else {

@@ -1756,58 +1756,46 @@ public class CrazyDiamondModel extends EntityModel<LivingEntity> {
 						.uv(26, 5).cuboid(-4.6F, -8.0F, 0.0F, 9.0F, 3.0F, 6.0F, new Dilation(0.01F, 0.01F, 0.01F)),
 				ModelTransform.of(0.0F, 0.0F, 0.0F, 0.4014F, 0.0F, 0.0F));
 		head.addChild("Shape6",
-				ModelPartBuilder.create()
-						.uv(65, 68).cuboid(-3.0F, -1.5F, -2.0F, 3.0F, 3.0F, 3.0F, new Dilation(0.02F, 0.02F, 0.02F)),
+				ModelPartBuilder.create().uv(65, 68).cuboid(-3.0F, -1.5F, -2.0F, 3.0F, 3.0F, 3.0F, new Dilation(0.02F, 0.02F, 0.02F)),
 				ModelTransform.of(3.854F, -7.8722F, 2.5976F, 0.4887F, 0.6545F, 0.3491F));
 		head.addChild("Shape5",
-				ModelPartBuilder.create()
-						.uv(0, 68).cuboid(0.0F, -1.5F, -2.0F, 3.0F, 3.0F, 3.0F, new Dilation(0.02F, 0.02F, 0.02F)),
+				ModelPartBuilder.create().uv(0, 68).cuboid(0.0F, -1.5F, -2.0F, 3.0F, 3.0F, 3.0F, new Dilation(0.02F, 0.02F, 0.02F)),
 				ModelTransform.of(-3.854F, -7.8722F, 2.5976F, 0.4887F, -0.6545F, -0.3491F));
 		head.addChild("Shape2",
-				ModelPartBuilder.create()
-						.cuboid(-4.5F, -7.2F, -1.7F, 9.0F, 4.0F, 7.0F),
+				ModelPartBuilder.create().cuboid(-4.5F, -7.2F, -1.7F, 9.0F, 4.0F, 7.0F),
 				ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0524F, 0.0F, 0.0F));
 		head.addChild("Shape46",
-				ModelPartBuilder.create()
-						.uv(22, 14).cuboid(-4.5F, -4.2F, 3.3F, 9.0F, 1.0F, 2.0F),
+				ModelPartBuilder.create().uv(22, 14).cuboid(-4.5F, -4.2F, 3.3F, 9.0F, 1.0F, 2.0F),
 				ModelTransform.of(0.0F, 1.4F, 0.0F, 0.0524F, 0.0F, 0.0F));
 		head.addChild("Shape7",
-				ModelPartBuilder.create()
-						.uv(62, 17).cuboid(-4.5F, -6.2F, -1.7F, 1.0F, 3.0F, 7.0F),
+				ModelPartBuilder.create().uv(62, 17).cuboid(-4.5F, -6.2F, -1.7F, 1.0F, 3.0F, 7.0F),
 				ModelTransform.of(0.3F, 2.9432F, -0.7469F, 0.0524F, 0.0F, 0.0F));
 		head.addChild("Shape8",
-				ModelPartBuilder.create()
-						.uv(20, 60).cuboid(3.5F, -6.2F, -1.7F, 1.0F, 3.0F, 7.0F),
+				ModelPartBuilder.create().uv(20, 60).cuboid(3.5F, -6.2F, -1.7F, 1.0F, 3.0F, 7.0F),
 				ModelTransform.of(-0.3F, 2.9432F, -0.7469F, 0.0524F, 0.0F, 0.0F));
 		ModelPartData glass = head.addChild("glass",
 				ModelPartBuilder.create(),
 				ModelTransform.of(0.0F, -0.8F, 0.1F, 0.192F, 0.0F, 0.0F));
 		glass.addChild("Shape3",
-				ModelPartBuilder.create()
-						.uv(58, 38).cuboid(2.6251F, -6.9618F, -2.9109F, 3.0F, 2.0F, 6.0F),
+				ModelPartBuilder.create().uv(58, 38).cuboid(2.6251F, -6.9618F, -2.9109F, 3.0F, 2.0F, 6.0F),
 				ModelTransform.of(0.0F, 0.0F, 1.0F, 0.0F, 1.0996F, 0.0F));
 		ModelPartData bone = glass.addChild("bone",
 				ModelPartBuilder.create(),
 				ModelTransform.of(1.5111F, -4.2251F, -2.5709F, 0.0F, 0.0F, 0.0F));
 		bone.addChild("Shape15",
-				ModelPartBuilder.create()
-						.uv(63, 46).cuboid(-0.7F, 1.0F, -2.3F, 2.0F, 2.0F, 5.0F, new Dilation(-0.1F, -0.1F, -0.1F)),
+				ModelPartBuilder.create().uv(63, 46).cuboid(-0.7F, 1.0F, -2.3F, 2.0F, 2.0F, 5.0F, new Dilation(-0.1F, -0.1F, -0.1F)),
 				ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 1.1345F, 0.0F));
 		bone.addChild("Shape17",
-				ModelPartBuilder.create()
-						.uv(22, 34).cuboid(0.3F, -1.0F, -2.4F, 1.0F, 3.0F, 1.0F, new Dilation(-0.11F, -0.11F, -0.11F)),
+				ModelPartBuilder.create().uv(22, 34).cuboid(0.3F, -1.0F, -2.4F, 1.0F, 3.0F, 1.0F, new Dilation(-0.11F, -0.11F, -0.11F)),
 				ModelTransform.of(0.0606F, -0.1107F, 0.5693F, 0.0F, 1.1345F, 0.0F));
 		bone.addChild("Shape18",
-				ModelPartBuilder.create()
-						.uv(0, 24).cuboid(-1.3F, -1.0F, -2.4F, 1.0F, 3.0F, 1.0F, new Dilation(-0.11F, -0.11F, -0.11F)),
+				ModelPartBuilder.create().uv(0, 24).cuboid(-1.3F, -1.0F, -2.4F, 1.0F, 3.0F, 1.0F, new Dilation(-0.11F, -0.11F, -0.11F)),
 				ModelTransform.of(-3.0829F, -0.1107F, 0.5693F, 0.0F, -1.1345F, 0.0F));
 		bone.addChild("Shape16",
-				ModelPartBuilder.create()
-						.uv(63, 27).cuboid(-1.3F, 1.0F, -2.6F, 2.0F, 2.0F, 5.0F, new Dilation(-0.1F, -0.1F, -0.1F)),
+				ModelPartBuilder.create().uv(63, 27).cuboid(-1.3F, 1.0F, -2.6F, 2.0F, 2.0F, 5.0F, new Dilation(-0.1F, -0.1F, -0.1F)),
 				ModelTransform.of(-3.2942F, -0.0242F, 0.1244F, 0.0F, -1.1345F, 0.0F));
 		glass.addChild("Shape4",
-				ModelPartBuilder.create()
-						.uv(57, 9).cuboid(-5.6251F, -6.9618F, -2.9109F, 3.0F, 2.0F, 6.0F),
+				ModelPartBuilder.create().uv(57, 9).cuboid(-5.6251F, -6.9618F, -2.9109F, 3.0F, 2.0F, 6.0F),
 				ModelTransform.of(0.0F, 0.0F, 1.0F, 0.0F, -1.0996F, 0.0F));
 		ModelPartData heart7 = head.addChild("heart7",
 				ModelPartBuilder.create(),
@@ -2102,6 +2090,35 @@ public class CrazyDiamondModel extends EntityModel<LivingEntity> {
 		float offxr = r * MathHelper.sin(r * speed * animationProgress) * power - 0.2F;
 		this.left_hands_ro2.pivotX = offxl;
 		this.right_hands_ro2.pivotX = offxr;
+		this.yOffset = (double)MathHelper.cos((float)(0.1D * (double)animationProgress)) * 0.1D;
+		this.head.pitch = headPitch * 0.017453292F;
+		this.head.yaw = headYaw * 0.017453292F;
+		this.handl1.yaw = MathHelper.cos(speed * animationProgress) * 1.2F * power;
+		this.handl2.yaw = MathHelper.cos(speed * animationProgress + 1.0471976F) * 1.4F * power;
+		this.handl3.yaw = MathHelper.cos(speed * animationProgress + (float)2.0943951023931953D) * 1.6F * power;
+		this.handl4.yaw = MathHelper.cos(speed * animationProgress + (float)2.6179938779914944D) * 1.3F * power;
+		this.handl5.yaw = MathHelper.cos(speed * animationProgress + (float)3.141592653589793D) * 1.7F * power;
+		this.handr1.yaw = MathHelper.cos(speed * animationProgress + (float)3.665191429188092D) * 1.2F * power;
+		this.handr2.yaw = MathHelper.cos(speed * animationProgress + (float)6.283185307179586D) * 1.1F * power;
+		this.handr3.yaw = MathHelper.cos(speed * animationProgress + (float)8.377580409572781D) * 1.4F * power;
+		this.handr4.yaw = MathHelper.cos(speed * animationProgress + (float)10.471975511965978D) * 1.5F * power;
+		this.handr5.yaw = MathHelper.cos(speed * animationProgress + (float)1.5707963267948966D) * 1.6F * power;
+		this.left_hands_ro.pitch = headPitch * 0.017453292F;
+		this.left_hands_ro.yaw = headYaw * 0.017453292F;
+		this.right_hands_ro.pitch = headPitch * 0.017453292F;
+		this.right_hands_ro.yaw = headYaw * 0.017453292F;
+		this.handl1.pivotZ = offysin;
+		this.handl2.pivotZ = offycos;
+		this.handl3.pivotZ = offysin;
+		this.handl4.pivotZ = offycos;
+		this.handl5.pivotZ = offysin;
+		this.handr1.pivotZ = offycos;
+		this.handr2.pivotZ = offysin;
+		this.handr3.pivotZ = offycos;
+		this.handr4.pivotZ = offysin;
+		this.handr5.pivotZ = offycos;
+		this.left_hands_ro.pivotX = offxl;
+		this.right_hands_ro.pivotX = offxr;
 	}
 	@Override
 	public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){

@@ -39,7 +39,6 @@ public class WeatherReportFeatureRenderer extends FeatureRenderer<AbstractClient
         } else {
             idleModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
             idleModel.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 1f);
-            idleModel.renderCloud(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)), light, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.2f);
         }
         matrices.pop();
     }
