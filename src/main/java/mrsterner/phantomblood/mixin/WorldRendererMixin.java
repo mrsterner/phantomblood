@@ -1,12 +1,15 @@
 package mrsterner.phantomblood.mixin;
 
 
+import mrsterner.phantomblood.common.stand.Stand;
+import mrsterner.phantomblood.common.stand.StandUtils;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,8 +30,14 @@ public class WorldRendererMixin {
     @ModifyArgs(method = "renderEntity(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/EntityRenderDispatcher;render(Lnet/minecraft/entity/Entity;DDDFFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"))
     private void doNotDeltaTickEntityWhenTimeIsStopped(Args args) {
         Entity entity = args.get(0);
-        if (TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.isInRangeOfTimeStop(entity)) {
-            args.set(5, 0.0F);
+        if(TimeStopUtils.getTimeStoppedTicks(world) > 0 && TimeStopUtils.isInRangeOfTimeStop(entity)){
+            if(entity instanceof PlayerEntity){
+                if(StandUtils.getStand((PlayerEntity) entity) != Stand.THE_WORLD || StandUtils.getStand((PlayerEntity) entity) != Stand.STAR_PLATINUM){
+                    args.set(5, 0.0F);
+                }
+            }else {
+                args.set(5, 0.0F);
+            }
         }
     }
 }
