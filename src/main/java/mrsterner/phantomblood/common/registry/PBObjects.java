@@ -45,6 +45,18 @@ public class PBObjects {
     public static final Item KILLER_QUEEN_TRIGGER = create("killer_queen_trigger", new KillerQueenTriggerItem(new Item.Settings()));
     public static final Item BLACK_FABRIC = create("black_fabric", new Item(gen()));
 
+    public static final Item CORPSE_HEAD = create("corpse_head", new Item(gen()));
+    public static final Item CORPSE_BODY = create("corpse_body", new Item(gen()));
+    public static final Item CORPSE_ARM_RIGHT = create("corpse_arm_right", new Item(gen()));
+    public static final Item CORPSE_ARM_LEFT = create("corpse_arm_left", new Item(gen()));
+    public static final Item CORPSE_EARS = create("corpse_ears", new Item(gen()));
+    public static final Item CORPSE_HEART = create("corpse_heart", new Item(gen()));
+    public static final Item CORPSE_SPINE = create("corpse_spine", new Item(gen()));
+    public static final Item CORPSE_LEG_RIGHT = create("corpse_leg_right", new Item(gen()));
+    public static final Item CORPSE_LEG_LEFT = create("corpse_leg_left", new Item(gen()));
+    public static final Item CORPSE_EYE_RIGHT = create("corpse_eye_right", new Item(gen()));
+    public static final Item CORPSE_EYE_LEFT = create("corpse_eye_left", new Item(gen()));
+
     public static final Item ANUBIS_SWORD = create("anubis_sword", new AnubisSwordItem(ToolMaterials.IRON,4,1, gen()));
     public static final Item KILLER_VIRUS = create("killer_virus", new KillerVirusItem(gen().maxCount(1)));
 
