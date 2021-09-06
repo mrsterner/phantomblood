@@ -5,14 +5,9 @@ import mrsterner.phantomblood.client.StandUserHud;
 import mrsterner.phantomblood.client.ZaWarudoShader;
 import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.client.model.stand.*;
-import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
-import mrsterner.phantomblood.client.renderer.armor.StonemaskRenderer;
-import mrsterner.phantomblood.client.renderer.armor.VampireArmorFRenderer;
-import mrsterner.phantomblood.client.renderer.armor.VampireArmorRenderer;
 import mrsterner.phantomblood.client.renderer.item.AnubisSwordRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
-import mrsterner.phantomblood.client.renderer.stand.*;
 import mrsterner.phantomblood.client.PBClientTickEvents;
 import mrsterner.phantomblood.common.item.*;
 import mrsterner.phantomblood.common.registry.*;
@@ -21,29 +16,20 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 import java.util.Optional;
@@ -124,33 +110,7 @@ public class PhantomBloodClient implements ClientModInitializer {
             });
         });
         zaWarudoShader.registerCallbacks();
-/*
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new TheWorldFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new KillerQueenFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new StarPlatinumFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new CrazyDiamondFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new WeatherReportFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new DarkBlueMoonFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new KingCrimsonFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
-        WorldRenderEvents.LAST.register((worldRenderContext) -> {
-            new PurpleHazeFirstPersonArmRenderer((EntityModelLoader) worldRenderContext);
-        });
 
- */
 
         HudRenderCallback.EVENT.register(new StandUserHud());
 
@@ -168,32 +128,6 @@ public class PhantomBloodClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(TWENTY_CENTURY_BOY_MODEL_LAYER, TwentyCenturyBoyModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(HAMON_MODEL_LAYER, HamonModel::getTexturedModelData);
 
-
-
-
-        LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper, context) -> {
-            if (entityType == EntityType.PLAYER) {
-                //noinspection unchecked
-
-
-/*
-                registrationHelper.register(new TheWorldFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheWorldModel(context.getPart(THE_WORLD_MODEL_LAYER))));
-                registrationHelper.register(new KillerQueenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KillerQueenModel(context.getPart(KILLER_QUEEN_MODEL_LAYER))));
-                registrationHelper.register(new StarPlatinumFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new StarPlatinumModel(context.getPart(STAR_PLATINUM_MODEL_LAYER))));
-                registrationHelper.register(new CrazyDiamondFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new CrazyDiamondModel(context.getPart(CRAZY_DIAMOND_MODEL_LAYER))));
-                registrationHelper.register(new WeatherReportFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new WeatherReportModel(context.getPart(WEATHER_REPORT_MODEL_LAYER))));
-                registrationHelper.register(new DarkBlueMoonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new DarkBlueMoonModel(context.getPart(DARK_BLUE_MOON_MODEL_LAYER))));
-                registrationHelper.register(new TheSunFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new TheSunModel(context.getPart(THE_SUN_MODEL_LAYER))));
-                registrationHelper.register(new KingCrimsonFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new KingCrimsonModel(context.getPart(KING_CRIMSON_MODEL_LAYER))));
-                registrationHelper.register(new PurpleHazeFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new PurpleHazeModel(context.getPart(PURPLE_HAZE_MODEL_LAYER))));
-                registrationHelper.register(new HierophantGreenFeatureRenderer<>((FeatureRendererContext<PlayerEntity, EntityModel<PlayerEntity>>) entityRenderer, new HierophantGreenModel(context.getPart(HIEROPHANT_GREEN_MODEL_LAYER))));
-
-
- */
-
-
-            }
-        });
 
         GeoItemRenderer.registerItemRenderer(PBObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
         GeoItemRenderer.registerItemRenderer(PBObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());

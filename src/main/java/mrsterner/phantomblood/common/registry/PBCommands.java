@@ -61,13 +61,8 @@ public class PBCommands {
     }
     public static int hamon(CommandContext<ServerCommandSource> context, ServerPlayerEntity player) throws CommandSyntaxException {
         context.getSource().sendFeedback(new TranslatableText("command.phantomblood.hamon", player.getDisplayName()).setStyle(Style.EMPTY.withBold(true)), false);
-        if(HamonUtils.getHamon(player) == Hamon.HAMON){
-            HamonUtils.setHamon(player, Hamon.NONE);
-        }else{
-            HamonUtils.setHamon(player, Hamon.HAMON);
-        }
+        HamonUtils.setHamon(player, Hamon.HAMON);
         HamonUtils.setHamonLevel(player, 0);
-
         return 0;
     }
 

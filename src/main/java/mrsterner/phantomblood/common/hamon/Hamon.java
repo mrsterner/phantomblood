@@ -23,6 +23,7 @@ public enum Hamon {
             long ticks = HamonUtils.getHamonLevel(player) == 0 ? 120 : 200;
             if (energy >= energyForAbility) {
                 HamonUtils.setHamonEnergy(player, energy - energyForAbility);
+                System.out.println("Hamon");
              }
         });
     });

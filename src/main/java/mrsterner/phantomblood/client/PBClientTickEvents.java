@@ -1,5 +1,7 @@
 package mrsterner.phantomblood.client;
 
+import mrsterner.phantomblood.common.hamon.Hamon;
+import mrsterner.phantomblood.common.hamon.HamonUtils;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandMode;
 import mrsterner.phantomblood.common.stand.StandUtils;
@@ -24,6 +26,8 @@ public class PBClientTickEvents implements ClientTickEvents.EndTick {
         final boolean[] wasUseAbilityKeybindPressed = {false};
         KeyBinding toggleStandKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.toggle_stand", GLFW.GLFW_KEY_P, "key.categories.phantomblood"));
         final boolean[] wasToggleStandKeybindPressed = {false};
+        KeyBinding toggleHamonKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.toggle_hamon", GLFW.GLFW_KEY_I, "key.categories.phantomblood"));
+        final boolean[] wasToggleHamonKeybindPressed = {false};
         KeyBinding changeStandModeKeybind = KeyBindingHelper.registerKeyBinding(new KeyBinding("phantomblood.key.change_stand_mode", GLFW.GLFW_KEY_LEFT_ALT, "key.categories.phantomblood"));
         final boolean[] wasChangeStandKeybindPressed = {false};
         final boolean[] wasChangeStandKeybindReleased = {false};
@@ -39,13 +43,23 @@ public class PBClientTickEvents implements ClientTickEvents.EndTick {
                 } else {
                     wasUseAbilityKeybindPressed[0] = false;
                 }
-                if (toggleStandKeybind.isPressed()) {
+                //Stand
+                if (toggleStandKeybind.isPressed() && StandUtils.getStand(player) != Stand.NONE) {
                     if (!wasToggleStandKeybindPressed[0]) {
                         ClientPlayNetworking.send(new Identifier("phantomblood:toggle_stand"), PacketByteBufs.create());
                     }
                     wasToggleStandKeybindPressed[0] = true;
                 } else {
                     wasToggleStandKeybindPressed[0] = false;
+                }
+                //Hamon
+                if (toggleHamonKeybind.isPressed() && HamonUtils.getHamon(player) == Hamon.HAMON) {
+                    if (!wasToggleHamonKeybindPressed[0]) {
+                        ClientPlayNetworking.send(new Identifier("phantomblood:toggle_hamon"), PacketByteBufs.create());
+                    }
+                    wasToggleHamonKeybindPressed[0] = true;
+                } else {
+                    wasToggleHamonKeybindPressed[0] = false;
                 }
 
                 //Push to Stand

@@ -12,6 +12,7 @@ import mrsterner.phantomblood.common.entity.KillerVirusCloudEntity;
 import mrsterner.phantomblood.common.entity.KillerVirusEntity;
 import mrsterner.phantomblood.common.hamon.HamonUserComponent;
 import mrsterner.phantomblood.common.hamon.HamonUserComponentImpl;
+import mrsterner.phantomblood.common.hamon.HamonUtils;
 import mrsterner.phantomblood.common.stand.*;
 import mrsterner.phantomblood.common.timestop.StoppedTimeDamageHandler;
 import mrsterner.phantomblood.common.timestop.TimeStopComponent;
@@ -103,6 +104,9 @@ public final class PhantomBlood implements ModInitializer, EntityComponentInitia
         });
         ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:toggle_stand"), (server, player, handler, buf, response) -> {
             server.execute(() -> StandUtils.toggleStandActive(player));
+        });
+        ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:toggle_hamon"), (server, player, handler, buf, response) -> {
+            server.execute(() -> HamonUtils.toggleHamonActive(player));
         });
         ServerPlayNetworking.registerGlobalReceiver(new Identifier("phantomblood:change_stand_mode"), (server, player, handler, buf, response) -> {
             server.execute(() -> StandUtils.setToNextStandMode(player));

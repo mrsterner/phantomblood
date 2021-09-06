@@ -33,7 +33,19 @@ public class AuraFeatureRenderer extends FeatureRenderer<LivingEntity, EntityMod
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         float f = ((float)entity.age + tickDelta) * 0.01F % 1;
-        if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) == Stand.NONE && HamonUtils.getHamon((PlayerEntity) entity) == Hamon.NONE && StandUtils.getStandLevel((PlayerEntity) entity)!=0) return;
+        if ((entity instanceof PlayerEntity) && HamonUtils.isHamonActive((PlayerEntity) entity) && HamonUtils.getHamon((PlayerEntity) entity) == Hamon.HAMON) {
+            matrices.push();
+            model.animateModel(entity, limbAngle, limbDistance, tickDelta);
+            this.getContextModel().copyStateTo(model);
+            model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
+            VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEnergySwirl(new Identifier(PhantomBlood.MODID, "textures/entity/hamon/aura_yellow.png"), f, f));
+            model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1 , 1 , 1, 1.0F);
+            matrices.pop();
+            return;
+        }
+        if (!(entity instanceof PlayerEntity) || !StandUtils.isStandActive((PlayerEntity) entity) || StandUtils.getStand((PlayerEntity) entity) == Stand.NONE && StandUtils.getStandLevel((PlayerEntity) entity)!=0) {
+            return;
+        }
 
         matrices.push();
         model.animateModel(entity, limbAngle, limbDistance, tickDelta);
@@ -66,5 +78,6 @@ public class AuraFeatureRenderer extends FeatureRenderer<LivingEntity, EntityMod
         }
         model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1 , 1 , 1, 1.0F);
         matrices.pop();
+
     }
 }

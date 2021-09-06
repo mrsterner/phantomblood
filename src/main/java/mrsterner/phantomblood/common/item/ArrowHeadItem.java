@@ -3,11 +3,11 @@ package mrsterner.phantomblood.common.item;
 import mrsterner.phantomblood.common.registry.PBObjects;
 import mrsterner.phantomblood.common.stand.Stand;
 import mrsterner.phantomblood.common.stand.StandUtils;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -57,50 +57,50 @@ public class ArrowHeadItem extends Item {
 
             String enchant = user.getStackInHand(hand).getEnchantments().getString(0);
             switch (enchant) {
-                case "{lvl:1s,id:\"phantomblood:star_platinum_enchantment\"}":
+                case "{id:\"phantomblood:star_platinum_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.STAR_PLATINUM ? 1 : 0);
                     StandUtils.setStand(user, Stand.STAR_PLATINUM);
                     break;
-                case "{lvl:1s,id:\"phantomblood:the_world_enchantment\"}":
+                case "{id:\"phantomblood:the_world_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.THE_WORLD ? 1 : 0);
                     StandUtils.setStand(user, Stand.THE_WORLD);
                     break;
-                case "{lvl:1s,id:\"phantomblood:the_sun_enchantment\"}":
+                case "{id:\"phantomblood:the_sun_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.THE_SUN ? 1 : 0);
                     StandUtils.setStand(user, Stand.THE_SUN);
                     break;
-                case "{lvl:1s,id:\"phantomblood:dark_blue_moon_enchantment\"}":
+                case "{id:\"phantomblood:dark_blue_moon_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.DARK_BLUE_MOON ? 1 : 0);
                     StandUtils.setStand(user, Stand.DARK_BLUE_MOON);
                     break;
-                case "{lvl:1s,id:\"phantomblood:killer_queen_enchantment\"}":
+                case "{id:\"phantomblood:killer_queen_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.KILLER_QUEEN ? 1 : 0);
                     StandUtils.setStand(user, Stand.KILLER_QUEEN);
                     break;
-                case "{lvl:1s,id:\"phantomblood:weather_report_enchantment\"}":
+                case "{id:\"phantomblood:weather_report_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.WEATHER_REPORT ? 1 : 0);
                     StandUtils.setStand(user, Stand.WEATHER_REPORT);
                     break;
-                case "{lvl:1s,id:\"phantomblood:crazy_diamond_enchantment\"}":
+                case "{id:\"phantomblood:crazy_diamond_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.CRAZY_DIAMOND ? 1 : 0);
                     StandUtils.setStand(user, Stand.CRAZY_DIAMOND);
                     break;
-                case "{lvl:1s,id:\"phantomblood:anubis_enchantment\"}":
+                case "{id:\"phantomblood:anubis_enchantment\",lvl:1s}":
                     user.giveItemStack(new ItemStack(PBObjects.ANUBIS_SWORD));
                     break;
-                case "{lvl:1s,id:\"phantomblood:king_crimson_enchantment\"}":
+                case "{id:\"phantomblood:king_crimson_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.KING_CRIMSON ? 1 : 0);
                     StandUtils.setStand(user, Stand.KING_CRIMSON);
                     break;
-                case "{lvl:1s,id:\"phantomblood:purple_haze_enchantment\"}":
+                case "{id:\"phantomblood:purple_haze_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.PURPLE_HAZE ? 1 : 0);
                     StandUtils.setStand(user, Stand.PURPLE_HAZE);
                     break;
-                case "{lvl:1s,id:\"phantomblood:hierophant_green_enchantment\"}":
+                case "{id:\"phantomblood:hierophant_green_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.HIEROPHANT_GREEN ? 1 : 0);
                     StandUtils.setStand(user, Stand.HIEROPHANT_GREEN);
                     break;
-                case "{lvl:1s,id:\"phantomblood:20th_century_boy_enchantment\"}":
+                case "{id:\"phantomblood:20th_century_boy_enchantment\",lvl:1s}":
                     StandUtils.setStandLevel(user, StandUtils.getStand(user) == Stand.TWENTY_CENTURY_BOY ? 1 : 0);
                     StandUtils.setStand(user, Stand.TWENTY_CENTURY_BOY);
                     break;
