@@ -18,11 +18,11 @@ public enum Hamon {
     NONE(0, (server, player, handler1, buf, responseSender) -> {}),
     HAMON(60000, (server, player, handler1, buf, responseSender) -> {
         server.execute(() -> {
-            int energy = StandUtils.getStandEnergy(player);
-            int energyForAbility = StandUtils.getStand(player).energyForAbility;
-            long ticks = StandUtils.getStandLevel(player) == 0 ? 120 : 200;
+            int energy = HamonUtils.getHamonEnergy(player);
+            int energyForAbility = HamonUtils.getHamon(player).energyForAbility;
+            long ticks = HamonUtils.getHamonLevel(player) == 0 ? 120 : 200;
             if (energy >= energyForAbility) {
-                StandUtils.setStandEnergy(player, energy - energyForAbility);
+                HamonUtils.setHamonEnergy(player, energy - energyForAbility);
              }
         });
     });

@@ -12,17 +12,23 @@ import mrsterner.phantomblood.common.item.AnubisSwordItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
+import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -31,6 +37,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3f;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -41,18 +49,15 @@ import java.util.Optional;
 @Environment(EnvType.CLIENT)
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
-    private final HamonModel hamonModel;
-    private static final Identifier texture = new Identifier("phantomblood:textures/entity/hamon/hamon1.png");
 
     public PlayerEntityRendererMixin(EntityRendererFactory.Context ctx, PlayerEntityModel<AbstractClientPlayerEntity> model, float shadowRadius) {
         super(ctx, model, shadowRadius);
-        hamonModel = new HamonModel(ctx.getPart(PhantomBloodClient.HAMON_MODEL_LAYER));
     }
+
 
 
     @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRendererFactory$Context;Z)V", at = @At("TAIL"))
     private void PlayerEntityRenderer(EntityRendererFactory.Context ctx, boolean slim, CallbackInfo ci) {
-        addFeature(new HamonFeatureRenderer(this, ctx.getModelLoader()));
         addFeature(new TwentyCenturyBoyFeatureRenderer(this, ctx.getModelLoader()));
         addFeature(new TheWorldFeatureRenderer(this, ctx.getModelLoader()));
         addFeature(new TheSunFeatureRenderer(this, ctx.getModelLoader()));
@@ -82,21 +87,6 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         if (pos.isPresent() && player.world.getBlockState(pos.get()).getBlock() instanceof CoffinBlock) {
             callbackInfo.cancel();
             return;
-        }
-    }
-
-    @Inject(method = "renderRightArm", at = @At("HEAD"), cancellable = true)
-    private void renderRightArm(MatrixStack matrices, VertexConsumerProvider vertices, int lightmap, AbstractClientPlayerEntity renderedPlayer, CallbackInfo ci) {
-        PlayerEntity player = MinecraftClient.getInstance().player;
-        if(HamonUtils.getHamon(player) == Hamon.HAMON){
-            matrices.push();
-            PlayerEntityModel<AbstractClientPlayerEntity> playerEntityModel = (PlayerEntityModel)this.getModel();
-            playerEntityModel.copyStateTo(model);
-            matrices.translate(-0.3F,0.1F,-0.01F);
-            matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(7.5f));
-            hamonModel.render(matrices, vertices.getBuffer(RenderLayer.getEntityTranslucent(texture)), lightmap, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.6f);
-            hamonModel.renderHeat(matrices, vertices.getBuffer(RenderLayer.getEntityTranslucent(texture)), lightmap, OverlayTexture.DEFAULT_UV, 1f, 1f, 1f, 0.3f);
-            matrices.pop();
         }
     }
 }

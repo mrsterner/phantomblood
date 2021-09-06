@@ -3,6 +3,7 @@ package mrsterner.phantomblood;
 import mrsterner.phantomblood.client.EntitySpawnPacket;
 import mrsterner.phantomblood.client.StandUserHud;
 import mrsterner.phantomblood.client.ZaWarudoShader;
+import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.client.model.stand.*;
 import mrsterner.phantomblood.client.renderer.armor.BloodStonemaskRenderer;
 import mrsterner.phantomblood.client.renderer.armor.StonemaskRenderer;
@@ -42,6 +43,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 import java.util.Optional;
@@ -154,7 +156,6 @@ public class PhantomBloodClient implements ClientModInitializer {
 
 
         EntityModelLayerRegistry.registerModelLayer(THE_WORLD_MODEL_LAYER, TheWorldModel::getTexturedModelData);
-
         EntityModelLayerRegistry.registerModelLayer(KILLER_QUEEN_MODEL_LAYER, KillerQueenModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(STAR_PLATINUM_MODEL_LAYER, StarPlatinumModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(CRAZY_DIAMOND_MODEL_LAYER, CrazyDiamondModel::getTexturedModelData);
@@ -165,6 +166,7 @@ public class PhantomBloodClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(PURPLE_HAZE_MODEL_LAYER, PurpleHazeModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(HIEROPHANT_GREEN_MODEL_LAYER, HierophantGreenModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(TWENTY_CENTURY_BOY_MODEL_LAYER, TwentyCenturyBoyModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(HAMON_MODEL_LAYER, HamonModel::getTexturedModelData);
 
 
 
@@ -193,10 +195,11 @@ public class PhantomBloodClient implements ClientModInitializer {
             }
         });
 
-        //GeoItemRenderer.registerItemRenderer(PBObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
-        //GeoItemRenderer.registerItemRenderer(PBObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
+        GeoItemRenderer.registerItemRenderer(PBObjects.STONE_MASK_ITEM, new StonemaskItemRenderer());
+        GeoItemRenderer.registerItemRenderer(PBObjects.BLOODY_STONE_MASK_ITEM, new BloodStonemaskItemRenderer());
         //StonemaskRenderer.registerArmorRenderer(StonemaskItem.class, new StonemaskRenderer());
-        //BloodStonemaskRenderer.registerArmorRenderer(BloodStonemaskItem.class, new BloodStonemaskRenderer());
+        //BloodStonemaskRenderer.registerArmorRenderer(BloodStonemaskItem.class, (ctx) -> new BloodStonemaskRenderer(ctx));
+        //GeoArmorRenderer.registerArmorRenderer(BloodStonemaskItem.class, (context) -> new BloodStonemaskRenderer(context));
         //GeoArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         //VampireArmorRenderer.registerArmorRenderer(VampireArmorItem.class, new VampireArmorRenderer());
         //GeoArmorRenderer.registerArmorRenderer(VampireArmorFItem.class, new VampireArmorFRenderer());

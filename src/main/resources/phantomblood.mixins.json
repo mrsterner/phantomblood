@@ -25,6 +25,7 @@
     "ParticleAccessor",
     "ParticleManagerMixin",
     "PlayerEntityRendererMixin",
+    "LivingEntityRendererMixin",
     "WorldRendererMixin"
   ],
   "injectors": {

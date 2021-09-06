@@ -8,15 +8,20 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.util.GeoArmorRendererFactory;
 
 public class BloodStonemaskRenderer extends GeoArmorRenderer<BloodStonemaskItem> {
-    public BloodStonemaskRenderer(AnimatedGeoModel<BloodStonemaskItem> modelProvider, GeoArmorRendererFactory.Context ctx, EntityModelLayer layer) {
-        super(modelProvider, ctx, layer);
+    public BloodStonemaskRenderer(GeoArmorRendererFactory.Context ctx, EntityModelLayer layer) {
+        super(new BloodStonemaskModel(), ctx, layer);
     }
-    /*
+
+
+/*
+
     public BloodStonemaskRenderer() {
         super(new BloodStonemaskModel());
 
         this.headBone = "armorHead";
     }
 
-     */
+ */
+
+
 }
