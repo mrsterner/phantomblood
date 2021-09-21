@@ -18,6 +18,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib3.renderers.geo.GeoLayerRenderer;
 
 public class TheSunFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
     private static TheSunModel idleModel;
@@ -49,4 +50,6 @@ public class TheSunFeatureRenderer extends FeatureRenderer<AbstractClientPlayerE
         }
         matrices.pop();
     }
+
+
 }
