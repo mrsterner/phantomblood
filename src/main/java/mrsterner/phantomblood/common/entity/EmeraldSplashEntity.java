@@ -13,16 +13,22 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.Angerable;
+import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.Packet;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 @EnvironmentInterface(value = EnvType.CLIENT, itf = FlyingItemEntity.class)
@@ -35,18 +41,34 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         setNoGravity(true);
     }
 
-    public EmeraldSplashEntity(LivingEntity owner, Entity target, World world) {
+    public EmeraldSplashEntity(LivingEntity owner, @Nullable Entity target, World world) {
         super(PhantomBlood.EMERALD_SPLASH_ENTITY_TYPE, owner, world);
-        dataTracker.set(TARGET, Optional.of(target.getUuid()));
+        dataTracker.set(TARGET, Optional.ofNullable(target).map(Entity::getUuid));
         this.pickupType = PickupPermission.DISALLOWED;
         this.target = target;
         setNoGravity(true);
         setPos(getX()+world.random.nextGaussian(), getY()+world.random.nextDouble(), getZ()+world.random.nextGaussian());
+        if (target == null) {
+            setVelocity(owner.getRotationVector().normalize());
+        }
+    }
+
+    @Override
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        if (entityHitResult.getEntity() == getOwner()) {
+            return;
+        }
+
+        super.onEntityHit(entityHitResult);
     }
 
     @Override
     public void tick() {
         super.tick();
+        if (target == null && getOwner() instanceof LivingEntity) {
+            target = getTarget(world.random, findNearbyPotentialTargets(world, getOwner()), getTargetOf((LivingEntity) getOwner()));
+        }
+
         if (target != null && target.isAlive()) {
             if (!inGround && age > 10) {
                 Vec3d vel = getVelocity();
@@ -59,7 +81,7 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         }
         if (world.isClient) {
             world.addParticle(new DustParticleEffect(0.0f, 1.0f, 0.0f, 1.0f), getX(), getY(), getZ(), 0.0, 0.0, 0.0);
-        } else if (inGround || target == null || !target.isAlive()) {
+        } else if (inGround || (target != null && !target.isAlive())) {
             remove();
         }
     }
@@ -84,5 +106,48 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
     @Environment(EnvType.CLIENT)
     public ItemStack getStack() {
         return Items.EMERALD.getDefaultStack();
+    }
+
+    public static @Nullable Entity getTarget(Random random, List<Entity> nearbyPotentialTargets, @Nullable Entity playerTarget) {
+        Entity target = null;
+
+        if (random.nextDouble() > 0.5 || nearbyPotentialTargets.isEmpty()) {
+            target = playerTarget;
+        }
+
+        if (target == null && !nearbyPotentialTargets.isEmpty()) {
+            target = nearbyPotentialTargets.get(random.nextInt(nearbyPotentialTargets.size()));
+        }
+
+        return target;
+    }
+
+    public static @Nullable Entity getTargetOf(LivingEntity entity) {
+        final Entity target = entity.getAttacking();
+        if (target == null) {
+            return entity.getAttacker();
+        }
+
+        return target;
+    }
+
+    public static List<Entity> findNearbyPotentialTargets(World world, Entity owner) {
+        return world.getOtherEntities(owner, owner.getBoundingBox().expand(20.0), entity -> isValidTarget(entity, owner));
+    }
+
+    private static boolean isValidTarget(Entity entity, Entity owner) {
+        if (!entity.isAlive()) {
+            return false;
+        }
+
+        if (entity instanceof Monster) {
+            return true;
+        }
+
+        if ((entity instanceof Angerable && ((Angerable) entity).hasAngerTime()) || entity instanceof PlayerEntity) {
+            return !entity.isTeammate(owner) && entity != owner;
+        }
+
+        return false;
     }
 }
