@@ -69,7 +69,7 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
     public void tick() {
         super.tick();
         if (target == null && getOwner() instanceof LivingEntity) {
-            target = getTarget(world.random, findNearbyPotentialTargets(world, getOwner()), getTargetOf((LivingEntity) getOwner()));
+            target = getTarget(world.random, findNearbyPotentialTargets(world, getOwner(), this), getTargetOf((LivingEntity) getOwner()));
         }
 
         if (target != null && target.isAlive()) {
@@ -139,8 +139,8 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         return target;
     }
 
-    public static List<Entity> findNearbyPotentialTargets(World world, Entity owner) {
-        return world.getOtherEntities(owner, owner.getBoundingBox().expand(20.0), entity -> isValidTarget(entity, owner));
+    public static List<Entity> findNearbyPotentialTargets(World world, Entity owner, Entity lookFrom) {
+        return world.getOtherEntities(owner, lookFrom.getBoundingBox().expand(20.0), entity -> isValidTarget(entity, owner));
     }
 
     private static boolean isValidTarget(Entity entity, Entity owner) {
