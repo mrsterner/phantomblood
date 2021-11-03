@@ -84,7 +84,7 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         }
         if (world.isClient) {
             world.addParticle(new DustParticleEffect(0.0f, 1.0f, 0.0f, 1.0f), getX(), getY(), getZ(), 0.0, 0.0, 0.0);
-        } else if (inGround || (target != null && !target.isAlive())) {
+        } else if (inGround || (target != null && !target.isAlive()) || (target == null && getVelocity().lengthSquared() <= 0.04)) {
             remove();
         }
     }
