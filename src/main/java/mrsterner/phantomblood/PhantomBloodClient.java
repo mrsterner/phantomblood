@@ -9,6 +9,7 @@ import mrsterner.phantomblood.client.renderer.item.AnubisSwordRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
 import mrsterner.phantomblood.client.PBClientTickEvents;
+import mrsterner.phantomblood.common.entity.EmeraldSplashEntity;
 import mrsterner.phantomblood.common.item.*;
 import mrsterner.phantomblood.common.registry.*;
 import net.fabricmc.api.ClientModInitializer;
@@ -17,12 +18,14 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -85,9 +88,9 @@ public class PhantomBloodClient implements ClientModInitializer {
     public void onInitializeClient() {
         PBClientTickEvents.init();
 
-        //EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
-        //EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusCloudEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
-        EntityRendererRegistry.INSTANCE.register(PhantomBlood.EMERALD_SPLASH_ENTITY_TYPE, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));
+        EntityRendererRegistry.register(PhantomBlood.KillerVirusEntityType, FlyingItemEntityRenderer::new);receiveEntityPacket();
+        //EntityRendererRegistry.register(PhantomBlood.KillerVirusCloudEntityType, FlyingItemEntityRenderer::new);receiveEntityPacket();
+        EntityRendererRegistry.register(PhantomBlood.EMERALD_SPLASH_ENTITY_TYPE, FlyingItemEntityRenderer::new);
 
 
         Registry.ITEM.forEach((item) -> {

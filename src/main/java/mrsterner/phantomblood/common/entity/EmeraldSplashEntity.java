@@ -27,6 +27,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -82,9 +83,9 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
             }
         }
         if (world.isClient) {
-            world.addParticle(new DustParticleEffect(0.0f, 1.0f, 0.0f, 1.0f), getX(), getY(), getZ(), 0.0, 0.0, 0.0);
+            world.addParticle(new DustParticleEffect(new Vec3f(0.0f, 1.0f, 0.0f), 1.0f), getX(), getY(), getZ(), 0.0, 0.0, 0.0);
         } else if (inGround || (getTarget() != null && !getTarget().isAlive()) || (getTarget() == null && getVelocity().lengthSquared() <= 0.04)) {
-            remove();
+            remove(RemovalReason.DISCARDED);
         }
     }
 
@@ -120,11 +121,6 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
     }
 
     @Override
-    public Packet<?> createSpawnPacket() {
-        return EntitySpawnPacket.create(this, PhantomBloodClient.PacketID);
-    }
-
-    @Override
     @Environment(EnvType.CLIENT)
     public ItemStack getStack() {
         return Items.EMERALD.getDefaultStack();
@@ -148,7 +144,7 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
     }
 
     public void setTarget(@Nullable Entity entity) {
-        dataTracker.set(TARGET, Optional.ofNullable(entity).map(Entity::getEntityId).orElse(-1));
+        dataTracker.set(TARGET, Optional.ofNullable(entity).map(Entity::getId).orElse(-1));
     }
 
     /**
