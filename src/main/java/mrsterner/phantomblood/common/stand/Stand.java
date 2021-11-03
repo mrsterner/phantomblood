@@ -102,12 +102,16 @@ public enum Stand {
         server.execute(() -> {
             int energy = StandUtils.getStandEnergy(player);
             int energyForAbility = StandUtils.getStand(player).energyForAbility;
+
             if (energy >= energyForAbility) {
-                    List<Entity> nearbyPotentialTargets = EmeraldSplashEntity.findNearbyPotentialTargets(player.world, player);
-                    Entity playerTarget = EmeraldSplashEntity.getTargetOf(player);
+                List<Entity> nearbyPotentialTargets = EmeraldSplashEntity.findNearbyPotentialTargets(player.world, player, player);
+                Entity playerTarget = EmeraldSplashEntity.getTargetOf(player);
+
                 for (int i = 0; i < 20; i++) {
                     player.world.spawnEntity(new EmeraldSplashEntity(player, EmeraldSplashEntity.getTarget(player.world.random, nearbyPotentialTargets, playerTarget), player.world));
                 }
+
+                StandUtils.setStandEnergy(player, energy-energyForAbility);
             }
         });
     }),
