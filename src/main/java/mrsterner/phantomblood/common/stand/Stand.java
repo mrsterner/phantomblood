@@ -1,7 +1,6 @@
 package mrsterner.phantomblood.common.stand;
 
 
-import mrsterner.phantomblood.PhantomBlood;
 import mrsterner.phantomblood.common.entity.EmeraldSplashEntity;
 import mrsterner.phantomblood.common.entity.KillerVirusEntity;
 import mrsterner.phantomblood.common.registry.PBObjects;
@@ -10,17 +9,15 @@ import mrsterner.phantomblood.common.registry.PBStatusEffects;
 import mrsterner.phantomblood.common.timestop.TimeStopUtils;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.DropperBlock;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.List;
 import java.util.Locale;
 
 public enum Stand {
@@ -48,7 +45,7 @@ public enum Stand {
             long ticks = StandUtils.getStandLevel(player) == 0 ? 90 : 180;
             int energy = StandUtils.getStandEnergy(player);
             int energyForAbility = StandUtils.getStand(player).energyForAbility;
-             if (energy >= energyForAbility) {
+            if (energy >= energyForAbility) {
                 StandUtils.setStandEnergy(player, energy - energyForAbility);
                 TimeStopUtils.setTimeStoppedTicks(player.world, ticks);
                 TimeStopUtils.setTimeStopper(player.world, player);
@@ -106,8 +103,10 @@ public enum Stand {
             int energy = StandUtils.getStandEnergy(player);
             int energyForAbility = StandUtils.getStand(player).energyForAbility;
             if (energy >= energyForAbility) {
+                    List<Entity> nearbyPotentialTargets = EmeraldSplashEntity.findNearbyPotentialTargets(player.world, player);
+                    Entity playerTarget = EmeraldSplashEntity.getTargetOf(player);
                 for (int i = 0; i < 20; i++) {
-                    player.world.spawnEntity(new EmeraldSplashEntity(player, player.world.getOtherEntities(player, player.getBoundingBox().expand(20.0), p -> p instanceof LivingEntity).get(0), player.world));
+                    player.world.spawnEntity(new EmeraldSplashEntity(player, EmeraldSplashEntity.getTarget(player.world.random, nearbyPotentialTargets, playerTarget), player.world));
                 }
             }
         });
