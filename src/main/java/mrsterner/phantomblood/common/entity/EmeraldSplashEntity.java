@@ -21,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.Packet;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -48,6 +50,7 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         this.target = target;
         setNoGravity(true);
         setPos(getX()+world.random.nextGaussian(), getY()+world.random.nextDouble(), getZ()+world.random.nextGaussian());
+        setSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
         if (target == null) {
             setVelocity(owner.getRotationVector().normalize());
         }
@@ -106,6 +109,11 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
     @Environment(EnvType.CLIENT)
     public ItemStack getStack() {
         return Items.EMERALD.getDefaultStack();
+    }
+
+    @Override
+    protected SoundEvent getHitSound() {
+        return SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP;
     }
 
     public static @Nullable Entity getTarget(Random random, List<Entity> nearbyPotentialTargets, @Nullable Entity playerTarget) {
