@@ -116,6 +116,18 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         return SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP;
     }
 
+    /**
+     * Gets a target for an emerald splash projectile entity.
+     *
+     * <p>There is a 50-50 chance that this method will go for the player target, or for a random nearby target. If there
+     * are no nearby targets, it will always pick the player target. If there is no player target either, it returns null.</p>
+     *
+     * @param random a random instance
+     * @param nearbyPotentialTargets a list of nearby potential target entities
+     * @param playerTarget the player's target, or null
+     *
+     * @return a target, or null if there are no options
+     */
     public static @Nullable Entity getTarget(Random random, List<Entity> nearbyPotentialTargets, @Nullable Entity playerTarget) {
         Entity target = null;
 
@@ -130,6 +142,13 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         return target;
     }
 
+    /**
+     * Gets the target entity of an entity.
+     *
+     * @param entity the entity whose target we want
+     *
+     * @return the entity's current combat target, or null
+     */
     public static @Nullable Entity getTargetOf(LivingEntity entity) {
         final Entity target = entity.getAttacking();
         if (target == null) {
@@ -139,23 +158,47 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         return target;
     }
 
+
+    /**
+     * Gets a list of potential targets (as specified by {@link EmeraldSplashEntity#isValidTarget(Entity, Entity)})
+     * within 20 blocks of an entity.
+     *
+     * @param world the world
+     * @param owner the owner of the projectile
+     * @param lookFrom the entity at the centre of the search radius
+     *
+     * @return a list of potential target entities
+     */
     public static List<Entity> findNearbyPotentialTargets(World world, Entity owner, Entity lookFrom) {
         return world.getOtherEntities(owner, lookFrom.getBoundingBox().expand(20.0), entity -> isValidTarget(entity, owner));
     }
 
+    /**
+     * Whether an entity is a valid target. Valid targets are:
+     *
+     * <ul>
+     *  <li>alive</li>
+     *  <li>not our owner</li>
+     *  <li>not on the same team as our owner</li>
+     *  <li>monsters, players, or angered neutral mobs</li>
+     * </ul>
+     *
+     * @param entity the entity to check
+     * @param owner the projectile's owner
+     *
+     * @return true if the entity is a valid target, false otherwise
+     */
     private static boolean isValidTarget(Entity entity, Entity owner) {
         if (!entity.isAlive()) {
             return false;
         }
 
-        if (entity instanceof Monster) {
-            return true;
+        if (entity == owner || entity.isTeammate(owner)) {
+            return false;
         }
 
-        if ((entity instanceof Angerable && ((Angerable) entity).hasAngerTime()) || entity instanceof PlayerEntity) {
-            return !entity.isTeammate(owner) && entity != owner;
-        }
-
-        return false;
+        return entity instanceof Monster
+                || (entity instanceof Angerable && ((Angerable) entity).hasAngerTime())
+                || entity instanceof PlayerEntity;
     }
 }
