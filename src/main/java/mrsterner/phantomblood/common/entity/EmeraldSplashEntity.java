@@ -19,8 +19,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
@@ -31,12 +33,10 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.UUID;
 
 @EnvironmentInterface(value = EnvType.CLIENT, itf = FlyingItemEntity.class)
 public class EmeraldSplashEntity extends PersistentProjectileEntity implements FlyingItemEntity {
-    private static final TrackedData<Optional<UUID>> TARGET = DataTracker.registerData(EmeraldSplashEntity.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
-    private @Nullable Entity target;
+    private static final TrackedData<Integer> TARGET = DataTracker.registerData(EmeraldSplashEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public EmeraldSplashEntity(EntityType<? extends EmeraldSplashEntity> entityType, World world) {
         super(entityType, world);
@@ -45,14 +45,13 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
 
     public EmeraldSplashEntity(LivingEntity owner, @Nullable Entity target, World world) {
         super(PhantomBlood.EMERALD_SPLASH_ENTITY_TYPE, owner, world);
-        dataTracker.set(TARGET, Optional.ofNullable(target).map(Entity::getUuid));
         this.pickupType = PickupPermission.DISALLOWED;
-        this.target = target;
-        setNoGravity(true);
-        setPos(getX()+world.random.nextGaussian(), getY()+world.random.nextDouble(), getZ()+world.random.nextGaussian());
-        setSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
+        this.setTarget(target);
+        this.setNoGravity(true);
+        this.setPos(getX()+world.random.nextGaussian(), getY()+world.random.nextDouble(), getZ()+world.random.nextGaussian());
+        this.setSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
         if (target == null) {
-            setVelocity(owner.getRotationVector().normalize());
+            this.setVelocity(owner.getRotationVector().normalize());
         }
     }
 
@@ -68,14 +67,14 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
     @Override
     public void tick() {
         super.tick();
-        if (target == null && getOwner() instanceof LivingEntity) {
-            target = getTarget(world.random, findNearbyPotentialTargets(world, getOwner(), this), getTargetOf((LivingEntity) getOwner()));
+        if (getTarget() == null && getOwner() instanceof LivingEntity) {
+            setTarget(getTarget(world.random, findNearbyPotentialTargets(world, getOwner(), this), getTargetOf((LivingEntity) getOwner())));
         }
 
-        if (target != null && target.isAlive()) {
+        if (getTarget() != null && getTarget().isAlive()) {
             if (!inGround && age > 10) {
                 Vec3d vel = getVelocity();
-                Vec3d dir = new Vec3d(target.getX(), target.getRandomBodyY(), target.getZ()).subtract(getPos()).normalize().multiply(0.2+world.random.nextGaussian()*0.05);
+                Vec3d dir = new Vec3d(getTarget().getX(), getTarget().getRandomBodyY(), getTarget().getZ()).subtract(getPos()).normalize().multiply(0.2+world.random.nextGaussian()*0.05);
                 if (Math.acos(vel.dotProduct(dir)/(vel.length()*dir.length())) > 0.3) {
                     setVelocity(getVelocity().multiply(0.85));
                 }
@@ -84,15 +83,35 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
         }
         if (world.isClient) {
             world.addParticle(new DustParticleEffect(0.0f, 1.0f, 0.0f, 1.0f), getX(), getY(), getZ(), 0.0, 0.0, 0.0);
-        } else if (inGround || (target != null && !target.isAlive()) || (target == null && getVelocity().lengthSquared() <= 0.04)) {
+        } else if (inGround || (getTarget() != null && !getTarget().isAlive()) || (getTarget() == null && getVelocity().lengthSquared() <= 0.04)) {
             remove();
+        }
+    }
+
+    @Override
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        final @Nullable Entity tgt = getTarget();
+        if (tgt != null) {
+            nbt.putUuid("TargetUuid", tgt.getUuid());
+        }
+        return nbt;
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        if (nbt.contains("TargetUuid", 11)) {
+            if (world instanceof ServerWorld) {
+                setTarget(((ServerWorld)world).getEntity(nbt.getUuid("TargetUuid")));
+            }
         }
     }
 
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
-        dataTracker.startTracking(TARGET, Optional.empty());
+        dataTracker.startTracking(TARGET, -1);
     }
 
     @Override
@@ -114,6 +133,22 @@ public class EmeraldSplashEntity extends PersistentProjectileEntity implements F
     @Override
     protected SoundEvent getHitSound() {
         return SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP;
+    }
+
+    public @Nullable Entity getTarget() {
+        return this.world.getEntityById(dataTracker.get(TARGET));
+    }
+
+    public void setTargetById(@Nullable Integer id) {
+        if (id == null) {
+            setTarget(null);
+        } else {
+            setTarget(this.world.getEntityById(id));
+        }
+    }
+
+    public void setTarget(@Nullable Entity entity) {
+        dataTracker.set(TARGET, Optional.ofNullable(entity).map(Entity::getEntityId).orElse(-1));
     }
 
     /**
