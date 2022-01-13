@@ -11,7 +11,7 @@ import software.bernie.geckolib3.util.GeoArmorRendererFactory;
 
 public class StonemaskRenderer extends GeoArmorRenderer<StonemaskItem> {
     public StonemaskRenderer(AnimatedGeoModel<StonemaskItem> modelProvider, GeoArmorRendererFactory.Context ctx, EntityModelLayer layer) {
-        super(modelProvider, ctx, layer);
+        super(modelProvider);
     }
     /*
     public StonemaskRenderer() {
@@ -21,11 +21,4 @@ public class StonemaskRenderer extends GeoArmorRenderer<StonemaskItem> {
     }
 
      */
-
-
-    @Override
-    public void render(MatrixStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
-        super.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-    }
-
 }

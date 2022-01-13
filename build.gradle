@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.9-SNAPSHOT'
+	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -111,7 +111,7 @@ dependencies {
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-world:${project.cc_version}"
     include "io.github.onyxStudios.Cardinal-Components-API:cardinal-components-world:${project.cc_version}"
     //Geckolib
-    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.17:3.0.12:dev'
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.25'
     //Satin
     modImplementation "io.github.ladysnake:satin:${project.satin_version}"
     include "io.github.ladysnake:satin:${project.satin_version}"
@@ -184,6 +184,9 @@ jar {
 	from "LICENSE"
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/phantomblood.accesswidener")
+}
 
 // configure the maven publication
 publishing {

@@ -1,11 +1,11 @@
 package mrsterner.phantomblood.common.statuseffect;
 
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
 
 public class BaseStatusEffect extends StatusEffect {
 
-    public BaseStatusEffect(StatusEffectType type, int color) {
+    public BaseStatusEffect(StatusEffectCategory type, int color) {
         super(type, color);
     }
 }

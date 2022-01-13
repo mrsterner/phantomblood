@@ -24,7 +24,7 @@ public class PBStructures {
                 BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(true)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, RUIN_REG));
         FabricStructureBuilder.create(RuinStructure.ID, RUIN).step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(50, 25, 165757306).superflatFeature(RUIN_REG).adjustsSurface().register();
+                .defaultConfig(50, 25, 165757306).enableSuperflat().adjustsSurface().register();
 
 
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, RuinStructure.ID, RUIN_REG);
