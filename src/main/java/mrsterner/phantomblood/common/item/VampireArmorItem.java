@@ -4,6 +4,7 @@ import mrsterner.phantomblood.common.registry.PBObjects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.render.block.entity.EndPortalBlockEntityRenderer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;

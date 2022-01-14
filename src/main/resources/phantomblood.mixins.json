@@ -22,10 +22,12 @@
     "ClientWorldMixin",
     "InGameHudMixin",
     "InGameOverlayRendererMixin",
+    "GameRendererMixin",
+    "LivingEntityRendererMixin",
     "ParticleAccessor",
     "ParticleManagerMixin",
     "PlayerEntityRendererMixin",
-    "LivingEntityRendererMixin",
+    "RenderLayerAccessor",
     "WorldRendererMixin"
   ],
   "injectors": {

@@ -12,6 +12,9 @@ group = project.maven_group
 
 minecraft {
 }
+loom {
+    accessWidenerPath = file("src/main/resources/phantomblood.accesswidener")
+}
 
 repositories {
     maven {
@@ -125,13 +128,13 @@ dependencies {
     //modImplementation "grondag:canvas-mc117-1.17:1.0.1985"
 
     //REI
-    /*
+
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
     modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
-     */
+
 
     //Haema
-    //modImplementation "curse.maven:haema-391257:${project.haema_version}"
+    modImplementation "curse.maven:haema-391257:${project.haema_version}"
 
     //LambdaDynamicLights
     /*
@@ -141,10 +144,10 @@ dependencies {
      */
 
     //Kotlin
-    /*
+
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
     modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
-     */
+     
 
     //Somnus
     /*

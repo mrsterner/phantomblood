@@ -12,6 +12,7 @@
   "license": "MIT",
   "icon": "assets/phantomblood/icon.png",
   "environment": "*",
+  "accessWidener" : "phantomblood.accesswidener",
   "entrypoints": {
     "main": [
       "mrsterner.phantomblood.PhantomBlood"
