@@ -5,16 +5,19 @@ import mrsterner.phantomblood.client.StandUserHud;
 import mrsterner.phantomblood.client.ZaWarudoShader;
 import mrsterner.phantomblood.client.model.HamonModel;
 import mrsterner.phantomblood.client.model.stand.*;
+import mrsterner.phantomblood.client.renderer.block.SpaceTimeBlockEntityRenderer;
 import mrsterner.phantomblood.client.renderer.item.AnubisSwordRenderer;
 import mrsterner.phantomblood.client.renderer.item.BloodStonemaskItemRenderer;
 import mrsterner.phantomblood.client.renderer.item.StonemaskItemRenderer;
 import mrsterner.phantomblood.client.PBClientTickEvents;
+import mrsterner.phantomblood.common.block.SpaceTimeBlockEntity;
 import mrsterner.phantomblood.common.item.*;
 import mrsterner.phantomblood.common.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -85,6 +88,7 @@ public class PhantomBloodClient implements ClientModInitializer {
     public void onInitializeClient() {
         PBClientTickEvents.init();
 
+        BlockEntityRendererRegistry.INSTANCE.register(PBObjects.SPACE_TIME_BLOCK_ENTITY, (context) -> new SpaceTimeBlockEntityRenderer<SpaceTimeBlockEntity>());
         //EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
         //EntityRendererRegistry.INSTANCE.register(PhantomBlood.KillerVirusCloudEntityType, (dispatcher, context) -> new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer()));receiveEntityPacket();
 
