@@ -9,7 +9,7 @@ import software.bernie.geckolib3.util.GeoArmorRendererFactory;
 
 public class VampireArmorFRenderer extends GeoArmorRenderer<VampireArmorFItem> {
     public VampireArmorFRenderer(AnimatedGeoModel<VampireArmorFItem> modelProvider, GeoArmorRendererFactory.Context ctx, EntityModelLayer layer) {
-        super(modelProvider, ctx, layer);
+        super(modelProvider);
         this.bodyBone = "armorBody";
         this.rightArmBone = "armorRightArm";
         this.leftArmBone = "armorLeftArm";

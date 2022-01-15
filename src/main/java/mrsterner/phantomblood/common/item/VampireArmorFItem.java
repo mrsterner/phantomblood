@@ -7,6 +7,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -21,11 +22,10 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.item.GeoArmorItem;
 
 import java.util.List;
 
-public class VampireArmorFItem extends GeoArmorItem implements IAnimatable {
+public class VampireArmorFItem extends ArmorItem implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public VampireArmorFItem(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {

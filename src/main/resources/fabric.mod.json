@@ -35,6 +35,7 @@
   "mixins": [
     "phantomblood.mixins.json"
   ],
+  "accessWidener": "phantomblood.accesswidener",
   "depends": {
     "fabricloader": ">=0.11.6",
     "fabric": "*",

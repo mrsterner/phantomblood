@@ -52,9 +52,9 @@ class WindTornadoParticle extends SpriteBillboardParticle {
         this.velocityX = velocityX;
         this.velocityY = velocityY;
         this.velocityZ = velocityZ;
-        this.colorRed = MathHelper.nextFloat(this.random, 0.7176471F, 0.8745098F);
-        this.colorGreen = MathHelper.nextFloat(this.random, 0.0F, 0.0F);
-        this.colorBlue = MathHelper.nextFloat(this.random, 0.8235294F, 0.9764706F);
+        this.red = MathHelper.nextFloat(this.random, 0.7176471F, 0.8745098F);
+        this.green = MathHelper.nextFloat(this.random, 0.0F, 0.0F);
+        this.blue = MathHelper.nextFloat(this.random, 0.8235294F, 0.9764706F);
         this.scale *= 0.75F;
         this.maxAge = (int)(20.0D / ((double)this.random.nextFloat() * 0.8D + 0.2D));
         this.reachedGround = false;

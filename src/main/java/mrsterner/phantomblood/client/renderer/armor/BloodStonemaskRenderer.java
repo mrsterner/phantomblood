@@ -9,7 +9,7 @@ import software.bernie.geckolib3.util.GeoArmorRendererFactory;
 
 public class BloodStonemaskRenderer extends GeoArmorRenderer<BloodStonemaskItem> {
     public BloodStonemaskRenderer(GeoArmorRendererFactory.Context ctx, EntityModelLayer layer) {
-        super(new BloodStonemaskModel(), ctx, layer);
+        super(new BloodStonemaskModel());
     }
 
 

@@ -2,6 +2,7 @@ package mrsterner.phantomblood.common.item;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,10 +14,9 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.item.GeoArmorItem;
 
 
-public class StonemaskItem extends GeoArmorItem implements IAnimatable {
+public class StonemaskItem extends ArmorItem implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private String controllerName = "stonemaskController";
 
